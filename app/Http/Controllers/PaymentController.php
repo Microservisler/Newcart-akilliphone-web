@@ -142,8 +142,8 @@ class PaymentController extends Controller {
         $data['cc'] = [
             'name'=>'Ahmet Bayrak',
             'cardnumber'=>'4938410155072507',
-            'expirationdate'=>'04/30',
-            'securitycode'=>'126',
+            'expirationdate'=>'',
+            'securitycode'=>'',
         ];
         return view('payment.step-3', $data);
     }
