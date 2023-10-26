@@ -12,7 +12,6 @@
             <div class="container">
                 <div class="breadcrumb">
                     <nav>
-
                         <ul>
                             <li><a href="#"><img src="{{ url('assets/images/home-icon.svg') }}"></a></li>
                             @if(isset($product['productCategories'][0]))
@@ -411,7 +410,11 @@
         </section>
 
     </div>
+
+    <x-product.recently-viewed />
 @endsection
+
+
 @section('js')
 
     <script>
@@ -435,7 +438,7 @@
                 "review": yorumText,
                 "rating": selectedRating
             }
-            fetch('https://api.akillimagaza.com.tr/review', {
+            fetch('https://api.duzzona.site/review', {
                 method: 'POST', // POST isteği
                 headers: {
                     "Access-Control-Allow-Origin":"*",
@@ -466,7 +469,7 @@
                 "answer": "",
                 "whoAnswered": ""
             }
-            fetch('https://api.akillimagaza.com.tr/question', {
+            fetch('https://api.duzzona.site/question', {
                 method: 'POST', // POST isteği
                 headers: {
                     "Access-Control-Allow-Origin":"*",
@@ -508,7 +511,7 @@
         console.log(product)
         function getVariant(variantId){
             var settings = {
-                "url": "https://api.akillimagaza.com.tr/variants/" + variantId,
+                "url": "https://api.duzzona.site/variants/" + variantId,
                 'cache': false,
                 "async": true,
                 "crossDomain": true,
@@ -542,7 +545,7 @@
 
 
                 const xhr = new XMLHttpRequest();
-                const url = "https://api.akillimagaza.com.tr/reviews";
+                const url = "https://api.duzzona.site/reviews";
 
                 xhr.open("POST", url);
 

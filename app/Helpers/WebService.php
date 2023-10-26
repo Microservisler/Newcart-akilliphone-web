@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 class WebService {
-    const WEBSERVICE_SERVER = 'https://auth.akillimagaza.com/connect/token';
+    const WEBSERVICE_SERVER = 'https://auth.duzzona.site/connect/token';
     protected $userName = '';
     protected $userPassword = '';
     public static function get_token(){
@@ -32,9 +32,24 @@ class WebService {
     }
     public static function user_token($username,$password){
 
-        $response = Http::withToken('token')->post('http://api.akillimagaza.com.tr/login', [
+        $response = Http::withToken('token')->post('http://api.duzzona.site/login', [
             'username' => $username,
             'password' => $password,
+        ]);
+        $responseData = json_decode($response->body(), true);
+        if($responseData && isset($responseData['token'])){
+            $token = $responseData['token'];
+
+        } else {
+            $token = '';
+        }
+      return $token;
+    }
+    public static function admin_token(){
+
+        $response = Http::withToken('token')->post('http://api.duzzona.site/login', [
+            'username' => env('WEBSERVICE_ID', '222dddcdaa8264e6d96baadd43f324fbd83@hotmail.com'),
+            'password' => env('WEBSERVICE_SECRET', 'Passw0rd123.??!!!__'),
         ]);
         $responseData = json_decode($response->body(), true);
         if($responseData && isset($responseData['token'])){
@@ -48,18 +63,15 @@ class WebService {
 
 
     public static function register($body){
-//dd($body);
-        $response = Http::withToken('token')->post('http://api.akillimagaza.com.tr/register', $body);
+        $response = Http::withToken('token')->post('http://api.duzzona.site/register', $body);
         $responseData = json_decode($response->body(), true);
-
-
         return $responseData;
     }
 
     public static function update_user($body,$userToken){
 
         $id='0006ad8e-342b-4240-bbf0-47f3bc090276';
-        $apiUrl = "http://api.akillimagaza.com.tr/user?id={$id}";
+        $apiUrl = "http://api.duzzona.site/user?id={$id}";
         $response = Http::withToken($userToken)->put($apiUrl, $body);
         if ($response->successful()) {
             return $response->json();
@@ -72,7 +84,7 @@ class WebService {
     }
     public static function user_data($token){
 
-        $url = 'http://api.akillimagaza.com.tr/user';
+        $url = 'http://api.duzzona.site/user';
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
@@ -148,9 +160,7 @@ class WebService {
     public static function categories(){
         return self::wecart('categories/list', []);
     }
-    public static function orderPost($order){
-        return self::request('orders', $order, 'POST');
-    }
+
     public static function countries(){
         return self::static('address/countries', []);
     }
@@ -160,7 +170,12 @@ class WebService {
     public static function district($cityId){
         return self::static('address/district/'.$cityId, []);
     }
-
+    public static function create_order($order){
+        return self::request('orders', $order, 'POST', true);
+    }
+    public static function admin_order($orderId){
+        return self::request('orders/'.$orderId, [], 'GET', true);
+    }
     public static function orders($filters){
         return self::request('orders', $filters);
     }
@@ -219,13 +234,18 @@ class WebService {
         return self::static('config/general');
     }
 
-    private static function request($endpoint, $data=[], $method='GET'){
+    private static function request($endpoint, $data=[], $method='GET', $is_admin=false){
         $result = [];
         try {
+            if($is_admin===true){
+                $Authorization = self::admin_token();
+            } else {
+                $Authorization = session()->get('token');
+            }
             $client = new Client();
             $url = env('WEBSERVICE_HOST').$endpoint;
             $options['headers'] = [
-                'Authorization' => 'Bearer ' . session()->get('token'),
+                'Authorization' => 'Bearer ' . $Authorization,
                 'Accept' => 'application/json',
             ];
             if($data &&  $method=='GET'){
@@ -238,11 +258,12 @@ class WebService {
             $result = json_decode($response->getBody(), true);
             //print_r(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));die();
         } catch (\Exception $ex){
-            print_r(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
-            echo "$method : $url<br>".$ex->getMessage()."<br>";
+            //print_r(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+            //echo "$method : $url<br>".$ex->getMessage()."<br>";die();
         }
         return $result;
     }
+
     private static function static($endpoint){
         $json_path = public_path().'/jsons/'.$endpoint.'.json';
         if(is_file($json_path)){

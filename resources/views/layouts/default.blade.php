@@ -8,7 +8,7 @@
         const host = '<?php echo env("WEBSERVICE_HOST")?>';
         const token = '<?php echo session()->get('token')?>';
         var cdnUrl = 'https://cdn.akilliphone.com/';;
-        var webserviceUrl = 'https://api.akillimagaza.com.tr/';
+        var webserviceUrl = 'https://api.duzzona.site/';
 
     </script>
     <script src="/cdn-cgi/apps/head/DqVMH-M0pr135Hmm3fyPy9qF_Ys.js"></script>

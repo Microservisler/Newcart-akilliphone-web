@@ -5,7 +5,7 @@ var webService = {
 
 
             const xhr = new XMLHttpRequest();
-            const url = "https://api.akillimagaza.com.tr/login";
+            const url = "https://api.duzzona.site/login";
             xhr.open("POST", url);
             const requestBody = {
                 "username": username,
@@ -27,7 +27,7 @@ var webService = {
 
         function getUser(userToken){
             var settings = {
-                "url": "https://api.akillimagaza.com.tr/user",
+                "url": "https://api.duzzona.site/user",
                 'cache': false,
                 "async": true,
                 "crossDomain": true,

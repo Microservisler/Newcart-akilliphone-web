@@ -81,7 +81,7 @@
 @section('js')
     <script>
         var settings = {
-            "url": "https://api.akillimagaza.com.tr/orders",
+            "url": "https://api.duzzona.site/orders",
             'cache': false,
             "async": true,
             "crossDomain": true,

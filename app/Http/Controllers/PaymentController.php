@@ -157,7 +157,7 @@ class PaymentController extends Controller {
                 if($paymetType=='banktransfer'){
 
                     $order->paymentTypeId = 5; // havale
-                    $response = \WebService::orderPost($order);
+                    $response = \WebService::create_order($order);
                     if($response && $response['data'] && $response['data']['orderId']){
                         /**
                             if($order_response){
@@ -185,7 +185,7 @@ class PaymentController extends Controller {
         } else{
             //payment type yok
         }
-        dd($paymetType, $data);
+        //dd($paymetType, $data);
         return view('payment.step-4', $data);
     }
 
@@ -193,7 +193,7 @@ class PaymentController extends Controller {
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['config_general']   =  \WebService::config_general();
 
-        $order_response = \WebService::order($orderId);
+        $order_response = \WebService::admin_order($orderId);
         $data['error'] = 'Sipariş Bulanamadı';
         if($order_response && $order_response['data']){
             $data['order']  = $order_response['data'];

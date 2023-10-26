@@ -24,7 +24,13 @@
     ?>
     <section class="filter-section section-padding">
         <div class="container" id="container">
-            <h1 class="title">Akıllı Aksesuarlar</h1>
+            <h1 class="title">@if(isset($category_code) && $category_code )
+                    @if( isset($categories['data']['items'][$category_code]) )
+                        {{ $categories['data']['items'][$category_code]['info']['name'] }}
+                    @endif
+                @else
+                    Kategoriler
+                @endif</h1>
             <div class="breadcrumb">
                 <nav>
                     <ul>
@@ -241,7 +247,7 @@
                                         </div>
                                     </template>
                                 </div>
-                                <div class="next jscroll-next-parent" style="display: none;"><a id="jscroll-next" class="jscroll-next" href="https://api.akillimagaza.com.tr/products">Sonraki</a></div>
+                                <div class="next jscroll-next-parent" style="display: none;"><a id="jscroll-next" class="jscroll-next" href="https://api.duzzona.site/products">Sonraki</a></div>
                                 <div class="result-wrapper" >@{{ error }}</div>
                             </div>
                         </div>
@@ -288,7 +294,7 @@
         //     }
         // }
 
-        let fitered_url =  'https://api.akillimagaza.com.tr/products?' + webService.createFilter();
+        let fitered_url =  'https://api.duzzona.site/products?' + webService.createFilter();
         webService.getFilteredProducts(fitered_url, false);
 
         var cdnUrl = 'https://cdn.akilliphone.com/';
@@ -307,7 +313,7 @@
         }).mount('#app-basic');
 
         $(document).on('change', '.forfilter', function(){
-            let fitered_url =  'https://api.akillimagaza.com.tr/products?' + webService.createFilter();
+            let fitered_url =  'https://api.duzzona.site/products?' + webService.createFilter();
             webService.getFilteredProducts(fitered_url, false);
 
         });

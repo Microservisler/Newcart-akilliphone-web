@@ -27,6 +27,7 @@
     @else
         <x-section.lost :title="'İmage section'" />
     @endif
+    @include('home.brand-slider')
     <x-asyn.carousel :sectionId="'section1'" :title="'Aksesuarlar'" :slug="'/reyonlar/aksesuarlar-207?category=270'" />
     <x-asyn.carousel :sectionId="'section2'" :title="'Araç Aksesuarları'" :slug="'/reyonlar/arac-aksesuarlari-280?category=2'" />
     <x-asyn.carousel :sectionId="'section3'" :title="'Ev Yaşam'" :slug="'/reyonlar/ev-yasam-327?category=78'" />
