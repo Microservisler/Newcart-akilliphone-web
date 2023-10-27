@@ -47,9 +47,9 @@ class WebService {
     }
     public static function admin_token(){
 
-        $response = Http::withToken('token')->post('http://api.duzzona.site/login', [
-            'username' => env('WEBSERVICE_ID', '222dddcdaa8264e6d96baadd43f324fbd83@hotmail.com'),
-            'password' => env('WEBSERVICE_SECRET', 'Passw0rd123.??!!!__'),
+        $response = Http::withToken('token')->post('https://api.duzzona.site/login', [
+            'username' =>'222dddcdaa8264e6d96baadd43f324fbd83@hotmail.com',
+            'password' =>  'Passw0rd123.??!!!__',
         ]);
         $responseData = json_decode($response->body(), true);
         if($responseData && isset($responseData['token'])){
@@ -57,13 +57,15 @@ class WebService {
 
         } else {
             $token = '';
+
         }
       return $token;
     }
 
 
     public static function register($body){
-        $response = Http::withToken('token')->post('http://api.duzzona.site/register', $body);
+        $token = self::admin_token();
+        $response = Http::withToken($token)->post('https://api.duzzona.site/register-uye', $body);
         $responseData = json_decode($response->body(), true);
         return $responseData;
     }

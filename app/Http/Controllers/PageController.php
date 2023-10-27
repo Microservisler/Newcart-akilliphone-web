@@ -26,7 +26,6 @@ class PageController extends Controller
 
     public function sendEmail(Request $request)
     {
-        dd($request);
         $data = $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
@@ -76,6 +75,7 @@ class PageController extends Controller
       "tcKimlik" => $request->input('tcKimlik'),
       "telefon"=>$request->input('phoneNumber'),
       "hasDropshippingPermission"=>"1",
+      "code"=>"1"
 
 ];
         $register=\WebService::register($body);
@@ -93,7 +93,6 @@ class PageController extends Controller
         $userToken=\WebService::user_token($email,$password);
         if($userToken){
             session()->put('userToken', $userToken);
-
             session()->put('userInfo', \WebService::user_data($userToken));
             $request->session()->regenerate();
             return redirect()->route('index');

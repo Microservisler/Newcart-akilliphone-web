@@ -83,7 +83,7 @@
                         <div class="text">Aldığınız ürünü iade etmek hiç bu kadar kolay olmamıştı.</div>
                     </div>
                 </div>
-                <a class="signup-btn" href="uye-ol">Hemen Üye Ol</a>
+                <a class="signup-btn" href="register">Hemen Üye Ol</a>
             </div>
         </div>
     </section>

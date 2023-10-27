@@ -27,7 +27,8 @@ use App\Http\Middleware\CheckUserToken;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/giris-yap', [PageController::class, 'login'])->name('login');
-Route::get('/uye-ol', [PageController::class, 'signUp'])->name('signUp');
+Route::get('/register', [PageController::class, 'signUp'])->name('signUp');
+Route::post('/register', [PageController::class, 'register'])->name('register');
 Route::get('/reyonlar', [ListingController::class, 'index'])->name('listing.page');
 Route::get('/reyonlar/{slug}', [ListingController::class, 'index'])->name('listing.reyonlar');
 Route::get('/incele/{slug}', [ProductDetailController::class, 'index'])->name('product_detail.index');
