@@ -63,7 +63,11 @@ class ProfileController extends Controller{
         $token = session("userToken");
         if($token){
             $response=\WebService::profileOrders($token);
-            $data['orders']=$response['items'];
+            if(isset($response['items'])){
+                $data['orders']=$response['items'];
+            } else {
+                $data['orders']=[];
+            }
             return view('profile.orders', $data);
         }
         else{
