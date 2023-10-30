@@ -85,8 +85,9 @@ class WebService {
 
     public static function update_user($body){
         $token = session('userToken');
-        $response = Http::withToken($token)->post('http://api.duzzona.site/user', $body);
-        dd($response);
+        $body['user']['id']=session('userInfo')['data']['id'];
+        $response = Http::withToken($token)->put('https://api.duzzona.site/user', $body['user']);
+        $responseData = json_decode($response->body(), true);
         if ($response->successful()) {
             return $response->json();
         } else {
@@ -172,7 +173,18 @@ class WebService {
         return self::static('options/colors', []);
     }
     public static function categories(){
-        return self::wecart('categories/list', []);
+        $token = session('userToken');
+        $response = Http::withToken($token)->get('https://api.duzzona.site/categories?OnlyParents=true');
+
+        $responseData = json_decode($response->body(), true);
+    }
+    public static function breadcrumb($id){
+        $token = session('userToken');
+        $response = Http::withToken($token)->get('https://api.duzzona.site/categories/'.$id);
+
+        $responseData = json_decode($response->body(), true);
+        return $responseData;
+
     }
 
     public static function countries(){

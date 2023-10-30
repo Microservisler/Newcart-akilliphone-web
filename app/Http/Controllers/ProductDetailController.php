@@ -23,6 +23,9 @@ class ProductDetailController extends Controller
 
             if (!empty( $response['data'])) {
                 $data['product'] = $response['data'];
+
+                $data['breadcrumb']=\WebService::breadcrumb($data['product']['productCategories'][0]['categoryId']);
+
                 BasketService::setLastViewed($data['product']);
             }
 

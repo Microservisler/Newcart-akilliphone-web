@@ -18,10 +18,10 @@
         <x-section.lost :title="'İmage Product- Slider'" />
     @endif
 
-    <x-asyn.carousel :sectionId="'new_product'" :title="'Yeni Ürünler'" :slug="'/reyonlar?section=new_arrivals'" />
-    <x-asyn.carousel :sectionId="'best_sold'" :title="'Çok Satan Ürünler'" :slug="'/reyonlar?section=most_ordered'" />
-    <x-asyn.carousel :sectionId="'restocked'" :title="'Yeniden Stokta'" :slug="'/reyonlar?section=restocked'" />
-    <x-asyn.carousel :sectionId="'on_sale'" :title="'İndirime Girenler'" :slug="'/reyonlar?section=on_sale'" />
+    <x-asyn.carousel :sectionId="'new_product'" :title="'Yeni Ürünler'" :slug="'/reyonlar?offset=12&page=1&section=new_arrivals'" />
+    <x-asyn.carousel :sectionId="'best_sold'" :title="'Çok Satan Ürünler'" :slug="'/reyonlar?offset=12&page=1&section=most_ordered'" />
+    <x-asyn.carousel :sectionId="'restocked'" :title="'Yeniden Stokta'" :slug="'/reyonlar?offset=12&page=1&section=restocked'" />
+    <x-asyn.carousel :sectionId="'on_sale'" :title="'İndirime Girenler'" :slug="'/reyonlar?offset=12&page=1&section=on_sale'" />
     @if($tall_banner && isset($tall_banner['data']))
         <x-section.tall-banner :items="$tall_banner['data']['items']"  :index="2"/>
     @else
@@ -35,6 +35,8 @@
     <x-asyn.carousel :sectionId="'section5'" :title="'Dönüştürücüler'" :slug="'/kablolar-ve-donusturuculer-209?category=89'" />
     <x-asyn.carousel :sectionId="'section6'" :title="'Ses Sistemleri'" :slug="'/reyonlar/ses-sistemleri-157?category=112'" />
     <x-asyn.carousel :sectionId="'section7'" :title="'Kişisel Ürünler'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />
+    <x-asyn.carousel :sectionId="'section11'" :title="'Benzer Kategoriler'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />
+
 
 @endsection
 @section('js')
@@ -71,6 +73,7 @@
         webService.getSectionProducts('products?offset=12&page=1&section=restocked', 'restocked');
         webService.getSectionProducts('products?offset=12&page=1&section=on_sale', 'on_sale');
 
+        webService.getSectionProducts('products?cat=76&sort=newly&orderby=desc&offset=12', 'section11');
 
         webService.getSectionProducts('products?cat=1,2,3,6,5,12,9,10,8,7,4,11,48,55,63,57,44,45,47,46,13,21,16,20,19,23,24,30,31,27,32,28,25,29,26,34,41,40,36,38,37,39,35,33,43&sort=newly&orderby=desc&offset=12', 'section1');
         webService.getSectionProducts('products?cat=2,3,6,5,12,9,10,8,7,4,11&sort=newly&orderby=desc&offset=12', 'section2');

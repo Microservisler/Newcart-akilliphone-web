@@ -65,6 +65,7 @@ var webService = {
                 response.data.items[index] = webService._prepareItem(response.data.items[index]);
             });
             app.sections[this.target]=response.data.items;
+            console.log(response,this.target);
             app.target = this.target;
 
         }).fail(function(xhr, status, error) {

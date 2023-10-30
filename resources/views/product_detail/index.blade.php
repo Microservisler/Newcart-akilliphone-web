@@ -6,26 +6,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 @endsection
 @section('content')
-
     <div id="app-basic">
         <section class="product-details">
             <div class="container">
-                <div class="breadcrumb">
-                    <nav>
-                        <ul>
-                            <li><a href="#"><img src="{{ url('assets/images/home-icon.svg') }}"></a></li>
-                            @if(isset($product['productCategories'][0]))
-                            <li><a href="#">{{$product['productCategories'][0]['category']['name']}}</a></li>
-                            @endif
-                            @if(isset($product['productCategories'][1]))
-                            <li><a href="#">{{$product['productCategories'][1]['category']['name'] }}</a></li>
-                            @endif
-                            @if(isset($product['productCategories'][2]))
-                            <li><a href="#">{{$product['productCategories'][2]['category']['name'] }}</a></li>
-                            @endif
-                        </ul>
-                    </nav>
-                </div>
+{{--                <div class="breadcrumb">--}}
+
+{{--                    <nav>--}}
+{{--                        <ul>--}}
+{{--                            <li><a href="#"><img src="{{ url('assets/images/home-icon.svg') }}"></a></li>--}}
+{{--                            @if(isset($product['productCategories'][0]))--}}
+{{--                            <li><a href="#">{{$product['productCategories'][0]['category']['name']}}</a></li>--}}
+{{--                            @endif--}}
+{{--                            @if(isset($product['productCategories'][1]))--}}
+{{--                            <li><a href="#">{{$product['productCategories'][1]['category']['name'] }}</a></li>--}}
+{{--                            @endif--}}
+{{--                            @if(isset($product['productCategories'][2]))--}}
+{{--                            <li><a href="#">{{$product['productCategories'][2]['category']['name'] }}</a></li>--}}
+{{--                            @endif--}}
+{{--                        </ul>--}}
+{{--                    </nav>--}}
+{{--                </div>--}}
+                <?php
+               echo $breadcrumb['data']['breadcrumb'];
+
+                ?>
                 <div class="mobile-product-header">
                     <div class="mobile-product-header-inner">
                         <div class="brand">{{$product['brand']['name']}}</div>
@@ -97,7 +101,10 @@
 
                                 <h2 class="product-title">  <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}"> <span>{{$product['brand']['name']}}</span></a> {{$product['name']}}
                                     </h2>
-                                    <img width="93" height="42" src="{{"https://cdn.akilliphone.com/".$product['brand']['image'] }}" alt="">
+                               <div>
+                                   <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}">  <img src="{{"https://cdn.akilliphone.com/".$product['brand']['image'] }}" alt=""></a>
+                               </div>
+
                             </div>
                             <div class="rating-area">
 
@@ -198,7 +205,7 @@
                                         <input id="product-qty" class="product-qty" type="number" name="product-qty" min="1" max="10" value="1">
                                         <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
                                     </div>
-                                    <div class="addtocart"><button>Sepete Ekle</button></div>
+                                    <div class="addtocart" ><button style="cursor:pointer;">Sepete Ekle</button></div>
                                     <div class="iconcart">
                                         <a class="favorite-btn" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16.5" height="16.5"
                                                                               viewBox="0 0 16.5 16.5">
@@ -408,16 +415,25 @@
                 </div>
             </div>
         </section>
+        <x-asyn.carousel :sectionId="'section1'" :title="'Benzer Kategoriler'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />
+        <x-asyn.carousel :sectionId="'section2'" :title="'Benzer Markalar'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />
+
+        <x-product.recently-viewed />
+
 
     </div>
 
-    <x-product.recently-viewed />
+
+{{--    <x-asyn.carousel :sectionId="'section2'" :title="'Benzer Markalar'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />--}}
+
+
 @endsection
 
 
 @section('js')
 
     <script>
+
         function yorum(){
             var product = <?php echo json_encode($product, JSON_UNESCAPED_UNICODE)?>;
             var yorum = document.getElementById("review");
@@ -496,19 +512,27 @@
         var app = createApp({
             data() {
                 return {
+                    sections: {},
+                    target:'',
                     product: product,
                     variant: variant,
                     cdnUrl:cdnUrl,
 
                 }
 
-            }
+
+            },updated: function () {
+                this.$nextTick(function () {
+                    create_product_owl_slider( '#' + this.target +' .product-asyn-slider');
+                })
+            },
         }).mount('#app-basic');
+        webService.getSectionProducts('products?cat=<?php echo $product['productCategories'][0]['categoryId'] ?>&sort=newly&orderby=desc&offset=12', 'section1');
+        webService.getSectionProducts('products?brand=<?php echo $product['brand']['brandId'] ?>&sort=newly&orderby=desc&offset=12', 'section2');
 
         $('body').on('click', '.color-btn', function(){
             getVariant( $(this).data('variantid') );
         });
-        console.log(product)
         function getVariant(variantId){
             var settings = {
                 "url": "https://api.duzzona.site/variants/" + variantId,
