@@ -15,38 +15,38 @@
                         <div class="top">
                             <div class="title">Üyelik Bilgilerim</div>
                         </div>
-                        <form action="{{route('profile.userUpdate')}}" method="post">
+                        <form action="{{route('profile.informations')}}" method="post">
                             @csrf
                             <div class="form-wrapper">
                                 <div class="signup-input">
                                     <span class="label">Adı<span>&nbsp;*</span></span>
-                                    <input type="text" name="firstName" value="<?php echo $user['data']['firstName']; ?>">
+                                    <input type="text" name="user[firstName]" value="<?php echo $user['data']['firstName']; ?>">
                                 </div>
                                 <div class="signup-input">
                                     <span class="label">Soyadı<span>&nbsp;*</span></span>
-                                    <input type="text" name="lastName" value="<?php echo $user['data']['lastName']; ?>">
+                                    <input type="text" name="user[lastName]" value="<?php echo $user['data']['lastName']; ?>">
                                 </div>
 
                                 <div class="signup-input">
                                     <span class="label">E-Posta Adresi<span>&nbsp;*</span></span>
-                                    <input type="text" name="email" value="<?php echo $user['data']['email']; ?>">
+                                    <input type="text" name="user[email]" value="<?php echo $user['data']['email']; ?>">
                                 </div>
                                 <div class="signup-input">
                                     <span class="label">Kullanıcı Adı<span>&nbsp;*</span></span>
-                                    <input type="text" name="username" value="<?php echo $user['data']['userName']; ?>">
+                                    <input type="text" name="user[userName]" value="<?php echo $user['data']['userName']; ?>">
                                 </div>
                                 <div class="signup-input">
                                     <span class="label">Cep Tel<span>&nbsp;*</span></span>
-                                    <input id="mobilePhone" type="text" name="phoneNumber" value="<?php echo $user['data']['phoneNumber']; ?>">
+                                    <input id="mobilePhone" type="text" name="user[phoneNumber]" value="<?php echo $user['data']['phoneNumber']; ?>">
                                 </div>
 
                                 <div class="signup-input">
                                     <span class="label">Doğum Tarihi<span>&nbsp;*</span></span>
-                                    <input type="text" id="date-picker" name="birthDate" value="<?php echo $user['data']['birthDate']; ?>">
+                                    <input type="text" id="date-picker" name="user[birthDate]" value="<?php echo $user['data']['birthDate']; ?>">
                                 </div>
                                 <div class="signup-input">
                                     <span class="label">Tc Kimlik No<span>&nbsp;*</span></span>
-                                    <input id="mobilePhone" type="text" name="tcKimlik" value="<?php echo $user['data']['tcKimlik']; ?>">
+                                    <input id="mobilePhone" type="text" name="user[tcKimlik]" value="<?php echo $user['data']['tcKimlik']; ?>">
                                 </div>
                                 <div class="signup-agreement">
                                     <label for="membership">

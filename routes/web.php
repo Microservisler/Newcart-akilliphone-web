@@ -55,10 +55,12 @@ Route::get('/basket/remove/{variyantId}', [BasketController::class, 'removeProdu
 Route::group(['prefix'=>'profile','as'=>'profile.', 'middleware' => [CheckUserToken::class]], function () {
     Route::get('/', [ProfileController::class, 'index'])->name('index');
     Route::get('/address', [ProfileController::class, 'address'])->name('address');
-    Route::get('/orders', [ProfileController::class, 'orders'])->name('orders');
+    Route::get('/orders', [ProfileController::class, 'profileOrders'])->name('orders');
     Route::get('/comments', [ProfileController::class, 'comments'])->name('comments');
     Route::get('/payments', [ProfileController::class, 'payments'])->name('payments');
+    Route::post('/informations', [ProfileController::class, 'informationsUpdate'])->name('informations');
     Route::get('/coupons', [ProfileController::class, 'coupons'])->name('coupons');
     Route::get('/favorites', [ProfileController::class, 'favorites'])->name('favorites');
+    Route::get('/orderdetail/{orderId}/', [ProfileController::class, 'orderdetail'])->name('orderdetail');
     Route::get('/informations', [ProfileController::class, 'informations'])->name('informations');
 });

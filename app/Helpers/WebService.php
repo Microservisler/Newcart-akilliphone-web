@@ -45,6 +45,18 @@ class WebService {
         }
       return $token;
     }
+    public static function profileOrders($token){
+
+        $response = Http::withToken($token)->get('http://api.duzzona.site/orders');
+        $responseData = json_decode($response->body(), true);
+        if($responseData && isset($responseData['data'])){
+            $token = $responseData['data'];
+
+        } else {
+            $token = '';
+        }
+        return $token;
+    }
     public static function admin_token(){
 
         $response = Http::withToken('token')->post('https://api.duzzona.site/login', [
@@ -66,15 +78,15 @@ class WebService {
     public static function register($body){
         $token = self::admin_token();
         $response = Http::withToken($token)->post('https://api.duzzona.site/register-uye', $body);
+
         $responseData = json_decode($response->body(), true);
         return $responseData;
     }
 
-    public static function update_user($body,$userToken){
-
-        $id='0006ad8e-342b-4240-bbf0-47f3bc090276';
-        $apiUrl = "http://api.duzzona.site/user?id={$id}";
-        $response = Http::withToken($userToken)->put($apiUrl, $body);
+    public static function update_user($body){
+        $token = session('userToken');
+        $response = Http::withToken($token)->post('http://api.duzzona.site/user', $body);
+        dd($response);
         if ($response->successful()) {
             return $response->json();
         } else {

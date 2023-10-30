@@ -101,12 +101,6 @@
             }
         })
 
-    function login(){
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('pass').value;
-         webService.getUserToken(username,password);
-    }
-
     </script>
 
 @endsection

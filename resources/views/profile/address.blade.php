@@ -89,7 +89,7 @@
                         <div class="top">
                             <div class="title">Adreslerim</div>
                         </div>
-                        <a href="{{route('profile.address.add')}}" class="new-address-btn">
+                        <a href="{{route('profile.address')}}" class="new-address-btn">
                             <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm0 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 3.5a.5.5 0 0 1 .5.5v2.5H11a.5.5 0 0 1 .492.41L11.5 8a.5.5 0 0 1-.5.5H8.5V11a.5.5 0 0 1-.41.492L8 11.5a.5.5 0 0 1-.5-.5V8.5H5a.5.5 0 0 1-.492-.41L4.5 8a.5.5 0 0 1 .5-.5h2.5V5a.5.5 0 0 1 .41-.492z" fill="#1A9AFC" fill-rule="evenodd"></path></svg>
                             Yeni adres ekle
                         </a>

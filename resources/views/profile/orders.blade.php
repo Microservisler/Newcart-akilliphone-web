@@ -6,6 +6,8 @@
 @section('content')
     <?php
     $user=session('userInfo');
+
+
     ?>
     <section class="profile section-padding mx-24">
         <div class="container">
@@ -32,44 +34,58 @@
                             </div>
                         </div>
                         <div class="order-list">
-                            <div class="order">
-                                <div class="order-header">
-                                    <div class="info">
-                                        <div class="title">Sipariş Tarihi</div>
-                                        <div class="descr">29 Ekim 2022 - 18:51</div>
-                                    </div>
-                                    <div class="info">
-                                        <div class="title">Sipariş Özeti</div>
-                                        <div class="descr">1 Teslimat, 2 Ürün</div>
-                                    </div>
-                                    <div class="info">
-                                        <div class="title">Alıcı</div>
-                                        <div class="descr">Emre Karataş</div>
-                                    </div>
-                                    <div class="info">
-                                        <div class="title">Tutar</div>
-                                        <div class="descr">118,90 TL</div>
-                                    </div>
-                                    <a class="refund-btn" href="#">İade Talebi</a>
-                                </div>
-                                <div class="order-body">
-                                    <div class="product-details">
-                                        <div class="product-img">
-                                            <img src="../assets/images/product2.png" alt="product name">
+
+                            @foreach($orders as $order)
+                                <?php
+                                    $dateTime = new DateTime($order['createdAt']);
+                                   $newDateFormat = $dateTime->format("d-m-Y");
+                                    ?>
+                                <div class="order">
+                                    <div class="order-header">
+                                        <div class="info">
+                                            <div class="title">Sipariş Tarihi</div>
+                                            <div class="descr">{{$newDateFormat}}</div>
                                         </div>
-                                        <div class="product-info">
-                                            <div class="name">
-                                                ALLY Magnetic Air Vent
-                                                Mıknatıslı Araç Tutucu Kablo Klipsli-SİYAH
-                                            </div>
-                                            <div class="code">
-                                                HBV000009KUEB
-                                            </div>
+                                        <div class="info">
+                                            <div class="title">Sipariş Özeti</div>
+                                            <div class="descr">1 Teslimat, 2 Ürün</div>
                                         </div>
+                                        <div class="info">
+                                            <div class="title">Alıcı</div>
+                                            <div class="descr">{{$order['orderCustomer']['firstName']." ". $order['orderCustomer']['lastName'] }}</div>
+                                        </div>
+                                        <div class="info">
+                                            <div class="title">Tutar</div>
+                                            <div class="descr">{{$order['orderTotals'][0]['value']." ₺"}}</div>
+                                        </div>
+                                        <a class="refund-btn" href="#">İade Talebi</a>
                                     </div>
-                                    <a class="order-detail" href="./orderdetail">Sipariş Detayı</a>
+                                    <div class="order-body">
+                                        @foreach($order['orderProducts'] as $product)
+
+                                            <div class="product-details">
+                                                <div class="product-img">
+                                                    <img src="<?php echo 'https://cdn-x.akilliphone.com/'.$product['image']?>" alt="product name">
+                                                </div>
+                                                <div class="product-info">
+                                                    <div class="name">
+                                                        {{$product['name']}}
+                                                    </div>
+                                                    <div class="code">
+                                                        {{$product['barcode']}}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        @endforeach
+
+                                        <a class="order-detail" href="./orderdetail/<?php echo $order['orderNo'] ?>">Sipariş Detayı</a>
+                                    </div>
                                 </div>
-                            </div>
+
+                            @endforeach
+
                         </div>
                     </div>
                 </div>

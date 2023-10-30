@@ -103,29 +103,31 @@ class PageController extends Controller
     }
 
 
-    public function update(Request $request)
-    {
-        $userToken=session('userToken');
-        $user=session('userInfo');
-        $userId=$user['data']['id'];
-        $body=[
-            "id"=>$user['data']['id'],
-            "firstName" => $request->input('firstName'),
-            "lastName" => $request->input('lastName'),
-            "password" => $request->input('password'),
-            "email" => $request->input('email'),
-            "username" => $request->input('username'),
-            "phoneNumber" => $request->input('phoneNumber'),
-            "birthDate" => $request->input('birthDate'),
-            "tcKimlik" => $request->input('tcKimlik'),
-            "telefon"=>$request->input('phoneNumber'),
-            "hasDropshippingPermission"=>"1",
 
-        ];
-        $register=\WebService::update_user($body,$userToken);
-        return back()->withInput();
 
-    }
+//    public function update(Request $request)
+//    {
+//        $userToken=session('userToken');
+//        $user=session('userInfo');
+//        $userId=$user['data']['id'];
+//        $body=[
+//            "id"=>$user['data']['id'],
+//            "firstName" => $request->input('firstName'),
+//            "lastName" => $request->input('lastName'),
+//            "password" => $request->input('password'),
+//            "email" => $request->input('email'),
+//            "username" => $request->input('username'),
+//            "phoneNumber" => $request->input('phoneNumber'),
+//            "birthDate" => $request->input('birthDate'),
+//            "tcKimlik" => $request->input('tcKimlik'),
+//            "telefon"=>$request->input('phoneNumber'),
+//            "hasDropshippingPermission"=>"1",
+//
+//        ];
+//        $register=\WebService::update_user($body,$userToken);
+//        return back()->withInput();
+//
+//    }
     public function logout(Request $request)
     {
         $request->session()->flush();

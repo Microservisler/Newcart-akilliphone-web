@@ -177,7 +177,7 @@ if(isset($_GET['text'])){
                     session()->put('userNameIcon', strtoupper($sonuc));
                     echo '<div class="login-btn">'.$user['data']['firstName'].'
                    <div class="dropdown-box">
-                        <a class="login-link" href="'.route('profile.index', ['page'=>'order']) .'">Profilim</a>
+                        <a class="login-link" href="'.route('profile.orders') .'">Profilim</a>
                         <a class="login-link" href="'.route('logout') .'">Çıkış Yap</a>
                     </div>
                 </div>';
