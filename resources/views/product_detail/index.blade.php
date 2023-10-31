@@ -185,13 +185,19 @@
                                       </div>
                                     </div> -->
                                 </div>
+
+
+
+
+
+
                                 <div class="mobil-taksit-info"><span>290,03 TL x 9 ay’a varan Taksit seçenekleri</span></div>
                                 <div class="product-color-btn" vX-for="variant">
                                     <span class="title">Renk:</span>
                                     @foreach ($product['variants'] as $item)
 
                                     <div class="color-btn" data-variantid="{{$item['variantId']}}">
-                                        <button><img src="{{"https://cdn.akilliphone.com/".$item['featuredImage'] }}" style="width: 25px; height: 25px;" alt=""></button>
+                                        <button style="height: 100%;width: 100%"><img src="{{"https://cdn.akilliphone.com/".$item['featuredImage'] }}" alt=""></button>
                                         <div class="tooltip">
                                             {{$item["name"]}}
                                         </div>
@@ -415,8 +421,8 @@
                 </div>
             </div>
         </section>
-        <x-asyn.carousel :sectionId="'section1'" :title="'Benzer Kategoriler'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />
-        <x-asyn.carousel :sectionId="'section2'" :title="'Benzer Markalar'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />
+        <x-asyn.carousel :sectionId="'section1'" :title="'Benzer Kategoriler'" :slug="'/reyonlar/'. $product['productCategories'][0]['category']['slug'].'?category='.$product['productCategories'][0]['category']['categoryId']" />
+        <x-asyn.carousel :sectionId="'section2'" :title="'Benzer Markalar'" :slug="'/reyonlar/'. $product['brand']['slug'].'?brand='.$product['brand']['brandId']" />
 
         <x-product.recently-viewed />
 

@@ -12,7 +12,7 @@
                     <div class="card-details">
                         <div class="product-image">
                                 @if($row['product'])
-                            <img width="82" height="82" src="<?php echo getProductImageUrl($row['product']['featuredImage'], 82, 82); ?>" alt="">
+                            <img width="82" height="82" src="<?php echo getProductImageUrl($row['product']['featuredImage']); ?>" alt="">
                                 @endif
                         </div>
                         <div class="product-info">

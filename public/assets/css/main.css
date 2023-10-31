@@ -344,6 +344,7 @@ body::-webkit-scrollbar-thumb {
   display: block;
   width: 232px;
   height: 147px;
+  border-radius: 15px;
 }
 .four-product-slider .big-product-card .card-details {
   display: flex;
@@ -352,7 +353,7 @@ body::-webkit-scrollbar-thumb {
   justify-content: space-between;
 }
 .four-product-slider .big-product-card .card-details .product-image {
-  width: 82px;
+
   height: 82px;
 }
 .four-product-slider .big-product-card .card-details .product-image img {
@@ -385,6 +386,7 @@ body::-webkit-scrollbar-thumb {
   padding: 0 6px;
   font-size: 12px;
   font-weight: 400;
+  margin-left: 5px;
 }
 .four-product-slider .big-product-card .card-details .product-info .product-prices .old {
   font-size: 12px;

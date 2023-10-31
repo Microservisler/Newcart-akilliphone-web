@@ -212,7 +212,7 @@ class WebService {
         return self::request('products', $filters);
     }
     public static function product($productId){
-        return self::request('products/'.$productId);
+        return self::request('products/'.$productId.'?returnCategoryId=1');
     }
     public static function product_variant($variantId){
         return self::request('variants/'.$variantId);

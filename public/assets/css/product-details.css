@@ -175,10 +175,9 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 43px;
-  height: 43px;
+  width: 70px;
+  height: 73px;
   margin-right: 10px;
-  border: 1px solid #E6E6E6;
   margin-bottom: 5px;
   position: relative;
   cursor: pointer;
