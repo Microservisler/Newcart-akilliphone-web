@@ -29,7 +29,7 @@ class ProductDetailController extends Controller
                 if($currentCategory && $currentCategory['data']['breadcrumb']){
                     $data['breadcrumb']= $currentCategory['data']['breadcrumb'];
                 } else {
-                    $data['breadcrumb'] = '<ul><li><a href="/"><img src="https://ethem.akilliphone.com/assets/images/home-icon.svg"></a></li><li><a href="'.route('listing.page').'">Tüm Ürünler</a></li><li><a href="'.getCategoryUrl($currentCategory['data']).'">'.$currentCategory['data']['name'].'</a></li></ul>';
+                    $data['breadcrumb'] = '<div class="breadcrumb"><nav><ul><li><a href="/"><img src="https://ethem.akilliphone.com/assets/images/home-icon.svg"></a></li><li><a href="'.route('listing.page').'">Tüm Ürünler</a></li><li><a href="'.getCategoryUrl($currentCategory['data']).'">'.$currentCategory['data']['name'].'</a></li></ul></nav></div>';
                 }
                 BasketService::setLastViewed($data['product']);
             }
