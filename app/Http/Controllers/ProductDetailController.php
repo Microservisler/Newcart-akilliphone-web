@@ -23,6 +23,7 @@ class ProductDetailController extends Controller
             if (!empty( $response['data'])) {
                 $data['product'] = $response['data'];
                 $data['breadcrumb'] = '';
+
                 $currentCategory = \WebService::breadcrumb($data['product']['productCategories'][0]['categoryId']);
 
                 if($currentCategory && $currentCategory['data']['breadcrumb']){
@@ -32,7 +33,6 @@ class ProductDetailController extends Controller
                 }
                 BasketService::setLastViewed($data['product']);
             }
-
             if (empty($data['product']['variants'])) {
 
                 return view('page.404', $data);

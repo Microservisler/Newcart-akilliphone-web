@@ -9,11 +9,27 @@
     <div id="app-basic">
         <section class="product-details">
             <div class="container">
-                <div class="breadcrumb">
+{{--                <div class="breadcrumb">--}}
 
-                    <nav>{!! $breadcrumb !!}</nav>
-                </div>
+{{--                    <nav>--}}
+{{--                        <ul>--}}
+{{--                            <li><a href="#"><img src="{{ url('assets/images/home-icon.svg') }}"></a></li>--}}
+{{--                            @if(isset($product['productCategories'][0]))--}}
+{{--                            <li><a href="#">{{$product['productCategories'][0]['category']['name']}}</a></li>--}}
+{{--                            @endif--}}
+{{--                            @if(isset($product['productCategories'][1]))--}}
+{{--                            <li><a href="#">{{$product['productCategories'][1]['category']['name'] }}</a></li>--}}
+{{--                            @endif--}}
+{{--                            @if(isset($product['productCategories'][2]))--}}
+{{--                            <li><a href="#">{{$product['productCategories'][2]['category']['name'] }}</a></li>--}}
+{{--                            @endif--}}
+{{--                        </ul>--}}
+{{--                    </nav>--}}
+{{--                </div>--}}
+                <?php
+               echo $breadcrumb;
 
+                ?>
                 <div class="mobile-product-header">
                     <div class="mobile-product-header-inner">
                         <div class="brand">{{$product['brand']['name']}}</div>

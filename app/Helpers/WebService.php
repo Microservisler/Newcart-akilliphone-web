@@ -181,6 +181,8 @@ class WebService {
         }
     }
     public static function breadcrumb($id){
+        return self::request('categories/'.$id, []);
+
         $token = session('userToken');
         $response = Http::withToken($token)->get('https://api.duzzona.site/categories/'.$id);
 
