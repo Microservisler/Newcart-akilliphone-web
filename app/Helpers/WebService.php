@@ -180,7 +180,7 @@ class WebService {
             return self::request('categories?OnlyParents=true', []);
         }
     }
-    public static function breadcrumb($id){
+    public static function category($id){
         return self::request('categories/'.$id, []);
 
         $token = session('userToken');
