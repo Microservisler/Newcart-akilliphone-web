@@ -39,6 +39,7 @@ class HomeController extends Controller
         $data['audio_systems']    =        [];//\WebService::audio_systems();
         $data['wireless_chargers']    =        [];//\WebService::wireless_chargers();
         $data['personal_products']    =        [];//\WebService::personal_products();
+        $request->session()->flash('flash-success', ['Çıkış işleminiz güvenli şekilde tamamlandı', 'Güle güle ']);
 
         //$data['section_grid1']     =  \WebService::home_test();
         //$data['section_grid2']     =  \WebService::home_test();
