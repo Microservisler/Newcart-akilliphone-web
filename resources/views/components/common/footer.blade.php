@@ -400,39 +400,41 @@
 <!-- Product Slider -->
 <script>
     function create_product_owl_slider(target){
-        $(target).owlCarousel({
-            responsiveClass: true,
-            nav:true,
-            dots:false,
-            responsive: {
-                0: {
-                    items: 2,
-                    margin: 8,
-                },
-                425: {
-                    items: 2,
-                    margin: 15,
-                },
-                500: {
-                    items: 3,
-                    margin: 20,
-                },
-                768: {
-                    items: 4,
-                    margin: 15,
-                },
-                1024: {
-                    items: 5,
-                    margin: 10,
-                },
-                1200: {
-                    items: 6,
-                    margin: 30,
-                    drag: true,
-                    mouseDrag: true,
+        if($(target).length){
+            $(target).owlCarousel({
+                responsiveClass: true,
+                nav:true,
+                dots:false,
+                responsive: {
+                    0: {
+                        items: 2,
+                        margin: 8,
+                    },
+                    425: {
+                        items: 2,
+                        margin: 15,
+                    },
+                    500: {
+                        items: 3,
+                        margin: 20,
+                    },
+                    768: {
+                        items: 4,
+                        margin: 15,
+                    },
+                    1024: {
+                        items: 5,
+                        margin: 10,
+                    },
+                    1200: {
+                        items: 6,
+                        margin: 30,
+                        drag: true,
+                        mouseDrag: true,
+                    }
                 }
-            }
-        });
+            });
+        }
     }
     create_product_owl_slider('.product-slider.owl-carousel');
 </script>
@@ -561,20 +563,49 @@
         var sync2 = $("#thumb-blog");
         var slidesPerPage = 2; //globaly define number of elements per page
         var syncedSecondary = true;
+        if(sync1.length){
+            sync1.owlCarousel({
+                items: 1,
+                slideSpeed: 2000,
+                dots: true,
+                loop: true,
+                responsiveRefreshRate: 200,
+            }).on('changed.owl.carousel', syncPosition);
+            function syncPosition(el) {
+                //if you set loop to false, you have to restore this next line
+                //var current = el.item.index;
 
-        sync1.owlCarousel({
-            items: 1,
-            slideSpeed: 2000,
-            dots: true,
-            loop: true,
-            responsiveRefreshRate: 200,
-        }).on('changed.owl.carousel', syncPosition);
+                //if you disable loop you have to comment this block
+                var count = el.item.count - 1;
+                var current = Math.round(el.item.index - (el.item.count / 2) - .5);
 
-        sync2
-            .on('initialized.owl.carousel', function () {
+                if (current < 0) {
+                    current = count;
+                }
+                if (current > count) {
+                    current = 0;
+                }
+                sync2
+                    .find(".owl-item")
+                    .removeClass("current")
+                    .eq(current)
+                    .addClass("current");
+                var onscreen = sync2.find('.owl-item.active').length - 1;
+                var start = sync2.find('.owl-item.active').first().index();
+                var end = sync2.find('.owl-item.active').last().index();
+
+                if (current > end) {
+                    sync2.data('owl.carousel').to(current, 100, true);
+                }
+                if (current < start) {
+                    sync2.data('owl.carousel').to(current - onscreen, 100, true);
+                }
+            }
+        }
+        if(sync2.length){
+            sync2.on('initialized.owl.carousel', function () {
                 sync2.find(".owl-item").eq(0).addClass("current");
-            })
-            .owlCarousel({
+            }).owlCarousel({
                 items: slidesPerPage,
                 dots: false,
                 margin: 18,
@@ -583,48 +614,19 @@
                 slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
                 responsiveRefreshRate: 100
             }).on('changed.owl.carousel', syncPosition2);
-
-        function syncPosition(el) {
-            //if you set loop to false, you have to restore this next line
-            //var current = el.item.index;
-
-            //if you disable loop you have to comment this block
-            var count = el.item.count - 1;
-            var current = Math.round(el.item.index - (el.item.count / 2) - .5);
-
-            if (current < 0) {
-                current = count;
+            function syncPosition2(el) {
+                if (syncedSecondary) {
+                    var number = el.item.index;
+                    sync1.data('owl.carousel').to(number, 100, true);
+                }
             }
-            if (current > count) {
-                current = 0;
-            }
-            sync2
-                .find(".owl-item")
-                .removeClass("current")
-                .eq(current)
-                .addClass("current");
-            var onscreen = sync2.find('.owl-item.active').length - 1;
-            var start = sync2.find('.owl-item.active').first().index();
-            var end = sync2.find('.owl-item.active').last().index();
-
-            if (current > end) {
-                sync2.data('owl.carousel').to(current, 100, true);
-            }
-            if (current < start) {
-                sync2.data('owl.carousel').to(current - onscreen, 100, true);
-            }
+            sync2.on("click", ".owl-item", function (e) {
+                e.preventDefault();
+                var number = $(this).index();
+                sync1.data('owl.carousel').to(number, 300, true);
+            });
         }
-        function syncPosition2(el) {
-            if (syncedSecondary) {
-                var number = el.item.index;
-                sync1.data('owl.carousel').to(number, 100, true);
-            }
-        }
-        sync2.on("click", ".owl-item", function (e) {
-            e.preventDefault();
-            var number = $(this).index();
-            sync1.data('owl.carousel').to(number, 300, true);
-        });
+
     });
 </script>
 <!-- Video Slider -->
@@ -641,9 +643,9 @@
         autoplayHoverPause: false,
         nav: false,
         dots: false,
-    }).on('changed.owl.carousel', syncPosition);
+    }).on('changed.owl.carousel', syncPosition3);
 
-    function syncPosition(el) {
+    function syncPosition3(el) {
         $owl_slider = $(this).data('owl.carousel');
         var loop = $owl_slider.options.loop;
 
@@ -699,5 +701,4 @@
             $owl_slider = sync1.data('owl.carousel');
             $owl_slider.to(number, 100, true);
         });
-
 </script>

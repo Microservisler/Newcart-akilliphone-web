@@ -9,27 +9,7 @@
     <div id="app-basic">
         <section class="product-details">
             <div class="container">
-{{--                <div class="breadcrumb">--}}
-
-{{--                    <nav>--}}
-{{--                        <ul>--}}
-{{--                            <li><a href="#"><img src="{{ url('assets/images/home-icon.svg') }}"></a></li>--}}
-{{--                            @if(isset($product['productCategories'][0]))--}}
-{{--                            <li><a href="#">{{$product['productCategories'][0]['category']['name']}}</a></li>--}}
-{{--                            @endif--}}
-{{--                            @if(isset($product['productCategories'][1]))--}}
-{{--                            <li><a href="#">{{$product['productCategories'][1]['category']['name'] }}</a></li>--}}
-{{--                            @endif--}}
-{{--                            @if(isset($product['productCategories'][2]))--}}
-{{--                            <li><a href="#">{{$product['productCategories'][2]['category']['name'] }}</a></li>--}}
-{{--                            @endif--}}
-{{--                        </ul>--}}
-{{--                    </nav>--}}
-{{--                </div>--}}
-                <?php
-               echo $breadcrumb;
-
-                ?>
+                {!! $breadcrumb !!}
                 <div class="mobile-product-header">
                     <div class="mobile-product-header-inner">
                         <div class="brand">{{$product['brand']['name']}}</div>
@@ -423,23 +403,14 @@
         </section>
         <x-asyn.carousel :sectionId="'section1'" :title="'Benzer Kategoriler'" :slug="'/reyonlar/'. $product['productCategories'][0]['category']['slug'].'?category='.$product['productCategories'][0]['category']['categoryId']" />
         <x-asyn.carousel :sectionId="'section2'" :title="'Benzer Markalar'" :slug="'/reyonlar/'. $product['brand']['slug'].'?brand='.$product['brand']['brandId']" />
-
         <x-product.recently-viewed />
-
-
     </div>
-
-
-{{--    <x-asyn.carousel :sectionId="'section2'" :title="'Benzer Markalar'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />--}}
-
-
 @endsection
-
-
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
     <script>
-
         function yorum(){
             var product = <?php echo json_encode($product, JSON_UNESCAPED_UNICODE)?>;
             var yorum = document.getElementById("review");
@@ -506,8 +477,6 @@
                 .catch(error => {
                     console.error('Hata:', error);
                 });
-
-
         }
 
         var product = <?php echo json_encode($product, JSON_UNESCAPED_UNICODE)?>;
@@ -523,10 +492,7 @@
                     product: product,
                     variant: variant,
                     cdnUrl:cdnUrl,
-
                 }
-
-
             },updated: function () {
                 this.$nextTick(function () {
                     create_product_owl_slider( '#' + this.target +' .product-asyn-slider');
@@ -560,13 +526,7 @@
             });
         }
         getVariant(variantId);
-
-
         //question
-
-
-
-
         const questionButton = document.getElementById('questionButton');
         const questionText = document.getElementById('questionText');
         if(questionButton){
@@ -597,48 +557,6 @@
 
             });
         }
-
-
-
-
-    </script>
-<script>
-        const questionButton = document.getElementById('questionButton');
-        const questionText = document.getElementById('questionText');
-
-        questionButton.addEventListener('click', function() {
-            const value = questionText.value;
-            console.log(value);
-        });
-
-
-        function getQuestion(value){
-            var settings = {
-                "url": "https://api.akilliphone.com/variants/" + variantId,
-                'cache': false,
-                "async": true,
-                "crossDomain": true,
-                "method": "GET",
-                "headers": {
-                    "Access-Control-Allow-Origin":"*",
-                    "Authorization" :'Bearer <?php echo session()->get('token')?>',
-                }
-            };
-            $.ajax(settings).done(function (response) {
-
-                app.variant = response.data;
-                app.cdnUrl=cdnUrl;
-            });
-        }
-
-
-
-</script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
         var productThumb = new Swiper(".product-detail-thumb", {
             slidesPerView: 3,
             direction: "vertical",
@@ -666,38 +584,6 @@
             },
 
         });
-    </script>
-
-    <script>
-        // Product Page Shipping Tabs
-        function openCity(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-        // Product Spec and Comment
-        function openSpec(evt, tabName) {
-            var i, tabDetails, tabSpec;
-            tabDetails = document.getElementsByClassName("tabDetails");
-            for (i = 0; i < tabDetails.length; i++) {
-                tabDetails[i].style.display = "none";
-            }
-            tabSpec = document.getElementsByClassName("tabSpec");
-            for (i = 0; i < tabSpec.length; i++) {
-                tabSpec[i].className = tabSpec[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-        // Ürün ekle butonu
         var QtyInput = (function () {
             var $qtyInputs = $(".qty-input");
             if (!$qtyInputs.length) {
@@ -759,101 +645,121 @@
                 $input.val(qty);
             });
         })();
-    </script>
-    <!-- Drawer Question Menu -->
-    <script>
         let siteMenu = document.getElementById('site-menu');
         let openBtn = document.getElementById('open-details');
         let closeCanvas = document.getElementById('close-canvas', 'close-menu');
         let closeMenu = document.getElementById('close-menu');
         let submitQuestion = document.getElementById('submitQuestion');
-
-        openBtn.addEventListener("click", function () {
-            if (siteMenu.classList.contains('site-menu')) {
-                siteMenu.classList.add('site-menu--active')
-                closeCanvas.style.display = "block"
-                document.body.style.overflow = 'hidden'
-            }
-        })
-        closeCanvas.addEventListener("click", function () {
-            if (siteMenu.classList.contains('site-menu--active')) {
-                siteMenu.classList.remove('site-menu--active')
-                closeCanvas.style.display = "none"
-                document.body.style.overflow = 'auto'
-            }
-        })
-        closeMenu.addEventListener("click", function () {
-            if (siteMenu.classList.contains('site-menu--active')) {
-                siteMenu.classList.remove('site-menu--active')
-                closeCanvas.style.display = "none"
-                document.body.style.overflow = 'auto'
-            }
-        })
-        submitQuestion.addEventListener("click", function () {
-            if (siteMenu.classList.contains('site-menu--active')) {
-                siteMenu.classList.remove('site-menu--active')
-                closeCanvas.style.display = "none"
-                document.body.style.overflow = 'auto'
-            }
-            Swal.fire({
-                title: 'Sorunuz başarıyla gönderildi.',
-                toast: true,
-                position: 'top-end',
-                timer: 3000,
-                icon: 'success',
-                showConfirmButton: false,
+        if(openBtn){
+            openBtn.addEventListener("click", function () {
+                if (siteMenu.classList.contains('site-menu')) {
+                    siteMenu.classList.add('site-menu--active')
+                    closeCanvas.style.display = "block"
+                    document.body.style.overflow = 'hidden'
+                }
             })
-        })
+        }
+        if(closeCanvas){
+            closeCanvas.addEventListener("click", function () {
+                if (siteMenu.classList.contains('site-menu--active')) {
+                    siteMenu.classList.remove('site-menu--active')
+                    closeCanvas.style.display = "none"
+                    document.body.style.overflow = 'auto'
+                }
+            })
+        }
+        if(closeMenu){
+            closeMenu.addEventListener("click", function () {
+                if (siteMenu.classList.contains('site-menu--active')) {
+                    siteMenu.classList.remove('site-menu--active')
+                    closeCanvas.style.display = "none"
+                    document.body.style.overflow = 'auto'
+                }
+            })
+        }
+        if(submitQuestion){
+            submitQuestion.addEventListener("click", function () {
+                if (siteMenu.classList.contains('site-menu--active')) {
+                    siteMenu.classList.remove('site-menu--active')
+                    closeCanvas.style.display = "none"
+                    document.body.style.overflow = 'auto'
+                }
+                Swal.fire({
+                    title: 'Sorunuz başarıyla gönderildi.',
+                    toast: true,
+                    position: 'top-end',
+                    timer: 3000,
+                    icon: 'success',
+                    showConfirmButton: false,
+                })
+            })
 
-    </script>
-    <!-- Drawer Review Menu -->
-    <script>
+        }
         let reviewMenu = document.getElementById('review-menu');
         let reviewBtn = document.getElementById('open-review');
         let closeReviewCanvas = document.getElementById('close-review-canvas', 'close-review-menu');
         let closeReviewMenu = document.getElementById('close-review-menu');
         let submitReview = document.getElementById('submitReview');
-
-        reviewBtn.addEventListener("click", function () {
-            if (reviewMenu.classList.contains('review-menu')) {
-                reviewMenu.classList.add('review-menu--active')
-                closeReviewCanvas.style.display = "block"
-                document.body.style.overflow = 'hidden'
-            }
-        })
-        closeReviewCanvas.addEventListener("click", function () {
-            if (reviewMenu.classList.contains('review-menu--active')) {
-                reviewMenu.classList.remove('review-menu--active')
-                closeReviewCanvas.style.display = "none"
-                document.body.style.overflow = 'auto'
-            }
-        })
-        closeReviewMenu.addEventListener("click", function () {
-            if (reviewMenu.classList.contains('review-menu--active')) {
-                reviewMenu.classList.remove('review-menu--active')
-                closeReviewCanvas.style.display = "none"
-                document.body.style.overflow = 'auto'
-            }
-        })
-        submitReview.addEventListener("click", function () {
-            if (reviewMenu.classList.contains('review-menu--active')) {
-                reviewMenu.classList.remove('review-menu--active')
-                closeReviewCanvas.style.display = "none"
-                document.body.style.overflow = 'auto'
-            }
-            Swal.fire({
-                title: 'Değerlendirme başarıyla gönderildi.',
-                toast: true,
-                position: 'top-end',
-                timer: 3000,
-                icon: 'success',
-                showConfirmButton: false,
+        if(reviewBtn){
+            reviewBtn.addEventListener("click", function () {
+                if (reviewMenu.classList.contains('review-menu')) {
+                    reviewMenu.classList.add('review-menu--active')
+                    closeReviewCanvas.style.display = "block"
+                    document.body.style.overflow = 'hidden'
+                }
             })
-        })
+        }
+        if(closeReviewCanvas){
+            closeReviewCanvas.addEventListener("click", function () {
+                if (reviewMenu.classList.contains('review-menu--active')) {
+                    reviewMenu.classList.remove('review-menu--active')
+                    closeReviewCanvas.style.display = "none"
+                    document.body.style.overflow = 'auto'
+                }
+            })
+        }
+        if(closeReviewMenu){
+            closeReviewMenu.addEventListener("click", function () {
+                if (reviewMenu.classList.contains('review-menu--active')) {
+                    reviewMenu.classList.remove('review-menu--active')
+                    closeReviewCanvas.style.display = "none"
+                    document.body.style.overflow = 'auto'
+                }
+            })
+        }
+        if(submitReview){
+            submitReview.addEventListener("click", function () {
+                if (reviewMenu.classList.contains('review-menu--active')) {
+                    reviewMenu.classList.remove('review-menu--active')
+                    closeReviewCanvas.style.display = "none"
+                    document.body.style.overflow = 'auto'
+                }
+                Swal.fire({
+                    title: 'Değerlendirme başarıyla gönderildi.',
+                    toast: true,
+                    position: 'top-end',
+                    timer: 3000,
+                    icon: 'success',
+                    showConfirmButton: false,
+                })
+            })
 
-    </script>
-    <!-- Drawer Review Menu -->
-    <script>
+        }
+
+        const showMoreButton = document.querySelector('.showMoreBtn');
+        if(showMoreButton){
+            showMoreButton.addEventListener('click', function () {
+                const tabDetailsDiv = document.querySelector('.tabDetails');
+
+                if (tabDetailsDiv.classList.contains('showAll')) {
+                    tabDetailsDiv.classList.remove('showAll');
+                    showMoreButton.innerHTML = 'Daha Fazla';
+                } else {
+                    tabDetailsDiv.classList.add('showAll');
+                    showMoreButton.innerHTML = 'Daha Az';
+                }
+            });
+        }
         function checkLength() {
             const maxLength = 2000;
             const question = document.getElementById("question").value;
@@ -871,55 +777,52 @@
             }
             console.log(question.length)
         }
+        function openCity(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        function openSpec(evt, tabName) {
+            var i, tabDetails, tabSpec;
+            tabDetails = document.getElementsByClassName("tabDetails");
+            for (i = 0; i < tabDetails.length; i++) {
+                tabDetails[i].style.display = "none";
+            }
+            tabSpec = document.getElementsByClassName("tabSpec");
+            for (i = 0; i < tabSpec.length; i++) {
+                tabSpec[i].className = tabSpec[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        function getQuestion(value){
+            var settings = {
+                "url": "https://api.akilliphone.com/variants/" + variantId,
+                'cache': false,
+                "async": true,
+                "crossDomain": true,
+                "method": "GET",
+                "headers": {
+                    "Access-Control-Allow-Origin":"*",
+                    "Authorization" :'Bearer <?php echo session()->get('token')?>',
+                }
+            };
+            $.ajax(settings).done(function (response) {
 
-    </script>
-    <script>
+                app.variant = response.data;
+                app.cdnUrl=cdnUrl;
+            });
+        }
+
         lazyload();
     </script>
-    <script>
-        const showMoreButton = document.querySelector('.showMoreBtn');
 
-        showMoreButton.addEventListener('click', function () {
-            const tabDetailsDiv = document.querySelector('.tabDetails');
-
-            if (tabDetailsDiv.classList.contains('showAll')) {
-                tabDetailsDiv.classList.remove('showAll');
-                showMoreButton.innerHTML = 'Daha Fazla';
-            } else {
-                tabDetailsDiv.classList.add('showAll');
-                showMoreButton.innerHTML = 'Daha Az';
-            }
-        });
-        /*
-        $('body').on('click', '.addtocart', function (){
-            $.ajax( "{{ url('basket/add') }}/" + app.variant.variantId + '/' + $('#product-qty').val() )
-                .done(function(basket) {
-                    $('.shopping-cart').html(basket.mini);
-                    Swal.fire({
-                        title: 'Ürün Sepete Eklendi.',
-                        toast: true,
-                        position: 'top-end',
-                        timer: 3000,
-                        icon: 'success',
-                        showConfirmButton: false,
-                    });
-
-                })
-                .fail(function() {
-                    Swal.fire({
-                        title: 'Ürün Spete Eklenemedi.',
-                        toast: true,
-                        position: 'top-end',
-                        timer: 3000,
-                        icon: 'error',
-                        showConfirmButton: false,
-                    });
-
-                })
-                .always(function() {
-                    //alert( "complete" );
-                });
-        });
-        */
-    </script>
 @endsection
