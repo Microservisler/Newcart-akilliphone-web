@@ -23,8 +23,12 @@ class ProductDetailController extends Controller
             if (!empty( $response['data'])) {
                 $data['product'] = $response['data'];
                 $data['breadcrumb'] = '';
-                $currentCategory = \WebService::category($data['product']['productCategories'][0]['categoryId']);
 
+                $productCategoryId = 0;
+                if($data['product']['productCategories']){
+                    $productCategoryId = end($data['product']['productCategories'])['categoryId'];
+                }
+                $currentCategory = \WebService::category($productCategoryId);
                 if($currentCategory && $currentCategory['data']['breadcrumb']){
                     $data['breadcrumb']= $currentCategory['data']['breadcrumb'];
                 } else {
