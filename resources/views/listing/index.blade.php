@@ -11,16 +11,18 @@
 @endsection
 @section('content')
     <?php
-    if(isset($_GET['category'])){
+    /*if(isset($_GET['category'])){
         $getCategory=$_GET['category'];
 
-    }
-
+    }*/
+/*
     if(isset($categories['data']['items'][$category_code])){
 
-        $cat_ids = $categories['data']['items'][$category_code]['child_ids'];
+        //$cat_ids = $categories['data']['items'][$category_code]['child_ids'];
 
-    }
+
+    }*/
+
     ?>
     <section class="filter-section section-padding">
         <div class="container" id="container">
@@ -95,7 +97,7 @@
                     @endif
                     @if(isset($_GET['category']) )
 
-                        <input checked type="checkbox" class="option-input forfilter category " id="filter-cat" value="{{$_GET['category'] }}"  style="display: none" >
+                        <input checked type="checkbox" class="option-input forfilter category " id="filter-cat" value="{{$cat_ids }}"  style="display: none" >
                     @endif
                     <div class="filtermenu-box">
                         <div class="title">markalar</div>
