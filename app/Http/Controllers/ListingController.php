@@ -26,6 +26,13 @@ class ListingController extends Controller
         $data['categories']          =  \WebService::categories();
         $data['main_menu']          =  \WebService::home_main_menu();
         $data['three_banner']        =  \WebService::wecart_three_banner();
+        $data['cat_ids']          =  $data['selected_category'];
+        if($data['selected_category']){
+            $currentCategory = \WebService::categories($data['category_code']);
+            if($currentCategory && $currentCategory['child_ids']){
+                $data['cat_ids']          =  $currentCategory['child_ids'];
+            }
+        }
 
         return view('listing.index',$data);
     }

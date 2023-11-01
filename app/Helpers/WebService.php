@@ -172,12 +172,15 @@ class WebService {
     public static function colors(){
         return self::static('options/colors', []);
     }
-    public static function categories($parent=0){
-        return self::wecart('categories/list', []);
-        if($parent){
-            return self::request('categories/'.$parent, []);
+    public static function categories($categoryId=0){
+        $rows = self::wecart('categories/list', []);
+        if($categoryId && $rows && isset($rows['data']) && isset($rows['data']['items'])){
+            if(isset($rows['data']['items'][$categoryId])){
+                return $rows['data']['items'][$categoryId];
+            }
+            return [];
         } else {
-            return self::request('categories?OnlyParents=true', []);
+            return $rows;
         }
     }
     public static function category($id){
