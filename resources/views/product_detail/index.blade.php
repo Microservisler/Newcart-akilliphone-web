@@ -27,7 +27,7 @@
 {{--                    </nav>--}}
 {{--                </div>--}}
                 <?php
-               echo $breadcrumb['data']['breadcrumb'];
+               //echo $breadcrumb['data']['breadcrumb'];
 
                 ?>
                 <div class="mobile-product-header">
