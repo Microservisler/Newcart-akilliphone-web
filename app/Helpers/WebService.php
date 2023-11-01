@@ -172,11 +172,13 @@ class WebService {
     public static function colors(){
         return self::static('options/colors', []);
     }
-    public static function categories(){
-        $token = session('userToken');
-        $response = Http::withToken($token)->get('https://api.duzzona.site/categories?OnlyParents=true');
-
-        $responseData = json_decode($response->body(), true);
+    public static function categories($parent=0){
+        return self::wecart('categories/list', []);
+        if($parent){
+            return self::request('categories/'.$parent, []);
+        } else {
+            return self::request('categories?OnlyParents=true', []);
+        }
     }
     public static function breadcrumb($id){
         $token = session('userToken');
