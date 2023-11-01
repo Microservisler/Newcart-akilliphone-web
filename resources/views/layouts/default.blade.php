@@ -24,7 +24,13 @@
     <script src="{{ url('assets/js/webService.js') }}?_v={{ env('ASSETS_VER') }}{{ time() }}"></script>
     <script src="{{ url('assets/js/basketService.js') }}?_v={{ env('ASSETS_VER') }}{{ time() }}"></script>
     <script src="{{ url('assets/js/contact-us.js') }}?_v={{ env('ASSETS_VER') }}"></script>
+    <script src="{{ url('assets/js/contact-us.js') }}?_v={{ env('ASSETS_VER') }}"></script>
+    <script src="{{ url('assets/js/owl.carousel.thumb.js') }}?_v={{ env('ASSETS_VER') }}"></script>
+    <script src="{{ url('assets/js/owl.carousel.min.js') }}?_v={{ env('ASSETS_VER') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11?_v={{ env('ASSETS_VER') }}"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     @yield('head', '')
 </head>
@@ -37,6 +43,37 @@
 </div>
 <x-common.footer :page="'home'" />
 @yield('js', '')
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.brand-slider', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            300: {
+                slidesPerView: 1,
+                grid: {
+                    rows: 2,
+                },
+            },
+            576: {
+                slidesPerView: 2,
+                grid: {
+                    rows: 2,
+                },
+            },
+            768: {
+                slidesPerView: 3,
+                grid: {
+                    rows: 3,
+                },
+            },
+        },
+    });
+</script>
 <script>
     function handleKeyPress(event) {
         if (event.keyCode === 13) {

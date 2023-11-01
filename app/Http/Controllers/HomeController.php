@@ -21,7 +21,7 @@ class HomeController extends Controller
 
         $data['section_4category']  =  [];//\WebService::random_category_products(4);
         $data['section_carousel2']  =  [];//\WebService::nearly_out_of_stock();
-        $data['brands']             =  [];//\WebService::brands();
+        $data['brands']             =  \WebService::brands("live");
         $data['category_product']   =  [];//\WebService::category_product();
         $data['categories']         =  [];//\WebService::categories();
         $data['new_product']        =  [];//\WebService::new_product(13);

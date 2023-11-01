@@ -18,7 +18,7 @@ class Brands extends Component
      *
      * @return void
      */
-    public function __construct($items,$products, $title,$banner=false, $class=false )
+    public function __construct($items=false,$products=false, $title=false,$banner=false, $class=false )
     {
         $this->items = is_array($items)?$items:[];
         $this->title = $title;

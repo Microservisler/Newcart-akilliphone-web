@@ -27,7 +27,7 @@
     @else
         <x-section.lost :title="'İmage section'" />
     @endif
-    @include('home.brand-slider')
+    <x-section.brands :products="$product_slider['data']['items']" :items="$brands['data']"/>
     <x-asyn.carousel :sectionId="'section1'" :title="'Aksesuarlar'" :slug="'/reyonlar/aksesuarlar-207?category=270'" />
     <x-asyn.carousel :sectionId="'section2'" :title="'Araç Aksesuarları'" :slug="'/reyonlar/arac-aksesuarlari-280?category=2'" />
     <x-asyn.carousel :sectionId="'section3'" :title="'Ev Yaşam'" :slug="'/reyonlar/ev-yasam-327?category=78'" />
@@ -39,7 +39,7 @@
 
 @endsection
 @section('js')
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
     <script>
         const { createApp } = Vue;
         var app = createApp({
