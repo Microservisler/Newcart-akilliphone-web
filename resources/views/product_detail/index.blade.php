@@ -9,7 +9,7 @@
     <div id="app-basic">
         <section class="product-details">
             <div class="container">
-                {!! $breadcrumb !!}
+                {!! $product['breadcrumb'] !!}
                 <div class="mobile-product-header">
                     <div class="mobile-product-header-inner">
                         <div class="brand">{{$product['brand']['name']}}</div>

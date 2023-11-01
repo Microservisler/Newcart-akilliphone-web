@@ -218,8 +218,8 @@ class WebService {
     public static function products($filters){
         return self::request('products', $filters);
     }
-    public static function product($productId){
-        return self::request('products/'.$productId.'?returnCategoryId=1');
+    public static function product($productId, $params=[]){
+        return self::request('products/'.$productId, $params);
     }
     public static function product_variant($variantId){
         return self::request('variants/'.$variantId);
