@@ -20,12 +20,16 @@ class ProductDetailController extends Controller
         $productId = $request->get("id",false);
         if($productId){
             $response = \WebService::product($productId);
-
             if (!empty( $response['data'])) {
                 $data['product'] = $response['data'];
+                $data['breadcrumb'] = '';
+                $currentCategory = \WebService::breadcrumb($data['product']['productCategories'][0]['categoryId']);
 
-                $data['breadcrumb']=\WebService::breadcrumb($data['product']['productCategories'][0]['categoryId']);
-
+                if($currentCategory && $currentCategory['data']['breadcrumb']){
+                    $data['breadcrumb']= $currentCategory['data']['breadcrumb'];
+                } else {
+                    $data['breadcrumb'] = '<ul><li><a href="/"><img src="https://ethem.akilliphone.com/assets/images/home-icon.svg"></a></li><li><a href="'.route('listing.page').'">Tüm Ürünler</a></li><li><a href="'.getCategoryUrl($currentCategory['data']).'">'.$currentCategory['data']['name'].'</a></li></ul>';
+                }
                 BasketService::setLastViewed($data['product']);
             }
 
