@@ -43,7 +43,7 @@ class WebService {
         } else {
             $token = '';
         }
-      return $token;
+        return $token;
     }
     public static function profileOrders($token){
 
@@ -71,7 +71,7 @@ class WebService {
             $token = '';
 
         }
-      return $token;
+        return $token;
     }
 
 
@@ -218,8 +218,8 @@ class WebService {
         return self::request('variants/'.$variantId);
     }
     public static function home_main_menu($source=null){
+        return self::wecart('home/main-menu');
         if($source=='live'){
-            return self::wecart('home/main-menu');
         }
         return self::static('home/main-menu');
     }
