@@ -22,22 +22,19 @@ class ProductDetailController extends Controller
             $response = \WebService::product($productId);
             if (!empty( $response['data'])) {
                 $product = $response['data'];
-                $data['breadcrumb'] = $product['breadcrumb'];
-
+                $data['breadcrumb'] = '';
 
                 $productCategoryId = 0;
                 if($product['productCategories']){
                     $productCategoryId = end($product['productCategories'])['categoryId'];
                 }
                 $response = \WebService::product($productId, ['returnCategoryId'=>$productCategoryId]);
-                $data['product'] = $response['data'];
-/*
-                if($currentCategory && $currentCategory['data']['breadcrumb']){
+                $data['product'] =  $response['data'];
+                /*if($currentCategory && $currentCategory['data']['breadcrumb']){
                     $data['breadcrumb']= $currentCategory['data']['breadcrumb'];
                 } else {
-                    $data['breadcrumb'] = '<div class="breadcrumb"><nav><ul><li><a href="/"><img src="https://ethem.akilliphone.com/assets/images/home-icon.svg"></a></li><li><a href="'.route('listing.page').'">Tüm Ürünler</a></li><li><a href="'.getCategoryUrl($currentCategory['data']).'">'.$currentCategory['data']['name'].'</a></li></ul></nav></div>';
-                }
-                */
+                    //$data['breadcrumb'] = '<div class="breadcrumb"><nav><ul><li><a href="/"><img src="https://ethem.akilliphone.com/assets/images/home-icon.svg"></a></li><li><a href="'.route('listing.page').'">Tüm Ürünler</a></li><li><a href="'.getCategoryUrl($currentCategory['data']).'">'.$currentCategory['data']['name'].'</a></li></ul></nav></div>';
+                }*/
                 BasketService::setLastViewed($data['product']);
             }
             if (empty($data['product']['variants'])) {
