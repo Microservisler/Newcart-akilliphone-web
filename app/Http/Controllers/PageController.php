@@ -80,8 +80,11 @@ class PageController extends Controller
 ];
         $register=\WebService::register($body);
         if($register){
+            $request->session()->flash('flash-success', ['Üye olma işlemi başarılı', 'Yönlendiriliyorsunuz.']);
             return redirect()->route('login');
         }else{
+            $request->session()->flash('flash-error', ['Üye olma işlemi başarısız', 'Tekrar deneyiniz.']);
+
             return back()->withInput();
         }
 
@@ -95,10 +98,13 @@ class PageController extends Controller
             session()->put('userToken', $userToken);
             session()->put('userInfo', \WebService::user_data($userToken));
             $request->session()->regenerate();
+            $request->session()->flash('flash-success', ['Giriş Başarılı.',' ']);
+
             return redirect()->route('index');
         }
         else{
-            return redirect()->route('profile.index');
+            $request->session()->flash('flash-error', ['Giriş Başarısız.',' ']);
+            return redirect()->route('login');
         }
     }
 
@@ -130,8 +136,10 @@ class PageController extends Controller
 //    }
     public function logout(Request $request)
     {
+
         $request->session()->flush();
-        return redirect()->route('profile.index');
+        $request->session()->flash('flash-success', ['Çıkış Yapıldı.','Yönlendiriliyorsunuz.']);
+        return redirect()->route('login');
 
 
     }

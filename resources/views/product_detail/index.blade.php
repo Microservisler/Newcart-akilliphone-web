@@ -79,8 +79,8 @@
                             </div>
                             <div class="detail-title-area">
 
-                                <h2 class="product-title">  <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}"> <span>{{$product['brand']['name']}}</span></a> {{$product['name']}}
-                                    </h2>
+                                <h1 class="product-title">  <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}"> <span>{{$product['brand']['name']}}</span></a> {{$product['name']}}
+                                    </h1>
                                <div>
                                    <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}">  <img src="{{"https://cdn.akilliphone.com/".$product['brand']['image'] }}" alt=""></a>
                                </div>

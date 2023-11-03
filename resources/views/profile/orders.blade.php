@@ -25,7 +25,7 @@
                                 </button>
                             </div>
                             <div class="signup-select">
-                                <select>
+                                <select style="display: none">
                                     <option value="0"></option>
                                     <option value="1" selected>Tüm siparişler</option>
                                     <option value="2">Son 30 Gün</option>
