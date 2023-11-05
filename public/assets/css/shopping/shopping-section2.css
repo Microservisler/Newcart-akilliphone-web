@@ -246,7 +246,6 @@ body {
 .textarea {
     width: 100% !important;
     max-width: 100% !important;
-    height: 150px !important;
 }
 
 .signup-select {

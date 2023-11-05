@@ -8,7 +8,17 @@
         .district-option{
             display: none;
         }
-
+        .form-wrapper.billing.hide{
+            display: none;
+        }
+        .form-wrapper.invoice-type.hide{
+            display: none;
+        }
+        @media (min-width: 768px){
+            .form-wrapper.invoice-type .signup-input {
+                width: calc(33.333% - 15px);
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -99,22 +109,96 @@
             <div class="signup-input hide-address-registered">
                 <input name="customer[email]" type="text" placeholder="Eposta Adresi" style="height: 83%;" value="{{$basket->customer['email']}}">
             </div>
+            <div class="signup-bill">
+                <label for="bill">
+                    <input name="use_payment_adress" class="option-input checkbox" type="checkbox"  id="bill" value="1">
+                    Fatura için farklı bir adres kullanılsın.
+                </label>
+
+            </div>
+            <div class="form-wrapper billing hide" style="width: 100%;">
+                <div class="signup-title">
+                    <h1>Fatura Adresi</h1> Fatura adresiniz için lütfen aşağıdaki formu doldurun.
+                </div>
+                <div class="signup-input hide-address-registered">
+                    <input required id="billingAddress-firstName" name="billingAddress[firstName]" type="text" placeholder="Ad" value="{{ $basket->billingAddress['firstName'] }}">
+                </div>
+                <div class="signup-input hide-address-registered">
+                    <input required id="billingAddress-lastName" name="billingAddress[lastName]" type="text" placeholder="Soyad" value="{{ $basket->billingAddress['lastName'] }}">
+                </div>
+
+                <div class="signup-input hide-address-registered">
+                    <div class="signup-select">
+                        <select required id="billingAddress-countryId" class="select-with-name" data-nametarget=".select-country" name="billingAddress[countryId]">
+                            @if($countries['data'])
+                                <?php
+                                $selectedCountry = $basket->billingAddress['countryId']?$basket->billingAddress['countryId']:2;
+                                ?>
+                                @foreach($countries['data'] as $country)
+                                    <option value="{{ $country['countryId'] }}" @if($selectedCountry==$country['countryId']) selected @endif>{{ $country['name'] }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="signup-input hide-address-registered">
+                    <div class="signup-select">
+                        <select id="billingAddress-cityId" class="select-with-name" data-nametarget=".select-city" name="billingAddress[cityId]">
+                            <option value=""> -- </option>
+                            @if($cities['data'])
+                                @foreach($cities['data'] as $city)
+                                    @if($city['countryId']==2)
+                                        <option value="{{ $city['cityId'] }}" @if($basket->billingAddress['cityId']==$city['cityId']) selected @endif>{{ $city['name'] }}</option>
+                                    @endif
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="signup-input hide-address-registered">
+                    <div class="signup-select">
+                        <select id="billingAddress-districtId" class="select-with-name" data-nametarget=".select-district" name="billingAddress[districtId]">
+                            <option value=""> -- </option>
+                            @if($cities['data'])
+                                @foreach($cities['data'] as $city)
+                                    @foreach($city['districts'] as $district)
+                                        <option class="district-option city-{{ $city['cityId'] }}" value="{{ $district['districtId'] }}" @if($basket->billingAddress['districtId']==$district['districtId']) selected @endif>{{ $district['name'] }}</option>
+                                    @endforeach
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                </div>
+                <div class="signup-input hide-address-registered">
+                    <span class="label">Adres Adı</span>
+                    <input id="billingAddress-name" name="billingAddress[name]" type="text" value="{{$basket->billingAddress['name']}}">
+                </div>
+                <div class="signup-input textarea hide-address-registered">
+                    <span class="label">Açık Adres</span>
+                    <textarea id="billingAddress-address" name="billingAddress[addressLine1]" id="" cols="30" rows="2" placeholder="Mahalle, sokak, cadde ve diğer bilgilerinizi giriniz">{{$basket->billingAddress['addressLine1']}}</textarea>
+                </div>
+            </div>
             <div class="signup-bill signup-bill-type" style="width: 100%">
                 <span>Fatura Tipi:</span>
-                <label for="indiv">
-                    <input class="option-input checkbox" name="invoiceType" type="radio" id="indiv" @if($basket->billingAddress['invoiceType']=='bireysel') checked @endif  required value="bireysel">
+                <label for="bireysel">
+                    <input class="option-input checkbox" name="invoiceType" type="radio" id="bireysel" @if($basket->billingAddress['invoiceType']=='bireysel') checked @endif  required value="bireysel">
                     Bireysel
                 </label>
-                <label for="company">
-                    <input class="option-input checkbox"  name="invoiceType" type="radio" id="company" @if($basket->billingAddress['invoiceType']=='kurumsal') checked @endif required value="kurumsal">
+                <label for="kurumsal">
+                    <input class="option-input checkbox"  name="invoiceType" type="radio" id="kurumsal" @if($basket->billingAddress['invoiceType']=='kurumsal') checked @endif required value="kurumsal">
                     Kurumsal
                 </label>
             </div>
-            <div class="signup-bill">
-                <label for="bill">
-                    <input class="option-input checkbox" type="checkbox" checked id="bill" required>
-                    Fatura ve teslimat  adresim aynı.
-                </label>
+            <div class="form-wrapper invoice-type @if($basket->billingAddress['invoiceType']=='bireysel') hide  @endif" style="padding-bottom: 10px;padding-top: 10px">
+                <div class="signup-input billing hide-address-registered">
+                    <input id="billingAddress-" name="billingAddress[company]" type="text" placeholder="Şirket" value="{{$basket->billingAddress['company']}}">
+                </div>
+                <div class="signup-input billing hide-address-registered">
+                    <input id="billingAddress-lastName" name="billingAddress[taxOffice]" type="text" placeholder="Vergi Dairesi" value="{{$basket->billingAddress['taxOffice']}}">
+                </div>
+                <div class="signup-input billing hide-address-registered">
+                    <input id="billingAddress-lastName" name="billingAddress[taxNumber]" type="text" placeholder="Vergi No" value="{{$basket->billingAddress['taxNumber']}}">
+                </div>
             </div>
             <div class="signup-title shipping">
                 <h1>Kargo Seçenekleri</h1>
@@ -147,10 +231,11 @@
             separateDialCode: true,
         });
         $('.address-registered').on('click', function(){
+        @if(userInfo('addresses'))
+            let addresses = {!! json_encode(userInfo('addresses'), JSON_UNESCAPED_UNICODE) !!} ;
+        @else
             let addresses = [];
-            @if(userInfo('addresses'))
-    addresses = {!! json_encode(userInfo('addresses'), JSON_UNESCAPED_UNICODE) !!} ;
-            @endif
+        @endif
             $(addresses).each(function(){
                 console.log(this);
                 if($('.address-registered:checked').val() == this.addressId){
@@ -168,7 +253,7 @@
 
                 }
             });
-});
+}       );
         $('.address-manualy').on('click', function(){
             $("#customer-firstName").val('')
             $("#customer-lastName").val('')
@@ -185,6 +270,7 @@
         $('.address-manualy').on('click', function(){
             $('.hide-address-registered').fadeIn();
         });
+        /* kargo adresi */
         $('#shippingAddress-cityId').on('change', function(){
             $('#shippingAddress-districtId').val('');
             $('.district-option').hide();
@@ -192,9 +278,31 @@
         });
         $('#shippingAddress-cityId').change();
         $('#shippingAddress-districtId').val('{{ $basket->shippingAddress['districtId'] }}');
+        /* fatura adresi */
+        $('#billingAddress-cityId').on('change', function(){
+            $('#billingAddress-districtId').val('');
+            $('.district-option').hide();
+            $('.district-option.city-' + $(this).val()).show();
+        });
+        $('#sbillingAddress-cityId').change();
+        $('#billingAddress-districtId').val('{{ $basket->billingAddress['districtId'] }}');
 
         $('.select-with-name').on('change', function(){
             $($(this).data('nametarget')).val( $(this).find('option:checked').text() );
+        });
+        $('input[name=invoiceType]').on('change', function(){
+            if($(this).val()=='kurumsal'){
+                $('.form-wrapper.invoice-type').removeClass('hide');
+            } else {
+                $('.form-wrapper.invoice-type').addClass('hide');
+            }
+        });
+        $('#bill').on('change', function(){
+            if($(this).is(':checked')){
+                $('.form-wrapper.billing').removeClass('hide');
+            } else {
+                $('.form-wrapper.billing').addClass('hide');
+            }
         });
 
     </script>

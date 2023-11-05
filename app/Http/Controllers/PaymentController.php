@@ -115,9 +115,12 @@ class PaymentController extends Controller {
                 $shippingAddress['phone'] = $customer['phone'];
             }
             $billingAddress = $request->input('billingAddress', []);
-            if(empty($billingAddress)){
+            if($request->input('use_payment_adress', false)){
+
+            } else{
                 $billingAddress = $shippingAddress;
             }
+
 
             BasketService::setShipping($request->input('shippingBrand', false));
             BasketService::setCustomer($customer);
