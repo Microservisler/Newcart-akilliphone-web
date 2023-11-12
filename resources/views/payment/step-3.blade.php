@@ -243,9 +243,7 @@
                                     <input type="radio" id="transfer" name="paymentType" value="banktransfer">
                                     <label class="title" for="transfer">Havale</label>
                                 </div>
-                                Ödemenizi Albaraka Türk Katılım, Denizbank, Kuveyt Türk Katılım veya VakıfBank ile
-                                havale seçeneğini
-                                kullanarak yapabilirsiniz.
+                                {!! Basket()::getPaymentDescription(5) !!}
                             </div>
                             <div class="pay-logo">
                                 <img src="assets/images/ziraat.svg" alt="">

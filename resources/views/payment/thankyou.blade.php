@@ -50,6 +50,8 @@
                             <div class="info-title">Ödeme Tipi: <span class="info-descr">{{ $order['paymentType']['name'] }}</span></div>
                             <div class="info-title">Telefon: <span class="info-descr">{{ $order['shippingAddress']['phone'] }}</span></div>
                             <div class="info-title">Tarih: <span class="info-descr">{{ HumanDate($order['createdAt']) }}</span></div>
+                            <hr class="summary-title">
+                            {!! Basket()::getPaymentDescription($order['paymentTypeId']) !!}
                         </div>
                     </div>
                     <div class="cart-wrapper">

@@ -331,4 +331,42 @@ class BasketService{
         }
         return 'Belirtilmemiş';
     }
+    static function getPaymentDescription($paymentTypeId){
+        if($paymentTypeId==5){
+            return '<p>Havale/EFT için aşağıdaki hesap bilgilerini kullanınız</p>
+                                <table class="table_bankdetails">
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="3"><img src="https://www.qnbfinansbank.com/_assets/img/logo.png" style="height:50px;border:0 !important">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hesap Adı</td>
+                                        <td>:</td>
+                                        <td id="branchCode">BERKANT ELEKTRONIK BILG.ITH.IHR.SAN.VE DIS TIC.LTD</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Şube No</td>
+                                        <td>:</td>
+                                        <td id="branchCode">Esenyurt (1078)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hesap no</td>
+                                        <td>:</td>
+                                        <td id="accountNumber">33 1815 00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IBAN</td>
+                                        <td>:</td>
+                                        <td id="iban">TR75 0011 1000 0000 0033 1815 00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>HIZLI ADRES</td>
+                                        <td>:</td>
+                                        <td id="vkno">VK No: 1650282967</td>
+                                    </tr>
+                                    </tbody>
+                                </table>';
+        }
+    }
 }

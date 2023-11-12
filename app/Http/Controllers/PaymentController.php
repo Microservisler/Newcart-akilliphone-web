@@ -114,9 +114,8 @@ class PaymentController extends Controller {
                 $shippingAddress['lastName'] = $customer['lastName'];
                 $shippingAddress['phone'] = $customer['phone'];
             }
-            $billingAddress = $request->input('billingAddress', []);
             if($request->input('use_payment_adress', false)){
-
+                $billingAddress = $request->input('billingAddress', []);
             } else{
                 $billingAddress = $shippingAddress;
             }
@@ -126,22 +125,9 @@ class PaymentController extends Controller {
             BasketService::setCustomer($customer);
             BasketService::setShipingAddres($shippingAddress);
             BasketService::setBillingAddres($billingAddress, $request->input('invoiceType', 'bireysel'));
-
         }
         $data['basket']   =  BasketService::calculateBasket(BasketService::getBasket());
 
-        $data['cc'] = [
-            'name'=>'Ahmet Bayrak',
-            'cardnumber'=>'4183421766142573',
-            'expirationdate'=>'12/26',
-            'securitycode'=>'726',
-        ];
-        $data['cc'] = [
-            'name'=>'Ahmet Bayrak',
-            'cardnumber'=>'4938410198818239',
-            'expirationdate'=>'04/30',
-            'securitycode'=>'811',
-        ];
         $data['cc'] = [
             'name'=>'Ahmet Bayrak',
             'cardnumber'=>'4938410155072507',
