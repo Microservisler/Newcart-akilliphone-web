@@ -144,7 +144,7 @@ class PaymentController extends Controller {
                 $order = OrderService::currentOrder();
                 $order->marketplaceId='4'; //akilliphone
                 if($paymetType=='banktransfer'){
-
+                    //\PaymentService::IyzicoPayment();
                     $order->paymentTypeId = 5; // havale
                     $response = \WebService::create_order($order);
                     if($response && $response['data'] && $response['data']['orderId']){
