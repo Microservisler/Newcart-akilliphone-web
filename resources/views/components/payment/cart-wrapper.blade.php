@@ -28,12 +28,12 @@
         @endif
     </div>
     <div class="basket-messages">
+        @if($basket->shippingBrand && isset($basket->shippingBrands[$basket->shippingBrand]))
+            <div class="basket-message info">{{ $basket->shippingBrands[$basket->shippingBrand]['title'] }} İle Gönderilecek</div>
+        @endif
         @foreach($basket->alerts as $alert)
             <div class="basket-message {{ $alert['class'] }}">{{ $alert['message'] }}</div>
         @endforeach
-            @if($basket->shippingBrand && isset($basket->shippingBrands[$basket->shippingBrand]))
-                <div class="basket-message info">{{ $basket->shippingBrands[$basket->shippingBrand]['title'] }} İle Gönderilecek</div>
-            @endif
     </div>
     <div class="total-footer">
         <div class="info-total">

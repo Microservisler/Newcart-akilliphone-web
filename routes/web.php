@@ -24,7 +24,6 @@ use App\Http\Middleware\CheckUserToken;
 |
 */
 
-
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/giris-yap', [PageController::class, 'login'])->name('login');
 Route::get('/register', [PageController::class, 'signUp'])->name('signUp');

@@ -250,7 +250,7 @@
                             </div>
                         </div>
                         <div class="return-shopping">
-                            <a href="#" class="return-btn">
+                            <a href="{{ route('basket.index') }}" class="return-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="5.001" height="8.774"
                                      viewBox="0 0 5.001 8.774">
                                     <g id="flaticon1568189262-svg" transform="translate(102.14 8.773) rotate(180)">

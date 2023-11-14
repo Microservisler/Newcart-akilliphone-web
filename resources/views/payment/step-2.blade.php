@@ -67,7 +67,7 @@
             </div>
             <div class="signup-input hide-address-registered">
                 <div class="signup-select">
-                    <select id="shippingAddress-cityId" class="select-with-name" data-nametarget=".select-city" name="shippingAddress[cityId]">
+                    <select id="shippingAddress-cityId" required class="select-with-name" data-nametarget=".select-city" name="shippingAddress[cityId]">
                         <option value=""> -- </option>
                         @if($cities['data'])
                             @foreach($cities['data'] as $city)
@@ -81,7 +81,7 @@
             </div>
             <div class="signup-input hide-address-registered">
                 <div class="signup-select">
-                    <select id="shippingAddress-districtId" class="select-with-name" data-nametarget=".select-district" name="shippingAddress[districtId]">
+                    <select id="shippingAddress-districtId" required class="select-with-name" data-nametarget=".select-district" name="shippingAddress[districtId]">
                         <option value=""> -- </option>
                         @if($cities['data'])
                             @foreach($cities['data'] as $city)
@@ -99,15 +99,15 @@
             </div>
             <div class="signup-input textarea hide-address-registered">
                 <span class="label">Açık Adres</span>
-                <textarea id="shippingAddress-address" name="shippingAddress[addressLine1]" id="" cols="30" rows="2" placeholder="Mahalle, sokak, cadde ve diğer bilgilerinizi giriniz">{{$basket->shippingAddress['addressLine1']}}</textarea>
+                <textarea id="shippingAddress-address" required name="shippingAddress[addressLine1]" id="" cols="30" rows="2" placeholder="Mahalle, sokak, cadde ve diğer bilgilerinizi giriniz">{{$basket->shippingAddress['addressLine1']}}</textarea>
             </div>
 
             <div class="signup-input">
                 <span class="label">Telefon</span>
-                <input name="customer[phone]" type="text" id="mobile_code" class="form-control" value="{{$basket->customer['phone']}}">
+                <input name="customer[phone]" required type="text" id="mobile_code" class="form-control" value="{{$basket->customer['phone']}}">
             </div>
             <div class="signup-input hide-address-registered">
-                <input name="customer[email]" type="text" placeholder="Eposta Adresi" style="height: 83%;" value="{{$basket->customer['email']}}">
+                <input name="customer[email]" required type="text" placeholder="Eposta Adresi" style="height: 83%;" value="{{$basket->customer['email']}}">
             </div>
             <div class="signup-bill">
                 <label for="bill">
@@ -126,7 +126,6 @@
                 <div class="signup-input hide-address-registered">
                     <input required id="billingAddress-lastName" name="billingAddress[lastName]" type="text" placeholder="Soyad" value="{{ $basket->billingAddress['lastName'] }}">
                 </div>
-
                 <div class="signup-input hide-address-registered">
                     <div class="signup-select">
                         <select required id="billingAddress-countryId" class="select-with-name" data-nametarget=".select-country" name="billingAddress[countryId]">
@@ -300,8 +299,10 @@
         $('#bill').on('change', function(){
             if($(this).is(':checked')){
                 $('.form-wrapper.billing').removeClass('hide');
+                $('.form-wrapper.billing input, .form-wrapper.billing select').attr('required', true);
             } else {
                 $('.form-wrapper.billing').addClass('hide');
+                $('.form-wrapper.billing input, .form-wrapper.billing select').removeAttr('required');
             }
         });
 
