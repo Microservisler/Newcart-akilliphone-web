@@ -10,95 +10,106 @@
             <div class="signup-title">
                 <h1>Ödeme Yöntemi Seçiniz</h1>
             </div>
+            @if(empty($iyzico_form))
             <div class="tab">
                 <button class="tabSpec" onclick="openSpec(event, 'newCard')">Kayıtlı Kartlarım</button>
                 <button class="tabSpec active" onclick="openSpec(event, 'creditCard')">Yeni Kart</button>
             </div>
+            @endif
             <form action="{{ route('payment.step.post', 4) }}" method="post">
                 <div class="shopping-wrapper">
                     <div class="form-wrapper">
-                        <div id="newCard" class="tabDetails" style="display: none;">
-                            <div class="saved-card-list">
-                                <div class="custom_radio">
-                                    <input type="radio" name="card" id="card1" checked="">
-                                    <label class="title" selected="" for="card1">
-                                        <div class="saved-card">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                 viewBox="0 0 512 512">
-                                                <path fill="#C2CCCE"
-                                                      d="M505.999 104.494a23.067 23.067 0 0 0-19.614-19.615l-.329-.329H22.572l-.327.329A23.067 23.067 0 0 0 2.63 104.494l-.328.327v298.987l.328.329a23.067 23.067 0 0 0 19.615 19.615l.327.327h463.483l.329-.329a23.062 23.062 0 0 0 19.614-19.614l.329-.329V104.821l-.328-.327z"></path>
-                                                <path fill="#597B91" d="M2.302 149.609h504.024V236H2.302z"></path>
-                                                <path fill="#FFF"
-                                                      d="M442.478 294.697H69.522c-23.116 0-41.855 18.739-41.855 41.854c0 23.116 18.739 41.855 41.855 41.855h372.957c23.116 0 41.855-18.739 41.855-41.855c-.001-23.115-18.74-41.854-41.856-41.854z"></path>
-                                                <path fill="#597B91"
-                                                      d="M348.576 371.698c-1.13 0-2.238-.024-3.326-.072c-13.51-.604-22.237-4.798-27.875-9.934c-19.207 9.371-42.187 13.168-51.84 4.363c-3.646-3.324-8.474-10.958.139-24.728c6.98-11.159 8.596-20.652 4.021-23.623c-5.534-3.594-19.407-.151-28.546 13.417c-7.215 10.713-20.291 21.218-34.977 28.101c-7.572 3.549-26.516 11.043-38.877 4.004c-6.398-3.643-15.306-13.61-3.072-39.438c1.489-3.144 1.483-4.788 1.364-5.117c-2.353-2.743-22.062-1.928-42.894 9.78c-13.271 7.458-20.56 16.171-18.57 22.195a7.501 7.501 0 0 1-14.244 4.705c-4.067-12.314 2.827-25.195 19.411-36.271c18.365-12.266 52.469-23.503 66.095-11.737c3.506 3.026 8.478 10.021 2.394 22.866c-4.848 10.233-6.078 18.263-3.062 19.979c8.7 4.959 40.956-8.093 53.991-27.447c6.122-9.09 14.594-15.913 23.857-19.215c9.37-3.34 18.591-2.759 25.3 1.596c9.678 6.284 14.898 21.184.527 44.159c-2.144 3.428-2.468 5.253-2.509 5.876c3.303 2.229 18.115.825 33.107-6.037c-2.906-8.005-2.909-17.684.06-27.01c3.132-9.841 8.966-17.644 15.605-20.872c10.473-5.092 18.629 1.841 22.433 9.324c7.173 14.11 1.809 29.42-14.717 42.004c-.323.247-.65.492-.981.735c20.276 10.854 64.889-6.649 84.099-15.161a7.5 7.5 0 0 1 6.077 13.715c-29.741 13.177-54.27 19.843-72.99 19.843zm-16.932-57.141c-1.332.248-5.402 3.743-8.013 11.238c-1.632 4.685-2.439 10.385-1.314 15.562c.363-.267.723-.536 1.081-.811c7.26-5.556 14.942-14.089 10.318-23.186c-1.031-2.028-1.84-2.655-2.072-2.803z"></path>
-                                            </svg>
-                                            <div class="card-info">
-                                                <div class="owner">Emre Karataş</div>
-                                                <div class="card-number">4234 56<span>••</span>&nbsp;<span>••••</span>&nbsp;9876
+                        @if($iyzico_form)
+                            <style>
+                                .css-4276uk-Popup-Box-Box {
+                                    max-width: 100%!important;
+                                }
+                            </style>
+                            <div id="iyzipay-checkout-form" class="responsive"></div>
+                            {!! $iyzico_form !!}
+                        @else
+                            <div id="newCard" class="tabDetails" style="display: none;">
+                                <div class="saved-card-list">
+                                    <div class="custom_radio">
+                                        <input type="radio" name="card" id="card1" checked="">
+                                        <label class="title" selected="" for="card1">
+                                            <div class="saved-card">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                                     viewBox="0 0 512 512">
+                                                    <path fill="#C2CCCE"
+                                                          d="M505.999 104.494a23.067 23.067 0 0 0-19.614-19.615l-.329-.329H22.572l-.327.329A23.067 23.067 0 0 0 2.63 104.494l-.328.327v298.987l.328.329a23.067 23.067 0 0 0 19.615 19.615l.327.327h463.483l.329-.329a23.062 23.062 0 0 0 19.614-19.614l.329-.329V104.821l-.328-.327z"></path>
+                                                    <path fill="#597B91" d="M2.302 149.609h504.024V236H2.302z"></path>
+                                                    <path fill="#FFF"
+                                                          d="M442.478 294.697H69.522c-23.116 0-41.855 18.739-41.855 41.854c0 23.116 18.739 41.855 41.855 41.855h372.957c23.116 0 41.855-18.739 41.855-41.855c-.001-23.115-18.74-41.854-41.856-41.854z"></path>
+                                                    <path fill="#597B91"
+                                                          d="M348.576 371.698c-1.13 0-2.238-.024-3.326-.072c-13.51-.604-22.237-4.798-27.875-9.934c-19.207 9.371-42.187 13.168-51.84 4.363c-3.646-3.324-8.474-10.958.139-24.728c6.98-11.159 8.596-20.652 4.021-23.623c-5.534-3.594-19.407-.151-28.546 13.417c-7.215 10.713-20.291 21.218-34.977 28.101c-7.572 3.549-26.516 11.043-38.877 4.004c-6.398-3.643-15.306-13.61-3.072-39.438c1.489-3.144 1.483-4.788 1.364-5.117c-2.353-2.743-22.062-1.928-42.894 9.78c-13.271 7.458-20.56 16.171-18.57 22.195a7.501 7.501 0 0 1-14.244 4.705c-4.067-12.314 2.827-25.195 19.411-36.271c18.365-12.266 52.469-23.503 66.095-11.737c3.506 3.026 8.478 10.021 2.394 22.866c-4.848 10.233-6.078 18.263-3.062 19.979c8.7 4.959 40.956-8.093 53.991-27.447c6.122-9.09 14.594-15.913 23.857-19.215c9.37-3.34 18.591-2.759 25.3 1.596c9.678 6.284 14.898 21.184.527 44.159c-2.144 3.428-2.468 5.253-2.509 5.876c3.303 2.229 18.115.825 33.107-6.037c-2.906-8.005-2.909-17.684.06-27.01c3.132-9.841 8.966-17.644 15.605-20.872c10.473-5.092 18.629 1.841 22.433 9.324c7.173 14.11 1.809 29.42-14.717 42.004c-.323.247-.65.492-.981.735c20.276 10.854 64.889-6.649 84.099-15.161a7.5 7.5 0 0 1 6.077 13.715c-29.741 13.177-54.27 19.843-72.99 19.843zm-16.932-57.141c-1.332.248-5.402 3.743-8.013 11.238c-1.632 4.685-2.439 10.385-1.314 15.562c.363-.267.723-.536 1.081-.811c7.26-5.556 14.942-14.089 10.318-23.186c-1.031-2.028-1.84-2.655-2.072-2.803z"></path>
+                                                </svg>
+                                                <div class="card-info">
+                                                    <div class="owner">Emre Karataş</div>
+                                                    <div class="card-number">4234 56<span>••</span>&nbsp;<span>••••</span>&nbsp;9876
+                                                    </div>
+                                                </div>
+                                                <div class="card-logo">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                                         viewBox="0 0 32 32">
+                                                        <path fill="#C2CCCE"
+                                                              d="M26.117 14.628s.422 2.067.517 2.5h-1.855l.889-2.417c-.011.017.183-.506.294-.828zM32 6.222v19.556a2.668 2.668 0 0 1-2.667 2.667H2.666a2.668 2.668 0 0 1-2.667-2.667V6.222a2.668 2.668 0 0 1 2.667-2.667h26.667A2.668 2.668 0 0 1 32 6.222zM8.472 20.178l3.511-8.622H9.622l-2.183 5.889l-.239-1.194l-.778-3.967c-.128-.55-.522-.706-1.011-.728H1.817l-.039.172a8.783 8.783 0 0 1 2.344.95l1.989 7.5zm5.245.011l1.4-8.633h-2.233l-1.394 8.633zm7.772-2.822c.011-.983-.589-1.733-1.872-2.35c-.783-.395-1.261-.661-1.261-1.067c.011-.367.406-.745 1.283-.745a3.825 3.825 0 0 1 1.661.328l.2.094l.306-1.867a5.553 5.553 0 0 0-2-.367c-2.206 0-3.756 1.178-3.767 2.855c-.017 1.239 1.111 1.928 1.956 2.344c.861.422 1.156.7 1.156 1.072c-.011.578-.7.844-1.339.844c-.889 0-1.367-.139-2.095-.461l-.294-.139l-.311 1.939c.522.239 1.489.45 2.489.461c2.344.005 3.872-1.156 3.889-2.944zm7.844 2.822l-1.8-8.633h-1.728c-.533 0-.939.156-1.167.717l-3.317 7.917h2.344s.383-1.067.467-1.294h2.867c.067.306.267 1.294.267 1.294z"></path>
+                                                    </svg>
                                                 </div>
                                             </div>
-                                            <div class="card-logo">
+                                        </label>
+                                    </div>
+                                    <div class="custom_radio">
+                                        <input type="radio" name="card" id="card2">
+                                        <label class="title" selected="" for="card2">
+                                            <div class="saved-card">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                     viewBox="0 0 32 32">
+                                                     viewBox="0 0 512 512">
                                                     <path fill="#C2CCCE"
-                                                          d="M26.117 14.628s.422 2.067.517 2.5h-1.855l.889-2.417c-.011.017.183-.506.294-.828zM32 6.222v19.556a2.668 2.668 0 0 1-2.667 2.667H2.666a2.668 2.668 0 0 1-2.667-2.667V6.222a2.668 2.668 0 0 1 2.667-2.667h26.667A2.668 2.668 0 0 1 32 6.222zM8.472 20.178l3.511-8.622H9.622l-2.183 5.889l-.239-1.194l-.778-3.967c-.128-.55-.522-.706-1.011-.728H1.817l-.039.172a8.783 8.783 0 0 1 2.344.95l1.989 7.5zm5.245.011l1.4-8.633h-2.233l-1.394 8.633zm7.772-2.822c.011-.983-.589-1.733-1.872-2.35c-.783-.395-1.261-.661-1.261-1.067c.011-.367.406-.745 1.283-.745a3.825 3.825 0 0 1 1.661.328l.2.094l.306-1.867a5.553 5.553 0 0 0-2-.367c-2.206 0-3.756 1.178-3.767 2.855c-.017 1.239 1.111 1.928 1.956 2.344c.861.422 1.156.7 1.156 1.072c-.011.578-.7.844-1.339.844c-.889 0-1.367-.139-2.095-.461l-.294-.139l-.311 1.939c.522.239 1.489.45 2.489.461c2.344.005 3.872-1.156 3.889-2.944zm7.844 2.822l-1.8-8.633h-1.728c-.533 0-.939.156-1.167.717l-3.317 7.917h2.344s.383-1.067.467-1.294h2.867c.067.306.267 1.294.267 1.294z"></path>
+                                                          d="M505.999 104.494a23.067 23.067 0 0 0-19.614-19.615l-.329-.329H22.572l-.327.329A23.067 23.067 0 0 0 2.63 104.494l-.328.327v298.987l.328.329a23.067 23.067 0 0 0 19.615 19.615l.327.327h463.483l.329-.329a23.062 23.062 0 0 0 19.614-19.614l.329-.329V104.821l-.328-.327z"></path>
+                                                    <path fill="#597B91" d="M2.302 149.609h504.024V236H2.302z"></path>
+                                                    <path fill="#FFF"
+                                                          d="M442.478 294.697H69.522c-23.116 0-41.855 18.739-41.855 41.854c0 23.116 18.739 41.855 41.855 41.855h372.957c23.116 0 41.855-18.739 41.855-41.855c-.001-23.115-18.74-41.854-41.856-41.854z"></path>
+                                                    <path fill="#597B91"
+                                                          d="M348.576 371.698c-1.13 0-2.238-.024-3.326-.072c-13.51-.604-22.237-4.798-27.875-9.934c-19.207 9.371-42.187 13.168-51.84 4.363c-3.646-3.324-8.474-10.958.139-24.728c6.98-11.159 8.596-20.652 4.021-23.623c-5.534-3.594-19.407-.151-28.546 13.417c-7.215 10.713-20.291 21.218-34.977 28.101c-7.572 3.549-26.516 11.043-38.877 4.004c-6.398-3.643-15.306-13.61-3.072-39.438c1.489-3.144 1.483-4.788 1.364-5.117c-2.353-2.743-22.062-1.928-42.894 9.78c-13.271 7.458-20.56 16.171-18.57 22.195a7.501 7.501 0 0 1-14.244 4.705c-4.067-12.314 2.827-25.195 19.411-36.271c18.365-12.266 52.469-23.503 66.095-11.737c3.506 3.026 8.478 10.021 2.394 22.866c-4.848 10.233-6.078 18.263-3.062 19.979c8.7 4.959 40.956-8.093 53.991-27.447c6.122-9.09 14.594-15.913 23.857-19.215c9.37-3.34 18.591-2.759 25.3 1.596c9.678 6.284 14.898 21.184.527 44.159c-2.144 3.428-2.468 5.253-2.509 5.876c3.303 2.229 18.115.825 33.107-6.037c-2.906-8.005-2.909-17.684.06-27.01c3.132-9.841 8.966-17.644 15.605-20.872c10.473-5.092 18.629 1.841 22.433 9.324c7.173 14.11 1.809 29.42-14.717 42.004c-.323.247-.65.492-.981.735c20.276 10.854 64.889-6.649 84.099-15.161a7.5 7.5 0 0 1 6.077 13.715c-29.741 13.177-54.27 19.843-72.99 19.843zm-16.932-57.141c-1.332.248-5.402 3.743-8.013 11.238c-1.632 4.685-2.439 10.385-1.314 15.562c.363-.267.723-.536 1.081-.811c7.26-5.556 14.942-14.089 10.318-23.186c-1.031-2.028-1.84-2.655-2.072-2.803z"></path>
                                                 </svg>
-                                            </div>
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="custom_radio">
-                                    <input type="radio" name="card" id="card2">
-                                    <label class="title" selected="" for="card2">
-                                        <div class="saved-card">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                 viewBox="0 0 512 512">
-                                                <path fill="#C2CCCE"
-                                                      d="M505.999 104.494a23.067 23.067 0 0 0-19.614-19.615l-.329-.329H22.572l-.327.329A23.067 23.067 0 0 0 2.63 104.494l-.328.327v298.987l.328.329a23.067 23.067 0 0 0 19.615 19.615l.327.327h463.483l.329-.329a23.062 23.062 0 0 0 19.614-19.614l.329-.329V104.821l-.328-.327z"></path>
-                                                <path fill="#597B91" d="M2.302 149.609h504.024V236H2.302z"></path>
-                                                <path fill="#FFF"
-                                                      d="M442.478 294.697H69.522c-23.116 0-41.855 18.739-41.855 41.854c0 23.116 18.739 41.855 41.855 41.855h372.957c23.116 0 41.855-18.739 41.855-41.855c-.001-23.115-18.74-41.854-41.856-41.854z"></path>
-                                                <path fill="#597B91"
-                                                      d="M348.576 371.698c-1.13 0-2.238-.024-3.326-.072c-13.51-.604-22.237-4.798-27.875-9.934c-19.207 9.371-42.187 13.168-51.84 4.363c-3.646-3.324-8.474-10.958.139-24.728c6.98-11.159 8.596-20.652 4.021-23.623c-5.534-3.594-19.407-.151-28.546 13.417c-7.215 10.713-20.291 21.218-34.977 28.101c-7.572 3.549-26.516 11.043-38.877 4.004c-6.398-3.643-15.306-13.61-3.072-39.438c1.489-3.144 1.483-4.788 1.364-5.117c-2.353-2.743-22.062-1.928-42.894 9.78c-13.271 7.458-20.56 16.171-18.57 22.195a7.501 7.501 0 0 1-14.244 4.705c-4.067-12.314 2.827-25.195 19.411-36.271c18.365-12.266 52.469-23.503 66.095-11.737c3.506 3.026 8.478 10.021 2.394 22.866c-4.848 10.233-6.078 18.263-3.062 19.979c8.7 4.959 40.956-8.093 53.991-27.447c6.122-9.09 14.594-15.913 23.857-19.215c9.37-3.34 18.591-2.759 25.3 1.596c9.678 6.284 14.898 21.184.527 44.159c-2.144 3.428-2.468 5.253-2.509 5.876c3.303 2.229 18.115.825 33.107-6.037c-2.906-8.005-2.909-17.684.06-27.01c3.132-9.841 8.966-17.644 15.605-20.872c10.473-5.092 18.629 1.841 22.433 9.324c7.173 14.11 1.809 29.42-14.717 42.004c-.323.247-.65.492-.981.735c20.276 10.854 64.889-6.649 84.099-15.161a7.5 7.5 0 0 1 6.077 13.715c-29.741 13.177-54.27 19.843-72.99 19.843zm-16.932-57.141c-1.332.248-5.402 3.743-8.013 11.238c-1.632 4.685-2.439 10.385-1.314 15.562c.363-.267.723-.536 1.081-.811c7.26-5.556 14.942-14.089 10.318-23.186c-1.031-2.028-1.84-2.655-2.072-2.803z"></path>
-                                            </svg>
-                                            <div class="card-info">
-                                                <div class="owner">Emre Karataş</div>
-                                                <div class="card-number">5234 56<span>••</span>&nbsp;<span>••••</span>&nbsp;9876
+                                                <div class="card-info">
+                                                    <div class="owner">Emre Karataş</div>
+                                                    <div class="card-number">5234 56<span>••</span>&nbsp;<span>••••</span>&nbsp;9876
+                                                    </div>
+                                                </div>
+                                                <div class="card-logo">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                                                         viewBox="0 0 24 24">
+                                                        <path fill="#C2CCCE"
+                                                              d="M11.343 18.031c.058.049.12.098.181.146a7.391 7.391 0 0 1-4.107 1.238a7.416 7.416 0 1 1 4.104-13.593c-.06.051-.12.098-.165.15A7.963 7.963 0 0 0 8.595 12a7.996 7.996 0 0 0 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238c.06.051.12.098.165.15A7.963 7.963 0 0 1 15.405 12a8.002 8.002 0 0 1-2.748 6.031c-.058.049-.12.098-.181.146a7.386 7.386 0 0 0 4.107 1.238A7.414 7.414 0 0 0 24 12a7.417 7.417 0 0 0-7.416-7.416zM12 6.174A7.388 7.388 0 0 0 9.169 12A7.386 7.386 0 0 0 12 17.827A7.39 7.39 0 0 0 14.831 12A7.388 7.388 0 0 0 12 6.174z"></path>
+                                                    </svg>
                                                 </div>
                                             </div>
-                                            <div class="card-logo">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                     viewBox="0 0 24 24">
-                                                    <path fill="#C2CCCE"
-                                                          d="M11.343 18.031c.058.049.12.098.181.146a7.391 7.391 0 0 1-4.107 1.238a7.416 7.416 0 1 1 4.104-13.593c-.06.051-.12.098-.165.15A7.963 7.963 0 0 0 8.595 12a7.996 7.996 0 0 0 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238c.06.051.12.098.165.15A7.963 7.963 0 0 1 15.405 12a8.002 8.002 0 0 1-2.748 6.031c-.058.049-.12.098-.181.146a7.386 7.386 0 0 0 4.107 1.238A7.414 7.414 0 0 0 24 12a7.417 7.417 0 0 0-7.416-7.416zM12 6.174A7.388 7.388 0 0 0 9.169 12A7.386 7.386 0 0 0 12 17.827A7.39 7.39 0 0 0 14.831 12A7.388 7.388 0 0 0 12 6.174z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </label>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="creditCard" class="tabDetails" style="display: block;">
-                            <div class="credit-card-section">
-                                <div class="creditcard-info">
-                                    <div class="creditcard-text">
-                                        <div class="custom_radio">
-                                            <input type="radio" id="creditCardRadio" name="paymentType" value="finansbank" checked><label
-                                                class="title" for="creditCardRadio">Kredi Kartı</label>
+                            <div id="creditCard" class="tabDetails" style="display: block;">
+                                <div class="credit-card-section">
+                                    <div class="creditcard-info">
+                                        <div class="creditcard-text">
+                                            <div class="custom_radio">
+                                                <input type="radio" id="creditCardRadio" name="paymentType" value="finansbank" checked><label
+                                                    class="title" for="creditCardRadio">Kredi Kartı</label>
+                                            </div>
+                                            Bilgileriniz akilliphone.com tarafından saklanmamaktadır. Ödeme altyapısı
+                                            MasterPass tarafından
+                                            sağlanmaktadır.
                                         </div>
-                                        Bilgileriniz akilliphone.com tarafından saklanmamaktadır. Ödeme altyapısı
-                                        MasterPass tarafından
-                                        sağlanmaktadır.
-                                    </div>
-                                    <div class="creditcard-wrapper">
-                                        <div class="creditcard">
-                                            <div class="front">
-                                                <div id="ccsingle"></div>
-                                                <svg version="1.1" id="cardfront" xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                     viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;"
-                                                     xml:space="preserve">
+                                        <div class="creditcard-wrapper">
+                                            <div class="creditcard">
+                                                <div class="front">
+                                                    <div id="ccsingle"></div>
+                                                    <svg version="1.1" id="cardfront" xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                         viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;"
+                                                         xml:space="preserve">
 <g id="Front">
     <g id="CardBackground">
         <g id="Page-1_1_">
@@ -159,96 +170,98 @@
         </g>
     </g>
 </g>
-                                                    <g id="Back">
-                                                    </g>
+                                                        <g id="Back">
+                                                        </g>
 </svg>
-                                            </div>
-                                            <div class="back">
-                                                <svg version="1.1" id="cardback" xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                     viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;"
-                                                     xml:space="preserve">
+                                                </div>
+                                                <div class="back">
+                                                    <svg version="1.1" id="cardback" xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                         viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;"
+                                                         xml:space="preserve">
 <g id="Front">
     <line class="st0" x1="35.3" y1="10.4" x2="36.7" y2="11"></line>
 </g>
-                                                    <g id="Back">
-                                                        <g id="Page-1_2_">
-                                                            <g id="amex_2_">
-                                                                <path id="Rectangle-1_2_" class="darkcolor greydark" d="M40,0h670c22.1,0,40,17.9,40,40v391c0,22.1-17.9,40-40,40H40c-22.1,0-40-17.9-40-40V40
+                                                        <g id="Back">
+                                                            <g id="Page-1_2_">
+                                                                <g id="amex_2_">
+                                                                    <path id="Rectangle-1_2_" class="darkcolor greydark" d="M40,0h670c22.1,0,40,17.9,40,40v391c0,22.1-17.9,40-40,40H40c-22.1,0-40-17.9-40-40V40
                               C0,17.9,17.9,0,40,0z"></path>
+                                                                </g>
                                                             </g>
-                                                        </g>
-                                                        <rect y="61.6" class="st2" width="750" height="78"></rect>
-                                                        <g>
-                                                            <path class="st3" d="M701.1,249.1H48.9c-3.3,0-6-2.7-6-6v-52.5c0-3.3,2.7-6,6-6h652.1c3.3,0,6,2.7,6,6v52.5
+                                                            <rect y="61.6" class="st2" width="750" height="78"></rect>
+                                                            <g>
+                                                                <path class="st3" d="M701.1,249.1H48.9c-3.3,0-6-2.7-6-6v-52.5c0-3.3,2.7-6,6-6h652.1c3.3,0,6,2.7,6,6v52.5
                           C707.1,246.4,704.4,249.1,701.1,249.1z"></path>
-                                                            <rect x="42.9" y="198.6" class="st4" width="664.1"
-                                                                  height="10.5"></rect>
-                                                            <rect x="42.9" y="224.5" class="st4" width="664.1"
-                                                                  height="10.5"></rect>
-                                                            <path class="st5"
-                                                                  d="M701.1,184.6H618h-8h-10v64.5h10h8h83.1c3.3,0,6-2.7,6-6v-52.5C707.1,187.3,704.4,184.6,701.1,184.6z"></path>
+                                                                <rect x="42.9" y="198.6" class="st4" width="664.1"
+                                                                      height="10.5"></rect>
+                                                                <rect x="42.9" y="224.5" class="st4" width="664.1"
+                                                                      height="10.5"></rect>
+                                                                <path class="st5"
+                                                                      d="M701.1,184.6H618h-8h-10v64.5h10h8h83.1c3.3,0,6-2.7,6-6v-52.5C707.1,187.3,704.4,184.6,701.1,184.6z"></path>
+                                                            </g>
+                                                            <text transform="matrix(1 0 0 1 621.999 227.2734)"
+                                                                  id="svgsecurity" class="st6 st7">985
+                                                            </text>
+                                                            <g class="st8">
+                                                                <text transform="matrix(1 0 0 1 518.083 280.0879)"
+                                                                      class="st9 st6 st10"></text>
+                                                            </g>
+                                                            <rect x="58.1" y="378.6" class="st11" width="375.5"
+                                                                  height="13.5"></rect>
+                                                            <rect x="58.1" y="405.6" class="st11" width="421.7"
+                                                                  height="13.5"></rect>
+                                                            <text transform="matrix(1 0 0 1 59.5073 228.6099)"
+                                                                  id="svgnameback" class="st12 st13"></text>
                                                         </g>
-                                                        <text transform="matrix(1 0 0 1 621.999 227.2734)"
-                                                              id="svgsecurity" class="st6 st7">985
-                                                        </text>
-                                                        <g class="st8">
-                                                            <text transform="matrix(1 0 0 1 518.083 280.0879)"
-                                                                  class="st9 st6 st10"></text>
-                                                        </g>
-                                                        <rect x="58.1" y="378.6" class="st11" width="375.5"
-                                                              height="13.5"></rect>
-                                                        <rect x="58.1" y="405.6" class="st11" width="421.7"
-                                                              height="13.5"></rect>
-                                                        <text transform="matrix(1 0 0 1 59.5073 228.6099)"
-                                                              id="svgnameback" class="st12 st13"></text>
-                                                    </g>
 </svg>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-container">
-                                    <div class="field-container">
-                                        <label for="name">KART ÜZERİNDEKİ İSİM</label>
-                                        <input class="card-input" id="name" name="cc[name]" maxlength="20" type="text"
-                                               value="{{ $cc['name'] }}">
-                                    </div>
-                                    <div class="field-container">
-                                        <label for="cardnumber">KART NUMARASI</label>
-                                        <input class="card-input" id="cardnumber" name="cc[cardnumber]" type="text"
-                                               pattern="[0-9]*" inputmode="numeric" value="{{ $cc['cardnumber'] }}">
-                                        <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471"
-                                             version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink">
-                                        </svg>
-                                    </div>
-                                    <div class="field-container">
-                                        <label for="expirationdate">TARİH</label>
-                                        <input class="card-input" id="expirationdate" name="cc[expirationdate]"
-                                               type="text" pattern="(?:0[1-9]|1[0-2])/[0-9]{2}" inputmode="numeric"
-                                               value="{{ $cc['expirationdate'] }}">
-                                    </div>
-                                    <div class="field-container">
-                                        <label for="securitycode">CVV CODE</label>
-                                        <input class="card-input" id="securitycode" name="cc[securitycode]" type="text"
-                                               pattern="[0-9]*" inputmode="numeric" value="{{ $cc['securitycode'] }}">
+                                    <div class="form-container">
+                                        <div class="field-container">
+                                            <label for="name">KART ÜZERİNDEKİ İSİM</label>
+                                            <input class="card-input" id="name" name="cc[name]" maxlength="20" type="text"
+                                                   value="{{ $cc['name'] }}">
+                                        </div>
+                                        <div class="field-container">
+                                            <label for="cardnumber">KART NUMARASI</label>
+                                            <input class="card-input" id="cardnumber" name="cc[cardnumber]" type="text"
+                                                   pattern="[0-9]*" inputmode="numeric" value="{{ $cc['cardnumber'] }}">
+                                            <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471"
+                                                 version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            </svg>
+                                        </div>
+                                        <div class="field-container">
+                                            <label for="expirationdate">TARİH</label>
+                                            <input class="card-input" id="expirationdate" name="cc[expirationdate]"
+                                                   type="text" pattern="(?:0[1-9]|1[0-2])/[0-9]{2}" inputmode="numeric"
+                                                   value="{{ $cc['expirationdate'] }}">
+                                        </div>
+                                        <div class="field-container">
+                                            <label for="securitycode">CVV CODE</label>
+                                            <input class="card-input" id="securitycode" name="cc[securitycode]" type="text"
+                                                   pattern="[0-9]*" inputmode="numeric" value="{{ $cc['securitycode'] }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pay-transfer">
-                            <div class="creditcard-text">
-                                <div class="custom_radio">
-                                    <input type="radio" id="transfer" name="paymentType" value="banktransfer">
-                                    <label class="title" for="transfer">Havale</label>
+                            <div class="pay-transfer">
+                                <div class="creditcard-text">
+                                    <div class="custom_radio">
+                                        <input type="radio" id="transfer" name="paymentType" value="banktransfer">
+                                        <label class="title" for="transfer">Havale</label>
+                                    </div>
+                                    {!! Basket()::getPaymentDescription(5) !!}
                                 </div>
-                                {!! Basket()::getPaymentDescription(5) !!}
+                                <div class="pay-logo">
+                                    <img src="assets/images/ziraat.svg" alt="">
+                                </div>
                             </div>
-                            <div class="pay-logo">
-                                <img src="assets/images/ziraat.svg" alt="">
-                            </div>
-                        </div>
+                        @endif
+
                         <div class="return-shopping">
                             <a href="{{ route('basket.index') }}" class="return-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="5.001" height="8.774"

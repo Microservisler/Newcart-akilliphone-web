@@ -26,6 +26,7 @@ class BasketService{
     public $lastVieweds = [];
     const lastShippingHour=17;
     function __construct() {
+        $this->basketId = time();
         $this->basketSubtotals = [
             'products'=>[],
             'shipping'=>[]
@@ -45,6 +46,10 @@ class BasketService{
     static function clear(){
         $basket = new  BasketService();
         session()->put('basket', $basket);
+    }
+    static function getBaskeyId(){
+        $basket = self::getBasket();
+        return $basket->basketId;
     }
     static function addProduct($variyant, $quantity, $fixQuantity=false){
 

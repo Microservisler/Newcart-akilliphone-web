@@ -127,7 +127,18 @@ class PaymentController extends Controller {
             BasketService::setBillingAddres($billingAddress, $request->input('invoiceType', 'bireysel'));
         }
         $data['basket']   =  BasketService::calculateBasket(BasketService::getBasket());
+        $iyzicoResponse = \PaymentService::IyzicoPayment($data['basket']);
 
+        if($paymentPageUrl = $iyzicoResponse->getPaymentPageUrl()){
+            $data['iyzico_url'] = $paymentPageUrl;
+        } else{
+            $data['iyzico_url'] = '';
+        }
+        if($checkoutFormContent = $iyzicoResponse->getCheckoutFormContent()){
+            $data['iyzico_form'] = $checkoutFormContent;
+        } else{
+            $data['iyzico_form'] = '';
+        }
         $data['cc'] = [
             'name'=>'Ahmet Bayrak',
             'cardnumber'=>'4938410155072507',
@@ -144,7 +155,7 @@ class PaymentController extends Controller {
                 $order = OrderService::currentOrder();
                 $order->marketplaceId='4'; //akilliphone
                 if($paymetType=='banktransfer'){
-                    //\PaymentService::IyzicoPayment();
+
                     $order->paymentTypeId = 5; // havale
                     $response = \WebService::create_order($order);
                     if($response && $response['data'] && $response['data']['orderId']){
