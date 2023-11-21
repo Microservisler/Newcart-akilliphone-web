@@ -10,28 +10,31 @@
 
         @foreach($products as $productItem)
 
-
-                <div class="card-slider">
-                    <div class="card-brand"><img class="lazyload" width="100" height="30"
-                                                 data-src="<?php echo getProductImageUrl($productItem['product']['brand']['image']); ?>" alt="{{$productItem['product']['brand']['name']}}">
-                    </div>
-                    <hr class="divider">
-                    <div class="card-image"><img class="lazyload" width="128" height="128"
-                                                 data-src="<?php echo getProductImageUrl($productItem['product']['featuredImage']); ?>" alt="Xiaomi">
-                    </div>
-                    <div class="card-info">
-                        <div class="card-name">{{$productItem['product']['name']}}</div>
-                        <div class="card-prices">
-                            <div class="card-price">
-                                <span class="current">{{number_format($productItem['product']['variants'][0]['price'], 2, '.', '')}} TL</span>
-                                <span class="discount">%27</span>
+            @if($productItem['product']!=[])
+                        <div class="card-slider">
+                            <div class="card-brand"><img class="lazyload" width="100" height="30"
+                                                         data-src="<?php echo getProductImageUrl($productItem['product']['brand']['image']); ?>" alt="{{$productItem['product']['brand']['name']}}">
                             </div>
-                            <div class="card-old-price">{{number_format($productItem['product']['variants'][0]['oldPrice'], 2, '.', '')}} TL </div>
+                            <hr class="divider">
+                            <div class="card-image"><img class="lazyload" width="128" height="128"
+                                                         data-src="<?php echo getProductImageUrl($productItem['product']['featuredImage']); ?>" alt="Xiaomi">
+                            </div>
+                            <div class="card-info">
+                                <div class="card-name">{{$productItem['product']['name']}}</div>
+                                <div class="card-prices">
+                                    <div class="card-price">
+                                        <span class="current">{{number_format($productItem['product']['variants'][0]['price'], 2, '.', '')}} TL</span>
+                                        <span class="discount">%27</span>
+                                    </div>
+                                    <div class="card-old-price">{{number_format($productItem['product']['variants'][0]['oldPrice'], 2, '.', '')}} TL </div>
+                                </div>
+                                <div class="add-btn"><a href="#">Sepete Ekle</a></div>
+                            </div>
+                            <a class="all-brands" href="#">Tüm {{$productItem['product']['brand']['name']}} Ürünleri</a>
                         </div>
-                        <div class="add-btn"><a href="#">Sepete Ekle</a></div>
-                    </div>
-                    <a class="all-brands" href="#">Tüm {{$productItem['product']['brand']['name']}} Ürünleri</a>
-                </div>
+            @endif
+
+
                     @endforeach
 
 

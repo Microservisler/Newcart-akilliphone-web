@@ -215,6 +215,8 @@
                                 En yüksek fiyat</label>
                         </div>
 
+
+
                         <div class="tab-right">
                             <select name="more"  id="siralama"  class="option-input forfilter orderBy">
                                 <option value="" disabled selected hidden>Diğer</option>
@@ -266,35 +268,6 @@
             $(".tabSpec").removeClass("active");
             $("input[type='radio'][name='order']").prop("checked",false);
         })
-        // function myFunction() {
-        //     var selectElement = document.getElementById("siralama");
-        //     var selectedValue = selectElement.value;
-        //
-        //     // Seçilen değere göre yapılacak işlemler
-        //     if (selectedValue === "1") {
-        //
-        //     } else if (selectedValue === "2") {
-        //
-        //         let fitered_url =  'https://api.akilliphone.com/products?sort=name&orderby=asc'+webService.createFilter();
-        //         console.log(fitered_url);
-        //         getFilteredProducts(fitered_url);
-        //         console.log("Seçenek 2 seçildi.");
-        //
-        //     } else if (selectedValue === "3") {
-        //
-        //         let fitered_url =  'https://api.akilliphone.com/products?sort=name&orderby=desc'+webService.createFilter();
-        //         console.log(fitered_url);
-        //         getFilteredProducts(fitered_url);
-        //
-        //     }
-        //     else if (selectedValue === "4") {
-        //
-        //         let fitered_url =  'https://api.akilliphone.com/products?sort=rated&orderby=desc'+webService.createFilter();
-        //         console.log(fitered_url);
-        //         getFilteredProducts(fitered_url);
-        //
-        //     }
-        // }
 
         let fitered_url =  'https://api.duzzona.site/products?' + webService.createFilter();
         webService.getFilteredProducts(fitered_url, false);

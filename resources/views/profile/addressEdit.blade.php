@@ -86,38 +86,38 @@
             <div class="right">
                 <div class="profile-infos">
                     <div class="top">
-                        <div class="title">Yeni adres ekle</div>
+                        <div class="title">Adres Düzenleme</div>
                     </div>
-                    <form action="{{route('profile.addressform')}}" method="post">
+                    <form action="{{ route('profile.addressEdit', ['addressId' => $addresses['addressId']]) }}" method="post">
                         @csrf
                         <div class="form-wrapper">
                             <div class="signup-input">
                                 <span class="label">Adres Başlık</span>
-                                <input type="text" name="address[title]">
+                                <input type="text" name="address[title]" value="{{$addresses['title']}}">
                             </div>
                             <div class="signup-input">
                                 <span class="label">İl</span>
-                                <input type="text" name="address[countryId]">
+                                <input type="text" name="address[countryId]" value="{{$addresses['countryId']}}">
                             </div>
                             <div class="signup-input">
                                 <span class="label">İlçe</span>
-                                <input type="text" name="address[cityId]">
+                                <input type="text" name="address[cityId]" value="{{$addresses['cityId']}}">
                             </div>
                             <div class="signup-input">
                                 <span class="label">Adresiniz</span>
-                                <input type="text" name="address[address]">
+                                <input type="text" name="address[address]" value="{{$addresses['address1']}}">
                             </div>
                             <div class="signup-input">
                                 <span class="label">İsim</span>
-                                <input type="text" name="address[name]">
+                                <input type="text" name="address[name]" value="{{$addresses['name']}}">
                             </div>
                             <div class="signup-input">
                                 <span class="label">Soyisim</span>
-                                <input type="text"  name="address[surname]">
+                                <input type="text"  name="address[surname]" value="{{$addresses['surname']}}">
                             </div>
                             <div class="signup-input">
                                 <span class="label">Telefon </span>
-                                <input type="text" name="address[phone]">
+                                <input type="text" name="address[phone]" value="{{$addresses['phone']}}">
                             </div>
 
 

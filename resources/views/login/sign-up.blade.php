@@ -2,7 +2,7 @@
 @section('head')
     <link rel="stylesheet" href="assets/css/flatpickr.min.css">
     <link rel="stylesheet" href="assets/css/signup.css">
-    <title>E-Posta ile Üye ol - Akıllıphone</title>
+    <title> Üye ol - Akıllıphone</title>
 
 @endsection
 @section('content')
@@ -25,34 +25,36 @@
                         <input type="text" name="lastName">
                     </div>
                     <div class="signup-input">
-                        <span class="label">Şifre<span>&nbsp;*</span></span>
-                        <input type="password" name="password">
-                    </div>
-                    <div class="signup-input">
-                        <span class="label">Şifre Tekrar<span>&nbsp;*</span></span>
-                        <input type="password" >
+                        <span class="label">Tc Kimlik No<span>&nbsp;*</span></span>
+                        <input id="mobilePhone" type="text" name="tcKimlik">
                     </div>
                     <div class="signup-input">
                         <span class="label">E-Posta Adresi<span>&nbsp;*</span></span>
                         <input type="text" name="email">
                     </div>
                     <div class="signup-input">
-                        <span class="label">Kullanıcı Adı<span>&nbsp;*</span></span>
-                        <input type="text" name="username">
+                        <span class="label">Şifre<span>&nbsp;*</span></span>
+                        <input type="password" name="password">
                     </div>
+
+
+{{--                    <div class="signup-input">--}}
+{{--                        <span class="label">Kullanıcı Adı<span>&nbsp;*</span></span>--}}
+{{--                        <input type="text" name="username">--}}
+{{--                    </div>--}}
                     <div class="signup-input">
                         <span class="label">Cep Tel<span>&nbsp;*</span></span>
                         <input id="mobilePhone" type="text" name="phoneNumber">
                     </div>
+                    <div class="signup-input">
+                        <span class="label">Şifre Tekrar<span>&nbsp;*</span></span>
+                        <input type="password" >
+                    </div>
+{{--                    <div class="signup-input">--}}
+{{--                        <span class="label">Doğum Tarihi<span>&nbsp;*</span></span>--}}
+{{--                        <input type="text" id="date-picker" name="birthDate">--}}
+{{--                    </div>--}}
 
-                    <div class="signup-input">
-                        <span class="label">Doğum Tarihi<span>&nbsp;*</span></span>
-                        <input type="text" id="date-picker" name="birthDate">
-                    </div>
-                    <div class="signup-input">
-                        <span class="label">Tc Kimlik No<span>&nbsp;*</span></span>
-                        <input id="mobilePhone" type="text" name="tcKimlik">
-                    </div>
                     <div class="signup-agreement">
                         <label for="membership">
                             <input class="option-input checkbox" type="checkbox" id="membership" required>

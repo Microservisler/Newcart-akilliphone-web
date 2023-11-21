@@ -104,6 +104,7 @@ var webService = {
         productsAjax = $.ajax(settings).done(function (response) {
             $(response.data.items).each(function (index){
                 response.data.items[index] = webService._prepareItem(response.data.items[index]);
+                console.log(response.data.items[index])
             });
             let nextPageUrl = response.data.nextPageUrl;
             if(response.data.page*1>=response.data.totalPage*1){
@@ -190,6 +191,7 @@ var webService = {
         url = url.replace(/[?#]$/,'');
         return url + (url.indexOf('?')>0 ? '&' : '?') + paramName + '=' + paramValue;
     },
+
     getProductImageUrl: function(url,w,h){
         if(url.includes('://')) return url;
         if(!w) w = 100;

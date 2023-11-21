@@ -57,6 +57,33 @@ class WebService {
         }
         return $token;
     }
+    public static function addAddress($token){
+
+        $response = Http::withToken($token)->get('http://api.duzzona.site/orders');
+        $responseData = json_decode($response->body(), true);
+        if($responseData && isset($responseData['data'])){
+            $token = $responseData['data'];
+
+        } else {
+            $token = '';
+        }
+        return $token;
+    }
+    public static function addresEdit($body){
+        $token = session('userToken');
+        $body['userId']=session('userInfo')['data']['id'];
+
+        $response = Http::withToken($token)->put('https://api.duzzona.site/address', $body);
+        $responseData = json_decode($response->body(), true);
+        dd($response);
+        if ($response->successful()) {
+            return $response->json();
+        } else {
+            return response()->json(['error' => 'API güncelleme başarısız.'], $response->status());
+        }
+
+    }
+
     public static function admin_token(){
 
         $response = Http::withToken('token')->post('https://api.duzzona.site/login', [
@@ -94,7 +121,39 @@ class WebService {
             return response()->json(['error' => 'API güncelleme başarısız.'], $response->status());
         }
 
+    }
 
+    public static function deneme(){
+        $body = [
+            "productId" => 12957,
+            "customerId" => 3,
+            "title" => "deneme", // Replace "YourTitleHere" with the actual title value
+            "review" => "deneme Yorum",
+            "rating" => 5
+        ];
+
+        $token = session('userToken');
+        $response = Http::withToken($token)->post('https://api.duzzona.site/reviews', $body);
+        $responseData = json_decode($response->body(), true);
+        if ($response->successful()) {
+            return $response->json();
+        } else {
+            return response()->json(['error' => 'API güncelleme başarısız.'], $response->status());
+        }
+
+    }
+
+    public static function addresAdd($body){
+        $token = session('userToken');
+        $body['userId']=session('userInfo')['data']['id'];
+        $response = Http::withToken($token)->post('https://api.duzzona.site/address', $body);
+        $responseData = json_decode($response->body(), true);
+
+        if ($response->successful()) {
+            return $response->json();
+        } else {
+            return response()->json(['error' => 'API güncelleme başarısız.'], $response->status());
+        }
 
     }
     public static function user_data($token){

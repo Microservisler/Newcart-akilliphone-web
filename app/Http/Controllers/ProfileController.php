@@ -11,13 +11,46 @@ class ProfileController extends Controller{
         return view('profile.orders', $data);
     }
     public function address(){
+        dd(session('userInfo'));
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['addresses']=session('userInfo')['data']['addresses'];
         return view('profile.address', $data);
     }
-    public function orders(){
+    public function addressEdit($addresId){
+
+        $data['page'] ='Profil Sayfası';
+        $data['main_menu'] =  \WebService::home_main_menu();
+        $data['addresses']=session('userInfo')['data']['addresses'];
+        foreach (session('userInfo')['data']['addresses'] as $editadres){
+
+            if ($editadres['addressId']==$addresId){
+
+                $data['addresses']=$editadres;
+            }
+
+        }
+        return view('profile.addressEdit', $data);
+    }
+    public function addressEditUpdate(Request $request){
+        $bodyContent = request()->input();
+        $bodyContent=$bodyContent['address'];
         $data['page'] ='Profil Sayfası';
 
+        $data['main_menu'] =  \WebService::addresEdit($bodyContent);
+        $data['addresses']=session('userInfo')['data']['addresses'];
+
+        return view('profile.address', $data);
+    }
+    public function addressform(){
+        $data['page'] ='Profil Sayfası';
+        $data['main_menu'] =  \WebService::home_main_menu();
+        return view('profile.addressForm', $data);
+    }
+    public function orders(){
+
+        $data['page'] ='Profil Sayfası';
+        $deneme= \WebService::deneme();
         $data['main_menu'] =  \WebService::home_main_menu();
         return view('profile.orders', $data);
     }
@@ -56,8 +89,23 @@ class ProfileController extends Controller{
 
         return view('profile.informations', $data);
     }
+    public function addressformUpdate(Request $request){
+    $bodyContent = request()->input();
+    $bodyContent=$bodyContent['address'];
+    $bodyContent['districtId']=1;
+    $bodyContent['isDefault']=true;
+    $bodyContent['isInvoiceUse']=true;
+    $bodyContent['invoiceType']=0;
+    $bodyContent['isEInvoice']=true;
+    unset($bodyContent['_token']);
+    $data['page'] ='Profil Sayfası';
+    $data['main_menu'] =  \WebService::home_main_menu();
+    $data['update'] =  \WebService::addresAdd($bodyContent);
+    return view('profile.informations', $data);
+}
 
     public function profileOrders(Request $request){
+        $deneme= \WebService::deneme();
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $token = session("userToken");

@@ -323,9 +323,9 @@
                                     <path fill="currentColor"
                                           d="m8.4 17l3.6-3.6l3.6 3.6l1.4-1.4l-3.6-3.6L17 8.4L15.6 7L12 10.6L8.4 7L7 8.4l3.6 3.6L7 15.6L8.4 17Zm3.6 5q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z" />
                                 </svg>
-                                <form action="#" class="review-form">
+
                                     <div class="review-wrapper">
-                                        <fieldset class="rating">
+                                        <fieldset class="rating" name="rating" id="rating">
                                             <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5"
                                                                                                             title="Awesome - 5 stars"></label>
                                             <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4"
@@ -337,11 +337,12 @@
                                             <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"
                                                                                                             title="Sucks big time - 1 star"></label>
                                         </fieldset>
-                                        <textarea placeholder="Değerlendirmenizle ilgili detayları burada belirtebilirsiniz." id="review"
-                                                  class="review-text" maxlength="2000"></textarea>
+                                        <input type="text" name="title" placeholder="Başlık" id="title">
+                                        <textarea id="review" placeholder="Değerlendirmenizle ilgili detayları burada belirtebilirsiniz." class="review-text" maxlength="2000" name="review"></textarea>
+
                                     </div>
                                     <button id="submitReview">Değerlendir</button>
-                                </form>
+
 
                             </div>
                         </div>
@@ -441,10 +442,10 @@
             })
                 .then(response => response.json()) // Sunucu cevabını JSON olarak işle
                 .then(data => {
-                    console.log(data); // Sunucudan gelen verileri konsola yazdır
+                console.log(data);
                 })
                 .catch(error => {
-                    console.error('Hata:', error);
+console.log(error);
                 });
 
 
@@ -547,7 +548,7 @@
                     "rating": 0
                 }
                 xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.setRequestHeader( "Authorization" , 'Bearer <?php echo session()->get('token')?>');
+                xhr.setRequestHeader( "Authorization" , 'Bearer <?php echo session()->get('userToken')?>');
                 xhr.send(JSON.stringify(requestBody));
 
                 xhr.onreadystatechange = function () {
@@ -729,6 +730,63 @@
         }
         if(submitReview){
             submitReview.addEventListener("click", function () {
+
+
+                var stars = document.getElementsByName('rating');
+                var selectedValue = null;
+
+                for (var i = 0; i < stars.length; i++) {
+                    if (stars[i].checked) {
+                        selectedValue = stars[i].value;
+                        break; // Seçili yıldızı bulduktan sonra döngüyü sonlandırın
+                    }
+                }
+
+                if (selectedValue !== null) {
+
+                } else {
+                    selectedValue=0;
+                }
+                var review1= document.getElementById('review').value;
+                var title1 = document.getElementById('title').value;
+                var productId1=11988;
+
+                var userId1="8a52201d-9bd2-4e4c-97f3-6036cc85fe61";
+
+
+                var requestData = {
+                    customerId: userId1,
+                    productId:productId1,
+                    rating: selectedValue,
+                    review: review1,
+                    title: title1
+                };
+                // Erişim belirteci (token)
+                var token = "<?php echo session("userToken")?>";
+
+                // Veri ve token ile POST isteği oluşturun
+                var apiUrl = 'https://api.duzzona.site/reviews'; // API endpointinizi buraya ekleyin
+                var requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + token, // Erişim belirteci ile yetkilendirme
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                };
+
+                // İstek gönderme
+                fetch(apiUrl, requestOptions)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Sunucudan gelen yanıtı konsola yazdırın
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('Hata oluştu: ' + error);
+                    });
+
+
                 if (reviewMenu.classList.contains('review-menu--active')) {
                     reviewMenu.classList.remove('review-menu--active')
                     closeReviewCanvas.style.display = "none"

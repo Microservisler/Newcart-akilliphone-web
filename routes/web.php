@@ -24,6 +24,7 @@ use App\Http\Middleware\CheckUserToken;
 |
 */
 
+
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/giris-yap', [PageController::class, 'login'])->name('login');
 Route::get('/register', [PageController::class, 'signUp'])->name('signUp');
@@ -54,12 +55,17 @@ Route::get('/basket/remove/{variyantId}', [BasketController::class, 'removeProdu
 Route::group(['prefix'=>'profile','as'=>'profile.', 'middleware' => [CheckUserToken::class]], function () {
     Route::get('/', [ProfileController::class, 'index'])->name('index');
     Route::get('/address', [ProfileController::class, 'address'])->name('address');
+    Route::get('/addressform', [ProfileController::class, 'addressform'])->name('addressform');
+    Route::get('/addressedit/{addressId}', [ProfileController::class, 'addressEdit'])->name('addressEdit');
+    Route::post('/addressedit/{addressId}', [ProfileController::class, 'addressEditUpdate'])->name('addressEdit');
+    Route::post('/addressform', [ProfileController::class, 'addressformUpdate'])->name('addressform');
     Route::get('/orders', [ProfileController::class, 'profileOrders'])->name('orders');
     Route::get('/comments', [ProfileController::class, 'comments'])->name('comments');
     Route::get('/payments', [ProfileController::class, 'payments'])->name('payments');
+    Route::get('/informations', [ProfileController::class, 'informations'])->name('informations');
     Route::post('/informations', [ProfileController::class, 'informationsUpdate'])->name('informations');
     Route::get('/coupons', [ProfileController::class, 'coupons'])->name('coupons');
     Route::get('/favorites', [ProfileController::class, 'favorites'])->name('favorites');
     Route::get('/orderdetail/{orderId}/', [ProfileController::class, 'orderdetail'])->name('orderdetail');
-    Route::get('/informations', [ProfileController::class, 'informations'])->name('informations');
+
 });
