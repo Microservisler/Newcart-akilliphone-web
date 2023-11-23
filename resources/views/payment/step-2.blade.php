@@ -305,6 +305,6 @@
                 $('.form-wrapper.billing input, .form-wrapper.billing select').removeAttr('required');
             }
         });
-
+        $('#bill').change();
     </script>
 @endsection

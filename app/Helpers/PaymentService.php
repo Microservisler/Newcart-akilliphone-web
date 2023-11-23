@@ -52,7 +52,7 @@ class PaymentService{
         $data['Currency'] 		    = '949';
         $data['OkUrl'] 		        =  route('payment.success');
         $data['FailUrl'] 		    = route('payment.fail');
-        $data['OrderId'] 		    = '1234';
+        $data['OrderId'] 		    = time();
         $data['OrgOrderId'] 		= '';
         $data['PurchAmount'] 		= ''.round($basket->total, 2).'';
         $data['Lang'] 		        = 'TR';
@@ -165,6 +165,7 @@ class PaymentService{
         $request->setBasketItems($basketItems);
 
         $response = \Iyzipay\Model\CheckoutFormInitialize::create($request, self::iyzicoOptions());
+        //return(['request'=>$request->getJsonObject(), 'response'=>$response->getRawResult()] );
        return $response;
     }
 }

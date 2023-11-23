@@ -172,7 +172,7 @@ class PaymentController extends Controller {
                         //siapariş oluşturulamadı
                     }
                 } elseif($paymetType=='finansbank'){
-                    $order->paymentTypeId = 3; // havale
+                    $order->paymentTypeId = 3; // kredikartı
                     $cc = $request->input('cc', []);
                     \PaymentService::finansBankStart($basket, $cc);
                     return false;
