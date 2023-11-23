@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 class MailService{
-    static function newOrder($order){
-        $body = view('emails.new-order', ['order'=>$order]);
+    static function newOrder($data){
+        $body = view('emails.new-order', $data);
         $subject = 'Siparişiniz Hakkında';
         self::sendEmail('ahmethamdibayrak@mailinator.com', $subject, $body);
     }

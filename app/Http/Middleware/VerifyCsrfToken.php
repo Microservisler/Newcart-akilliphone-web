@@ -14,5 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/payment/fail',
         '/payment/success',
+        '/payment/iyzico-callback',
     ];
 }

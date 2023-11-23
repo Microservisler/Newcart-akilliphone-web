@@ -32,8 +32,7 @@
                     <div class="form-wrapper">
                         <div class="order-summary">
                             <div class="order-description">
-                                Sn. <strong>{{ $order['shippingAddress']['firstName'] }} {{ $order['shippingAddress']['lastName'] }}</strong>, <strong>{{ HumanDate($order['createdAt']) }}</strong> tarihinde yapmış olduğunuz
-                                <strong>{{ $order['orderTotal'] }} TL</strong> tutarındaki siparişiniz tarafımıza ulaşmıştır. Alışverişinizin özetini içeren bir mesaj ayrıca <strong>loremipsum@dolor.com</strong> adresine gönderilmiştir.
+                                {!! Basket()::getOrderDescription($order) !!}
                             </div>
                         </div>
                         <div class="order-summary">
@@ -43,15 +42,13 @@
                             </div>
                         </div>
                         <div class="order-summary">
-                            <div class="summary-title">Sipariş Özetiniz</div>
-                            <div class="info-title">Sipariş numarası: <span class="info-descr">{{ $order['orderId'] }}</span></div>
-                            <div class="info-title">Alıcı: <span class="info-descr">{{ $order['shippingAddress']['firstName'] }} {{ $order['shippingAddress']['lastName'] }}</span></div>
-                            <div class="info-title">Teslimat Adresi: <span class="info-descr">{{ $order['shippingAddress']['addressLine1'] }} {{ $order['shippingAddress']['district'] }}/{{ $order['shippingAddress']['city'] }}</span></div>
-                            <div class="info-title">Ödeme Tipi: <span class="info-descr">{{ $order['paymentType']['name'] }}</span></div>
-                            <div class="info-title">Telefon: <span class="info-descr">{{ $order['shippingAddress']['phone'] }}</span></div>
-                            <div class="info-title">Tarih: <span class="info-descr">{{ HumanDate($order['createdAt']) }}</span></div>
+                            {!! Basket()::getOrderSummary($order) !!}
                             <hr class="summary-title">
-                            {!! Basket()::getPaymentDescription($order['paymentTypeId']) !!}
+                            @if($extra)
+                                {!! Basket()::getPaymentExtraDescription($extra) !!}
+                            @else
+                                {!! Basket()::getPaymentDescription($order['paymentTypeId']) !!}
+                            @endif
                         </div>
                     </div>
                     <div class="cart-wrapper">

@@ -18,6 +18,17 @@ class PaymentController extends Controller {
         //$order = \Akilliphone\OrderService::currentOrder();
         return $this->step($request, "2");
     }
+    public function iyzicoCallback(Request $request){
+        $data = $request->all();
+        $token =$request->input('token');
+        $payment = \PaymentService::checkIyzicoPayment($token);
+        if($payment->getPaymentStatus()=='INIT_BANK_TRANSFER'){
+           $result = $this->complateOrderWithPaymentTypeId(5, $token);
+           if(is_a($result, 'Illuminate\Http\RedirectResponse')){
+               return $result;
+           }
+        }
+    }
     public function validateSuccess(Request $request){
         $data = $request->all();
         $error = null;
@@ -127,7 +138,7 @@ class PaymentController extends Controller {
             BasketService::setBillingAddres($billingAddress, $request->input('invoiceType', 'bireysel'));
         }
         $data['basket']   =  BasketService::calculateBasket(BasketService::getBasket());
-        $iyzicoResponse = \PaymentService::IyzicoPayment($data['basket']);
+        $iyzicoResponse = \PaymentService::iyzicoPayment($data['basket']);
 
         if($paymentPageUrl = $iyzicoResponse->getPaymentPageUrl()){
             $data['iyzico_url'] = $paymentPageUrl;
@@ -151,32 +162,15 @@ class PaymentController extends Controller {
         $data['status']=0;
         if($paymetType = $request->input('paymentType', false)){
             if(BasketService::getItemCount()){
-                $basket =  BasketService::calculateBasket(BasketService::getBasket());
-                $order = OrderService::currentOrder();
-                $order->marketplaceId='4'; //akilliphone
+                $basket = BasketService::calculateBasket(BasketService::getBasket());
                 if($paymetType=='banktransfer'){
-
-                    $order->paymentTypeId = 5; // havale
-                    $response = \WebService::create_order($order);
-                    if($response && $response['data'] && $response['data']['orderId']){
-                        /**
-                            if($order_response){
-                                $data['order'] = $order_response['data'];
-                            }
-                            $data['status'] = 1;
-                            $data['basket']  = $basket;
-                        **/
-                        BasketService::clear();
-                        return redirect()->route('thankyou', ['orderId'=> $response['data']['orderId'], 'orderNo'=>$response['data']['orderNo'] ]);
-                    } else{
-                        //siapariş oluşturulamadı
-                    }
+                    return $this->complateOrderWithPaymentTypeId(5);
                 } elseif($paymetType=='finansbank'){
-                    $order->paymentTypeId = 3; // kredikartı
+                    //$order->paymentTypeId = 3; // kredikartı
                     $cc = $request->input('cc', []);
                     \PaymentService::finansBankStart($basket, $cc);
                     return false;
-                } else{
+                } else {
                     //paymentType geçersiz
                 }
             } else{
@@ -188,7 +182,22 @@ class PaymentController extends Controller {
         //dd($paymetType, $data);
         return view('payment.step-4', $data);
     }
+    private function complateOrderWithPaymentTypeId($paymentTypeId, $orderToken=''){
 
+        $order = OrderService::currentOrder();
+        $order->marketplaceId='4'; //akilliphone
+        $order->marketplaceOrderCode= $orderToken; //iyzico ödeme tokenı
+        $order->paymentTypeId = $paymentTypeId; // 4-havale
+        $response = \WebService::create_order($order);
+
+        if($response && $response['data'] && $response['data']['orderId']){
+            BasketService::clear();
+            return redirect()->route('thankyou', ['orderId'=> $response['data']['orderId'], 'orderNo'=>$response['data']['orderNo'] ]);
+        } else {
+            //siapariş oluşturulamadı
+        }
+
+    }
     public function thankYou(Request $request, $orderId, $orderNo){
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['config_general']   =  \WebService::config_general();
@@ -198,7 +207,13 @@ class PaymentController extends Controller {
         if($order_response && $order_response['data']){
             $data['order']  = $order_response['data'];
             if($data['order']['orderNo']==$orderNo){
-                MailService::newOrder($data['order']);
+                if($data['order']['marketplaceOrderCode']){
+                    $payment = \PaymentService::checkIyzicoPayment($data['order']['marketplaceOrderCode']);
+                    $data['extra'] = json_decode($payment->getRawResult(), 1);
+                } else {
+                    $data['extra'] = [];
+                }
+                MailService::newOrder($data);
                 $data['error'] = false;
             }
         } else {

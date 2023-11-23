@@ -39,6 +39,7 @@ Route::get('/payment/step/{step}', [PaymentController::class, 'step'])->name('pa
 Route::post('/payment/step/{step}', [PaymentController::class, 'checkStep'])->name('payment.step.post');
 Route::post('/payment/success', [PaymentController::class, 'validateSuccess'])->name('payment.success');
 Route::post('/payment/fail', [PaymentController::class, 'validateFail'])->name('payment.fail');
+Route::post('/payment/iyzico-callback', [PaymentController::class, 'iyzicoCallback'])->name('payment.iyzico-callback');
 Route::get('/thankyou/{orderId}/{orderNo}', [PaymentController::class, 'thankYou'])->name('thankyou');
 Route::get('/local/brands/{function}', [LocalController::class, 'brands'])->name('local.brands.set');
 Route::get('/local/home/{function}', [LocalController::class, 'home'])->name('local.home.set');

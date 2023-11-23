@@ -343,7 +343,8 @@ class WebService {
             $result = json_decode($response->getBody(), true);
             //print_r(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));die();
         } catch (\Exception $ex){
-            //print_r(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+            echo json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+            dd($ex->getMessage());
             //echo "$method : $url<br>".$ex->getMessage()."<br>";die();
         }
         return $result;
