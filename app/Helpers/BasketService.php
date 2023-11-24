@@ -161,7 +161,8 @@ class BasketService{
                 'title'=>'Ürünler Toplamı (KDV Dahil)',
                 'total'=> 0,
             ];
-            //unset($basket->basketSubtotals['shipping']);
+            unset($basket->basketSubtotals['shipping']);
+            $basket->shippingBrand = null;
         }
 
         if( $sub_total<$basket->freeShippingLimit ){
