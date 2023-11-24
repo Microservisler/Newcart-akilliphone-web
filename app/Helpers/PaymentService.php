@@ -105,12 +105,15 @@ class PaymentService{
         return $options;
     }
     static function iyzicoPayment($basket){
+        $basket->total = 1;
         $request = new \Iyzipay\Request\CreateCheckoutFormInitializeRequest();
         $request->setLocale(\Iyzipay\Model\Locale::TR);
         $request->setConversationId($basket->getBaskeyId());
         $request->setPrice($basket->total);
         $request->setPaidPrice($basket->total);
+
         $request->setCurrency(\Iyzipay\Model\Currency::TL);
+
         $request->setBasketId("B".$basket->getBaskeyId());
         $request->setPaymentGroup(\Iyzipay\Model\PaymentGroup::PRODUCT);
         $request->setCallbackUrl(route('payment.iyzico-callback'));
