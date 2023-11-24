@@ -116,6 +116,20 @@ class BasketService{
             $basket = new  BasketService();
             session()->put('basket', $basket);
         }
+        if(empty($basket->shippingBrand)){
+            $basket->shippingBrand =  'aras';
+            $basket->basketSubtotals['shipping'] = [
+                'code'=>'shipping',
+                'title'=>$basket->shippingBrands['aras']['title'],
+                'total'=>$basket->shippingBrands['aras']['price'],
+            ];
+            $basket->shippingBrands['aras']['checked'] = 'checked';
+            //print_r([$basket->shippingBrand, $basket->basketSubtotals,]);
+            //$basket = self::setBasket($basket);
+            //dd($basket);
+
+        }
+        $basket = self::setBasket($basket);
         return $basket;
     }
     static function setBasket($basket){
@@ -130,6 +144,7 @@ class BasketService{
         $sub_total = 0;
         $item_count = 0;
         $total = 0;
+
         if($basket->basketItems){
             foreach($basket->basketItems as $basketItem){
                 $sub_total += $basketItem['total'];
@@ -146,8 +161,9 @@ class BasketService{
                 'title'=>'Ürünler Toplamı (KDV Dahil)',
                 'total'=> 0,
             ];
-            unset($basket->basketSubtotals['shipping']);
+            //unset($basket->basketSubtotals['shipping']);
         }
+
         if( $sub_total<$basket->freeShippingLimit ){
             $basket->alerts['freeShippingLimit'] = [
                 'class'=>'text-danger',
@@ -159,6 +175,7 @@ class BasketService{
                 'message'=>'Kargo Bedava',
             ];
             unset($basket->basketSubtotals['shipping']);
+            $basket->shippingBrand = null;
         }
         if($basket->basketSubtotals){
             foreach($basket->basketSubtotals  as $basketSubtotal){
