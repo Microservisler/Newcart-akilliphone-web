@@ -162,7 +162,7 @@ if(isset($_GET['text'])){
                     echo   '<div class="login-btn">Giriş Yap
                     <div class="dropdown-box">
                         <a class="login-link" href="'.route('login') .'">Üye Girişi</a>
-                        <a class="login-link" href="">Bayi Girişi</a>
+                        <a class="login-link" href="'.route('bayi.login') .'">Bayi Girişi</a>
                     </div>
                 </div>';
 

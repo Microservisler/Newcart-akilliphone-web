@@ -9,29 +9,29 @@
                         <div class="content">
                             <div class="product-name">{{ $item['title'] }}</div>
                             <a class="product-link" href="{{ $item['slug'] }}">Acele et kaçırma</a>
-                            <span class="share-btn">
-                            <img width="17" height="22" src="assets/images/svg/share-btn.svg" alt="">
-                            <ul class="share-links">
-                                <li>
-                                    <a href="#" class="share-link">
-                                        <div class="icon"></div>
-                                        <div class="name">Whatsapp'dan paylaş</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="share-link">
-                                        <div class="icon"></div>
-                                        <div class="name">Facebook'ta paylaş</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="share-link">
-                                        <div class="icon"></div>
-                                        <div class="name">Twitter'da paylaş</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </span>
+{{--                            <span class="share-btn">--}}
+{{--                            <img width="17" height="22" src="assets/images/svg/share-btn.svg" alt="">--}}
+{{--                            <ul class="share-links">--}}
+{{--                                <li>--}}
+{{--                                    <a href="#" class="share-link">--}}
+{{--                                        <div class="icon"></div>--}}
+{{--                                        <div class="name">Whatsapp'dan paylaş</div>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#" class="share-link">--}}
+{{--                                        <div class="icon"></div>--}}
+{{--                                        <div class="name">Facebook'ta paylaş</div>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#" class="share-link">--}}
+{{--                                        <div class="icon"></div>--}}
+{{--                                        <div class="name">Twitter'da paylaş</div>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </span>--}}
                         </div>
                         <div class="product-img">
                             <img class="fluid-img" width="1110" height="390" src="{{ $item['desktopImage'] }}"

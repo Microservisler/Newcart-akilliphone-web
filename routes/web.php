@@ -27,6 +27,8 @@ use App\Http\Middleware\CheckUserToken;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/giris-yap', [PageController::class, 'login'])->name('login');
+Route::get('/bayi-giris', [PageController::class, 'bayi_login'])->name('bayi.login');
+Route::get('/bayi-uye-ol', [PageController::class, 'bayi_register'])->name('bayi.register');
 Route::get('/register', [PageController::class, 'signUp'])->name('signUp');
 Route::post('/register', [PageController::class, 'register'])->name('register');
 Route::get('/reyonlar', [ListingController::class, 'index'])->name('listing.page');
@@ -44,6 +46,7 @@ Route::get('/local/brands/{function}', [LocalController::class, 'brands'])->name
 Route::get('/local/home/{function}', [LocalController::class, 'home'])->name('local.home.set');
 Route::post('/login', [PageController::class, 'auth'])->name('auth');
 Route::get('/logout', [PageController::class, 'logout'])->name('logout');
+Route::get('/forgot-password', [PageController::class, 'forgot'])->name('forgot');
 
 Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
 Route::get('/basket/mini', [BasketController::class, 'mini'])->name('basket.mini');

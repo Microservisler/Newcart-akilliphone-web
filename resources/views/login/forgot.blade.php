@@ -25,7 +25,7 @@
 {{--                    <div class="divider">--}}
 {{--                        <span class="lines">VEYA</span>--}}
 {{--                    </div>--}}
-                    <form  action="/login" method="POST">
+                    <form  action="/forgot" method="POST">
                         @csrf
                         <div class="signup-input">
                             <input type="text" id="username"name="username">
@@ -34,24 +34,11 @@
                                 <img src="./assets/images/login/mail.svg" alt="mail">
                             </span>
                         </div>
-                        <div class="signup-input">
-                            <input id="pass" type="password" name="password" required>
-                            <label for="">Şifre</label>
-                            <span id="hidePass" class="input-icon">
-                                Göster
-                                <img src="./assets/images/login/lock.svg" alt="lock">
-                            </span>
-                        </div>
-                        <div class="remember-me">
-                            <label for="remember">
-                                <input id="remember" class="option-input checkbox" type="checkbox">
-                                Beni Unutma
-                            </label>
-{{--                            <a class="forgot-password" href="{{route('forgot')}}">Şifremi Unuttum</a>--}}
-                        </div>
+
+
                         <div class="login-btns">
-                            <button class="login-btn" type="submit">Giriş Yap</button>
-                            <a href="{{route('index')}}" class="without-login">Üye Olmadan Devam Et</a>
+                            <button class="login-btn" type="submit">Aktivasyon Kodu Gönder</button>
+                            <a class="forgot-password" href="{{route('login')}}">Giriş Sayfasına Dön</a>
                         </div>
                     </form>
                 </div>

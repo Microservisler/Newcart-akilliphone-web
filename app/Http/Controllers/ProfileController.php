@@ -11,7 +11,6 @@ class ProfileController extends Controller{
         return view('profile.orders', $data);
     }
     public function address(){
-        dd(session('userInfo'));
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['addresses']=session('userInfo')['data']['addresses'];

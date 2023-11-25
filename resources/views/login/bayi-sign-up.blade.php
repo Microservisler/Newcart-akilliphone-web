@@ -24,17 +24,13 @@
                         <span class="label">Soyadı<span>&nbsp;*</span></span>
                         <input type="text" name="lastName">
                     </div>
-{{--                    <div class="signup-input">--}}
-{{--                        <span class="label">Tc Kimlik No<span>&nbsp;*</span></span>--}}
-{{--                        <input  type="text" name="tcKimlik">--}}
-{{--                    </div>--}}
+                    <div class="signup-input">
+                        <span class="label">Vergi No / Tc Kimlik No<span>&nbsp;*</span></span>
+                        <input  type="text" name="tcKimlik">
+                    </div>
                     <div class="signup-input">
                         <span class="label">E-Posta Adresi<span>&nbsp;*</span></span>
                         <input type="text" name="email">
-                    </div>
-                    <div class="signup-input">
-                        <span class="label">Cep Tel<span>&nbsp;*</span></span>
-                        <input id="mobilePhone" type="text" name="phoneNumber">
                     </div>
                     <div class="signup-input">
                         <span class="label">Şifre<span>&nbsp;*</span></span>
@@ -46,7 +42,10 @@
 {{--                        <span class="label">Kullanıcı Adı<span>&nbsp;*</span></span>--}}
 {{--                        <input type="text" name="username">--}}
 {{--                    </div>--}}
-
+                    <div class="signup-input">
+                        <span class="label">Cep Tel<span>&nbsp;*</span></span>
+                        <input id="mobilePhone" type="text" name="phoneNumber">
+                    </div>
                     <div class="signup-input">
                         <span class="label">Şifre Tekrar<span>&nbsp;*</span></span>
                         <input type="password" name="password2">

@@ -34,7 +34,7 @@
 
                             <div class="swiper-wrapper">
                                 <template v-for="item in variant.variantImages">
-                                <div class="swiper-slide"><img width="97" height="97" :src="cdnUrl+item.image" alt=""></div>
+                                    <div class="swiper-slide"><img width="97" height="97" :src="cdnUrl+item.image" alt=""></div>
                                 </template>
                             </div>
 
@@ -42,14 +42,14 @@
                         <div class="swiper product-detail-slider">
                             <div class="swiper-wrapper">
                                 <template v-for="item in variant.variantImages">
-                                <div class="swiper-slide">
                                     <div class="swiper-slide">
-                                        <div>
-                                            <img :src="cdnUrl+item.image" alt="" />
+                                        <div class="swiper-slide">
+                                            <div>
+                                                <img :src="cdnUrl+item.image" alt="" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                    </template>
+                                </template>
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
@@ -80,10 +80,10 @@
                             <div class="detail-title-area">
 
                                 <h1 class="product-title">  <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}"> <span>{{$product['brand']['name']}}</span></a> {{$product['name']}}
-                                    </h1>
-                               <div>
-                                   <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}">  <img src="{{"https://cdn.akilliphone.com/".$product['brand']['image'] }}" alt=""></a>
-                               </div>
+                                </h1>
+                                <div>
+                                    <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}">  <img src="{{"https://cdn.akilliphone.com/".$product['brand']['image'] }}" alt=""></a>
+                                </div>
 
                             </div>
                             <div class="rating-area">
@@ -176,12 +176,12 @@
                                     <span class="title">Renk:</span>
                                     @foreach ($product['variants'] as $item)
 
-                                    <div class="color-btn" data-variantid="{{$item['variantId']}}">
-                                        <button style="height: 100%;width: 100%"><img src="{{"https://cdn.akilliphone.com/".$item['featuredImage'] }}" alt=""></button>
-                                        <div class="tooltip">
-                                            {{$item["name"]}}
+                                        <div class="color-btn" data-variantid="{{$item['variantId']}}">
+                                            <button style="height: 100%;width: 100%"><img src="{{"https://cdn.akilliphone.com/".$item['featuredImage'] }}" alt=""></button>
+                                            <div class="tooltip">
+                                                {{$item["name"]}}
+                                            </div>
                                         </div>
-                                    </div>
 
                                     @endforeach
                                 </div>
@@ -241,11 +241,11 @@
                                 <div class="shipping-tabs">
                                     <div class="tab">
                                         <button class="tablinks active" onclick="openCity(event, 'shipping')">Aynı Gün<br>Kargo <img
-                                                    src="{{ url('assets/images/ayni-gun.svg') }}" alt=""></button>
+                                                src="{{ url('assets/images/ayni-gun.svg') }}" alt=""></button>
                                         <button class="tablinks" onclick="openCity(event, 'freeShipping')">Kargo<br>Bedava <img
-                                                    src="{{ url('assets/images/ucretsiz-kargo.svg') }}"  alt=""></button>
+                                                src="{{ url('assets/images/ucretsiz-kargo.svg') }}"  alt=""></button>
                                         <button class="tablinks" onclick="openCity(event, 'rebate')">Kolay<br>İade <img
-                                                    src="{{ url('assets/images/kolay-iade.svg') }}"  alt=""></button>
+                                                src="{{ url('assets/images/kolay-iade.svg') }}"  alt=""></button>
                                     </div>
                                     <div id="shipping" class="tabcontent" style="display:block;">
                                         Saat 17:00’a kadar verdiğiniz siparişleri aynı gün kargoya teslim ediyoruz.
@@ -284,38 +284,53 @@
                     </div>
                     <div class="showMore">
                         <center>
-                        <button class="showMoreBtn">Daha Fazla</button>
+                            <button class="showMoreBtn">Daha Fazla</button>
                         </center>
                     </div>
                     <div id="Yorum" class="tabDetails">
                         <p style="text-align: center;">Henüz yapılmış bir yorum bulunamadı</p>
-{{--                        <div class="comment-list">--}}
-{{--                            <div class="comment-item">--}}
-{{--                                <div class="left">--}}
-{{--                                    <div class="buyer">--}}
-{{--                                        EK--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="right">--}}
-{{--                                    <div class="top">--}}
-{{--                                        <div class="rating-area">--}}
-{{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
-{{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
-{{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
-{{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
-{{--                                            <span><img src="{{ url('assets/images/empty-star.svg') }}" alt=""></span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="date">--}}
-{{--                                            7 Nisan 2023, Cuma--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="comment">--}}
-{{--                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim fuga maxime, voluptates et cupiditate exercitationem, similique odit quos ea earum nesciunt aspernatur veniam consectetur? Dolores perferendis alias laudantium reprehenderit dicta!--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-                        <button id="open-review" class="review-btn">Yorum Yazmak İçin Giriş Yapmalısınız</button>
+                        {{--                        <div class="comment-list">--}}
+                        {{--                            <div class="comment-item">--}}
+                        {{--                                <div class="left">--}}
+                        {{--                                    <div class="buyer">--}}
+                        {{--                                        EK--}}
+                        {{--                                    </div>--}}
+                        {{--                                </div>--}}
+                        {{--                                <div class="right">--}}
+                        {{--                                    <div class="top">--}}
+                        {{--                                        <div class="rating-area">--}}
+                        {{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
+                        {{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
+                        {{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
+                        {{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
+                        {{--                                            <span><img src="{{ url('assets/images/empty-star.svg') }}" alt=""></span>--}}
+                        {{--                                        </div>--}}
+                        {{--                                        <div class="date">--}}
+                        {{--                                            7 Nisan 2023, Cuma--}}
+                        {{--                                        </div>--}}
+                        {{--                                    </div>--}}
+                        {{--                                    <div class="comment">--}}
+                        {{--                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim fuga maxime, voluptates et cupiditate exercitationem, similique odit quos ea earum nesciunt aspernatur veniam consectetur? Dolores perferendis alias laudantium reprehenderit dicta!--}}
+                        {{--                                    </div>--}}
+                        {{--                                </div>--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
+
+
+
+
+                        <?php
+
+                        if(session('userInfo')){
+                            echo  '<button id="open-review" class="review-btn">Yorum Yap</button>';
+
+                        }
+                        else{
+                            echo '<button  class="review-btn">Yorum Yazmak İçin Giriş Yapmalısınız</button>';
+                        }
+                        ?>
+
+
                         <div class="review-menu" id="review-menu">
                             <div class="review-menu-details">
                                 <div class="details-title">Ürünü Değerlendir</div>
@@ -324,24 +339,24 @@
                                           d="m8.4 17l3.6-3.6l3.6 3.6l1.4-1.4l-3.6-3.6L17 8.4L15.6 7L12 10.6L8.4 7L7 8.4l3.6 3.6L7 15.6L8.4 17Zm3.6 5q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z" />
                                 </svg>
 
-                                    <div class="review-wrapper">
-                                        <fieldset class="rating" name="rating" id="rating">
-                                            <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5"
-                                                                                                            title="Awesome - 5 stars"></label>
-                                            <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4"
-                                                                                                            title="Pretty good - 4 stars"></label>
-                                            <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3"
-                                                                                                            title="Meh - 3 stars"></label>
-                                            <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2"
-                                                                                                            title="Kinda bad - 2 stars"></label>
-                                            <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"
-                                                                                                            title="Sucks big time - 1 star"></label>
-                                        </fieldset>
-                                        <input type="text" name="title" placeholder="Başlık" id="title">
-                                        <textarea id="review" placeholder="Değerlendirmenizle ilgili detayları burada belirtebilirsiniz." class="review-text" maxlength="2000" name="review"></textarea>
+                                <div class="review-wrapper">
+                                    <fieldset class="rating" name="rating" id="rating">
+                                        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5"
+                                                                                                        title="Awesome - 5 stars"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4"
+                                                                                                        title="Pretty good - 4 stars"></label>
+                                        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3"
+                                                                                                        title="Meh - 3 stars"></label>
+                                        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2"
+                                                                                                        title="Kinda bad - 2 stars"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"
+                                                                                                        title="Sucks big time - 1 star"></label>
+                                    </fieldset>
+                                    <input type="text" name="title" placeholder="Başlık" id="reviewtitle" value="">
+                                    <textarea id="review" placeholder="Değerlendirmenizle ilgili detayları burada belirtebilirsiniz." class="review-text" maxlength="2000" name="review"></textarea>
 
-                                    </div>
-                                    <button id="submitReview">Değerlendir</button>
+                                </div>
+                                <button id="submitReview">Değerlendir</button>
 
 
                             </div>
@@ -373,7 +388,17 @@
                             </template>
 
                         </div>
-                        <button id="open-details" class="details-btn">Soru Sor</button>
+                        <?php
+
+                        if(session('userInfo')){
+                            echo  '  <button id="open-details" class="details-btn">Soru Sor</button>';
+
+                        }
+                        else{
+                            echo '  <button  class="details-btn">Soru Sormak İçin Giriş Yapmalısınız </button>';
+                        }
+                        ?>
+
                         <div class="site-menu" id="site-menu">
                             <div class="site-menu-details">
                                 <div class="details-title">Soru Sor</div>
@@ -405,81 +430,22 @@
         <x-asyn.carousel :sectionId="'section1'" :title="'Benzer Kategoriler'" :slug="'/reyonlar/'. $product['productCategories'][0]['category']['slug'].'?category='.$product['productCategories'][0]['category']['categoryId']" />
         <x-asyn.carousel :sectionId="'section2'" :title="'Benzer Markalar'" :slug="'/reyonlar/'. $product['brand']['slug'].'?brand='.$product['brand']['brandId']" />
         <x-product.recently-viewed />
+{{--        <?php--}}
+{{--        if (session('userInfo')['data']['id']){--}}
+{{--        $userId=session('userInfo')['data']['id'];--}}
+
+{{--        }else {--}}
+{{--            $userId="";--}}
+{{--        }--}}
+
+{{--        ?>--}}
     </div>
+
 @endsection
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
     <script>
-        function yorum(){
-            var product = <?php echo json_encode($product, JSON_UNESCAPED_UNICODE)?>;
-            var yorum = document.getElementById("review");
-            var yorumText = yorum.value;
-            var starInputs = document.querySelectorAll('input[name="rating"]');
-            var selectedRating = null;
-            for (var i = 0; i < starInputs.length; i++) {
-                if (starInputs[i].checked) {
-                    selectedRating = starInputs[i].value;
-                    break; // İlk seçili yıldızı bulduğumuzda döngüyü sonlandırabiliriz.
-                }
-            }
-
-            var body ={
-                "customerId": 0,
-                "productId": product.productId,
-                "title": "string",
-                "review": yorumText,
-                "rating": selectedRating
-            }
-            fetch('https://api.duzzona.site/review', {
-                method: 'POST', // POST isteği
-                headers: {
-                    "Access-Control-Allow-Origin":"*",
-                    "Authorization" :'Bearer <?php echo session()->get('token')?>',
-                },
-                body: JSON.stringify(body) // JSON verileri göndermek için stringify kullanılır
-            })
-                .then(response => response.json()) // Sunucu cevabını JSON olarak işle
-                .then(data => {
-                console.log(data);
-                })
-                .catch(error => {
-console.log(error);
-                });
-
-
-
-        }
-        function questions(){
-            var product = <?php echo json_encode($product, JSON_UNESCAPED_UNICODE)?>;
-            var soru = document.getElementById("question");
-            var soruText = soru.value;
-
-            var body={
-                "productId": product.productId,
-                "customerId": "string",
-                "question": soruText,
-                "answer": "",
-                "whoAnswered": ""
-            }
-            fetch('https://api.duzzona.site/question', {
-                method: 'POST', // POST isteği
-                headers: {
-                    "Access-Control-Allow-Origin":"*",
-                    "Authorization" :'Bearer <?php echo session()->get('token')?>',
-                },
-                body: JSON.stringify(body) // JSON verileri göndermek için stringify kullanılır
-            })
-                .then(response => response.json()) // Sunucu cevabını JSON olarak işle
-                .then(data => {
-                    console.log(data); // Sunucudan gelen verileri konsola yazdır
-                })
-                .catch(error => {
-                    console.error('Hata:', error);
-                });
-        }
-
         var product = <?php echo json_encode($product, JSON_UNESCAPED_UNICODE)?>;
         var variant = [];
         var variantId = '{{ $variantId }}';
@@ -731,14 +697,13 @@ console.log(error);
         if(submitReview){
             submitReview.addEventListener("click", function () {
 
-
                 var stars = document.getElementsByName('rating');
                 var selectedValue = null;
 
                 for (var i = 0; i < stars.length; i++) {
                     if (stars[i].checked) {
                         selectedValue = stars[i].value;
-                        break; // Seçili yıldızı bulduktan sonra döngüyü sonlandırın
+                        break;
                     }
                 }
 
@@ -748,43 +713,34 @@ console.log(error);
                     selectedValue=0;
                 }
                 var review1= document.getElementById('review').value;
-                var title1 = document.getElementById('title').value;
-                var productId1=11988;
-
-                var userId1="8a52201d-9bd2-4e4c-97f3-6036cc85fe61";
-
-
+                var title1 = document.getElementById('reviewtitle').value;
                 var requestData = {
-                    customerId: userId1,
-                    productId:productId1,
+                    {{--customerId: "{{$userId}}",--}}
+                    productId:{{$product['productId']}},
                     rating: selectedValue,
                     review: review1,
                     title: title1
                 };
-                // Erişim belirteci (token)
                 var token = "<?php echo session("userToken")?>";
-
-                // Veri ve token ile POST isteği oluşturun
-                var apiUrl = 'https://api.duzzona.site/reviews'; // API endpointinizi buraya ekleyin
+                var apiUrl = 'https://api.duzzona.site/reviews';
                 var requestOptions = {
                     method: 'POST',
                     headers: {
-                        'Authorization': 'Bearer ' + token, // Erişim belirteci ile yetkilendirme
+                        'Authorization': 'Bearer ' + token,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(requestData)
                 };
-
-                // İstek gönderme
                 fetch(apiUrl, requestOptions)
                     .then(response => response.json())
                     .then(data => {
-                        // Sunucudan gelen yanıtı konsola yazdırın
+
                         console.log(data);
                     })
                     .catch(error => {
                         console.error('Hata oluştu: ' + error);
                     });
+
 
 
                 if (reviewMenu.classList.contains('review-menu--active')) {

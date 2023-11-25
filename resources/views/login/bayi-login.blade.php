@@ -2,7 +2,7 @@
 @section('head')
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/login/signup.css">
-    <title>Giriş Yap - Akıllıphone</title>
+    <title>Bayi Girişi - Akıllıphone</title>
 
 @endsection
 @section('content')
@@ -51,15 +51,15 @@
                         </div>
                         <div class="login-btns">
                             <button class="login-btn" type="submit">Giriş Yap</button>
-                            <a href="{{route('index')}}" class="without-login">Üye Olmadan Devam Et</a>
+{{--                            <a href="{{route('index')}}" class="without-login">Üye Olmadan Devam Et</a>--}}
                         </div>
                     </form>
                 </div>
             </div>
             <div class="right">
                 <div class="signin-title">
-                    <h1>Üye Değil misiniz?</h1>
-                    <span class="descr">Hemen üye olun, indirimli alışverişin keyfini çıkarın!</span>
+                    <h1>Bayi Değil misiniz?</h1>
+                    <span class="descr">Hemen bayimiz olun, indirimli alışverişin keyfini çıkarın!</span>
                 </div>
                 <div class="shopping-info">
                     <div class="info-box">
@@ -83,7 +83,7 @@
                         <div class="text">Aldığınız ürünü iade etmek hiç bu kadar kolay olmamıştı.</div>
                     </div>
                 </div>
-                <a class="signup-btn" href="register">Hemen Üye Ol</a>
+                <a class="signup-btn" href="bayi-uye-ol">Hemen Bayi Ol</a>
             </div>
         </div>
     </section>

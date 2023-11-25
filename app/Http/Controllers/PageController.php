@@ -53,32 +53,61 @@ class PageController extends Controller
         $data['main_menu'] =  \WebService::home_main_menu();
         return view('login.login',$data);
     }
+    public function bayi_login()
+    {
+        $data['main_menu'] =  \WebService::home_main_menu();
+        return view('login.bayi-login',$data);
+    }
+    public function forgot()
+    {
+        $data['main_menu'] =  \WebService::home_main_menu();
+        return view('login.forgot',$data);
+    }
     public function signUp()
     {
         $data['main_menu'] =  \WebService::home_main_menu();
         return view('login.sign-up',$data);
     }
+    public function bayi_register()
+    {
+        $data['main_menu'] =  \WebService::home_main_menu();
+        return view('login.bayi-sign-up',$data);
+    }
     public function register(Request $request)
     {
         $data['main_menu'] =  \WebService::home_main_menu();
-        $dateString = $request->input('birthDate'); // Tarih dizgesi
-        $carbonDate = \Carbon\Carbon::createFromFormat('d/m/Y', $dateString)->startOfDay();
-        $utcDate = $carbonDate->toDateString();
+        $nowDateString = \Carbon\Carbon::now()->format('Y-m-d');
         $body=[
       "firstName" => $request->input('firstName'),
       "lastName" => $request->input('lastName'),
       "password" => $request->input('password'),
+      "password2" => $request->input('password2'),
       "email" => $request->input('email'),
-      "username" => $request->input('username'),
+      "username" => $request->input('email'),
       "phoneNumber" => $request->input('phoneNumber'),
-      "birthDate" => $utcDate,
+      "birthDate" => $nowDateString,
       "tcKimlik" => $request->input('tcKimlik'),
       "telefon"=>$request->input('phoneNumber'),
       "hasDropshippingPermission"=>"1",
       "code"=>"1"
-
 ];
+        if($body['password']){
+          if ($body['password']!=$body['password2']){
+
+              $request->session()->flash('flash-error', ['Şifreleri Aynı girdiğinizden Emin olun', 'Tekrar deneyiniz.']);
+
+              return back()->withInput();
+          }
+
+
+        }
+
+
+
+
         $register=\WebService::register($body);
+
+
         if($register){
             $request->session()->flash('flash-success', ['Üye olma işlemi başarılı', 'Yönlendiriliyorsunuz.']);
             return redirect()->route('login');
