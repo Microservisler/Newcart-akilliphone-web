@@ -110,8 +110,22 @@ class BasketService{
         }
         self::setBasket($basket);
     }
+    static function setDefaultShipping(&$basket){
+        if($basket && empty($basket->shippingBrand)){
+            $brand = 'aras';
+            $basket->shippingBrand =  $brand;
+            $basket->basketSubtotals['shipping'] = [
+                'code'=>'shipping',
+                'title'=>$basket->shippingBrands[$brand]['title'],
+                'total'=>$basket->shippingBrands[$brand]['price'],
+            ];
+            $basket->shippingBrands[$brand]['checked'] = 'checked';
+            self::setBasket($basket);
+        }
+    }
     static function getBasket(){
         $basket = session()->get('basket');
+        self::setDefaultShipping($basket);
         if(empty($basket)){
             $basket = new  BasketService();
             session()->put('basket', $basket);
@@ -162,7 +176,7 @@ class BasketService{
                 'total'=> 0,
             ];
             unset($basket->basketSubtotals['shipping']);
-            //$basket->shippingBrand = null;
+            $basket->shippingBrand = null;
         }
 
         if( $sub_total<$basket->freeShippingLimit ){
@@ -176,7 +190,7 @@ class BasketService{
                 'message'=>'Kargo Bedava',
             ];
             unset($basket->basketSubtotals['shipping']);
-            //$basket->shippingBrand = null;
+            $basket->shippingBrand = null;
         }
         if($basket->basketSubtotals){
             foreach($basket->basketSubtotals  as $basketSubtotal){
