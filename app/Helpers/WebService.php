@@ -83,7 +83,6 @@ class WebService {
         }
 
     }
-
     public static function admin_token(){
 
         $response = Http::withToken('token')->post('https://api.duzzona.site/login', [
@@ -100,8 +99,6 @@ class WebService {
         }
         return $token;
     }
-
-
     public static function register($body){
         $token = self::admin_token();
         $response = Http::withToken($token)->post('https://api.duzzona.site/register-uye', $body);
@@ -109,7 +106,6 @@ class WebService {
         $responseData = json_decode($response->body(), true);
         return $responseData;
     }
-
     public static function update_user($body){
         $token = session('userToken');
         $body['user']['id']=session('userInfo')['data']['id'];
@@ -122,7 +118,6 @@ class WebService {
         }
 
     }
-
     public static function deneme(){
         $body = [
             "productId" => 12957,
@@ -142,7 +137,6 @@ class WebService {
         }
 
     }
-
     public static function addresAdd($body){
         $token = session('userToken');
         $body['userId']=session('userInfo')['data']['id'];
@@ -183,7 +177,6 @@ class WebService {
     public static function auth_logout(){
 
     }
-
     public static function accessories(){
         return self::request('products?cat=1,2,3,6,5,12,9,10,8,7,4,11,48,55,63,57,44,45,47,46,13,21,16,20,19,23,24,30,31,27,32,28,25,29,26,34,41,40,36,38,37,39,35,33,43&sort=newly&orderby=desc&offset=12' ,[]);
     }
@@ -350,7 +343,8 @@ class WebService {
             $result = json_decode($response->getBody(), true);
             //print_r(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));die();
         } catch (\Exception $ex){
-            //print_r(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+            echo json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+            dd($ex->getMessage());
             //echo "$method : $url<br>".$ex->getMessage()."<br>";die();
         }
         return $result;

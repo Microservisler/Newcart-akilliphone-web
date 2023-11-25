@@ -166,10 +166,10 @@ class PageController extends Controller
     public function logout(Request $request)
     {
 
+        \Akilliphone\BasketService::clear();
         $request->session()->flush();
         $request->session()->flash('flash-success', ['Çıkış Yapıldı.','Yönlendiriliyorsunuz.']);
         return redirect()->route('login');
-
 
     }
 /*

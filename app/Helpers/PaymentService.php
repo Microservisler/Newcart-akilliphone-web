@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 class PaymentService{
-    const WEBSERVICE_SERVER = 'https://api.akilliphone.com/';
+
     static function finansAccount(){
         return [
             'MerchantPass' 		=> '46915477',
@@ -52,7 +52,7 @@ class PaymentService{
         $data['Currency'] 		    = '949';
         $data['OkUrl'] 		        =  route('payment.success');
         $data['FailUrl'] 		    = route('payment.fail');
-        $data['OrderId'] 		    = '1234';
+        $data['OrderId'] 		    = time();
         $data['OrgOrderId'] 		= '';
         $data['PurchAmount'] 		= ''.round($basket->total, 2).'';
         $data['Lang'] 		        = 'TR';
@@ -104,17 +104,19 @@ class PaymentService{
         $options->setBaseUrl('https://sandbox-api.iyzipay.com');*/
         return $options;
     }
-    static function IyzicoPayment($basket){
-
+    static function iyzicoPayment($basket){
+        $basket->total = 1;
         $request = new \Iyzipay\Request\CreateCheckoutFormInitializeRequest();
         $request->setLocale(\Iyzipay\Model\Locale::TR);
         $request->setConversationId($basket->getBaskeyId());
         $request->setPrice($basket->total);
         $request->setPaidPrice($basket->total);
+
         $request->setCurrency(\Iyzipay\Model\Currency::TL);
+
         $request->setBasketId("B".$basket->getBaskeyId());
         $request->setPaymentGroup(\Iyzipay\Model\PaymentGroup::PRODUCT);
-        $request->setCallbackUrl("https://www.merchant.com/callback");
+        $request->setCallbackUrl(route('payment.iyzico-callback'));
         //$request->setEnabledInstallments(array(2, 3, 6, 9));
 
         $buyer = new \Iyzipay\Model\Buyer();
@@ -165,7 +167,16 @@ class PaymentService{
         $request->setBasketItems($basketItems);
 
         $response = \Iyzipay\Model\CheckoutFormInitialize::create($request, self::iyzicoOptions());
+        //return(['request'=>$request->getJsonObject(), 'response'=>$response->getRawResult()] );
        return $response;
+    }
+
+    static function checkIyzicoPayment($token):\Iyzipay\Model\CheckoutForm{
+        $request = new \Iyzipay\Request\RetrieveCheckoutFormRequest();
+        $request->setLocale(\Iyzipay\Model\Locale::TR);
+        $request->setConversationId("123456789");
+        $request->setToken($token);
+        return \Iyzipay\Model\CheckoutForm::retrieve($request, self::iyzicoOptions());
     }
 }
 

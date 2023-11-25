@@ -116,6 +116,20 @@ class BasketService{
             $basket = new  BasketService();
             session()->put('basket', $basket);
         }
+        if(empty($basket->shippingBrand)){
+            $basket->shippingBrand =  'aras';
+            $basket->basketSubtotals['shipping'] = [
+                'code'=>'shipping',
+                'title'=>$basket->shippingBrands['aras']['title'],
+                'total'=>$basket->shippingBrands['aras']['price'],
+            ];
+            $basket->shippingBrands['aras']['checked'] = 'checked';
+            //print_r([$basket->shippingBrand, $basket->basketSubtotals,]);
+            //$basket = self::setBasket($basket);
+            //dd($basket);
+
+        }
+        $basket = self::setBasket($basket);
         return $basket;
     }
     static function setBasket($basket){
@@ -130,6 +144,7 @@ class BasketService{
         $sub_total = 0;
         $item_count = 0;
         $total = 0;
+
         if($basket->basketItems){
             foreach($basket->basketItems as $basketItem){
                 $sub_total += $basketItem['total'];
@@ -147,7 +162,9 @@ class BasketService{
                 'total'=> 0,
             ];
             unset($basket->basketSubtotals['shipping']);
+            $basket->shippingBrand = null;
         }
+
         if( $sub_total<$basket->freeShippingLimit ){
             $basket->alerts['freeShippingLimit'] = [
                 'class'=>'text-danger',
@@ -159,6 +176,7 @@ class BasketService{
                 'message'=>'Kargo Bedava',
             ];
             unset($basket->basketSubtotals['shipping']);
+            $basket->shippingBrand = null;
         }
         if($basket->basketSubtotals){
             foreach($basket->basketSubtotals  as $basketSubtotal){
@@ -373,5 +391,28 @@ class BasketService{
                                     </tbody>
                                 </table>';
         }
+    }
+    static function getPaymentExtraDescription($extra){
+        return '<div class="summary-title"><strong>Ödeme Bilgileri</strong></div>
+        <div class="info-title">Banka: <span class="info-descr">'.$extra['bankName'].'</span></div>
+        <div class="info-title">Hesap Adı: <span class="info-descr">'.$extra['legalCompanyTitle'].'</span></div>
+        <div class="info-title">Iban: <span class="info-descr">'.$extra['iban'].'</span></div>
+        <div class="info-title">Referans Kodu: <span class="info-descr">'.$extra['referenceCode'].'</span></div>
+        <p>
+            Ödeme yaparken açıklama kısmına sadece <strong>Referans kodunuz</strong> olan <strong>'.$extra['referenceCode'].'</strong> yazınız
+        </p>';
+    }
+    static function getOrderSummary($order){
+        return '<div class="summary-title"><strong>Sipariş Özetiniz</strong></div>
+        <div class="info-title">Sipariş numarası: <span class="info-descr">'.$order['orderId'] .'</span></div>
+        <div class="info-title">Alıcı: <span class="info-descr">'.$order['shippingAddress']['firstName'] .' '.$order['shippingAddress']['lastName'] .'</span></div>
+        <div class="info-title">Teslimat Adresi: <span class="info-descr">'.$order['shippingAddress']['addressLine1'] .' '.$order['shippingAddress']['district'] .'/'.$order['shippingAddress']['city'] .'</span></div>
+        <div class="info-title">Ödeme Tipi: <span class="info-descr">'.$order['paymentType']['name'] .'</span></div>
+        <div class="info-title">Telefon: <span class="info-descr">'.$order['shippingAddress']['phone'] .'</span></div>
+        <div class="info-title">Tarih: <span class="info-descr">'.HumanDate($order['createdAt']) .'</span></div>';
+    }
+    static function getOrderDescription($order){
+        return 'Sn. <strong>'. $order['shippingAddress']['firstName'] .' '. $order['shippingAddress']['lastName'] .'</strong>, <strong>'. HumanDate($order['createdAt']) .'</strong> tarihinde yapmış olduğunuz
+        <strong>'. $order['orderTotal'] .' TL</strong> tutarındaki siparişiniz tarafımıza ulaşmıştır. Alışverişinizin özetini içeren bir mesaj ayrıca <strong>'.$order['orderCustomer']['email'].'</strong> adresine gönderilmiştir.';
     }
 }
