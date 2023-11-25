@@ -36,8 +36,8 @@ class PaymentController extends Controller {
                return $result;
            }
         }
-        dd($payment);
-
+        $request->session()->flash('flash-error', ['Bilinmeyen Hata','']);
+        return redirect(route('payment.step.get', '3'));
     }
     public function validateSuccess(Request $request){
         $data = $request->all();
