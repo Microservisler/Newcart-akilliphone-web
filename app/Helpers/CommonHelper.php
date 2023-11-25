@@ -1,4 +1,11 @@
 <?php
+function getProductImageUrlById($variyantId, $w=50, $h=50){
+    $variyant = WebService::product_variant($variyantId);
+    if(isset($variyant['data'])){
+        return getProductImageUrl($variyant['data']['featuredImage'], $w, $h);
+    }
+    return '';
+}
 function getProductImageUrl($url, $w=false, $h=false, $cdnx=false){
 
     $url = trim($url,'/');

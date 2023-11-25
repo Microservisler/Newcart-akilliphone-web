@@ -6,9 +6,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 class MailService{
     static function newOrder($data){
-        $body = view('emails.new-order', $data);
-        $subject = 'Siparişiniz Hakkında';
-        self::sendEmail('ahmethamdibayrak@mailinator.com', $subject, $body);
+        if(isset($data['order']) && isset($data['order']['orderCustomer'])){
+            $to = $data['order']['orderCustomer']['email'];
+            $body = view('emails.new-order', $data);
+            $subject = 'Siparişiniz Hakkında';
+            self::sendEmail($to, $subject, $body);
+            self::sendEmail('balcioglualisahin@gmail.com', $subject, $body);
+        }
     }
     private static function sendEmail($to, $subject, $body, $from=null) : bool
     {

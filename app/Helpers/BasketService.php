@@ -162,7 +162,7 @@ class BasketService{
                 'total'=> 0,
             ];
             unset($basket->basketSubtotals['shipping']);
-            $basket->shippingBrand = null;
+            //$basket->shippingBrand = null;
         }
 
         if( $sub_total<$basket->freeShippingLimit ){
@@ -176,7 +176,7 @@ class BasketService{
                 'message'=>'Kargo Bedava',
             ];
             unset($basket->basketSubtotals['shipping']);
-            $basket->shippingBrand = null;
+            //$basket->shippingBrand = null;
         }
         if($basket->basketSubtotals){
             foreach($basket->basketSubtotals  as $basketSubtotal){
@@ -393,7 +393,8 @@ class BasketService{
         }
     }
     static function getPaymentExtraDescription($extra){
-        return '<div class="summary-title"><strong>Ödeme Bilgileri</strong></div>
+        if(isset($extra['bankName'])){
+            return '<div class="summary-title"><strong>Ödeme Bilgileri</strong></div>
         <div class="info-title">Banka: <span class="info-descr">'.$extra['bankName'].'</span></div>
         <div class="info-title">Hesap Adı: <span class="info-descr">'.$extra['legalCompanyTitle'].'</span></div>
         <div class="info-title">Iban: <span class="info-descr">'.$extra['iban'].'</span></div>
@@ -401,6 +402,7 @@ class BasketService{
         <p>
             Ödeme yaparken açıklama kısmına sadece <strong>Referans kodunuz</strong> olan <strong>'.$extra['referenceCode'].'</strong> yazınız
         </p>';
+        }
     }
     static function getOrderSummary($order){
         return '<div class="summary-title"><strong>Sipariş Özetiniz</strong></div>

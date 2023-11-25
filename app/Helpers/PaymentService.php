@@ -105,16 +105,15 @@ class PaymentService{
         return $options;
     }
     static function iyzicoPayment($basket){
-        $basket->total = 1;
         $request = new \Iyzipay\Request\CreateCheckoutFormInitializeRequest();
         $request->setLocale(\Iyzipay\Model\Locale::TR);
+        $request->setBasketId("B".$basket->getBaskeyId());
         $request->setConversationId($basket->getBaskeyId());
+        $basket->total = 0.5;
         $request->setPrice($basket->total);
         $request->setPaidPrice($basket->total);
-
         $request->setCurrency(\Iyzipay\Model\Currency::TL);
 
-        $request->setBasketId("B".$basket->getBaskeyId());
         $request->setPaymentGroup(\Iyzipay\Model\PaymentGroup::PRODUCT);
         $request->setCallbackUrl(route('payment.iyzico-callback'));
         //$request->setEnabledInstallments(array(2, 3, 6, 9));
@@ -151,7 +150,6 @@ class PaymentService{
             $billingAddress->setCountry("Turkey");
             $billingAddress->setAddress($basket->billingAddress['addressLine1']);
             $billingAddress->setZipCode("000000");
-
         }
         $request->setBillingAddress($billingAddress);
 
@@ -174,7 +172,7 @@ class PaymentService{
     static function checkIyzicoPayment($token):\Iyzipay\Model\CheckoutForm{
         $request = new \Iyzipay\Request\RetrieveCheckoutFormRequest();
         $request->setLocale(\Iyzipay\Model\Locale::TR);
-        $request->setConversationId("123456789");
+        //$request->setConversationId("123456789");
         $request->setToken($token);
         return \Iyzipay\Model\CheckoutForm::retrieve($request, self::iyzicoOptions());
     }
