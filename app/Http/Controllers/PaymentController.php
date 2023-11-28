@@ -22,12 +22,22 @@ class PaymentController extends Controller {
         $data = $request->all();
         $token =$request->input('token');
         $payment = \PaymentService::checkIyzicoPayment($token);
-        if($payment->getPaymentStatus()=='INIT_BANK_TRANSFER'){
+        if($payment->getPaymentStatus()=='FAILURE'){
+            $request->session()->flash('flash-error', [$payment->getErrorMessage(),'']);
+            return redirect(route('payment.step.get', '3'));
+        }elseif($payment->getPaymentStatus()=='SUCCESS'){
+           $result = $this->complateOrderWithPaymentTypeId(3, $token, 11);
+           if(is_a($result, 'Illuminate\Http\RedirectResponse')){
+               return $result;
+           }
+        }elseif($payment->getPaymentStatus()=='INIT_BANK_TRANSFER'){
            $result = $this->complateOrderWithPaymentTypeId(5, $token);
            if(is_a($result, 'Illuminate\Http\RedirectResponse')){
                return $result;
            }
         }
+        $request->session()->flash('flash-error', ['Bilinmeyen Hata','']);
+        return redirect(route('payment.step.get', '3'));
     }
     public function validateSuccess(Request $request){
         $data = $request->all();
@@ -182,12 +192,15 @@ class PaymentController extends Controller {
         //dd($paymetType, $data);
         return view('payment.step-4', $data);
     }
-    private function complateOrderWithPaymentTypeId($paymentTypeId, $orderToken=''){
+    private function complateOrderWithPaymentTypeId($paymentTypeId, $orderToken='', $paymentStatusId=false){
 
         $order = OrderService::currentOrder();
         $order->marketplaceId='4'; //akilliphone
         $order->marketplaceOrderCode= $orderToken; //iyzico ödeme tokenı
         $order->paymentTypeId = $paymentTypeId; // 4-havale
+        if($paymentStatusId){
+            $order->paymentStatusId = $paymentStatusId; // 11 ödendi
+        }
         $response = \WebService::create_order($order);
 
         if($response && $response['data'] && $response['data']['orderId']){
@@ -205,6 +218,7 @@ class PaymentController extends Controller {
         $order_response = \WebService::admin_order($orderId);
         $data['error'] = 'Sipariş Bulanamadı';
         if($order_response && $order_response['data']){
+
             $data['order']  = $order_response['data'];
             if($data['order']['orderNo']==$orderNo){
                 if($data['order']['marketplaceOrderCode']){

@@ -9,10 +9,8 @@
             padding: 10px;
             margin-bottom: 30px;
             border-radius: 5px;
-
         }
     </style>
-
 @endsection
 @section('content')
     <section class="shopping_section">
@@ -44,7 +42,7 @@
                         <div class="order-summary">
                             {!! Basket()::getOrderSummary($order) !!}
                             <hr class="summary-title">
-                            @if($extra)
+                            @if(isset($extra) && $extra)
                                 {!! Basket()::getPaymentExtraDescription($extra) !!}
                             @else
                                 {!! Basket()::getPaymentDescription($order['paymentTypeId']) !!}
