@@ -109,7 +109,7 @@ class PaymentService{
         $request->setLocale(\Iyzipay\Model\Locale::TR);
         $request->setBasketId("B".$basket->getBaskeyId());
         $request->setConversationId($basket->getBaskeyId());
-        $basket->total = 0.5;
+        //$basket->total = 0.5;
         $request->setPrice($basket->total);
         $request->setPaidPrice($basket->total);
         $request->setCurrency(\Iyzipay\Model\Currency::TL);

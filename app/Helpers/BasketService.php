@@ -16,7 +16,7 @@ class BasketService{
     public $basketSubtotals;
     public $total;
     public $alerts=[];
-    protected $flashes=[];
+    public $flashes=[];
     protected $created_dt;
     public $mini;
     public $table;
@@ -52,28 +52,39 @@ class BasketService{
         return $basket->basketId;
     }
     static function addProduct($variyant, $quantity, $fixQuantity=false){
-
         $quantity = (int)$quantity;
+        $optionId = 0;
+        $optionQuantity = 0;
         $basket = self::getBasket();
+        $basket->flashes = [];
+        if(!$fixQuantity){
+            if(isset($basket->basketItems[$variyant['variantId']])){
+                $quantity += $basket->basketItems[$variyant['variantId']]['quantity'] ;
+            }
+        }
+
+        if($variyant['variantOptions']){
+            $optionId = $variyant['variantOptions'][0]['variantOptionId'];
+            $optionQuantity = $variyant['variantOptions'][0]['stock'];
+        }
         if($quantity===0){
             unset($basket->basketItems[$variyant['variantId']]);
+            $basket->flashes[] = 'Ürün sepetten silindi';
         }elseif(empty($quantity)){
             $basket->flashes[] = 'Ürün adedi enaz 1 olmalıdır';
         } elseif($quantity>10){
-            $basket->flashes[] = 'İstenen adetde ürün sağlanamamıyor ';
+            $basket->flashes[] = 'İzin verilen sipariş adetini aştınız ';
+        } elseif($optionQuantity<$quantity){
+            $basket->flashes[] = 'İstenen adette ürün sağlanamamıyor ';
         } else {
             if(isset($basket->basketItems[$variyant['variantId']])){
-                if($fixQuantity){
-                    $basket->basketItems[$variyant['variantId']]['quantity'] = $quantity;
-                } else {
-                    $basket->basketItems[$variyant['variantId']]['quantity'] += $quantity;
-                }
+                $basket->basketItems[$variyant['variantId']]['quantity'] = $quantity;
                 $basket->basketItems[$variyant['variantId']]['total'] = $variyant['price'] * $basket->basketItems[$variyant['variantId']]['quantity'];
             } else {
                 $basket->basketItems[$variyant['variantId']] = [
                     'productId' => $variyant['productId'],
                     'variantId' => $variyant['variantId'],
-                    'optionId' => $variyant['variantOptions']? $variyant['variantOptions'][0]['variantOptionId']:0,
+                    'optionId' => $optionId,
                     'code' => $variyant['code'],
                     'url' => getProductUrl($variyant['product']),
                     'featuredImage' => getProductImageUrl($variyant['featuredImage'], 100,100),

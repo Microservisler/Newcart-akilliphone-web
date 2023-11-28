@@ -1,4 +1,5 @@
-<div class="product-item">
+@if($item['variants'])
+    <div class="product-item">
     <a href="{{ url('incele') }}/{{ $item['slug'] }}?id={{$item['productId']}}">
         <div class="product-image">
 
@@ -13,7 +14,6 @@
 
                 @endif
 
-
             </div>
             @if($item['variants'][0]['price'] > $item['variants'][0]['oldPrice'])
                 <div class="product-old-price" >{{ number_format($item['variants'][0]['oldPrice'], 2, '.', '') }} TL</div>
@@ -21,3 +21,4 @@
         </div>
     </a>
 </div>
+@endif

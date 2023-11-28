@@ -80,10 +80,13 @@ class PaymentController extends Controller {
         }
         dd($error, $hash, $data);
     }
-    public function validateFail(){
+    public function validateFail(Request $request){
+        $data = $request->all();
+        $ErrMsg = isset($data['ErrMsg'])?$data['ErrMsg']:'Bilinmeyen Hata';
         $basket =  BasketService::calculateBasket(BasketService::getBasket());
         $validate = \PaymentService::finansBankValidate(request()->all(), $basket);
-        return $this->step(request(), 3, $validate );
+        $request->session()->flash('flash-error', [$ErrMsg,'']);
+        return redirect(route('payment.step.get', '3'));
     }
     function checkStep(Request $request, String $step="1"){
         return $this->step($request, $step );
@@ -155,10 +158,11 @@ class PaymentController extends Controller {
         } else{
             $data['iyzico_url'] = '';
         }
-        if($checkoutFormContent = $iyzicoResponse->getCheckoutFormContent()){
-            $data['iyzico_form'] = $checkoutFormContent;
+        $data['iyzico_form'] = '';
+        if($checkoutFormContent = $iyzicoResponse->getPaymentPageUrl()){
+            $data['iyzico_link'] = $checkoutFormContent;
         } else{
-            $data['iyzico_form'] = '';
+            $data['iyzico_link'] = '';
         }
         $data['cc'] = [
             'name'=>'Ahmet Bayrak',

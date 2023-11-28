@@ -7,14 +7,25 @@ $(function() {
                     .done(function(basket) {
                         $('.shopping-cart.mini').html(basket.mini);
                         $('#basket-table').html(basket.table);
-                        Swal.fire({
-                            title: 'Ürün Adedi Değiştirildi.',
-                            toast: true,
-                            position: 'top-end',
-                            timer: 3000,
-                            icon: 'success',
-                            showConfirmButton: false,
-                        });
+                        if(basket.flashes.length>0){
+                            Swal.fire({
+                                title:  basket.flashes.join("\r\n"),
+                                toast: true,
+                                position: 'top-end',
+                                timer: 3000,
+                                icon: 'error',
+                                showConfirmButton: false,
+                            });
+                        } else{
+                            Swal.fire({
+                                title: 'Ürün Sepete Eklendi.',
+                                toast: true,
+                                position: 'top-end',
+                                timer: 3000,
+                                icon: 'success',
+                                showConfirmButton: false,
+                            });
+                        }
 
                     })
                     .fail(function() {
@@ -52,15 +63,25 @@ $(function() {
                 $.ajax( "/basket/add/" + app.variant.variantId + '/' + $('#product-qty').val() )
                     .done(function(basket) {
                         $('.shopping-cart').html(basket.mini);
-                        Swal.fire({
-                            title: 'Ürün Sepete Eklendi.',
-                            toast: true,
-                            position: 'top-end',
-                            timer: 3000,
-                            icon: 'success',
-                            showConfirmButton: false,
-                        });
-
+                        if(basket.flashes.length>0){
+                            Swal.fire({
+                                title:  basket.flashes.join("\r\n"),
+                                toast: true,
+                                position: 'top-end',
+                                timer: 3000,
+                                icon: 'error',
+                                showConfirmButton: false,
+                            });
+                        } else{
+                            Swal.fire({
+                                title: 'Ürün Sepete Eklendi.',
+                                toast: true,
+                                position: 'top-end',
+                                timer: 3000,
+                                icon: 'success',
+                                showConfirmButton: false,
+                            });
+                        }
                     })
                     .fail(function() {
                         Swal.fire({
@@ -71,7 +92,6 @@ $(function() {
                             icon: 'error',
                             showConfirmButton: false,
                         });
-
                     })
                     .always(function() {
                         //alert( "complete" );

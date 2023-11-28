@@ -427,7 +427,9 @@
                 </div>
             </div>
         </section>
-        <x-asyn.carousel :sectionId="'section1'" :title="'Benzer Kategoriler'" :slug="'/reyonlar/'. $product['productCategories'][0]['category']['slug'].'?category='.$product['productCategories'][0]['category']['categoryId']" />
+        @if($product['productCategories'])
+            <x-asyn.carousel :sectionId="'section1'" :title="'Benzer Kategoriler'" :slug="'/reyonlar/'. $product['productCategories'][0]['category']['slug'].'?category='.$product['productCategories'][0]['category']['categoryId']" />
+        @endif
         <x-asyn.carousel :sectionId="'section2'" :title="'Benzer Markalar'" :slug="'/reyonlar/'. $product['brand']['slug'].'?brand='.$product['brand']['brandId']" />
         <x-product.recently-viewed />
 {{--        <?php--}}
@@ -466,8 +468,12 @@
                 })
             },
         }).mount('#app-basic');
+        @if( $product['productCategories'] )
         webService.getSectionProducts('products?cat=<?php echo $product['productCategories'][0]['categoryId'] ?>&sort=newly&orderby=desc&offset=12', 'section1');
+        @endif
+        @if( $product['brand'] )
         webService.getSectionProducts('products?brand=<?php echo $product['brand']['brandId'] ?>&sort=newly&orderby=desc&offset=12', 'section2');
+        @endif
 
         $('body').on('click', '.color-btn', function(){
             getVariant( $(this).data('variantid') );
