@@ -14,6 +14,7 @@
                     <div class="mobile-product-header-inner">
                         <div class="brand">{{$product['brand']['name']}}</div>
                         <h1 class="product-title">{{$product['name']}}</h1>
+
                         <div class="rating-area">
                             <div class="stars">
                                 <span><img src="https://ethem.akilliphone.com/assets/images/full-star.svg" alt=""></span>
@@ -185,6 +186,7 @@
 
                                     @endforeach
                                 </div>
+                                <div v-text="variant.variantId" style="display: none" id="variantIdDiv"></div>
                                 <div class="product-price-area-bottom">
                                     <div class="qty-input">
                                         <button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
@@ -193,7 +195,7 @@
                                     </div>
                                     <div class="addtocart" ><button style="cursor:pointer;">Sepete Ekle</button></div>
                                     <div class="iconcart">
-                                        <a class="favorite-btn" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16.5" height="16.5"
+                                        <a class="favorite-btn" id="favorite-btn" style="cursor:pointer;"><svg xmlns="http://www.w3.org/2000/svg" width="16.5" height="16.5"
                                                                               viewBox="0 0 16.5 16.5">
                                                 <path id="noun_Heart_2102871_1_" data-name="noun_Heart_2102871 (1)"
                                                       d="M17.679,6A4.631,4.631,0,0,0,14.25,7.554,4.631,4.631,0,0,0,10.821,6,5.045,5.045,0,0,0,6,11.233c0,4.212,7.478,10.817,7.8,11.1a.688.688,0,0,0,.9.008c.319-.27,7.805-6.664,7.805-11.1A5.045,5.045,0,0,0,17.679,6ZM14.257,20.9c-2.271-2.079-6.882-6.877-6.882-9.663a3.673,3.673,0,0,1,3.446-3.858,3.361,3.361,0,0,1,2.843,1.679.687.687,0,0,0,1.172,0,3.362,3.362,0,0,1,2.843-1.679,3.673,3.673,0,0,1,3.446,3.858C21.125,14.179,16.527,18.876,14.257,20.9Z"
@@ -284,45 +286,80 @@
                     </div>
                     <div class="showMore">
                         <center>
-                            <button class="showMoreBtn">Daha Fazla</button>
+                            <button class="showMoreBtn" id="showMoreDetail">Daha Fazla</button>
                         </center>
                     </div>
                     <div id="Yorum" class="tabDetails">
                         <p style="text-align: center;">Henüz yapılmış bir yorum bulunamadı</p>
-                        {{--                        <div class="comment-list">--}}
-                        {{--                            <div class="comment-item">--}}
-                        {{--                                <div class="left">--}}
-                        {{--                                    <div class="buyer">--}}
-                        {{--                                        EK--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                                <div class="right">--}}
-                        {{--                                    <div class="top">--}}
-                        {{--                                        <div class="rating-area">--}}
-                        {{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
-                        {{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
-                        {{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
-                        {{--                                            <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>--}}
-                        {{--                                            <span><img src="{{ url('assets/images/empty-star.svg') }}" alt=""></span>--}}
-                        {{--                                        </div>--}}
-                        {{--                                        <div class="date">--}}
-                        {{--                                            7 Nisan 2023, Cuma--}}
-                        {{--                                        </div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                    <div class="comment">--}}
-                        {{--                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim fuga maxime, voluptates et cupiditate exercitationem, similique odit quos ea earum nesciunt aspernatur veniam consectetur? Dolores perferendis alias laudantium reprehenderit dicta!--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
+
+                        @foreach($product['reviews']  as $reviews)
+
+                            <div class="comment-list">
+                                <div class="comment-item">
+                                    <div class="left">
+                                        <div class="buyer">
+                                            EK
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="top">
+                                            <div class="rating-area">
 
 
+                                                   <?php $ratingCount=5-$reviews["rating"]; ?>
+
+
+                                                    @for ($i = 0; $i < $reviews["rating"]; $i++)
+
+
+
+                                                        <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>
+
+
+                                                @endfor
+                                                    @for ($i = 0; $i < $ratingCount; $i++)
+                                                        <span><img src="{{ url('assets/images/empty-star.svg') }}" alt=""></span>
+
+
+                                                 @endfor
+
+
+                                            </div>
+                                            <div class="date">
+                                                {{$reviews["createdAt"]}}
+                                            </div>
+                                        </div>
+                                        <div class="comment">
+                                            {{$reviews["review1"]}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        @endforeach
 
 
                         <?php
 
                         if(session('userInfo')){
-                            echo  '<button id="open-review" class="review-btn">Yorum Yap</button>';
+                            $control=0;
+                            if(session('userInfo')['data']['orders']==[]){
+                                echo ' <button  id="open-review" class="review-btn">Sipariş vermediğiniz ürüne yorum yapamazsınız.</button>';
+                            }
+                            else{
+                                foreach (session('userInfo')['data']['orders'] as $orders){
+                                    if($orders['productId']==$product['productId']){
+                                        echo  '<button id="open-review" class="review-btn">Yorum Yap</button>';
+                                        $control=1;
+                                        break;
+
+                                    }
+                                }
+                                if ($control!=1){
+                                    echo '   <button   class="review-btn">Sipariş vermediğiniz ürüne yorum yapamazsınız.</button>';
+                                }
+                            }
 
                         }
                         else{
@@ -352,8 +389,8 @@
                                         <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"
                                                                                                         title="Sucks big time - 1 star"></label>
                                     </fieldset>
-                                    <input type="text" name="title" placeholder="Başlık" id="reviewtitle" value="">
-                                    <textarea id="review" placeholder="Değerlendirmenizle ilgili detayları burada belirtebilirsiniz." class="review-text" maxlength="2000" name="review"></textarea>
+                                    <input type="text" name="title" placeholder="Başlık" id="reviewtitle" value="" class="review-text" style="height: 50px !important;">
+                                    <textarea id="review" placeholder="Değerlendirmenizle ilgili detayları burada belirtebilirsiniz." class="review-text" maxlength="2000" name="review" style="margin-top: 15px"></textarea>
 
                                 </div>
                                 <button id="submitReview">Değerlendir</button>
@@ -391,7 +428,8 @@
                         <?php
 
                         if(session('userInfo')){
-                            echo  '  <button id="open-details" class="details-btn">Soru Sor</button>';
+
+                            echo ' <button id="open-details" class="details-btn">Soru Sor</button>';
 
                         }
                         else{
@@ -430,24 +468,27 @@
         <x-asyn.carousel :sectionId="'section1'" :title="'Benzer Kategoriler'" :slug="'/reyonlar/'. $product['productCategories'][0]['category']['slug'].'?category='.$product['productCategories'][0]['category']['categoryId']" />
         <x-asyn.carousel :sectionId="'section2'" :title="'Benzer Markalar'" :slug="'/reyonlar/'. $product['brand']['slug'].'?brand='.$product['brand']['brandId']" />
         <x-product.recently-viewed />
-{{--        <?php--}}
-{{--        if (session('userInfo')['data']['id']){--}}
-{{--        $userId=session('userInfo')['data']['id'];--}}
+        <?php
+        if (isset(session('userInfo')['data']['id'])){
+        $userId=session('userInfo')['data']['id'];
 
-{{--        }else {--}}
-{{--            $userId="";--}}
-{{--        }--}}
+        }else {
+            $userId="";
+        }
 
-{{--        ?>--}}
+        ?>
     </div>
 
 @endsection
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+
     <script>
         var product = <?php echo json_encode($product, JSON_UNESCAPED_UNICODE)?>;
         var variant = [];
+        var reviews = [];
         var variantId = '{{ $variantId }}';
         var cdnUrl = 'https://cdn.akilliphone.com/';
         const { createApp } = Vue;
@@ -459,6 +500,7 @@
                     product: product,
                     variant: variant,
                     cdnUrl:cdnUrl,
+                    reviews:reviews,
                 }
             },updated: function () {
                 this.$nextTick(function () {
@@ -466,11 +508,14 @@
                 })
             },
         }).mount('#app-basic');
+
         webService.getSectionProducts('products?cat=<?php echo $product['productCategories'][0]['categoryId'] ?>&sort=newly&orderby=desc&offset=12', 'section1');
         webService.getSectionProducts('products?brand=<?php echo $product['brand']['brandId'] ?>&sort=newly&orderby=desc&offset=12', 'section2');
-
+        let  variantIdValue =""
         $('body').on('click', '.color-btn', function(){
             getVariant( $(this).data('variantid') );
+            variantIdValue = app.variant.variantId;
+            console.log(variantIdValue)
         });
         function getVariant(variantId){
             var settings = {
@@ -493,37 +538,43 @@
             });
         }
         getVariant(variantId);
+
+        const favoriteBtn = document.getElementById('favorite-btn');
+
+        favoriteBtn.addEventListener('click', function() {
+            var body = {
+                customerId:"{{$userId}}",
+                productId:{{$product['productId']}},
+                variantId: variantIdValue,
+
+            };
+            var token = "<?php echo session("userToken")?>";
+            var apiUrl = 'https://api.duzzona.site/user/favorite';
+            var requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            };
+            console.log(requestOptions)
+            fetch(apiUrl, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Hata oluştu: ' + error);
+                });
+
+
+        });
+
+
+
         //question
-        const questionButton = document.getElementById('questionButton');
-        const questionText = document.getElementById('questionText');
-        if(questionButton){
-            questionButton.addEventListener('click', function() {
-                const value = questionText.value;
-
-
-                const xhr = new XMLHttpRequest();
-                const url = "https://api.duzzona.site/reviews";
-
-                xhr.open("POST", url);
-
-                const requestBody = {
-                    "productId": 12957,
-                    "customerId": 3,
-                    "title": value,
-                    "review": "Answer",
-                    "rating": 0
-                }
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.setRequestHeader( "Authorization" , 'Bearer <?php echo session()->get('userToken')?>');
-                xhr.send(JSON.stringify(requestBody));
-
-                xhr.onreadystatechange = function () {
-                    console.log(xhr.response)
-                };
-
-
-            });
-        }
         var productThumb = new Swiper(".product-detail-thumb", {
             slidesPerView: 3,
             direction: "vertical",
@@ -617,6 +668,7 @@
         let closeCanvas = document.getElementById('close-canvas', 'close-menu');
         let closeMenu = document.getElementById('close-menu');
         let submitQuestion = document.getElementById('submitQuestion');
+
         if(openBtn){
             openBtn.addEventListener("click", function () {
                 if (siteMenu.classList.contains('site-menu')) {
@@ -646,6 +698,37 @@
         }
         if(submitQuestion){
             submitQuestion.addEventListener("click", function () {
+
+                const question1 = document.getElementById("question").value;
+                var requestData = {
+                    customerId:"{{$userId}}",
+                    productId:{{$product['productId']}},
+                    question: question1,
+                    answer: "",
+                    whoAnswered: ""
+                };
+
+                var token = "<?php echo session("userToken")?>";
+                var apiUrl = 'https://api.duzzona.site/questions';
+                var requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                };
+                fetch(apiUrl, requestOptions)
+                    .then(response => response.json())
+                    .then(data => {
+
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('Hata oluştu: ' + error);
+                    });
+
+
                 if (siteMenu.classList.contains('site-menu--active')) {
                     siteMenu.classList.remove('site-menu--active')
                     closeCanvas.style.display = "none"
@@ -659,6 +742,7 @@
                     icon: 'success',
                     showConfirmButton: false,
                 })
+                location.reload()
             })
 
         }
@@ -667,6 +751,7 @@
         let closeReviewCanvas = document.getElementById('close-review-canvas', 'close-review-menu');
         let closeReviewMenu = document.getElementById('close-review-menu');
         let submitReview = document.getElementById('submitReview');
+
         if(reviewBtn){
             reviewBtn.addEventListener("click", function () {
                 if (reviewMenu.classList.contains('review-menu')) {
@@ -697,6 +782,8 @@
         if(submitReview){
             submitReview.addEventListener("click", function () {
 
+
+//
                 var stars = document.getElementsByName('rating');
                 var selectedValue = null;
 
@@ -715,12 +802,13 @@
                 var review1= document.getElementById('review').value;
                 var title1 = document.getElementById('reviewtitle').value;
                 var requestData = {
-                    {{--customerId: "{{$userId}}",--}}
+                    customerId:"{{$userId}}",
                     productId:{{$product['productId']}},
-                    rating: selectedValue,
+                    title: title1,
                     review: review1,
-                    title: title1
+                    rating: selectedValue
                 };
+
                 var token = "<?php echo session("userToken")?>";
                 var apiUrl = 'https://api.duzzona.site/reviews';
                 var requestOptions = {
@@ -756,6 +844,7 @@
                     icon: 'success',
                     showConfirmButton: false,
                 })
+                location.reload()
             })
 
         }
@@ -782,7 +871,7 @@
             remainingCharacter.innerText = `${remainingChars}`;
             const submitButton = document.getElementById("submitQuestion");
 
-            if (question.length >= 10) {
+            if (question.length >= 3) {
                 submitButton.disabled = false;
                 submitButton.classList.add("active");
             } else {
@@ -816,6 +905,16 @@
             }
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
+            if (tabName == "Description")
+            {
+                document.getElementById("showMoreDetail").style.display = "block";
+                document.getElementById("showMoreDetail").className = "showMoreBtn";
+            }
+            else
+            {
+                document.getElementById("showMoreDetail").style.display = "none";
+                document.getElementById("showMoreDetail").className = "";
+            }
         }
         function getQuestion(value){
             var settings = {

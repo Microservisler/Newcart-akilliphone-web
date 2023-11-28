@@ -145,11 +145,18 @@ if(isset($_GET['text'])){
                 </div>
             </div>
             <div class="right-section">
-                <a href="#" class="favorites">
-                    <img width="28" height="25" src="{{ url('assets/images/favorite.svg') }}" alt="">
-                    <span class="counter">1
-            </span>
-                </a>
+                @if(isset(session('userInfo')['favorite']))
+
+                    <a href="#" class="favorites">
+                        <img width="28" height="25" src="{{ url('assets/images/favorite.svg') }}" alt="">
+                        <span class="counter">
+                            {{count($_SESSION['userInfo']['favorite'])}}
+                       </span>
+                    </a>
+
+                @endif
+
+
                 <a href="{{ route('basket.index') }}" class="shopping-cart mini">
                     <img width="26" height="25" src="{{ url('assets/images/shopping-icon.svg') }}" alt="">
                     <span class="counter">{{ \Akilliphone\BasketService::getItemCount() }}

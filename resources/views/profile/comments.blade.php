@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="{{ url('assets/css/profile/comments/main.css') }}">
 @endsection
 @section('content')
+{{--    {{dd($questions)}}--}}{{-- --}}
+{{--Product boş dönüyor bakılacak--}}
+
     <section class="profile section-padding mx-24">
         <div class="container">
             <div class="section-title">Hesabım</div>

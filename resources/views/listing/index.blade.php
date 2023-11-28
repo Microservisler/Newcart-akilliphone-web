@@ -183,11 +183,11 @@
                             "{{$_GET['text']}}" Araması İçin Sonuçlar Listeleniyor</h3>
                     @endif
 
-                    @if($three_banner && isset($three_banner['data']))
-                        <x-section.three-banner :items="$three_banner['data']['items']"  :index="2"/>
-                    @else
-                        <x-section.lost :title="'İmage section'" />
-                    @endif
+{{--                    @if($three_banner && isset($three_banner['data']))--}}
+{{--                        <x-section.three-banner :items="$three_banner['data']['items']"  :index="2"/>--}}
+{{--                    @else--}}
+{{--                        <x-section.lost :title="'İmage section'" />--}}
+{{--                    @endif--}}
 
                     <div class="filter-buttons">
                         <div id="listbox" class="list">
