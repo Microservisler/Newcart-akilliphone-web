@@ -16,7 +16,8 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <form action="{{route('sendMail')}}" method="post">
+{{--                    <form action="{{route('sendMail')}}" method="post">--}}
+                    <form >
                         <div class="input-group">
                             <input type="text" placeholder="İsim Soyisim" required id="isim">
                         </div>

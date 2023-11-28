@@ -19,6 +19,12 @@ class HomeController extends Controller
         $data['product_slider']     =  \WebService::wecart_product_slider();
         $data['tall_banner']        =  \WebService::wecart_tall_banner();
 
+        $data["three_category1"]      =  \WebService::wecart_three_banner();
+        $data["three_category2"]      =  \WebService::wecart_three_banner2();
+
+
+
+
         $data['section_4category']  =  [];//\WebService::random_category_products(4);
         $data['section_carousel2']  =  [];//\WebService::nearly_out_of_stock();
         $data['brands']             =  \WebService::brands("live");

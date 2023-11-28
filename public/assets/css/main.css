@@ -101,8 +101,8 @@ a {
 }
 
 .section-padding {
-  padding-bottom: 40px;
-  padding-top: 40px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .section-title {
@@ -1142,6 +1142,7 @@ body::-webkit-scrollbar-thumb {
     margin-bottom: 0;
   }
   .section-9 .left-slider .one-slider-dots {
+      display: none;
     bottom: 55px;
   }
   .section-9 .left-slider .one-card-slider {
@@ -1177,6 +1178,7 @@ body::-webkit-scrollbar-thumb {
   .section-9 .left-slider .card-slider .card-info .card-prices .card-price .current {
     font-size: 20px;
     line-height: 27px;
+      margin-left: 25px;
   }
   .section-9 .left-slider .card-slider .card-info .card-prices .card-price .discount {
     font-size: 16px;

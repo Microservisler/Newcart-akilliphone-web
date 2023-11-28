@@ -22,21 +22,17 @@
     <section class="three-category-slider section-padding mx-24">
         <div class="container">
             <div class="three-category owl-carousel owl-theme">
-                <a href="#">
-                    <img class="lazyload fluid-img" data-src="assets/images/category/category1.png"
-                         data-srcset="assets/images/category/category1.png 800w, assets/images/category/mobile-category1.png 320w"
-                         sizes="(min-width: 768px) 400px,160px" width="350" height="222" alt="Category">
-                </a>
-                <a href="#">
-                    <img class="lazyload fluid-img" data-src="assets/images/category/category2.png"
-                         data-srcset="assets/images/category/category2.png 800w, assets/images/category/mobile-category2.png 320w"
-                         sizes="(min-width: 768px) 400px,160px" width="350" height="222" alt="Category">
-                </a>
-                <a href="#">
-                    <img class="lazyload fluid-img" data-src="assets/images/category/category3.png"
-                         data-srcset="assets/images/category/category3.png 800w, assets/images/category/mobile-category3.png 320w"
-                         sizes="(min-width: 768px) 400px,160px" width="350" height="222" alt="Category">
-                </a>
+                @foreach($three_category1["data"]["items"] as $three_category1)
+
+                    <a href="{{$three_category1["slug"]}}">
+                        <img class="lazyload fluid-img" data-src="{{$three_category1["desktopImage"]}}"
+                             data-srcset="{{$three_category1["desktopImage"]}} 800w, {{$three_category1["mobileImage"]}}  320w"
+                             sizes="(min-width: 768px) 400px,160px" width="350" height="222" alt="Category">
+                    </a>
+
+                @endforeach
+
+
             </div>
         </div>
     </section>
@@ -51,27 +47,7 @@
     <x-section.brands :products="$product_slider['data']['items']" :items="$brands['data']"/>
     <x-asyn.carousel :sectionId="'section1'" :title="'Aksesuarlar'" :slug="'/reyonlar/aksesuarlar-207?category=270'" />
     <x-asyn.carousel :sectionId="'section2'" :title="'Araç Aksesuarları'" :slug="'/reyonlar/arac-aksesuarlari-280?category=2'" />
-    <section class="three-category-slider section-padding mx-24">
-        <div class="container">
-            <div class="three-category owl-carousel owl-theme">
-                <a href="#">
-                    <img class="lazyload fluid-img" data-src="assets/images/category/category1.png"
-                         data-srcset="assets/images/category/category1.png 800w, assets/images/category/mobile-category1.png 320w"
-                         sizes="(min-width: 768px) 400px,160px" width="350" height="222" alt="Category">
-                </a>
-                <a href="#">
-                    <img class="lazyload fluid-img" data-src="assets/images/category/category2.png"
-                         data-srcset="assets/images/category/category2.png 800w, assets/images/category/mobile-category2.png 320w"
-                         sizes="(min-width: 768px) 400px,160px" width="350" height="222" alt="Category">
-                </a>
-                <a href="#">
-                    <img class="lazyload fluid-img" data-src="assets/images/category/category3.png"
-                         data-srcset="assets/images/category/category3.png 800w, assets/images/category/mobile-category3.png 320w"
-                         sizes="(min-width: 768px) 400px,160px" width="350" height="222" alt="Category">
-                </a>
-            </div>
-        </div>
-    </section>
+
     <x-asyn.carousel :sectionId="'section3'" :title="'Ev Yaşam'" :slug="'/reyonlar/ev-yasam-327?category=78'" />
     <x-asyn.carousel :sectionId="'section4'" :title="'Şarj Aletleri'" :slug="'/reyonlar/sarj-aletleri-203?category=103'" />
     <x-asyn.carousel :sectionId="'section5'" :title="'Dönüştürücüler'" :slug="'/kablolar-ve-donusturuculer-209?category=89'" />

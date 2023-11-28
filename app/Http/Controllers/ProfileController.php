@@ -56,6 +56,7 @@ class ProfileController extends Controller{
     public function comments(){
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['questions']=session('userInfo')['data']['questions'];
         return view('profile.comments', $data);
     }
     public function payments(){
@@ -72,11 +73,24 @@ class ProfileController extends Controller{
 
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
+        dd(session('userInfo')['data']);
+
+        if (isset(session('userInfo')['data']['favorites'])){
+            $data['favorites']=session('userInfo')['data']['favorites'];
+        }
+
+
         return view('profile.favorites', $data);
+
+
+
     }
     public function informations(){
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
+        if (isset(session('userInfo')['data']['informations'])){
+            $data['informations']=session('userInfo')['data']['informations'];
+        }
         return view('profile.informations', $data);
     }
     public function informationsUpdate(Request $request){
