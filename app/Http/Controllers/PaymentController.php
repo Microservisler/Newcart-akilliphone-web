@@ -82,7 +82,7 @@ class PaymentController extends Controller {
     public function validateFail(Request $request){
         $data = $request->all();
         //file_put_contents('sdfail.json', json_encode($data));
-        $data = json_decode( file_get_contents('sdfail.json'), 1);
+        //$data = json_decode( file_get_contents('sdfail.json'), 1);
         //$ErrMsg = isset($data['ErrMsg'])?$data['ErrMsg']:'Bilinmeyen Hata';
         $basket =  BasketService::calculateBasket(BasketService::getBasket());
         $validate = \PaymentService::finansBankValidate($data, $basket);
