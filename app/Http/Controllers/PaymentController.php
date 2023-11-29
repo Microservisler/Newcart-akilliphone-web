@@ -15,7 +15,6 @@ class PaymentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-        //$order = \Akilliphone\OrderService::currentOrder();
         return $this->step($request, "2");
     }
     public function iyzicoCallback(Request $request){
@@ -82,10 +81,14 @@ class PaymentController extends Controller {
     }
     public function validateFail(Request $request){
         $data = $request->all();
-        $ErrMsg = isset($data['ErrMsg'])?$data['ErrMsg']:'Bilinmeyen Hata';
+        //file_put_contents('sdfail.json', json_encode($data));
+        $data = json_decode( file_get_contents('sdfail.json'), 1);
+        //$ErrMsg = isset($data['ErrMsg'])?$data['ErrMsg']:'Bilinmeyen Hata';
         $basket =  BasketService::calculateBasket(BasketService::getBasket());
-        $validate = \PaymentService::finansBankValidate(request()->all(), $basket);
-        $request->session()->flash('flash-error', [$ErrMsg,'']);
+        $validate = \PaymentService::finansBankValidate($data, $basket);
+        if($validate['errors']){
+            $request->session()->flash('flash-error', $validate['errors']);
+        }
         return redirect(route('payment.step.get', '3'));
     }
     function checkStep(Request $request, String $step="1"){

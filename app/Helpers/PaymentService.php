@@ -27,11 +27,12 @@ class PaymentService{
         $validate['status'] = false;
         $validate['errors'] = [];
         if(isset($request['ErrMsg'])){
-            $validate['errors'][] = $request['ErrMsg'];
+            $validate['errors'] = [$request['ErrMsg'], ''];
         }
-        if(isset($request['status']) && $request['status']==false){
+        /*if(isset($request['status']) && $request['status']==false){
             $validate['errors'] = array_merge($validate['errors'],  $request['errors']);
-        }
+        }*/
+        $validate['paymentStatus'] = isset($request['ProcReturnCode']) ? $request['ProcReturnCode'] :'-1';
         return $validate;
     }
     static function finansBankCartData($basket, $cc){

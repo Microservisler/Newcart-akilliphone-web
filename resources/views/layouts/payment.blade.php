@@ -128,6 +128,7 @@
     });
 </script>
 @yield('js', '')
+@include('layouts.js')
 
 </body>
 </html>
