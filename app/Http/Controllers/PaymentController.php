@@ -15,7 +15,6 @@ class PaymentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-        //$order = \Akilliphone\OrderService::currentOrder();
         return $this->step($request, "2");
     }
     public function iyzicoCallback(Request $request){
@@ -80,10 +79,17 @@ class PaymentController extends Controller {
         }
         dd($error, $hash, $data);
     }
-    public function validateFail(){
+    public function validateFail(Request $request){
+        $data = $request->all();
+        //file_put_contents('sdfail.json', json_encode($data));
+        //$data = json_decode( file_get_contents('sdfail.json'), 1);
+        //$ErrMsg = isset($data['ErrMsg'])?$data['ErrMsg']:'Bilinmeyen Hata';
         $basket =  BasketService::calculateBasket(BasketService::getBasket());
-        $validate = \PaymentService::finansBankValidate(request()->all(), $basket);
-        return $this->step(request(), 3, $validate );
+        $validate = \PaymentService::finansBankValidate($data, $basket);
+        if($validate['errors']){
+            $request->session()->flash('flash-error', $validate['errors']);
+        }
+        return redirect(route('payment.step.get', '3'));
     }
     function checkStep(Request $request, String $step="1"){
         return $this->step($request, $step );
@@ -155,14 +161,15 @@ class PaymentController extends Controller {
         } else{
             $data['iyzico_url'] = '';
         }
-        if($checkoutFormContent = $iyzicoResponse->getCheckoutFormContent()){
-            $data['iyzico_form'] = $checkoutFormContent;
+        $data['iyzico_form'] = '';
+        if($checkoutFormContent = $iyzicoResponse->getPaymentPageUrl()){
+            $data['iyzico_link'] = $checkoutFormContent;
         } else{
-            $data['iyzico_form'] = '';
+            $data['iyzico_link'] = '';
         }
         $data['cc'] = [
-            'name'=>'Ahmet Bayrak',
-            'cardnumber'=>'4938410155072507',
+            'name'=>'',
+            'cardnumber'=>'',
             'expirationdate'=>'',
             'securitycode'=>'',
         ];

@@ -436,7 +436,8 @@
             });
         }
     }
-    create_product_owl_slider('.product-slider.owl-carousel');
+
+    //create_product_owl_slider('.product-slider.owl-carousel');
 </script>
 <!-- Brands Slider -->
 <script>

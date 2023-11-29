@@ -45,34 +45,36 @@
 @yield('js', '')
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script>
-    const swiper = new Swiper('.brand-slider', {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-        breakpoints: {
-            300: {
-                slidesPerView: 1,
-                grid: {
-                    rows: 2,
+    if($('.brand-slider').length){
+        const swiper = new Swiper('.brand-slider', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                300: {
+                    slidesPerView: 1,
+                    grid: {
+                        rows: 2,
+                    },
+                },
+                576: {
+                    slidesPerView: 2,
+                    grid: {
+                        rows: 2,
+                    },
+                },
+                768: {
+                    slidesPerView: 3,
+                    grid: {
+                        rows: 3,
+                    },
                 },
             },
-            576: {
-                slidesPerView: 2,
-                grid: {
-                    rows: 2,
-                },
-            },
-            768: {
-                slidesPerView: 3,
-                grid: {
-                    rows: 3,
-                },
-            },
-        },
-    });
+        });
+    }
 </script>
 <script>
     function handleKeyPress(event) {
@@ -93,28 +95,6 @@
         window.location.href = link;
     });
 </script>
-<script>
-    @if($flash = session()->get('flash-error'))
-    Swal.fire({
-        title: '{{ $flash[0] }} {{ $flash[1] }}',
-        toast: true,
-        position: 'top-end',
-        timer: 3000,
-        icon: 'error',
-        showConfirmButton: false,
-    });
-    @endif
-    @if($flash = session()->get('flash-success'))
-    Swal.fire({
-        title: '{{ $flash[0] }} {{ $flash[1] }}',
-        toast: true,
-        position: 'top-end',
-        timer: 3000,
-        icon: 'success',
-        showConfirmButton: false,
-    });
-    @endif
-</script>
-
+@include('layouts.js')
 </body>
 </html>

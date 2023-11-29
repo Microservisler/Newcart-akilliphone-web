@@ -2,6 +2,11 @@
 @section('head')
     <title>Ödeme Sayfası - AkıllıPhone</title>
     <link rel="stylesheet" href="{{ url('assets/css/shopping-section3.css') }}">
+    <style>
+        .pay-transfer{
+            width: 100%;
+        }
+    </style>
 @endsection
 @section('content')
     <section class="shopping_section">
@@ -16,7 +21,9 @@
                 <button class="tabSpec active" onclick="openSpec(event, 'creditCard')">Yeni Kart</button>
             </div>
             @endif
+            @if(!$iyzico_form)
             <form action="{{ route('payment.step.post', 4) }}" method="post">
+            @endif
                 <div class="shopping-wrapper">
                     <div class="form-wrapper">
                         @if($iyzico_form)
@@ -246,6 +253,17 @@
                                                    pattern="[0-9]*" inputmode="numeric" value="{{ $cc['securitycode'] }}">
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="pay-transfer">
+                                <div class="creditcard-text">
+                                    <div class="custom_radio">
+                                        <input type="radio" id="transfer" name="paymentType" value="banktransfer">
+                                        <label class="title" for="transfer"><a href="{{ $iyzico_link }}"> Kredi Kartı İle Taksitli Ödeme</a></label>
+                                    </div>
+                                </div>
+                                <div class="pay-logo">
+                                    <img src="" alt="">
                                 </div>
                             </div>
                             <div class="pay-transfer">
@@ -1097,7 +1115,9 @@
                     </div>
                     <x-payment.cart-wrapper :basket="$basket"  :buttonText="'Tamamla'"/>
                 </div>
+            @if(!$iyzico_form)
             </form>
+            @endif
         </div>
     </section>
 @endsection
