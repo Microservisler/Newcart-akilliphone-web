@@ -27,6 +27,8 @@ use App\Http\Middleware\CheckUserToken;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/giris-yap', [PageController::class, 'login'])->name('login');
+Route::get('/old-account', [PageController::class, 'old_account'])->name('old.account');
+Route::post('/old-account', [PageController::class, 'old_account_post'])->name('old.account.post');
 Route::get('/bayi-giris', [PageController::class, 'bayi_login'])->name('bayi.login');
 Route::get('/bayi-uye-ol', [PageController::class, 'bayi_register'])->name('bayi.register');
 Route::get('/register', [PageController::class, 'signUp'])->name('signUp');

@@ -606,7 +606,7 @@ input {
   }
   .desktop-header .navbar .right-section .login-btn .dropdown-box {
     width: 100%;
-    z-index: 1;
+    z-index: 130;
     margin-top: 10px;
     background: #fff;
     border-radius: 17px;

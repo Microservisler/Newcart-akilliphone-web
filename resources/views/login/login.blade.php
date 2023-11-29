@@ -52,10 +52,23 @@
                         <div class="login-btns">
                             <button class="login-btn" type="submit">Giriş Yap</button>
                             <a href="{{route('index')}}" class="without-login">Üye Olmadan Devam Et</a>
+                            <a href="{{route('old.account')}}" id="popupLink">Eski Üye Misiniz ? </a>
                         </div>
                     </form>
                 </div>
             </div>
+
+
+
+            <div id="popup" style="display: none;">
+                <form id="popupForm">
+                    <input type="text" id="textBox">
+                    <button type="button" id="submitButton">Gönder</button>
+                </form>
+            </div>
+
+
+
             <div class="right">
                 <div class="signin-title">
                     <h1>Üye Değil misiniz?</h1>

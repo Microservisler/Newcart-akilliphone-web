@@ -53,6 +53,25 @@ class PageController extends Controller
         $data['main_menu'] =  \WebService::home_main_menu();
         return view('login.login',$data);
     }
+    public function old_account()
+    {
+        $data['main_menu'] =  \WebService::home_main_menu();
+        return view('login.old-account',$data);
+    }
+    public function old_account_post(Request $request)
+    {
+        $data['main_menu'] =  \WebService::home_main_menu();
+        if($request){
+         session()->flash('flash-success', ['Yeni Şifre Mailinize Gönderildi', 'Yönlendiriliyorsunuz.']);
+            return redirect()->route('old.account');
+        }else{
+         session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Tekrar deneyiniz.']);
+
+            return back()->withInput();
+        }
+
+
+    }
     public function bayi_login()
     {
         $data['main_menu'] =  \WebService::home_main_menu();

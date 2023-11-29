@@ -532,6 +532,7 @@
             $.ajax(settings).done(function (response) {
                 app.variant = response.data;
                 app.cdnUrl=cdnUrl;
+                console.log(app)
 
                 //console.log(app)
                 //window.history.pushState("nextState", response.data.name, '{{ url('incele/') }}/' + response.data.slug);
