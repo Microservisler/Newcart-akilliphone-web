@@ -168,8 +168,8 @@ class PaymentController extends Controller {
             $data['iyzico_link'] = '';
         }
         $data['cc'] = [
-            'name'=>'Ahmet Bayrak',
-            'cardnumber'=>'4938410155072507',
+            'name'=>'',
+            'cardnumber'=>'',
             'expirationdate'=>'',
             'securitycode'=>'',
         ];
