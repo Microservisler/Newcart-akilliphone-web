@@ -5,6 +5,14 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 class MailService{
+    static function resetPassword($data){
+        if(isset($data['order']) && isset($data['order']['orderCustomer'])){
+            $to = $data['order']['orderCustomer']['email'];
+            $body = view('emails.reset-password', $data);
+            $subject = 'Siparişiniz Hakkında';
+            self::sendEmail($to, $subject, $body);
+        }
+    }
     static function newOrder($data){
         if(isset($data['order']) && isset($data['order']['orderCustomer'])){
             $to = $data['order']['orderCustomer']['email'];
