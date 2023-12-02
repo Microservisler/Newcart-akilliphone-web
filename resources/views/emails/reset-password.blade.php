@@ -345,21 +345,7 @@
                                                style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                             <tr style="border-collapse:collapse">
                                                 <td align="center" valign="top" style="padding:0;Margin:0;width:600px">
-                                                    <table cellpadding="0" cellspacing="0" width="100%"
-                                                           role="presentation"
-                                                           style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                        <tr style="border-collapse:collapse">
-                                                            <td align="center"
-                                                                style="padding:0;Margin:0;position:relative"><a
-                                                                    target="_blank" href="https://akilliphone.com"
-                                                                    style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#659C35;font-size:14px"><img
-                                                                        class="adapt-img"
-                                                                        src="https://ebfcecw.stripocdn.email/content/guids/bannerImgGuid/images/image16965308010019148.png"
-                                                                        alt title width="600"
-                                                                        style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
-                                                                        height="360"></a></td>
-                                                        </tr>
-                                                    </table>
+                                                  
                                                 </td>
                                             </tr>
                                         </table>
@@ -389,19 +375,14 @@
                                                         <tr style="border-collapse:collapse">
                                                             <td align="center" style="padding:0;Margin:0"><h2
                                                                     style="Margin:0;line-height:31px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:26px;font-style:normal;font-weight:bold;color:#16c0ec">
-                                                                    Siparişiniz Hazırlanıyor</h2></td>
+                                                                    Yeni Şifre </h2></td>
                                                         </tr>
                                                         <tr style="border-collapse:collapse">
                                                             <td align="center"
                                                                 style="padding:0;Margin:0;padding-top:10px"><p
                                                                     style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
-                                                                @if($order)
-                                                                    {!! Basket()::getOrderDescription($order) !!}
-                                                                @endif
-                                                                @if(isset($extra) && $extra)
-                                                                    <hr>
-                                                                    {!! Basket()::getPaymentExtraDescription($extra) !!}
-                                                                    @endif
+
+                                                               Şifrenizi oturum açtıktan sonra Profilim sayfasından güncelleyebilirsiniz.
                                                                 </p></td>
                                                         </tr>
                                                         <tr style="border-collapse:collapse">
@@ -429,7 +410,7 @@
                             <table bgcolor="#ffffff" class="es-content-body" align="center" cellpadding="0"
                                    cellspacing="0" role="none"
                                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF;width:600px">
-                                @foreach($order['orderProducts'] as $orderProduct)
+
                                     <tr style="border-collapse:collapse">
                                         <td align="left"
                                             style="Margin:0;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px">
@@ -446,14 +427,7 @@
                                                                style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-position:left top"
                                                                role="presentation">
                                                             <tr style="border-collapse:collapse">
-                                                                <td align="center" style="padding:0;Margin:0;font-size:0"><a
-                                                                        target="_blank" href="https://viewstripo.email/"
-                                                                        style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#659C35;font-size:14px"><img
-                                                                            class="adapt-img"
-                                                                            src="{{ getProductImageUrlById($orderProduct['variantId'], 100, 100) }}"
-                                                                            alt
-                                                                            style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
-                                                                            width="100" height="100"></a></td>
+                                                                <td align="center" style="padding:0;Margin:0;font-size:0"></td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -467,37 +441,13 @@
                                                    style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right">
                                                 <tr style="border-collapse:collapse">
                                                     <td align="left" style="padding:0;Margin:0;width:386px">
-                                                        <table cellpadding="0" cellspacing="0" width="100%"
-                                                               role="presentation"
-                                                               style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                            <tr style="border-collapse:collapse">
-                                                                <td align="left" class="es-m-txt-l"
-                                                                    style="padding:0;Margin:0;padding-top:10px"><h3
-                                                                        style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#16c0ec">
-                                                                        <strong>{{ $orderProduct['name'] }}</strong></h3></td>
-                                                            </tr>
-                                                            <tr style="border-collapse:collapse">
-                                                                <td align="left" class="es-m-txt-l"
-                                                                    style="padding:0;Margin:0;padding-top:10px"><h3
-                                                                        style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#16c0ec">
-                                                                        <strong>{{ $orderProduct['quantity'] }}<span
-                                                                                style="color:#000000"></span>&nbsp; Adet</strong>
-                                                                    </h3></td>
-                                                            </tr>
-                                                            <tr style="border-collapse:collapse">
-                                                                <td align="left" class="es-m-txt-l"
-                                                                    style="padding:0;Margin:0;padding-top:10px"><h3
-                                                                        style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#16c0ec">
-                                                                        <strong><span style="color:#000000">Tutar:</span>&nbsp;{{ $orderProduct['total'] }}<span>&nbsp;TL</strong>
-                                                                    </h3></td>
-                                                            </tr>
-                                                        </table>
+
                                                     </td>
                                                 </tr>
                                             </table>
                                             <!--[if mso]></td></tr></table><![endif]--></td>
                                     </tr>
-                                @endforeach
+
                             </table>
                         </td>
                     </tr>
@@ -526,28 +476,17 @@
                                                                 <table border="0" cellspacing="1" cellpadding="1"
                                                                        style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:500px"
                                                                        class="cke_show_border" role="presentation">
-                                                                    <?php
-                                                                    foreach($order['orderTotals']  as $basketSubtotal){
-                                                                        if(isset($basketSubtotal['value']) && $basketSubtotal['value']>0){?>
+
                                                                     <tr style="border-collapse:collapse">
                                                                         <td style="padding:0;Margin:0"><h4
                                                                                 style="Margin:0;line-height:200%;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#333333">
-                                                                                <strong>{{ $basketSubtotal['name'] }}:</strong></h4></td>
+                                                                                <strong>Yeni Şifreniz :</strong></h4></td>
                                                                         <td style="padding:0;Margin:0;color:#16c0ec">
-                                                                            <strong>{{ $basketSubtotal['value'] }} TL</strong>
+                                                                            <strong>{{$password}}</strong>
                                                                         </td>
                                                                     </tr>
-                                                                        <?php }
-                                                                    }
-                                                                    ?>
-                                                                    <tr style="border-collapse:collapse">
-                                                                        <td style="padding:0;Margin:0"><h4
-                                                                                style="Margin:0;line-height:200%;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#333333">
-                                                                                <strong>Sipariş Toplamı:</strong></h4></td>
-                                                                        <td style="padding:0;Margin:0;color:#16c0ec">
-                                                                            <strong>{{ $order['orderTotal'] }} TL</strong>
-                                                                        </td>
-                                                                    </tr>
+
+
 
                                                                 </table>
                                                             </td>

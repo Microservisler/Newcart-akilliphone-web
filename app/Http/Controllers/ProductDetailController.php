@@ -30,6 +30,7 @@ class ProductDetailController extends Controller
                 }
                 $response = \WebService::product($productId, ['returnCategoryId'=>$productCategoryId]);
                 $data['product'] =  $response['data'];
+
                 /*if($currentCategory && $currentCategory['data']['breadcrumb']){
                     $data['breadcrumb']= $currentCategory['data']['breadcrumb'];
                 } else {
@@ -46,6 +47,7 @@ class ProductDetailController extends Controller
             }
 
         }
+
         return view('product_detail.index',$data);
     }
 

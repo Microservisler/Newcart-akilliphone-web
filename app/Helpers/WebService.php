@@ -504,7 +504,8 @@ class WebService {
     }
     public static function wecart_tall_banner(){
         $slider['status'] = 1;
-        $slider['data']['items'] = self::wecart_slider(63, [1110,120], [1110,120]);
+        $slider['data']['items'] = self::wecart_slider(63, [1110,400], [1110,400]);
+
         return $slider;
     }
 
@@ -515,7 +516,7 @@ class WebService {
     }
     public static function wecart_three_banner2(){
         $slider['status'] = 1;
-        $slider['data']['items'] = self::wecart_slider(66, [1110,400], [284,125]);
+        $slider['data']['items'] = self::wecart_slider(66, [1110,400], [1110,400]);
         return $slider;
     }
     public static function wecart_product_slider(){

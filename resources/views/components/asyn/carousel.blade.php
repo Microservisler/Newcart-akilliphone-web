@@ -12,7 +12,10 @@
                         </div>
                         <div class="product-info">
                             <div class="product-name">@{{ item.name }}</div>
-                            <template v-if="item.variants[0]">
+
+
+                            <template v-if="item.variants[0].variantOptions[0].stock > 0">
+                              <template v-if="item.variants[0]">
                                 <div class="product-price">
                                     <span>@{{ item.newPrice }}</span>
                                     <template v-if="item.variants[0].price<item.variants[0].oldPrice">
@@ -21,6 +24,26 @@
                                 </div>
                                 <template v-if="item.discountRate">
                                     <div class="product-old-price" > @{{ item.oldPrice }}</div>
+                                </template>
+
+
+
+                                </template>
+                            </template>
+                            <template v-else>
+                                <template v-if="item.variants[0]">
+                                    <div class="product-price">
+                                        <span>@{{ item.newPrice }}</span>
+                                        <template v-if="item.variants[0].price<item.variants[0].oldPrice">
+                                            <span class="discount"> %@{{ item.discountRate }} </span>
+                                        </template>
+                                    </div>
+                                    <template v-if="item.discountRate">
+                                        <div class="product-old-price" > @{{ item.oldPrice }}</div>
+                                    </template>
+
+                                    <div class="product-old-price" style="color: red;font-weight: bold" >Tükendi</div>
+
                                 </template>
                             </template>
                         </div>

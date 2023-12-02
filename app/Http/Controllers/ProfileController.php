@@ -78,8 +78,7 @@ class ProfileController extends Controller{
         if (isset(session('userInfo')['data']['favorites'])){
             $data['favorites']=session('userInfo')['data']['favorites'];
         }
-
-
+        
         return view('profile.favorites', $data);
 
 

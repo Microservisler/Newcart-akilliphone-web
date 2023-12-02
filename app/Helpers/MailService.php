@@ -5,11 +5,13 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 class MailService{
-    static function resetPassword($data){
-        if(isset($data['order']) && isset($data['order']['orderCustomer'])){
-            $to = $data['order']['orderCustomer']['email'];
+    static function resetPassword($email,$password){
+        $data['email']=$email;
+        $data['password']=$password;
+        if(isset($email)){
+            $to = $email;
             $body = view('emails.reset-password', $data);
-            $subject = 'Siparişiniz Hakkında';
+            $subject = 'Akıllı Phone Yeni Şifre';
             self::sendEmail($to, $subject, $body);
         }
     }

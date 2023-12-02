@@ -50,8 +50,9 @@
 {{--                            <a class="forgot-password" href="{{route('forgot')}}">Şifremi Unuttum</a>--}}
                         </div>
                         <div class="login-btns">
-                            <button class="login-btn" type="submit">Giriş Yap</button>
-{{--                            <a href="{{route('index')}}" class="without-login">Üye Olmadan Devam Et</a>--}}
+                            <button class="login-btn" type="submit">Giriş Yap</button>                            <a href="{{route('old.account')}}" id="popupLink">Eski Bayi Misiniz ? </a>
+
+                            {{--                            <a href="{{route('index')}}" class="without-login">Üye Olmadan Devam Et</a>--}}
                         </div>
                     </form>
                 </div>

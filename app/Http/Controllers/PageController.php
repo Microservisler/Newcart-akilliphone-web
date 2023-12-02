@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Akilliphone\MailService;
 
 class PageController extends Controller
 {
@@ -23,6 +24,10 @@ class PageController extends Controller
         }
         return view('page.404', $data);
     }
+
+
+
+
 
     public function sendEmail(Request $request)
     {
@@ -61,14 +66,33 @@ class PageController extends Controller
     public function old_account_post(Request $request)
     {
         $data['main_menu'] =  \WebService::home_main_menu();
-        if($request){
-         session()->flash('flash-success', ['Yeni Şifre Mailinize Gönderildi', 'Yönlendiriliyorsunuz.']);
-            return redirect()->route('old.account');
-        }else{
-         session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Tekrar deneyiniz.']);
 
-            return back()->withInput();
+
+            $email= $request->input('username');
+
+        $karakterler = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}[]|;:,.<>?';
+        $password = '';
+        $karakterSayisi = strlen($karakterler);
+
+        for ($i = 0; $i < 12; $i++) {
+            $rastgeleIndex = rand(0, $karakterSayisi - 1);
+            $password .= $karakterler[$rastgeleIndex];
         }
+
+           $mail= MailService::resetPassword($email,$password);
+
+
+           return redirect()->route('old.account');
+
+
+//        if($body){
+//         session()->flash('flash-success', ['Yeni Şifre Mailinize Gönderildi', 'Yönlendiriliyorsunuz.']);
+//
+//        }else{
+//         session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Tekrar deneyiniz.']);
+//
+//            return back()->withInput();
+//        }
 
 
     }

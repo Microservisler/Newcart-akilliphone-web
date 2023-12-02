@@ -234,7 +234,9 @@
                         <div class="tabDetails" style="display:block;" >
                             <div class="product-items jscroll" id="jscroll">
                                 <div class="product-wrapper ">
+
                                     <template v-for="item in datas.items" >
+                                        <template v-if="item.variants[0].variantOptions[0].stock > 0">
                                         <div class="product-item" >
                                             <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">
                                                 <div class="product-image">
@@ -250,6 +252,7 @@
                                             </a>
                                         </div>
                                     </template>
+                                   </template>
                                 </div>
                                 <div class="next jscroll-next-parent" style="display: none;"><a id="jscroll-next" class="jscroll-next" href="https://api.duzzona.site/products">Sonraki</a></div>
                                 <div class="result-wrapper" >@{{ error }}</div>
