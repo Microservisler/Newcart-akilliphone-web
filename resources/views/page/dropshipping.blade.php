@@ -22,8 +22,8 @@
             </div>
         </div>
         <div class="join-us">
-            <a href=""><img class="img-fluid" src="{{ url('assets/images/bayimiz.svg') }}" alt="Güvenli Alışveriş"></a>
-            <a href=""><img class="img-fluid" src="{{ url('assets/images/alisveris.svg') }}" alt="Bayimiz Olun"></a>
+            <a href="{{route('bayi.register')}}"><img class="img-fluid" src="{{ url('assets/images/bayimiz.svg') }}" alt="Bayimiz Olun"></a>
+            <a href="https://www.eticaret.gov.tr/siteprofil/6055208760302322/wwwakilliphonecom"><img class="img-fluid" src="{{ url('assets/images/alisveris.svg') }}" alt="Güvenli Alışveriş"></a>
         </div>
         <div class="body-dropshipping">
             <div class="container">

@@ -50,7 +50,7 @@
 
     <x-asyn.carousel :sectionId="'section3'" :title="'Ev Yaşam'" :slug="'/reyonlar/ev-yasam-327?category=78'" />
     <x-asyn.carousel :sectionId="'section4'" :title="'Şarj Aletleri'" :slug="'/reyonlar/sarj-aletleri-203?category=103'" />
-    <x-asyn.carousel :sectionId="'section5'" :title="'Dönüştürücüler'" :slug="'/kablolar-ve-donusturuculer-209?category=89'" />
+    <x-asyn.carousel :sectionId="'section5'" :title="'Dönüştürücüler'" :slug="'/reyonlar/kablolar-ve-donusturuculer-209?category=89'" />
     <x-asyn.carousel :sectionId="'section6'" :title="'Ses Sistemleri'" :slug="'/reyonlar/ses-sistemleri-157?category=112'" />
     <x-asyn.carousel :sectionId="'section7'" :title="'Kişisel Ürünler'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />
 

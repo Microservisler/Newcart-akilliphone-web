@@ -4,8 +4,8 @@
         </div>
         <div class="product-asyn-slider owl-carousel owl-theme" >
             <template v-for="item in sections.{{ $sectionId }}">
-                <template v-if="item.variants[0].variantOptions[0].stock > 0">
 
+                <template v-if="item.variants[0].variantOptions[0].stock > 0">
                  <div class="product-item">
                     <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">
                         <div class="product-image">
@@ -14,9 +14,6 @@
                         </div>
                         <div class="product-info">
                             <div class="product-name">@{{ item.name }}</div>
-
-
-
 
                                 <div class="product-price">
                                     <span>@{{ item.newPrice }}</span>
@@ -30,7 +27,7 @@
 
 
                         </div>
-                    </a>
+                       </a>
                      </div>
                 </template>
 
@@ -40,16 +37,12 @@
                             <div class="product-image" style="position: relative" >
 
                                 <img class="lazyload" style="height:160px;width: 160px; opacity: 0.5;" alt="product image"  :src="item.thumb">
-                                <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 5px;right: 5px;opacity: 0.5"> TÜKENDİ </span>
+                                <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 0;left:0;"> <img src="{{ url('assets/images/tukendi.png') }}" style="border: none"> </span>
                             </div>
 
                             <div class="product-info" style="opacity: 0.6">
 
                                 <div class="product-name">@{{ item.name }}</div>
-
-
-
-
                                 <div class="product-price" style="opacity: 0.6">
                                     <span>@{{ item.newPrice }}</span>
                                     <template v-if="item.variants[0].price<item.variants[0].oldPrice">
@@ -66,8 +59,7 @@
                     </div>
                 </template>
 
-
-            </template>
+             </template>
         </div>
     </div>
 </section>

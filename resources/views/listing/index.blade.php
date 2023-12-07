@@ -256,14 +256,14 @@
 
                                     </template>
                                         <template v-else>
-                                            <div class="product-item"  style="opacity: 0.5">
+                                            <div class="product-item"  >
                                                 <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">
                                                     <div class="product-image"  style="position: relative">
-                                                        <img class="lazyload" width="160" height="160" :src="item.thumb" alt="product image">
-                                                        <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 5px;right: 5px;opacity: 0.5"> TÜKENDİ </span>
+                                                        <img class="lazyload" width="160" height="160" :src="item.thumb" alt="product image" style="opacity: 0.5">
+                                                        <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 0;left:0;"> <img src="{{ url('assets/images/tukendi.png') }}" style="border: none"> </span>
 
                                                     </div>
-                                                    <div class="product-info">
+                                                    <div class="product-info" style="opacity: 0.5">
                                                         <div class="product-name">
                                                             <span v-text="item.name"></span>
                                                         </div>

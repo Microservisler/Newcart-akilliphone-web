@@ -32,7 +32,7 @@
                 <div class="about-content ">
                     <div class="title">Bayimiz<span>&nbsp;Olun</span></div>
                     <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo non felis ut feugiat. Sed nec nisi sit amet augue tempor malesuada eget non orci. Maecenas at neque vestibulum, varius nunc non, luctus augue. Duis </div>
-                    <div class="btn" ><a href="#">Bayilik Başvurusu</a></div>
+                    <div class="btn" ><a href="{{route('bayi.register')}}">Bayilik Başvurusu</a></div>
                 </div>
             </div>
             <div class="c_row" >
