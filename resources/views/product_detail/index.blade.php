@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 @endsection
 @section('content')
+
     <div id="app-basic">
         <section class="product-details">
             <div class="container">
@@ -100,71 +101,6 @@
                                     <div class="product-price " v-if="variant.price" v-text="variant.price+'TL'"> </div>
                                     <div class="product-oldprice" v-if="variant.oldPrice>variant.price" v-text="variant.oldPrice+'TL'"> </div>
                                     <div class="discount" v-if="variant.oldPrice>variant.price" v-text="'%'+variant.product.discountRate" > </div>
-                                    <!-- <div class="buy-via-app">
-                                      <svg id="Group_5248" data-name="Group 5248" xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="13.557" height="13.553"
-                                        viewBox="0 0 13.557 13.553">
-                                        <defs>
-                                          <clipPath id="clip-path">
-                                            <rect id="Rectangle_2058" data-name="Rectangle 2058" width="13.557" height="13.553"
-                                              fill="#cecece" />
-                                          </clipPath>
-                                        </defs>
-                                        <g id="Group_5247" data-name="Group 5247" clip-path="url(#clip-path)">
-                                          <path id="Path_10654" data-name="Path 10654"
-                                            d="M5.865,0H7.81V.226q0,3.208,0,6.416a.982.982,0,0,1-1.093,1.1H.07V5.814H5.865Z"
-                                            transform="translate(-0.067)" fill="#cecece" />
-                                          <path id="Path_10655" data-name="Path 10655"
-                                            d="M143.886,149.643h5.794V143.85h1.944v.212q0,3.218,0,6.436a.979.979,0,0,1-1.085,1.086h-6.652Z"
-                                            transform="translate(-138.066 -138.032)" fill="#cecece" />
-                                          <path id="Path_10656" data-name="Path 10656" d="M0,.028H4.5v4.5H0Zm1.3,3.2H3.21V1.318H1.3Z"
-                                            transform="translate(0 -0.027)" fill="#cecece" />
-                                          <path id="Path_10657" data-name="Path 10657"
-                                            d="M228.131,4.636h-4.5V.14h4.5Zm-3.2-1.3h1.915V1.426h-1.915Z"
-                                            transform="translate(-214.588 -0.134)" fill="#cecece" />
-                                          <path id="Path_10658" data-name="Path 10658"
-                                            d="M4.681,228.168H.184v-4.5h4.5Zm-3.207-1.3H3.387v-1.912H1.474Z"
-                                            transform="translate(-0.177 -214.626)" fill="#cecece" />
-                                          <rect id="Rectangle_2055" data-name="Rectangle 2055" width="1.913" height="1.913"
-                                            transform="translate(9.051 5.817)" fill="#cecece" />
-                                          <rect id="Rectangle_2056" data-name="Rectangle 2056" width="1.914" height="1.912"
-                                            transform="translate(5.819 9.041)" fill="#cecece" />
-                                          <rect id="Rectangle_2057" data-name="Rectangle 2057" width="1.913" height="1.912"
-                                            transform="translate(9.046 9.048)" fill="#cecece" />
-                                        </g>
-                                      </svg>
-                                      Uygulama ile Satın Al
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="6.18" height="3.559" viewBox="0 0 6.18 3.559">
-                                        <g id="Group_5251" data-name="Group 5251" transform="translate(-1465.81 -446.914)">
-                                          <path id="caret-down_1_" data-name="caret-down (1)"
-                                            d="M5.881,9h5.245a.469.469,0,0,1,.328.8L8.837,12.42a.469.469,0,0,1-.666,0L5.553,9.8A.469.469,0,0,1,5.881,9Z"
-                                            transform="translate(1460.396 437.914)" />
-                                        </g>
-                                      </svg>
-                                      <div class="qrcode-area row row-cols-1">
-                                        <div class="col">
-                                          <div class="row d-flex align-items-center">
-                                            <div class="col-5 text-center p-0" style="margin-top: 12px;padding-right:6px !important;">QR
-                                              Kodu Okutarak <br> Direkt Satın Alabilirsiniz.
-                                              <img class="qr-code" src="./svg/product-detail/qr_code.svg" alt="">
-                                            </div>
-                                            <div class="col-7 pe-0" style="padding-left: 12px;border-left: 1px solid #EBEBEB;"><span
-                                                style="display: inline-block;margin-bottom: 27px;">Adımları Takip Edin.</span>
-                                              <ul class="list-unstyled m-0">
-                                                <li>1. Google veya Apple Store’dan
-                                                  Uygulamamızı İndirin.</li>
-                                                <li>2. Uygulama’dan satın alın
-                                                  Ve indirimden yararlanın!</li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="col">İndirimli Satın Al!
-                                          <img style="margin-left: 30px;" src="./svg/product-detail/app_store.svg" alt="">
-                                          <img style="margin-left: 11px;" src="./svg/product-detail/google_play.svg" alt="">
-                                        </div>
-                                      </div>
-                                    </div> -->
                                 </div>
 
 
@@ -193,7 +129,26 @@
                                         <input id="product-qty" class="product-qty" type="number" name="product-qty" min="1" max="10" value="1">
                                         <button class="qty-count qty-count--add" data-action="add" type="button">+</button>
                                     </div>
-                                    <div class="addtocart" ><button style="cursor:pointer;">Sepete Ekle</button></div>
+
+
+                                    <template v-for="stock in variant.variantOptions">
+                                        <template v-if="stock.stock > 0">
+
+                                            <div class="addtocart" ><button style="cursor:pointer;">Sepete Ekle</button></div>
+
+                                        </template>
+                                        <template v-else>
+
+
+                                            <div class="qty-input" style="cursor: not-allowed; background-color: #ECECEC" >Tükendi</div>
+
+
+                                        </template>
+
+
+
+                                    </template>
+
                                     <div class="iconcart">
                                         <a class="favorite-btn" id="favorite-btn" style="cursor:pointer;"><svg xmlns="http://www.w3.org/2000/svg" width="16.5" height="16.5"
                                                                                                                viewBox="0 0 16.5 16.5">
