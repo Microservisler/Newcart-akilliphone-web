@@ -255,17 +255,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pay-transfer">
-                                <div class="creditcard-text">
-                                    <div class="custom_radio">
-                                        <input type="radio" id="transfer" name="paymentType" value="banktransfer">
-                                        <label class="title" for="transfer"><a href="{{ $iyzico_link }}"> Kredi Kartı İle Taksitli Ödeme</a></label>
+                            @if($iyzico_link)
+                                <div class="pay-transfer">
+                                    <div class="creditcard-text">
+                                        <div class="custom_radio">
+                                            <input type="radio" id="transfer" name="paymentType" value="banktransfer">
+                                            <label class="title" for="transfer"><a href="{{ $iyzico_link }}"> Kredi Kartı İle Taksitli Ödeme</a></label>
+                                        </div>
+                                    </div>
+                                    <div class="pay-logo">
+                                        <img src="" alt="">
                                     </div>
                                 </div>
-                                <div class="pay-logo">
-                                    <img src="" alt="">
-                                </div>
-                            </div>
+                            @endif
                             <div class="pay-transfer">
                                 <div class="creditcard-text">
                                     <div class="custom_radio">

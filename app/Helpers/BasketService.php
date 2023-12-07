@@ -338,6 +338,7 @@ class BasketService{
             'taxNumber' => isset($addresss['taxNumber'])?$addresss['taxNumber']:null,
             'invoiceType' => $invoiceType,
         ];
+
         self::setBasket($basket);
     }
 
