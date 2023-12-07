@@ -6,7 +6,7 @@ if($items){
 
 foreach($items as $item){
     if($item['orderNumber']!=$index) continue; ?>
-<section class="banner-area section-padding">
+<section class="banner-area section-padding" id="banner-area">
     <div class="container">
         <a href="{{$item['slug']}}">
             <img class="lazyload fluid-img" data-src="{{ $item['desktopImage'] }}"

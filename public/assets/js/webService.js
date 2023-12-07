@@ -65,7 +65,7 @@ var webService = {
                 response.data.items[index] = webService._prepareItem(response.data.items[index]);
             });
             app.sections[this.target]=response.data.items;
-            console.log(response,this.target);
+            console.log(app.sections);
             app.target = this.target;
 
         }).fail(function(xhr, status, error) {
@@ -93,7 +93,6 @@ var webService = {
                 "Authorization" :'Bearer '+token,
             }
         };
-
         $('#jscroll-next').attr('href', url);
         if (productsAjax !=null){
             if (productsAjax.readyState > 0 && productsAjax.readyState < 4) return false;
@@ -102,9 +101,10 @@ var webService = {
             app.datas.items = [];
         }
         productsAjax = $.ajax(settings).done(function (response) {
+
             $(response.data.items).each(function (index){
                 response.data.items[index] = webService._prepareItem(response.data.items[index]);
-                console.log(response.data.items[index])
+
             });
             let nextPageUrl = response.data.nextPageUrl;
             if(response.data.page*1>=response.data.totalPage*1){

@@ -268,34 +268,59 @@
                 </a>
             </div>
 
-            <div class="toggle-menu bottom-nav-link">
-                <svg id="Component_6_1" data-name="Component 6 – 1" xmlns="http://www.w3.org/2000/svg" width="5" height="24" viewBox="0 0 5 24">
-                    <g id="menu-dots-vertical" transform="translate(-10 0)">
-                        <circle id="Ellipse_117" data-name="Ellipse 117" cx="2" cy="2" r="2" transform="translate(10)" fill="#c3c3c3"/>
-                        <circle id="Ellipse_118" data-name="Ellipse 118" cx="2" cy="2" r="2" transform="translate(10 10)" fill="#c3c3c3"/>
-                        <circle id="Ellipse_119" data-name="Ellipse 119" cx="2" cy="2" r="2" transform="translate(10 20)" fill="#c3c3c3"/>
-                    </g>
-                    <g id="menu-dots-vertical_1_" data-name="menu-dots-vertical (1)" transform="translate(-202.667 0)" opacity="0.005">
-                        <circle id="Ellipse_120" data-name="Ellipse 120" cx="2.5" cy="2.5" r="2.5" transform="translate(202.667 0)" fill="#1a9afc"/>
-                        <circle id="Ellipse_121" data-name="Ellipse 121" cx="2.5" cy="2.5" r="2.5" transform="translate(202.667 9.5)" fill="#1a9afc"/>
-                        <circle id="Ellipse_122" data-name="Ellipse 122" cx="2.5" cy="2.5" r="2.5" transform="translate(202.667 19)" fill="#1a9afc"/>
-                    </g>
-                </svg>
-                <span style="visibility:hidden;">#</span>
-            </div>
+{{--            <div class="toggle-menu bottom-nav-link">--}}
+{{--                <svg id="Component_6_1" data-name="Component 6 – 1" xmlns="http://www.w3.org/2000/svg" width="5" height="24" viewBox="0 0 5 24">--}}
+{{--                    <g id="menu-dots-vertical" transform="translate(-10 0)">--}}
+{{--                        <circle id="Ellipse_117" data-name="Ellipse 117" cx="2" cy="2" r="2" transform="translate(10)" fill="#c3c3c3"/>--}}
+{{--                        <circle id="Ellipse_118" data-name="Ellipse 118" cx="2" cy="2" r="2" transform="translate(10 10)" fill="#c3c3c3"/>--}}
+{{--                        <circle id="Ellipse_119" data-name="Ellipse 119" cx="2" cy="2" r="2" transform="translate(10 20)" fill="#c3c3c3"/>--}}
+{{--                    </g>--}}
+{{--                    <g id="menu-dots-vertical_1_" data-name="menu-dots-vertical (1)" transform="translate(-202.667 0)" opacity="0.005">--}}
+{{--                        <circle id="Ellipse_120" data-name="Ellipse 120" cx="2.5" cy="2.5" r="2.5" transform="translate(202.667 0)" fill="#1a9afc"/>--}}
+{{--                        <circle id="Ellipse_121" data-name="Ellipse 121" cx="2.5" cy="2.5" r="2.5" transform="translate(202.667 9.5)" fill="#1a9afc"/>--}}
+{{--                        <circle id="Ellipse_122" data-name="Ellipse 122" cx="2.5" cy="2.5" r="2.5" transform="translate(202.667 19)" fill="#1a9afc"/>--}}
+{{--                    </g>--}}
+{{--                </svg>--}}
+{{--                <span style="visibility:hidden;">#</span>--}}
+{{--            </div>--}}
 
         </div>
         <!-- Ikonlar -->
         <!-- Mega-menu -->
-        <div class="menu-brands">
+
+            <div class="menu-brands">
             <div class="list-brands">
                 <span style="font-size:21px;padding:0 0 2rem 0rem;font-weight:bold;display: block;">Markalar</span>
                 <ul class="menu level-1">
-                    <li><a href="">Apple</a></li>
-                    <li><a href="">Huawei</a></li>
-                    <li><a href="">Xiaomi</a></li>
-                    <li><a href="">Ezere</a></li>
-                    <li><a href="">Baseus</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=1')}}">Baseus</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=2')}}">Puluz</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=3')}}">Kuulaa</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=4')}}">Ezere</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=5')}}">Plextone</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=6')}}">Ally</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=7')}}">Floveme</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=8')}}">Mijobs</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=9')}}">GOR</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=10')}}">DUX DUCİS</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=11')}}">USAMS</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=12')}}">Borofone</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=13')}}">Memo</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=14')}}">Hxsj</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=15')}}">Best</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=16')}}">Jakemy</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=17')}}">USLİON</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=18')}}">NORTH BAYOU</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=19')}}">Haweel</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=20')}}">Jiafa</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=21')}}">Hoco</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=22')}}">Duzzona</a></li>
+                    <li> <a href="{{url('/reyonlar?brand=23')}}">Diğer</a></li>
+                    <li> </li>
+                    <li> </li>
+                    <li> </li>
+                    <li> </li>
+                    <li> </li>
+                    <li> </li>
                 </ul>
             </div>
         </div>
@@ -305,62 +330,44 @@
             <div class="list-wrapper">
                 <span style="font-size:21px;padding:0 0 2rem 0rem;font-weight:bold;display: block;">Kategoriler</span>
                 <ul class="menu level-1">
-                    <li>
-                        <a href="" class="nested">Aksesuarlar </a>
-                        <ul class="sub-menu level-2">
-                            <li>
-                                <a href="" class="nested">Araç Aksesuarları </a>
-                                <ul class="sub-menu level-3">
-                                    <li><a href="">Araç Tutucular</a></li>
-                                    <li><a href="">Araç Bakım Ürünleri</a></li>
-                                    <li><a href="">Aydınlatma</a></li>
-                                    <li><a href="">Akıllı Araç Ürünleri</a></li>
-                                    <li><a href="">Ses & Multimedya</a></li>
+
+                    @foreach ($items as $item)
+                        @if($item["childs"]!=[])
+                        <li>
+                            <a href="" class="nested">{{$item["name"]}}</a>
+
+                                <ul class="sub-menu level-2">
+                                    @foreach ($item["childs"] as $child)
+
+                                        @if($child["childs"]!=[])
+                                            <li>
+                                                <a href="" class="nested">{{$child["name"]}} </a>
+                                                <ul class="sub-menu level-3">
+
+                                                    @foreach($child["childs"] as $lastChild)
+
+                                                        <li><a href="{{ getCategoryUrl($lastChild) }}">{{$lastChild["name"]}}</a></li>
+
+                                                    @endforeach
+
+                                                </ul>
+                                            </li>
+                                        @else
+                                            <li><a href="{{ getCategoryUrl($child) }}">{{$child["name"]}}</a></li>
+                                        @endif
+
+
+                                    @endforeach
+
                                 </ul>
-                            </li>
-                            <li><a href="">Selfie ve Standlar</a></li>
-                            <li><a href="">Stylus Kalemler</a></li>
-                            <li><a href="">Oyun Aksesuarları</a></li>
-                            <li><a href="">Bluetooth Klavye</a></li>
-                            <li><a href="">Universal Telefon Kılıfları</a></li>
-                            <li><a href="">Ekran Koruyucular</a></li>
-                            <li><a href="">Kılıflar</a></li>
-                            <li><a href="">Silikon Kılıflar</a></li>
-                            <li><a href="">İnce Spada Kılıflar</a></li>
-                        </ul>
-                    </li>
 
-                    <li><a href="" class="nested">Yedek Parçalar</a>
-                        <ul class="sub-menu level-2">
-                            <li><a href="">Item 1</a></li>
-                        </ul>
-                    </li>
 
-                    <li>
-                        <a href="" class="nested">Şarj Aletleri</a>
-                        <ul class="sub-menu level-2">
-                            <li><a href="">Item 1</a></li>
-                            <li><a href="" class="nested">Item 1</a>
-                                <ul class="sub-menu level-3">
-                                    <li><a href="">Item 1</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                        </li>
+                        @else
+                            <li><a href="{{ getCategoryUrl($item) }}">{{$item["name"]}}</a></li>
+                        @endif
 
-                    <li>
-                        <a href="" class="nested">Kablo Dönüştürücü</a>
-                        <ul class="sub-menu level-2">
-                            <li>
-                                <a href="">Item 1</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li><a href="">Akıllı Ürünler</a></li>
-                    <li><a href="">Tamir Malzemeleri</a></li>
-                    <li><a href="">Ses & Görüntü</a></li>
-                    <li><a href="">Diğer</a></li>
+                    @endforeach
 
                 </ul>
             </div>

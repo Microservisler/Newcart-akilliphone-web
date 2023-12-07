@@ -107,6 +107,7 @@
 
                                 <ul id="markalar">
                                     @foreach ($filterable['brands'] as $item)
+
                                         <li>
                                             <label for="{{$item['name']}}">
                                                 <input @if($item['id']==$selected_brand) checked @endif type="checkbox" class="option-input forfilter brands " id="{{$item['name']}}" value="{{$item['id']}}" >
@@ -237,6 +238,7 @@
 
                                     <template v-for="item in datas.items" >
                                         <template v-if="item.variants[0].variantOptions[0].stock > 0">
+
                                         <div class="product-item" >
                                             <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">
                                                 <div class="product-image">
@@ -251,7 +253,30 @@
                                                 </div>
                                             </a>
                                         </div>
+
                                     </template>
+                                        <template v-else>
+                                            <div class="product-item"  style="opacity: 0.5">
+                                                <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">
+                                                    <div class="product-image"  style="position: relative">
+                                                        <img class="lazyload" width="160" height="160" :src="item.thumb" alt="product image">
+                                                        <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 5px;right: 5px;opacity: 0.5"> TÜKENDİ </span>
+
+                                                    </div>
+                                                    <div class="product-info">
+                                                        <div class="product-name">
+                                                            <span v-text="item.name"></span>
+                                                        </div>
+                                                        <div class="product-price" v-text="item.newPrice"></div>
+                                                        <div class="product-old-price" v-text="item.oldPrice"></div>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                        </template>
+
+
+
                                    </template>
                                 </div>
                                 <div class="next jscroll-next-parent" style="display: none;"><a id="jscroll-next" class="jscroll-next" href="https://api.duzzona.site/products">Sonraki</a></div>
@@ -465,14 +490,14 @@
                 debug: false,
                 padding:500,
                 callback: function (){
-                    /*
-                    console.log('loaded');
-                    if(ajax_page>0) window.history.pushState(null, 'Title', updateURLParameter(base_url, 'page', (ajax_page*1)+1) );
-                    if(base_url.includes('?')){
-                    } else {
-                        // window.history.pushState(null, 'Title',  base_url + '?page=' + ajax_page);
-                    }
-                    */
+
+                    // console.log('loaded');
+                    // if(ajax_page>0) window.history.pushState(null, 'Title', updateURLParameter(base_url, 'page', (ajax_page*1)+1) );
+                    // if(base_url.includes('?')){
+                    // } else {
+                    //      window.history.pushState(null, 'Title',  base_url + '?page=' + ajax_page);
+                    // }
+
                 }
             });
             $("img.lazy").lazyload();

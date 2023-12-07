@@ -13,7 +13,7 @@
                 if(!$user){
 
                     echo '<div class="login-btn"> <a href="/giris-yap">
-                    <img src="' . url("assets/images/login.png") . '" alt="Akıllıphone logo" style="width:45px;margin-top:5px">
+                    <img src="' . url("assets/images/login2.png") . '" alt="Akıllıphone logo" style="width:32px;margin-top:5px">
             </a> </div>';
 
                 }
@@ -21,19 +21,11 @@
 
                     $ad= $user['data']['firstName'];
                     $soyad=$user['data']['lastName'];
-                    $sonuc = $ad[0]." ".$soyad[0];
-
-
-                    session()->put('userNameIcon', strtoupper($sonuc));
+                    $sonuc = $ad[0];
                     echo '  <div class="mobile-menu">
-                    <a href="#">
-                        <img src="{{ url("assets/images/icon.svg") }}">
-                    </a>
-                    <a href="#">
-                        <img src="{{ url("assets/images/notification.svg") }}">
-                    </a>
+
                     <div class="user-info">
-                        <a href=""><span>MT</span></a>
+                        <a href="'.route("profile.orders").'"><span>'.$sonuc.'</span></a>
                     </div>
                 </div>';
                 }
@@ -41,6 +33,7 @@
 
 
                 ?>
+
 
             </div>
             <div class="navbar-bottom">

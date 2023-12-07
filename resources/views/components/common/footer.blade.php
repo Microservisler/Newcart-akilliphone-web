@@ -75,7 +75,7 @@
             </div>
             <div class="col">
                 <div class="footer-category">
-                    <div class="category-title">Özel Sayfalar</div>
+                    <div class="category-title">Markalar</div>
                     <ul>
                         <li> <a href="{{url('/reyonlar?brand=2217')}}">Puluz</a></li>
                         <li> <a href="{{url('/reyonlar?brand=2218')}}">Kuula</a></li>
@@ -203,7 +203,7 @@
                 Aklınıza takılan bir soru mu var?
             </div>
             <div class="call-us" >Çözüm Merkezimizi arayın</div>
-            <a href="tel:08504609070">0850 460 9070</a>
+            <a href="tel:08504609070">0850 520 0880</a>
         </div>
         <div class="footer-links">
             <div class="col-6">
@@ -213,18 +213,18 @@
                         <img class="arrow-down" src="{{ url('assets/images/right-arrow.svg') }}">
                     </div>
                     <ul>
-                        <li><a href="#">Hakkımızda</a></li>
-                        <li><a href="#">Bizden Haberler</a></li>
-                        <li><a href="#">İletişim</a></li>
-                        <li><a href="#">İşlem Rehberi</a></li>
-                        <li><a href="#">Hesabım</a></li>
-                        <li><a href="#">Yardım</a></li>
-                        <li><a href="#">Mobil Uygulamalar</a></li>
-                        <li><a href="#">Bilgi Toplumu Hizmetleri</a></li>
-                        <li><a href="#">Güvenli Alışveriş Kılavuzu</a></li>
-                        <li><a href="#">Kişisel Verilerin Korunması</a></li>
-                        <li><a href="#">İş Sağlığı ve Güvenliği Çevre</a></li>
-                        <li><a href="#">Politikamız</a></li>
+                        <li><a href="{{url('/sayfa/i/hakkimizda')}}">Hakkımızda</a></li>
+                        {{--                        <li><a href="">Bizden Haberler</a></li>--}}
+                        <li><a href="{{url('/sayfa/i/iletisim')}}">İletişim</a></li>
+                        {{--                        <li><a href="#">İşlem Rehberi</a></li>--}}
+                        {{--                        <li><a href="#">Hesabım</a></li>--}}
+                        {{--                        <li><a href="#">Yardım</a></li>--}}
+                        {{--                        <li><a href="#">Mobil Uygulamalar</a></li>--}}
+                        <li><a href="{{url('/sayfa/i/bilgi-toplumu-hizmetleri')}}">Bilgi Toplumu Hizmetleri</a></li>
+                        <li><a href="{{url('/sayfa/i/gizlilik-politikasi')}}">Gizlilik Politikası</a></li>
+                        <li><a href="{{url('/sayfa/i/iade-ve-degisim')}}">İade ve Değişim</a></li>
+                        <li><a href="{{url('/sayfa/i/islem-rehberi')}}">İşlem Rehberi</a></li>
+                        <li><a href="{{url('/sayfa/i/mesafeli-satis-sozlesmesi')}}">Mesafeli Satış Sözleşmesi</a></li>
                     </ul>
                 </div>
             </div>
@@ -235,43 +235,51 @@
                         <img class="arrow-down" src="{{ url('assets/images/right-arrow.svg') }}">
                     </div>
                     <ul>
-                        <li><a href="#">Aksesuarlar</a></li>
-                        <li><a href="#">Yedek parçalar</a></li>
-                        <li><a href="#">Şarj Aletleri</a></li>
-                        <li><a href="#">Kablolar ve Dönüştürücüler</a></li>
-                        <li><a href="#">Giyilebilir Aksesuarlar</a></li>
-                        <li><a href="#">Tamir Malzemeleri</a></li>
-                        <li><a href="#">Ses Sistemleri</a></li>
-                        <li><a href="#">Diğer Ürünler</a></li>
+                        <li> <a href="{{url('/reyonlar/ev-yasam-327?category=78')}}">Ev Yaşam</a></li>
+                        <li> <a href="{{url('/reyonlar/bluetooth-kulaklik-256?category=115')}}">Bluetooth Kulaklık</a></li>
+                        <li> <a href="{{url('/reyonlar/speaker-hoparlor-ses-bombasi-257?category=119')}}">Ses Bombası</a></li>
+                        <li> <a href="{{url('/reyonlar/telefon-kiliflari-156?category=48')}}">Telefon Kılıfları</a></li>
+                        <li> <a href="{{url('/reyonlar/usb-type-c-kablo-255?category=102')}}">Type C Kablo</a></li>
+                        <li> <a href="{{url('/reyonlar/arac-ici-telefon-tutucu-213?category=3')}}">Araç Telefon Tutucu </a></li>
+                        <li> <a href="{{url('/reyonlar/tablet-kiliflari-221?category=44')}}">Tablet Kılıfı</a></li>
+                        <li> <a href="{{url('/reyonlar/kablosuz-sarj-aletleri-270?category=106')}}">Kablosuz Şarj Aletleri</a></li>
+                        <li> <a href="{{url('/reyonlar/tamir-setleri-192?category=136')}}">Telefon Tamir Seti</a></li>
+                        <li> <a href="{{url('/reyonlar/oyun-aksesuarlari-321?category=33')}}">Oyun Aksesuarları</a></li>
+                        <li> <a href="{{url('/reyonlar/kisisel-bakim-337?category=75')}}">Kişisel Bakım</a></li>
                     </ul>
                 </div>
             </div>
+{{--            <div class="col-6">--}}
+{{--                <div class="footer-category">--}}
+{{--                    <div class="category-title">--}}
+{{--                        Ödeme--}}
+{{--                        <img class="arrow-down" src="{{ url('assets/images/right-arrow.svg') }}">--}}
+{{--                    </div>--}}
+{{--                    <ul>--}}
+{{--                        <li><a href="#">Ödeme Seçenekleri</a></li>--}}
+{{--                        <li><a href="#">Banka Kampanyaları</a></li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="col-6">
                 <div class="footer-category">
                     <div class="category-title">
-                        Ödeme
+                        Markalar
                         <img class="arrow-down" src="{{ url('assets/images/right-arrow.svg') }}">
                     </div>
                     <ul>
-                        <li><a href="#">Ödeme Seçenekleri</a></li>
-                        <li><a href="#">Banka Kampanyaları</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="footer-category">
-                    <div class="category-title">
-                        Özel Sayfalar
-                        <img class="arrow-down" src="{{ url('assets/images/right-arrow.svg') }}">
-                    </div>
-                    <ul>
-                        <li><a href="#">Apple</a></li>
-                        <li><a href="#">Huawei</a></li>
-                        <li><a href="#">Xiaomi</a></li>
-                        <li><a href="#">Ezere</a></li>
-                        <li><a href="#">Usams</a></li>
-                        <li><a href="#">Baseus</a></li>
-                        <li><a href="#">North Bayaou</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2217')}}">Puluz</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2218')}}">Kuula</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2219')}}">Ezere</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2233')}}">North Bayaou</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2226')}}">Usams</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2224')}}">Gor</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2228')}}">Memo</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2225')}}">Dux Ducis</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2220')}}">Plextone</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2222')}}">Floveme</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2223')}}">Mijobs</a></li>
+                        <li> <a href="{{url('/reyonlar?brand=2234')}}">Haweel</a></li>
                     </ul>
                 </div>
             </div>

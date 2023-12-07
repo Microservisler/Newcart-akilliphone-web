@@ -16,9 +16,11 @@
                     <div class="profile-infos">
                         <div class="top">
                             <div class="title">Yorumlarım</div>
-                            <div>3 Yorum</div>
+                            <div>{{count($user_data['reviews'])}} Yorum</div>
                         </div>
                         <div class="comment-list">
+                            @if(isset($user_data['reviews']))
+                                @foreach($user_data['reviews'] as $reviews)
                             <div class="comment">
                                 <div class="comment-header">
                                     <div class="comment-header-top">
@@ -40,6 +42,9 @@
                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam suscipit dolorem assumenda itaque! Voluptatum repellendus a neque, nihil delectus vitae!
                                 </div>
                             </div>
+                                @endforeach
+                            @endif
+
                         </div>
                     </div>
                 </div>

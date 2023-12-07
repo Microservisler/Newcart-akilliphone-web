@@ -73,5 +73,16 @@ $user=session('userInfo');
                       transform="translate(11.054 10.947) rotate(180)" opacity="0.492" />
             </svg>
         </a>
+        <a href="{{ route('logout') }}"  class="left-section" style="
+    background-color: #1a9afc;
+    color: white;
+">
+            <div class="left-section-title">
+
+             Çıkış Yap
+            </div>
+
+        </a>
+
     </div>
 </div>

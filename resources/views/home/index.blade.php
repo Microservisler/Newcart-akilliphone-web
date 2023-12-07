@@ -84,6 +84,20 @@
             }
         }).mount('#app-basic');
 
+        window.addEventListener('scroll', function() {
+            var banner = document.getElementById('banner-area');
+            var windowWidth = window.innerWidth; // Tarayıcı penceresinin genişliği
+
+            var horizontalThreshold = 800; // Yatay eşik değeri
+
+            // Tarayıcı genişliği eşik değerini aştığında kontrol et
+            if (windowWidth > horizontalThreshold) {
+                banner.style.display = 'block';
+            } else {
+                banner.style.display = 'none';
+            }
+        });
+
 
         webService.getSectionProducts('products?offset=12&page=1&section=new_arrivals', 'new_product');
         webService.getSectionProducts('products?offset=12&page=1&section=most_ordered', 'best_sold');
@@ -99,5 +113,9 @@
         webService.getSectionProducts('products?cat=112,113,115,119,117,122,118,114,121,116,120&sort=newly&orderby=desc&offset=12', 'section6');
         webService.getSectionProducts('products?cat=84&sort=newly&orderby=desc&offset=12', 'section7');
         lazyload();
+
+
+
+
     </script>
 @endsection

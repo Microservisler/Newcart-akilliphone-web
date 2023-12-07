@@ -80,8 +80,6 @@ input {
   font-weight: 600;
   justify-content: center;
 }
-
-}
 .mobile-header {
   position: relative;
   z-index: 99999;

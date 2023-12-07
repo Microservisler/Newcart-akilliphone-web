@@ -31,7 +31,7 @@ class UserToken
 
 
         } else {
-            $userToken=\Webservice::getAuth();
+            $userToken=\Webservice::admin_token();
             if($userToken===null){
             die("boş");
             }

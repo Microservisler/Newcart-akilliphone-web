@@ -34,6 +34,8 @@
                             </div>
                         </div>
                         <div class="order-list">
+        @if(isset($orders))
+
 
                             @foreach($orders as $order)
                                 <?php
@@ -52,11 +54,24 @@
                                         </div>
                                         <div class="info">
                                             <div class="title">Alıcı</div>
-                                            <div class="descr">{{$order['orderCustomer']['firstName']." ". $order['orderCustomer']['lastName'] }}</div>
+                                            <div class="descr">
+                                                @if(isset($order['orderCustomer']['firstName']) &&isset($order['orderCustomer']['lastName']) )
+
+                                                    {{$order['orderCustomer']['firstName']." ". $order['orderCustomer']['lastName'] }}
+                                                @elseif(isset($order['orderCustomer']['firstName']))
+                                                    {{$order['orderCustomer']['firstName']}}
+                                                @endif
+
+                                            </div>
                                         </div>
                                         <div class="info">
                                             <div class="title">Tutar</div>
-                                            <div class="descr">{{$order['orderTotals'][0]['value']." ₺"}}</div>
+                                            <div class="descr">@if(isset($order['orderTotals'][0]['value']))
+                                                    {{$order['orderTotals'][0]['value']." ₺"}}
+                                                @elseif($order['orderTotal'])
+                                                    {{$order['orderTotal']." ₺"}}
+                                                @endif
+                                            </div>
                                         </div>
                                         <a class="refund-btn" href="#">İade Talebi</a>
                                     </div>
@@ -85,7 +100,7 @@
                                 </div>
 
                             @endforeach
-
+                            @endif
                         </div>
                     </div>
                 </div>
