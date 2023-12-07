@@ -259,8 +259,8 @@
                                 <div class="pay-transfer">
                                     <div class="creditcard-text">
                                         <div class="custom_radio">
-                                            <input type="radio" id="iyzico" name="paymentType" value="iyzico">
-                                            <label class="title" for="iyzico"><a href="{{ $iyzico_link }}"> Kredi Kartı İle Taksitli Ödeme</a></label>
+
+                                            <label class="title" for="iyzico"><a href="{{ $iyzico_link }}"><input type="radio" id="iyzico" name="paymentType" value="iyzico"> Kredi Kartı İle Taksitli Ödeme</a></label>
                                         </div>
                                     </div>
                                     <div class="pay-logo">
