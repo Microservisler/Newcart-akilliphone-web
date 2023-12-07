@@ -478,12 +478,12 @@
             </div>
         </section>
 
-        <x-asyn.carousel :sectionId="'new_product'" :title="'Yeni Ürünler'" :slug="'/reyonlar?offset=12&page=1&section=new_arrivals'" />
+        <x-asyn.carousel :sectionId="'new_product'" :title="'Yeni Gelen Ürünler'" :slug="'/reyonlar?offset=12&page=1&section=new_arrivals'" />
 
         @if($product['productCategories'])
-        <x-asyn.carousel :sectionId="'section1'" :title="'Kategoriye Ait Yeni Ürünler'" :slug="'/reyonlar/'. $product['productCategories'][0]['category']['slug'].'?category='.$product['productCategories'][0]['category']['categoryId']" />
+        <x-asyn.carousel :sectionId="'section1'" :title="'İlginizi Çekebilecek ürünler'" :slug="'/reyonlar/'. $product['productCategories'][0]['category']['slug'].'?category='.$product['productCategories'][0]['category']['categoryId']" />
         @endif
-        <x-asyn.carousel :sectionId="'section2'" :title="'Markaya Ait Yeni Ürünler'" :slug="'/reyonlar/'. $product['brand']['slug'].'?brand='.$product['brand']['brandId']" />
+        <x-asyn.carousel :sectionId="'section2'" :title="'Çok satanlar'" :slug="'/reyonlar/'. $product['brand']['slug'].'?brand='.$product['brand']['brandId']" />
 
 
 
@@ -534,7 +534,7 @@
         webService.getSectionProducts('products?cat=<?php echo $product['productCategories'][0]['categoryId'] ?>&sort=newly&orderby=desc&offset=12', 'section1');
         @endif
         @if( $product['brand'] )
-        webService.getSectionProducts('products?brand=<?php echo $product['brand']['brandId'] ?>&sort=newly&orderby=desc&offset=12', 'section2');
+        webService.getSectionProducts('products?cat=<?php echo $product['productCategories'][0]['categoryId'] ?>&sort=order&orderby=desc&offset=12', 'section2');
         @endif
         webService.getSectionProducts('products?offset=12&page=1&section=new_arrivals', 'new_product');
         let  variantIdValue = {{$product["variants"][0]["variantId"]}};
