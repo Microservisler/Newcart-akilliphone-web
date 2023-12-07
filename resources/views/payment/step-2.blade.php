@@ -43,7 +43,7 @@
 
     </div>
 
-    <form action="{{ route('payment.step.post', 3) }}" class="shopping-wrapper" method="post" >
+    <form id="form-payment" action="{{ route('payment.step.post', 3) }}" class="shopping-wrapper" method="post" >
         <div class="form-wrapper" style="padding-bottom: 10px">
             <div class="signup-input hide-address-registered">
                 <input required id="customer-firstName" name="customer[firstName]" type="text" placeholder="Ad" value="{{ $basket->customer['firstName'] }}">
@@ -215,9 +215,9 @@
         </div>
         <?php $buttonText="Devam Et";?>
         <x-payment.cart-wrapper :basket="$basket" :buttonText="'Devam Et'"/>
-        <input type="hidden" class="select-country" name="shippingAddress[country]" value="{{$basket->shippingAddress['country']?$basket->shippingAddress['country']:'Türkiye'}}">
-        <input type="hidden" class="select-city" name="shippingAddress[city]" value="{{$basket->shippingAddress['city']}}">
-        <input type="hidden" class="select-district" name="shippingAddress[district]" value="{{$basket->shippingAddress['district']}}">
+        <input type="hidden" class="select-country" id="shippingAddress-country" name="shippingAddress[country]" value="{{$basket->shippingAddress['country']?$basket->shippingAddress['country']:'Türkiye'}}">
+        <input type="hidden" class="select-city" id="shippingAddress-city" name="shippingAddress[city]" value="{{$basket->shippingAddress['city']}}">
+        <input type="hidden" class="select-district" is="shippingAddress-district" name="shippingAddress[district]" value="{{$basket->shippingAddress['district']}}">
     </form>
 
 @endsection
@@ -274,6 +274,7 @@
             $('#shippingAddress-districtId').val('');
             $('.district-option').hide();
             $('.district-option.city-' + $(this).val()).show();
+            $('#shippingAddress-city').val($('#shippingAddress-cityId option:selected').text());
         });
         $('#shippingAddress-cityId').change();
         $('#shippingAddress-districtId').val('{{ $basket->shippingAddress['districtId'] }}');
@@ -282,6 +283,7 @@
             $('#billingAddress-districtId').val('');
             $('.district-option').hide();
             $('.district-option.city-' + $(this).val()).show();
+            $('#billingAddress-city').val($('#shippingAddress-cityId option:selected').text());
         });
         $('#sbillingAddress-cityId').change();
         $('#billingAddress-districtId').val('{{ $basket->billingAddress['districtId'] }}');
@@ -306,5 +308,19 @@
             }
         });
         $('#bill').change();
+
+        $('#shippingAddress-countryId, #shippingAddress-cityId, #shippingAddress-districtId').on('change', function(){
+            setAdressName()
+        });
+        function setAdressName(){
+            $('#shippingAddress-district').val($('#shippingAddress-districtId option:selected').text());
+            $('#shippingAddress-country').val($('#shippingAddress-countryId option:selected').text());
+            $('#billingAddress-city').val($('#shippingAddress-cityId option:selected').text());
+        }
+        $('#form-payment').on('submit', function(){
+            $('#shippingAddress-district').val($('#shippingAddress-districtId option:selected').text());
+            $('#shippingAddress-country').val($('#shippingAddress-countryId option:selected').text());
+            $('#billingAddress-city').val($('#shippingAddress-cityId option:selected').text());
+        });
     </script>
 @endsection
