@@ -16,21 +16,21 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-6">
-{{--                    <form action="{{route('sendMail')}}" method="post">--}}
-                    <form >
+                    <form action="{{ route('page.iletisim')  }}" method="post" class="ajaxForm">
                         <div class="input-group">
-                            <input type="text" placeholder="İsim Soyisim" required id="isim">
+                            <input name="iletisim[name]" type="text" placeholder="İsim Soyisim" required id="isim">
                         </div>
                         <div class="input-group">
-                            <input type="email" placeholder="E-Posta Adresiniz" id="email" required >
+                            <input name="iletisim[email]" type="email" placeholder="E-Posta Adresiniz" id="email" required >
                         </div>
                         <div class="input-group">
-                            <textarea type="email" rows="10" placeholder="Mesajınız" required id="message"></textarea>
+                            <textarea name="iletisim[message]" type="email" rows="10" placeholder="Mesajınız" required id="message"></textarea>
                         </div>
                         <div class="button-group" id="sendMessage">
-                            <a class="submit-btn" href="#" onclick="sendMessage()">Gönder</a>
+                            <button class="submit-btn" type="submiy">Gönder</button>
                             <a class="whatsapp" href="https://wa.link/hj91tr" target="_blank">   </a>
                         </div>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     </form>
                 </div>
                 <div class="col-12 col-lg-6">

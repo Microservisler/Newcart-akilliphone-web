@@ -383,6 +383,7 @@
                                                                     style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
                                                                     Akilliphone bültenine abone olduğunuz için teşekkür ederiz<br>
                                                                     <a href="{{ route('newsletter.confirm', ['email'=>$email, 'hash_token'=>$hash_token]) }}">Üyeliğinizi tamamlamak için tıklayınız</a>
+                                                                    <a href="{{ route('newsletter.confirm', ['email'=>$email, 'hash_token'=>$hash_token]) }}">Üyeliğinizi tamamlamak için tıklayınız</a>
                                                                 </p></td>
                                                         </tr>
                                                         <tr style="border-collapse:collapse">

@@ -34,10 +34,14 @@ Route::get('/bayi-giris', [PageController::class, 'bayi_login'])->name('bayi.log
 Route::get('/bayi-uye-ol', [PageController::class, 'bayi_register'])->name('bayi.register');
 Route::get('/register', [PageController::class, 'signUp'])->name('signUp');
 Route::post('/register', [PageController::class, 'register'])->name('register');
+Route::post('/login', [PageController::class, 'auth'])->name('auth');
+Route::get('/logout', [PageController::class, 'logout'])->name('logout');
+Route::get('/forgot-password', [PageController::class, 'forgot'])->name('forgot');
+Route::get('/sayfa/i/{page}', [PageController::class, 'index'])->name('page');
+Route::post('/sayfa/i/iletisim', [PageController::class, 'iletisim'])->name('page.iletisim');
 Route::get('/reyonlar', [ListingController::class, 'index'])->name('listing.page');
 Route::get('/reyonlar/{slug}', [ListingController::class, 'index'])->name('listing.reyonlar');
 Route::get('/incele/{slug}', [ProductDetailController::class, 'index'])->name('product_detail.index');
-Route::get('/sayfa/i/{page}', [PageController::class, 'index'])->name('page');
 Route::get('/dropshipping', [HomeController::class, 'index'])->name('dropshipping');
 Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
 Route::get('/payment/step/{step}', [PaymentController::class, 'step'])->name('payment.step.get');
@@ -49,9 +53,6 @@ Route::post('/payment/iyzico-callback', [PaymentController::class, 'iyzicoCallba
 Route::get('/thankyou/{orderId}/{orderNo}', [PaymentController::class, 'thankYou'])->name('thankyou');
 Route::get('/local/brands/{function}', [LocalController::class, 'brands'])->name('local.brands.set');
 Route::get('/local/home/{function}', [LocalController::class, 'home'])->name('local.home.set');
-Route::post('/login', [PageController::class, 'auth'])->name('auth');
-Route::get('/logout', [PageController::class, 'logout'])->name('logout');
-Route::get('/forgot-password', [PageController::class, 'forgot'])->name('forgot');
 Route::post('/newsletter', [NewsLetterController::class, 'insert'])->name('newsletter.index');
 Route::get('/newsletter/confirm', [NewsLetterController::class, 'confirm'])->name('newsletter.confirm');
 
