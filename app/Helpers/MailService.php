@@ -5,6 +5,14 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 class MailService{
+    static function newsLetterInsert($to){
+        if($to){
+            $data['email']=$to;
+            $body = view('emails.news-letter-insert', $data);
+            $subject = 'Akıllı Phone Bülten Kaydı';
+            self::sendEmail($to, $subject, $body);
+        }
+    }
     static function resetPassword($email,$password){
         $data['email']=$email;
         $data['password']=$password;

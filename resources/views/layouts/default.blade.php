@@ -9,7 +9,6 @@
         const token = '<?php echo session()->get('token')?>';
         var cdnUrl = 'https://cdn.akilliphone.com/';;
         var webserviceUrl = 'https://api.duzzona.site/';
-
     </script>
     <script src="/cdn-cgi/apps/head/DqVMH-M0pr135Hmm3fyPy9qF_Ys.js"></script>
     <script src="/cdn-cgi/apps/body/KSl4Cj8-mTMDMBf5mgIkZFjPJUI.js"></script>
@@ -31,8 +30,15 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
     @yield('head', '')
+    <style>
+        .ajaxForm button.disabled{
+            background-color: #9c9c9c!important;
+        }
+        .ajaxForm button.disabled:before{
+            content:"... ";
+        }
+    </style>
 </head>
 <body>
 

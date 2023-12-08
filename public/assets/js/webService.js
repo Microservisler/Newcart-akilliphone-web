@@ -292,4 +292,37 @@ var webService = {
         });
         return sections.join(',');
     },
+    sendAjaxForm: function(form){
+        form.find('button').attr('disabled', true);
+        form.find('button').addClass('disabled');
+        var settings = {
+            "url": form.attr('action'),
+            'cache': false,
+            "method":  form.attr('method'),
+            data:form.serialize(),
+            form:form
+        };
+        $.ajax(settings).done(function (response) {
+            if(response.status){
+                webService.SwalAlert('success', response.message);
+            } else{
+                webService.SwalAlert('error', response.message);
+            }
+        }).fail(function(xhr, status, error) {
+            webService.SwalAlert('error', error);
+        }).always(function (xhr, status, error) {
+            this.form.find('button').attr('disabled', false);
+            this.form.find('button').removeClass('disabled');
+        });
+    },
+    SwalAlert: function (type, message){
+        Swal.fire({
+            title:  message,
+            toast: true,
+            position: 'top-end',
+            timer: 3000,
+            icon: type,
+            showConfirmButton: false,
+        });
+    },
 }

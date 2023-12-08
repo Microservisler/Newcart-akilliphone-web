@@ -11,6 +11,7 @@ use App\Http\Controllers\LocalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\NewsLetterController;
 use App\Http\Middleware\CheckUserToken;
 
 /*
@@ -51,6 +52,7 @@ Route::get('/local/home/{function}', [LocalController::class, 'home'])->name('lo
 Route::post('/login', [PageController::class, 'auth'])->name('auth');
 Route::get('/logout', [PageController::class, 'logout'])->name('logout');
 Route::get('/forgot-password', [PageController::class, 'forgot'])->name('forgot');
+Route::post('/newsletter', [NewsLetterController::class, 'insert'])->name('newsletter.index');
 
 Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
 Route::get('/basket/mini', [BasketController::class, 'mini'])->name('basket.mini');

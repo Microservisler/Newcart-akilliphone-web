@@ -10,9 +10,10 @@
                     <div class="text-bottom">Tüm kampanya ve fırsatlarımız e-posta kutunuza gelsin</div>
                 </div>
                 <div class="bulletin-right">
-                    <form action="register">
-                        <input placeholder="E-posta Adresiniz" type="text">
-                        <button>kayıt ol</button>
+                    <form action="{{ route('newsletter.index') }}" method="POST" class="ajaxForm">
+                        <input name="email" placeholder="E-posta Adresiniz" type="text">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                        <button type="submit">Kayıt Ol</button>
                     </form>
                 </div>
             </div>
@@ -710,4 +711,8 @@
             $owl_slider = sync1.data('owl.carousel');
             $owl_slider.to(number, 100, true);
         });
+    $('.ajaxForm').on('submit', function(e){
+        e.preventDefault();
+        webService.sendAjaxForm($(this));
+    });
 </script>
