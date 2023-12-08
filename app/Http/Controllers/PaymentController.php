@@ -77,7 +77,7 @@ class PaymentController extends Controller {
         } else {
             $error = 'hatalı işlem';
         }
-        dd($error, $hash, $data);
+        return redirect(route('payment.step.get', '3'));
     }
     public function validateFail(Request $request){
         $data = $request->all();
