@@ -202,4 +202,11 @@ function _ReturnResponse($data){
     $data['redirect'] = isset($data['redirect'])?$data['redirect']:'';
     return $data;
 }
+
+function _getHashToken($key){
+    return md5($key.'akilliphone');
+}
+function _verifyHashToken($key, $hash_token){
+    return $hash_token == md5($key.'akilliphone');
+}
 ?>

@@ -375,14 +375,13 @@
                                                         <tr style="border-collapse:collapse">
                                                             <td align="center" style="padding:0;Margin:0"><h2
                                                                     style="Margin:0;line-height:31px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:26px;font-style:normal;font-weight:bold;color:#16c0ec">
-                                                                    Bülten Kaydı </h2></td>
+                                                                    {{ $subject }} </h2></td>
                                                         </tr>
                                                         <tr style="border-collapse:collapse">
                                                             <td align="center"
                                                                 style="padding:0;Margin:0;padding-top:10px"><p
                                                                     style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
-                                                                    Akilliphone bültenine abone olduğunuz için teşekkür ederiz<br>
-                                                                    <a href="{{ route('newsletter.confirm', ['email'=>$email, 'hash_token'=>$hash_token]) }}">Üyeliğinizi tamamlamak için tıklayınız</a>
+                                                                    {!! $content !!}
                                                                 </p></td>
                                                         </tr>
                                                         <tr style="border-collapse:collapse">

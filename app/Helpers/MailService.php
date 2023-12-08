@@ -5,11 +5,12 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 class MailService{
-    static function newsLetterInsert($to){
+    static function yazGonder($to, $subject, $content){
         if($to){
-            $data['email']=$to;
-            $body = view('emails.news-letter-insert', $data);
-            $subject = 'Akıllı Phone Bülten Kaydı';
+            $data['subject']=$subject;
+            $data['content']=$content;
+            $data['hash_token']= _getHashToken($to);
+            $body = view('emails.yaz-gonder', $data);
             self::sendEmail($to, $subject, $body);
         }
     }

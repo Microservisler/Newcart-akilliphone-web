@@ -53,6 +53,7 @@ Route::post('/login', [PageController::class, 'auth'])->name('auth');
 Route::get('/logout', [PageController::class, 'logout'])->name('logout');
 Route::get('/forgot-password', [PageController::class, 'forgot'])->name('forgot');
 Route::post('/newsletter', [NewsLetterController::class, 'insert'])->name('newsletter.index');
+Route::get('/newsletter/confirm', [NewsLetterController::class, 'confirm'])->name('newsletter.confirm');
 
 Route::get('/basket', [BasketController::class, 'index'])->name('basket.index');
 Route::get('/basket/mini', [BasketController::class, 'mini'])->name('basket.mini');
