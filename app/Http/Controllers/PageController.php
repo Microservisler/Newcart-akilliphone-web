@@ -174,22 +174,6 @@ class PageController extends Controller
         }
     }
 
-    public function iletisim(Request $request)
-    {
-        $iletisim =  $request->input('iletisim', []);
-        $email = isset($iletisim['email'])?$iletisim['email']:'';
-        if($email){
-            $name = isset($iletisim['name'])?$iletisim['name']:'';
-            $message = isset($iletisim['message'])?$iletisim['message']:'';
-            $body = 'akilliphone.com sitesinden yeni bir iletişim isteği alındı.<hr>Gönderen: '.$name.'<br>Epost: '.$email.'<br>Konu: '.$message;
-            MailService::yazGonder(env('CONTACT_EMAIL', 'info@mailinator.com'), 'Yeni İletiş İsteği', $body);
-            $report = 'İletişim isteğinizi aldık. Sizinle en kısa sürede iletişim kuracağız.';
-            return _ReturnSucces($report,'','');
-        } else{
-            $report = 'İletişim isteğiniz kaydedilemedi. Daha sonra tekrar deneyiniz.';
-        }
-        return _ReturnError($report,'',[$report]);
-    }
 //    public function update(Request $request)
 //    {
 //        $userToken=session('userToken');

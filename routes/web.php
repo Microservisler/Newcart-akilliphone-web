@@ -4,14 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\WebServiceController;
+//use App\Http\Controllers\WebServiceController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\LocalController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TestController;
+//use App\Http\Controllers\TestController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\NewsLetterController;
+use App\Http\Controllers\ContactController;
 use App\Http\Middleware\CheckUserToken;
 
 /*
@@ -38,7 +39,7 @@ Route::post('/login', [PageController::class, 'auth'])->name('auth');
 Route::get('/logout', [PageController::class, 'logout'])->name('logout');
 Route::get('/forgot-password', [PageController::class, 'forgot'])->name('forgot');
 Route::get('/sayfa/i/{page}', [PageController::class, 'index'])->name('page');
-Route::post('/sayfa/i/iletisim', [PageController::class, 'iletisim'])->name('page.iletisim');
+Route::post('/sayfa/i/iletisim', [ContactController::class, 'insert'])->name('page.iletisim');
 Route::get('/reyonlar', [ListingController::class, 'index'])->name('listing.page');
 Route::get('/reyonlar/{slug}', [ListingController::class, 'index'])->name('listing.reyonlar');
 Route::get('/incele/{slug}', [ProductDetailController::class, 'index'])->name('product_detail.index');
