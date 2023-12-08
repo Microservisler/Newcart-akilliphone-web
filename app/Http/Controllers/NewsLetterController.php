@@ -21,7 +21,7 @@ class NewsLetterController extends Controller
                 $newsletter->save();
             }
             $confirm_link =  '<br><a href="'.route('newsletter.confirm', ['email'=>$email, 'hash_token'=>_getHashToken($email)]) .'">Üyeliğinizi tamamlamak için tıklayınız</a>';
-            $message = 'Bülten Üyelik kaydınız gerçekleşti. Üyeliğinizin aktif olması için gereken onay linkini emil olarak gönderdik.'.$confirm_link;
+            $message = 'Bülten Üyelik kaydınız gerçekleşti. Üyeliğinizin aktif olması için gereken onay linkini email olarak gönderdik.'.$confirm_link;
             MailService::yazGonder($email, 'Bülten Üyeliği', $message);
             return _ReturnSucces($message, $html);
         } else {
