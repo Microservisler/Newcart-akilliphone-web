@@ -61,7 +61,7 @@ class PaymentService{
         $data['Rnd'] 		        = microtime();
         $data['Hash'] 		    = self::finansBankHash($data);
         //
-        $data['Pan'] 		= str_replace('-','', $Pan);
+        $data['Pan'] 		=preg_replace("/[^0-9.]/", "", $Pan);
         $data['Cvv2'] 		=$Cvv2;
         $data['Expiry'] 	= str_replace('/','', $Expires);
         return $data;

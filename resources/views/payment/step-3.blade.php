@@ -228,29 +228,29 @@
                                     </div>
                                     <div class="form-container">
                                         <div class="field-container">
-                                            <label for="name">KART ÜZERİNDEKİ İSİM</label>
-                                            <input class="card-input" id="name" name="cc[name]" maxlength="20" type="text"
-                                                   value="{{ $cc['name'] }}">
+                                            <label for="name">Kart Üzerindeki İsim</label>
+                                            <input class="card-input name" id="name" name="cc[name]" maxlength="20" type="text"
+                                                   value="{{ $cc['name'] }}" placeholder="">
                                         </div>
                                         <div class="field-container">
-                                            <label for="cardnumber">KART NUMARASI</label>
-                                            <input class="card-input" id="cardnumber" name="cc[cardnumber]" type="text"
-                                                   pattern="[0-9]*" inputmode="numeric" value="{{ $cc['cardnumber'] }}">
+                                            <label for="cardnumber">Kart Numarası</label>
+                                            <input class="card-input cardnumber" id="cardnumber" name="cc[cardnumber]" type="text"
+                                                    inputmode="numeric" value="{{ $cc['cardnumber'] }}" placeholder=".... .... .... ....">
                                             <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471"
                                                  version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                  xmlns:xlink="http://www.w3.org/1999/xlink">
                                             </svg>
                                         </div>
                                         <div class="field-container">
-                                            <label for="expirationdate">TARİH</label>
-                                            <input class="card-input" id="expirationdate" name="cc[expirationdate]"
+                                            <label for="expirationdate">Tarih</label>
+                                            <input class="card-input expirationdate" id="expirationdate" name="cc[expirationdate]"
                                                    type="text" pattern="(?:0[1-9]|1[0-2])/[0-9]{2}" inputmode="numeric"
-                                                   value="{{ $cc['expirationdate'] }}">
+                                                   value="{{ $cc['expirationdate'] }}" placeholder="../..">
                                         </div>
                                         <div class="field-container">
-                                            <label for="securitycode">CVV CODE</label>
-                                            <input class="card-input" id="securitycode" name="cc[securitycode]" type="text"
-                                                   pattern="[0-9]*" inputmode="numeric" value="{{ $cc['securitycode'] }}">
+                                            <label for="securitycode">Kart Güvenlik Kodu</label>
+                                            <input class="card-input securitycode" id="securitycode" name="cc[securitycode]" type="text"
+                                                   pattern="[0-9]*" inputmode="numeric" value="{{ $cc['securitycode'] }}" placeholder="...">
                                         </div>
                                     </div>
                                 </div>
@@ -1139,7 +1139,111 @@ console.log(radio1)
         radio1.checked = false;
         radio2.checked = true;
     });
+    const TulparCard = {
+        ccNumberInput:'',
+        ccExpiryInput:'',
+        ccCVCInput:'',
+        ccNumberSeparator : " ",
+        ccNumberInputOldValue:'',
+        ccNumberInputOldCursor:'',
+        ccExpiryPattern: /^\d{0,4}$/g,
+        ccExpirySeparator: "/",
+        ccExpiryInputOldValue: '',
+        ccExpiryInputOldCursor: '',
+        ccNumberPattern: /^\d{0,16}$/g,
+        ccCVCPattern: /^\d{0,3}$/g,
+        init: function (ccNumberInput, ccExpiryInput, ccCVCInput){
+            this.ccNumberInput = document.querySelector(ccNumberInput);
+            this.ccExpiryInput = document.querySelector(ccExpiryInput);
+            this.ccCVCInput = document.querySelector(ccCVCInput);
 
+            this.ccNumberInput.addEventListener('keydown', this.ccNumberInputKeyDownHandler);
+            this.ccNumberInput.addEventListener('input', this.ccNumberInputInputHandler);
+
+            this.ccExpiryInput.addEventListener('keydown', this.ccExpiryInputKeyDownHandler);
+            this.ccExpiryInput.addEventListener('input', this.ccExpiryInputInputHandler);
+            return this;
+        },
+        mask:function (value, limit, separator){
+            var output = [];
+            for (let i = 0; i < value.length; i++) {
+                if ( i !== 0 && i % limit === 0) {
+                    output.push(separator);
+                }
+                output.push(value[i]);
+            }
+            return output.join("");
+        },
+        unmask:function(value){
+            return value.replace(/[^\d]/g, '');
+        },
+        checkSeparator:function (position, interval) {
+            return Math.floor(position / (interval + 1));
+        },
+        highlightCC :function(ccValue){
+            let ccCardType = '',
+                ccCardTypePatterns = {
+                    amex: /^3/,
+                    visa: /^4/,
+                    mastercard: /^5/,
+                    disc: /^6/,
+                    genric: /(^1|^2|^7|^8|^9|^0)/,
+                };
+
+            for (const cardType in ccCardTypePatterns) {
+                if ( ccCardTypePatterns[cardType].test(ccValue) ) {
+                    ccCardType = cardType;
+                    break;
+                }
+            }
+            let activeCC = document.querySelector('.cc-types__img--active'),
+                newActiveCC = document.querySelector(`.cc-types__img--${ccCardType}`);
+            if (activeCC) activeCC.classList.remove('cc-types__img--active');
+            if (newActiveCC) newActiveCC.classList.add('cc-types__img--active');
+        },
+        ccNumberInputKeyDownHandler :function(e){
+            let el = e.target;
+            TulparCard.ccNumberInputOldValue = el.value;
+            TulparCard.ccNumberInputOldCursor = el.selectionEnd;
+        },
+        ccNumberInputInputHandler :function(e) {
+            let el = e.target,
+                newValue = TulparCard.unmask(el.value),
+                newCursorPosition;
+
+            if ( newValue.match(TulparCard.ccNumberPattern) ) {
+                newValue = TulparCard.mask(newValue, 4, TulparCard.ccNumberSeparator);
+                newCursorPosition =TulparCard.ccNumberInputOldCursor - TulparCard.checkSeparator(TulparCard.ccNumberInputOldCursor, 4) +
+                    TulparCard.checkSeparator(TulparCard.ccNumberInputOldCursor + (newValue.length - TulparCard.ccNumberInputOldValue.length), 4) +
+                    (TulparCard.unmask(newValue).length - TulparCard.unmask(TulparCard.ccNumberInputOldValue).length);
+                el.value = (newValue !== "") ? newValue : "";
+            } else {
+                el.value = TulparCard.ccNumberInputOldValue;
+                newCursorPosition = TulparCard.ccNumberInputOldCursor;
+            }
+            el.setSelectionRange(newCursorPosition, newCursorPosition);
+            TulparCard.highlightCC(el.value);
+        },
+        ccExpiryInputKeyDownHandler :function (e) {
+            let el = e.target;
+            TulparCard.ccExpiryInputOldValue = el.value;
+            TulparCard.ccExpiryInputOldCursor = el.selectionEnd;
+        },
+        ccExpiryInputInputHandler:function (e) {
+            let el = e.target,
+                newValue = el.value;
+
+            newValue = TulparCard.unmask(newValue);
+            if ( newValue.match(TulparCard.ccExpiryPattern) ) {
+                newValue = TulparCard.mask(newValue, 2, TulparCard.ccExpirySeparator);
+                el.value = newValue;
+            } else {
+                el.value = TulparCard.ccExpiryInputOldValue;
+            }
+        },
+    }
+    console.log(TulparCard);
+    TulparCard.init('.card-input.cardnumber','.card-input.expirationdate','.card-input.securitycode')
 </script>
     <script src="../assets/js/profile/order/profile-order.js"></script>
 @endsection
