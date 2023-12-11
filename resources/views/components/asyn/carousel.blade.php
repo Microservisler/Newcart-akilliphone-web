@@ -30,35 +30,35 @@
                        </a>
                      </div>
                 </template>
-               </template>
-{{--                <template v-else>--}}
-{{--                    <div class="product-item">--}}
-{{--                        <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">--}}
-{{--                            <div class="product-image" style="position: relative" >--}}
 
-{{--                                <img class="lazyload" style="height:160px;width: 160px; opacity: 0.5;" alt="product image"  :src="item.thumb">--}}
-{{--                                <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 0;left:0;"> <img src="{{ url('assets/images/tukendi.png') }}" style="border: none"> </span>--}}
-{{--                            </div>--}}
+                <template v-else>
+                    <div class="product-item">
+                        <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">
+                            <div class="product-image" style="position: relative" >
 
-{{--                            <div class="product-info" style="opacity: 0.6">--}}
+                                <img class="lazyload" style="height:160px;width: 160px; opacity: 0.5;" alt="product image"  :src="item.thumb">
+                                <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 0;left:0;"> <img src="{{ url('assets/images/tukendi.png') }}" style="border: none"> </span>
+                            </div>
 
-{{--                                <div class="product-name">@{{ item.name }}</div>--}}
-{{--                                <div class="product-price" style="opacity: 0.6">--}}
-{{--                                    <span>@{{ item.newPrice }}</span>--}}
-{{--                                    <template v-if="item.variants[0].price<item.variants[0].oldPrice">--}}
-{{--                                        <span class="discount"> %@{{ item.discountRate }} </span>--}}
-{{--                                    </template>--}}
-{{--                                </div>--}}
-{{--                                <template v-if="item.discountRate" style="opacity: 0.6">--}}
-{{--                                    <div class="product-old-price" > @{{ item.oldPrice }}</div>--}}
-{{--                                </template>--}}
+                            <div class="product-info" style="opacity: 0.6">
+
+                                <div class="product-name">@{{ item.name }}</div>
+                                <div class="product-price" style="opacity: 0.6">
+                                    <span>@{{ item.newPrice }}</span>
+                                    <template v-if="item.variants[0].price<item.variants[0].oldPrice">
+                                        <span class="discount"> %@{{ item.discountRate }} </span>
+                                    </template>
+                                </div>
+                                <template v-if="item.discountRate" style="opacity: 0.6">
+                                    <div class="product-old-price" > @{{ item.oldPrice }}</div>
+                                </template>
 
 
-{{--                            </div>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </template>--}}
-
+                            </div>
+                        </a>
+                    </div>
+                </template>
+                </template>
              </template>
         </div>
     </div>
