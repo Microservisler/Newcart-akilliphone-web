@@ -18,6 +18,7 @@
 
                         <div class="rating-area">
                             <div class="stars">
+
                                 <span><img src="https://ethem.akilliphone.com/assets/images/full-star.svg" alt=""></span>
                                 <span><img src="https://ethem.akilliphone.com/assets/images/full-star.svg" alt=""></span>
                                 <span><img src="https://ethem.akilliphone.com/assets/images/full-star.svg" alt=""></span>
@@ -62,8 +63,33 @@
                         <div class="product-details-area">
                             <div class="details-top">
                                 <ul class="details-top-left">
-                                    <li><span>STOKTA</span></li>
+
+                                    <template v-for="stock in variant.variantOptions">
+                                        <template v-if="stock.stock > 0">
+
+                                            <li><span>STOKTA</span></li>
+
+                                        </template>
+                                        <template v-else>
+
+
+                                            <li><span style="background-color: red">TÜKENDİ</span></li>
+
+
+                                        </template>
+
+
+
+                                    </template>
+
+
+
+
                                     <li class="comment"><a href="#">Yorum Yap</a></li>
+
+
+
+
                                 </ul>
                                 <ul class="details-top-right">
                                     <li>Barcode:<br>
@@ -80,21 +106,20 @@
                                 </ul>
                             </div>
                             <div class="detail-title-area">
-
                                 <h1 class="product-title">  <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}"> <span>{{$product['brand']['name']}}</span></a> {{$product['name']}}
                                 </h1>
                                 <div>
                                     <a href="{{ url("reyonlar?brand=".$product['brand']['brandId']) }}">  <img src="{{"https://cdn.akilliphone.com/".$product['brand']['image'] }}" alt=""></a>
                                 </div>
-
                             </div>
                             <div class="rating-area">
 
-                                <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>
-                                <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>
-                                <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>
-                                <span><img src="{{ url('assets/images/full-star.svg') }}" alt=""></span>
-                                <span><img src="{{ url('assets/images/empty-star.svg') }}" alt=""></span>
+                                <template v-for="n in 5">
+                                <span>
+                                    <img :src="n <= variant.voteRate ? '{{ url('assets/images/full-star.svg') }}' : '{{ url('assets/images/empty-star.svg') }}'" alt="">
+                                </span>
+                                </template>
+
                             </div>
                             <div class="product-price-area align-items-baseline">
                                 <div class="product-price-area-top ">
@@ -108,8 +133,7 @@
 
 
 
-                                <div class="mobil-taksit-info"><span>290,03 TL x 9 ay’a varan Taksit seçenekleri</span></div>
-                                <div class="product-color-btn" vX-for="variant">
+                                <div class="product-color-btn" v-for="variant">
                                     <span class="title">Renk:</span>
                                     @foreach ($product['variants'] as $item)
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         const host = '<?php echo env("WEBSERVICE_HOST")?>';
-        const token = '<?php echo session()->get('token')?>';
+        const token = '<?php echo session()->get('userToken')?>';
         var cdnUrl = 'https://cdn.akilliphone.com/';;
         var webserviceUrl = 'https://api.duzzona.site/';
     </script>

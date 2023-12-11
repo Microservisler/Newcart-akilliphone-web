@@ -53,11 +53,10 @@
                                     <div class="product-old-price" > @{{ item.oldPrice }}</div>
                                 </template>
 
-
                             </div>
                         </a>
                     </div>
-                </template>
+                  </template>
                 </template>
              </template>
         </div>
