@@ -433,14 +433,14 @@ class BasketService{
     static function getOrderSummary($order){
         return '<div class="summary-title"><strong>Sipariş Özetiniz</strong></div>
         <div class="info-title">Sipariş numarası: <span class="info-descr">'.$order['orderId'] .'</span></div>
-        <div class="info-title">Alıcı: <span class="info-descr">'.$order['shippingAddress']['firstName'] .' '.$order['shippingAddress']['lastName'] .'</span></div>
+        <div class="info-title">Alıcı: <span class="info-descr">'.$order['shippingAddress']['firstname'] .' '.$order['shippingAddress']['lastname'] .'</span></div>
         <div class="info-title">Teslimat Adresi: <span class="info-descr">'.$order['shippingAddress']['addressLine1'] .' '.$order['shippingAddress']['district'] .'/'.$order['shippingAddress']['city'] .'</span></div>
         <div class="info-title">Ödeme Tipi: <span class="info-descr">'.$order['paymentType']['name'] .'</span></div>
         <div class="info-title">Telefon: <span class="info-descr">'.$order['shippingAddress']['phone'] .'</span></div>
         <div class="info-title">Tarih: <span class="info-descr">'.HumanDate($order['createdAt']) .'</span></div>';
     }
     static function getOrderDescription($order){
-        return 'Sn. <strong>'. $order['shippingAddress']['firstName'] .' '. $order['shippingAddress']['lastName'] .'</strong>, <strong>'. HumanDate($order['createdAt']) .'</strong> tarihinde yapmış olduğunuz
+        return 'Sn. <strong>'. $order['shippingAddress']['firstname'] .' '. $order['shippingAddress']['lastname'] .'</strong>, <strong>'. HumanDate($order['createdAt']) .'</strong> tarihinde yapmış olduğunuz
         <strong>'. $order['orderTotal'] .' TL</strong> tutarındaki siparişiniz tarafımıza ulaşmıştır. Alışverişinizin özetini içeren bir mesaj ayrıca <strong>'.$order['orderCustomer']['email'].'</strong> adresine gönderilmiştir.';
     }
 }
