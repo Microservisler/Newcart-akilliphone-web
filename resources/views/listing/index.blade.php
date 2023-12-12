@@ -25,7 +25,7 @@
 
     ?>
     <section class="filter-section section-padding">
-        <div class="container" id="container">
+        <div class="container" id="container" style="padding-top: 150px">
             <h1 class="title">@if(isset($category_code) && $category_code )
                     @if( isset($categories['data']['items'][$category_code]) )
                         {{ $categories['data']['items'][$category_code]['info']['name'] }}
@@ -289,6 +289,7 @@
                 </div>
             </div>
         </div>
+        <div class="scroll-to-top" onclick="scrollToTop()">&#8593;</div>
     </section>
 @endsection
 @section('js')

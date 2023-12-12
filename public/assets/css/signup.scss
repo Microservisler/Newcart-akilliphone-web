@@ -78,7 +78,7 @@ body{
             -moz-transform:translateY(-50%);
             -ms-transform:translateY(-50%);
             -o-transform:translateY(-50%);
-        }       
+        }
       }
       .select-arrow-active{
         &::after{
@@ -101,10 +101,10 @@ body{
             border: 1px solid transparent;
             border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
             cursor: pointer;
-            user-select: none;   
+            user-select: none;
             &:hover{
                 background-color: rgba(0, 0, 0, 0.1);
-            }                 
+            }
         }
         .same-as-selected {
             background-color: rgba(0, 0, 0, 0.1);

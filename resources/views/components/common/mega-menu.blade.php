@@ -398,3 +398,4 @@
         <!-- Kategoriler -->
     </nav>
 </div>
+</div>

@@ -8,7 +8,7 @@
 @section('content')
 
     <div id="app-basic">
-        <section class="product-details">
+        <section class="product-details" style="padding-top: 147px">
             <div class="container">
                 {!! $product['breadcrumb'] !!}
                 <div class="mobile-product-header">
@@ -18,7 +18,6 @@
 
                         <div class="rating-area">
                             <div class="stars">
-
                                 <span><img src="https://ethem.akilliphone.com/assets/images/full-star.svg" alt=""></span>
                                 <span><img src="https://ethem.akilliphone.com/assets/images/full-star.svg" alt=""></span>
                                 <span><img src="https://ethem.akilliphone.com/assets/images/full-star.svg" alt=""></span>
@@ -532,7 +531,7 @@
                 "method": "GET",
                 "headers": {
                     "Access-Control-Allow-Origin":"*",
-                    "Authorization" :'Bearer <?php echo session()->get('token')?>',
+                    "Authorization" :'Bearer <?php echo session()->get('userToken')?>',
                 }
             };
             $.ajax(settings).done(function (response) {
@@ -930,7 +929,7 @@
                 "method": "GET",
                 "headers": {
                     "Access-Control-Allow-Origin":"*",
-                    "Authorization" :'Bearer <?php echo session()->get('token')?>',
+                    "Authorization" :'Bearer <?php echo session()->get('userToken')?>',
                 }
             };
             $.ajax(settings).done(function (response) {

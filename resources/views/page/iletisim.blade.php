@@ -10,7 +10,7 @@
 @endsection
 @section('content')
     <section class="contact-us mx-24">
-        <div class="container">
+        <div class="container" style="padding-top: 150px">
             <div class="contact-us-title">
                 <h1>Bize Ulaşın</h1>
             </div>

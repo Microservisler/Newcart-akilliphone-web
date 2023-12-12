@@ -1,4 +1,5 @@
-<section class="section-padding mx-24" style="overflow:hidden;">
+<div class="section-padding-main">
+<section class="section-padding mx-24" style="overflow:hidden;padding-top: 120px">
     <div class="home-slider owl-carousel owl-theme">
             @foreach ($items as $i=>$item)
                 <?php
@@ -43,3 +44,4 @@
             @endforeach
     </div>
 </section>
+</div>

@@ -37,7 +37,7 @@
     </style>
 @endsection
 @section('content')
-    <section class="shopping_section">
+    <section class="shopping_section" style="padding-top: 200px">
         <div class="container" id="basket-table">
             @include('basket.table')
         </div>

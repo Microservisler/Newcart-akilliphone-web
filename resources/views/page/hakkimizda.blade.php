@@ -9,10 +9,10 @@
     </style>
 @endsection
 @section('content')
-    <div class="welcome-about">
+    <div class="welcome-about" style="padding-top: 200px">
         <h1 class="main-title">Hakkımızda</h1>
 
-        <div class="aboutus-content" style="padding: 20px 200px;">
+        <div class="aboutus-content">
 
 <p>
             Akilliphone.com sitesi, müşterine hizmet etmenin mutluluğu ile çalışmalarından ödün vermeksizin, her daim daha iyi hizmet ve kaliteyi sunmayı hedeflemekte olan bir firmadır. Cep telefonu aksesuarlarından ev yaşam ürünlerine kadar binlerce ürünlük geniş skalasıyla 10 yılı aşkın süredir müşterilerinin ihtiyaçlarına cevap vermekten memnuniyet duymaktadır. Akla gelebilecek her türlü aksesuar ve elektronik ürünleri stoklarında barındırarak, müşterilerine hızlı, güvenilir ve kaliteli bir hizmet sunabilmek firmanın öncelikli amaçlarındandır. Türkiye'de aksesuar ve elektronik marketi olarak giderek büyüyen bir yapıya sahiptir. akilliphone.com 20000'den fazla ürün çeşidiyle, müşterilerine dönemin son moda trendlerine uygun tüm ürünlerini kaliteli ürün ve hizmet anlayışıyla donatılmış bir misyon içerisinde hazırlayıp sunmaktadır. Akilliphone.com site bünyesinde sunduğu ürünlerin % 90'a varan geniş bir aralığını stoklarında bulundurmakta, bu sayede firma müşterilerine en hızlı ve en güvenilir hizmeti sunabilmenin haklı gururunu yaşamaktadır.

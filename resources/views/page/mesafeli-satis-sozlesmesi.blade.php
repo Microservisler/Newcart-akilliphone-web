@@ -9,7 +9,7 @@
     </style>
 @endsection
 @section('content')
-    <div class="welcome-about">
+    <div class="welcome-about" style="padding-top: 200px;">
         <h1 class="main-title">Mesafeli Satış Sözleşmesi</h1>
      <br>
         <div class="aboutus-content">

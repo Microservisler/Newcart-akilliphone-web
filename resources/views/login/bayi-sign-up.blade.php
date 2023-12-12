@@ -10,10 +10,10 @@
     <section class="sign-up" >
         <div class="container">
             <div class="signup-title">
-                <h1>E-Posta ile Üye Ol</h1>
+                <h1>E-Posta ile Bayi Ol</h1>
                 Size Size özel kupon, indirim ve diğer avantajlardan yararlanın.
             </div>
-            <form action="/register" method="post">
+            <form action="/bayi-register" method="post">
                 @csrf
                 <div class="form-wrapper">
                     <div class="signup-input">

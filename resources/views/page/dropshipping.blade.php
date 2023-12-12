@@ -9,7 +9,7 @@
     </style>
 @endsection
 @section('content')
-    <section class="dropshipping" >
+    <section class="dropshipping" style="padding-top: 150px">
         <div class="welcome-dropshipping" style="background-image: url('/assets/images/dropshipping-bg.png');">
             <div class="welcome-content">
                 <h1 class="main-title">Dropshipping</h1>

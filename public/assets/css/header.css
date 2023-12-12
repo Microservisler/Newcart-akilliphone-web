@@ -92,6 +92,7 @@ input {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 12px;
+  margin-top: -25px;
 }
 .mobile-header .navbar .navbar-top .mobile-menu {
   display: flex;

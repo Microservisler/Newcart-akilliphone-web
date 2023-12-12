@@ -1,3 +1,10 @@
+<div style="    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    background: white;
+    padding: 0 10px 10px 10px;">
 <header class="mobile-header">
     <div class="container">
         <nav class="navbar">
@@ -95,6 +102,12 @@
         </nav>
     </div>
 </header>
+</div>
+<div style="    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: 0;
+    ">
 <div class="header-top">
     <div class="container">
         <div class="header-top-info">
@@ -106,12 +119,12 @@
             </ul>
             <ul class=" right-section">
                 <li><a href="callto:+908505200880">0850 520 08 80</a></li>
-                <li><a href="">Sipariş Takibi</a></li>
+
             </ul>
         </div>
     </div>
 </div>
-<header class="desktop-header">
+<header class="desktop-header" style="background-color: white">
     <div class="container">
         <div class="navbar">
             <a href="{{ url('/') }}" class="brand-logo">

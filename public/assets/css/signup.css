@@ -11,6 +11,7 @@ body {
   margin-left: -24px;
   margin-right: -24px;
   padding: 90px 24px 80px 24px;
+  padding-top: 200px !important;
 }
 
 .signup-title {
