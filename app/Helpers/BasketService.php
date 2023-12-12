@@ -109,7 +109,7 @@ class BasketService{
     }
     static function setShipping($brand){
         $basket = self::getBasket();
-        $basket->shippingBrand = "";
+        //$basket->shippingBrand = "";
         if(isset($basket->shippingBrands[$brand] )){
             $basket->shippingBrand =  $brand;
             $basket->basketSubtotals['shipping'] = [
@@ -119,9 +119,18 @@ class BasketService{
             ];
             $basket->shippingBrands[$brand]['checked'] = 'checked';
         }
+        if(empty($basket->shippingBrand)){
+            $basket->shippingBrand =  'aras';
+            $basket->basketSubtotals['shipping'] = [
+                'code'=>'shipping',
+                'title'=>$basket->shippingBrands[$brand]['title'],
+                'total'=>$basket->shippingBrands[$brand]['price'],
+            ];
+            $basket->shippingBrands[$brand]['checked'] = 'checked';
+        }
         self::setBasket($basket);
     }
-    static function setDefaultShipping(&$basket){
+    /*static function setDefaultShipping(&$basket){
         if($basket && empty($basket->shippingBrand)){
             $brand = 'aras';
             $basket->shippingBrand =  $brand;
@@ -133,10 +142,10 @@ class BasketService{
             $basket->shippingBrands[$brand]['checked'] = 'checked';
             self::setBasket($basket);
         }
-    }
+    }*/
     static function getBasket(){
         $basket = session()->get('basket');
-        self::setDefaultShipping($basket);
+        //self::setDefaultShipping($basket);
         if(empty($basket)){
             $basket = new  BasketService();
             session()->put('basket', $basket);
