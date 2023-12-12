@@ -4,7 +4,7 @@
         </div>
         <div class="product-asyn-slider owl-carousel owl-theme" >
             <template v-for="item in sections.{{ $sectionId }}">
-
+                <template v-if="item && item.variants && item.variants.length > 0 && item.variants[0].hasOwnProperty('variantOptions')">
                 <template v-if="item.variants[0].variantOptions[0].stock > 0">
                  <div class="product-item">
                     <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">
@@ -53,12 +53,11 @@
                                     <div class="product-old-price" > @{{ item.oldPrice }}</div>
                                 </template>
 
-
                             </div>
                         </a>
                     </div>
+                  </template>
                 </template>
-
              </template>
         </div>
     </div>
