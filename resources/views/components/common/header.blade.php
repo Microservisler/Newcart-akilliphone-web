@@ -236,7 +236,7 @@ if(isset($_GET['text'])){
                 log( "Selected: " + ui.item.value + " aka " + ui.item.id );
             },
             close: function( event, ui ) {
-                alert();
+                
             }
         } );
     </script>
