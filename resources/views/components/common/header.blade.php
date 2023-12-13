@@ -215,7 +215,9 @@ if(isset($_GET['text'])){
             }, 300);
         });
         $('#searchText').on('focus', function(){
-            $('.search-results').show();
+            if($('#searchText').val()){
+                $('.search-results').show();
+            }
         });
         $( "#searchText" ).autocomplete({
             source: function( request, response ) {
@@ -236,7 +238,7 @@ if(isset($_GET['text'])){
                 log( "Selected: " + ui.item.value + " aka " + ui.item.id );
             },
             close: function( event, ui ) {
-                
+
             }
         } );
     </script>

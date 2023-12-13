@@ -64,6 +64,7 @@ class ListingController extends Controller{
             foreach($products['data']['items'] as $item){
                 $response['html'] .= $this->autoComplateLine($item, $text);
             }
+            $response['html'] .= '<li style="text-align: center"><hr><a href="'.route('listing.page').'?text='.$text.'">Daha Fazla Sonuç İçin Tıklayınız</a></li>';
             $response['html'] .= '</ul>';
         }
         return($response);
