@@ -40,6 +40,10 @@ class PaymentController extends Controller {
     }
     public function validateSuccess(Request $request){
         $data = $request->all();
+        //file_put_contents('ccsuccess.json', json_encode($data));
+        //$data = json_decode( file_get_contents('ccsuccess.json'), 1);
+        //$ErrMsg = isset($data['ErrMsg'])?$data['ErrMsg']:'Bilinmeyen Hata';
+
         $error = null;
         if($data){
             $hash = \PaymentService::finansBankHash($data);
@@ -48,19 +52,23 @@ class PaymentController extends Controller {
                      if($data['3DStatus']==1 ){
                          $basket =  BasketService::calculateBasket(BasketService::getBasket());
                          if($basket){
+                             $order = OrderService::currentOrder();
+                             $order->marketplaceId = 4; //akilliphone
+                             $order->paymentTypeId = 3; // havale
+                             $order->orderStatusId = 26; // havale
+                             $order->paymentStatusId = 3; // havale
                              if($basket->total == $data['PurchAmount']){
-                                 $order = OrderService::currentOrder();
-                                 $order->marketplaceId = 4; //akilliphone
-                                 $order->paymentTypeId = 5; // havale
-                                 $response = \WebService::orderPost($order);
-                                 if($response && $response['data'] && $response['data']['orderId']){
-                                     BasketService::clear();
-                                     return redirect()->route('thankyou', ['orderId'=> $response['data']['orderId'], 'orderNo'=>$response['data']['orderNo'] ]);
-                                 } else{
-                                     $error = 'sipariş alındı fakat işlenirken bir hata oluştu. Bu kodu kullanarak yarım isteyiniz. Kodunuz: '.$data['Tds2dsTransId'];
-                                 }
+                                 $order->orderStatusId = 11; // havale
                              } else {
                                  $error = 'sipariş ile ödeme tutarı uyumsuz';
+                             }
+                             $response = \WebService::create_order($order);
+                             if($response && $response['data'] && $response['data']['orderId']){
+                                 BasketService::clear();
+                                 if($error) $request->session()->flash('flash-error',['Hata Oluştu:', $error]);
+                                 return redirect()->route('thankyou', ['orderId'=> $response['data']['orderId'], 'orderNo'=>$response['data']['orderNo'] ]);
+                             } else{
+                                 $error = 'sipariş alındı fakat işlenirken bir hata oluştu. Bu kodu kullanarak yarım isteyiniz. Kodunuz: '.$data['Tds2dsTransId'];
                              }
                          } else {
                              $error = 'basket bilgisi kaybolmuş';
@@ -77,6 +85,7 @@ class PaymentController extends Controller {
         } else {
             $error = 'hatalı işlem';
         }
+        $request->session()->flash('flash-error',['Hata Oluştu:', $error]);
         return redirect(route('payment.step.get', '3'));
     }
     public function validateFail(Request $request){

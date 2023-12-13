@@ -542,7 +542,7 @@ input {
     background: #fff;
     font-size: 14px;
     max-height: 250px;
-    overflow: auto; 
+    overflow: auto;
   }
   .desktop-header .navbar .search-bar .search-results ul li {
     list-style-type: none;
