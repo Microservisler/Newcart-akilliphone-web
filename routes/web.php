@@ -42,6 +42,7 @@ Route::get('/sayfa/i/{page}', [PageController::class, 'index'])->name('page');
 Route::post('/sayfa/i/iletisim', [ContactController::class, 'insert'])->name('page.iletisim');
 Route::get('/reyonlar', [ListingController::class, 'index'])->name('listing.page');
 Route::get('/reyonlar/{slug}', [ListingController::class, 'index'])->name('listing.reyonlar');
+Route::get('/product/auto-complate', [ListingController::class, 'autoComplate'])->name('product.auto-complate');
 Route::get('/incele/{slug}', [ProductDetailController::class, 'index'])->name('product_detail.index');
 Route::get('/dropshipping', [HomeController::class, 'index'])->name('dropshipping');
 Route::get('/payment', [PaymentController::class, 'index'])->name('payment');

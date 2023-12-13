@@ -91,12 +91,6 @@
                     </div>
                 </div>
                 <div class="search-results">
-                    <ul>
-                        <li><a href="#">Test Link: Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate,
-                                voluptatibus?</a></li>
-                        <li><a href="#">Test Link</a></li>
-                        <li><a href="#">Test Link</a></li>
-                    </ul>
                 </div>
             </div>
         </nav>
@@ -131,23 +125,33 @@
                 <img width="186" height="52"
                      src="https://www.akilliphone.com/views/kuteshop/assets/images/logo/logo.svg?v=2.7" alt="">
             </a>
-            <div class="search-bar">
+            <div class="search-bar" style="position: relative">
+                <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <?php
 if(isset($_GET['text'])){
     $getText=$_GET['text'];
 }
     ?>
-
+<style>
+    .ajax-search strong {
+        color: #0a6aa1;
+    }
+    .ajax-search li img {
+        float: left;
+        margin: 0px 10px 10px 0px;
+    }
+    .ajax-search li a{
+        font-weight: bold;
+    }
+    .ajax-search li:hover a{
+        color: #d20c0c!important;
+    }
+</style>
                 <input class="search-input" type="search" placeholder="Ürün, kategori veya ürün kodu bilgisi girin" id="searchText" onkeydown="handleKeyPress(event)" value="{{ $getText ?? '' }}" />
                 <a class="search-icon" id="searchTextButton"><img width="49" height="49" src="{{ url('assets/images/search-icon.svg') }}" alt=""></a>
 
                 <div class="search-results">
-                    <ul>
-                        <li><a href="#">Test Link: Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate,
-                                voluptatibus?</a></li>
-                        <li><a href="#">Test Link</a></li>
-                        <li><a href="#">Test Link</a></li>
-                    </ul>
+
                 </div>
             </div>
             <div class="right-section">
@@ -204,4 +208,36 @@ if(isset($_GET['text'])){
         </div>
     </div>
 </header>
-
+    <script>
+        $('.search-bar').on('focusout', function(){
+            setTimeout(function (){
+                $('.search-results').hide();
+            }, 300);
+        });
+        $('#searchText').on('focus', function(){
+            $('.search-results').show();
+        });
+        $( "#searchText" ).autocomplete({
+            source: function( request, response ) {
+                $.ajax( {
+                    url: "{{ route('product.auto-complate') }}",
+                    dataType: "json",
+                    data: {
+                        text: request.term
+                    },
+                    success: function (data) {
+                        $('.search-results').html(data.html);
+                        $('.search-results').show();
+                    }
+                } );
+            },
+            minLength: 2,
+            select: function( event, ui ) {
+                log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+            },
+            close: function( event, ui ) {
+                alert();
+            }
+        } );
+    </script>
+</div>

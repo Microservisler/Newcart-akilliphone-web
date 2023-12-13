@@ -49,11 +49,33 @@ class ListingController extends Controller{
         return($filter->getWebserviceJson());
     }
     public function autoComplate(Request $request){
+        $filters= [];
         $text = $request->input('text', '');
         if($text){
             $filters['text']=$text;
         }
-        $products = \WebServiceFilter::products($filters);
-        dd($products);
+        $products = \WebService::products($filters);
+        $response = [
+            'query'=> "Unit",
+            'html'=>''
+        ];
+        if(isset($products['data']) && isset($products['data']['items'])){
+            $response['html'] .= '<ul class="ajax-search">';
+            foreach($products['data']['items'] as $item){
+                $response['html'] .= $this->autoComplateLine($item, $text);
+            }
+            $response['html'] .= '</ul>';
+        }
+        return($response);
+    }
+    public function autoComplateLine($item, $text){
+        $item['name'] = str_replace([$text, ucfirst($text), strtoupper($text), strtolower($text)], ['<strong>'.$text.'</strong>','<strong>'.ucfirst($text).'</strong>','<strong>'.strtoupper($text).'</strong>','<strong>'. strtolower($text).'</strong>'], $item['name']);
+        if($item['featuredImage']){
+            $image = '<img src="'.getProductImageUrl($item['featuredImage'], 30, 30).'">' ;
+        } else {
+            $image = '';
+        }
+
+        return '<li style="clear: both"><a href="'.getProductUrl($item).'">'.$image.$item['name'].'</a></li>';
     }
 }
