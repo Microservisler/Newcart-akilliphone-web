@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 
-class ListingController extends Controller
-{
+class ListingController extends Controller{
     /**
      * Display a listing of the resource.
      *
@@ -49,5 +48,12 @@ class ListingController extends Controller
         $filter = new \WebServiceFilter($request);
         return($filter->getWebserviceJson());
     }
-
+    public function autoComplate(Request $request){
+        $text = $request->input('text', '');
+        if($text){
+            $filters['text']=$text;
+        }
+        $products = \WebServiceFilter::products($filters);
+        dd($products);
+    }
 }
