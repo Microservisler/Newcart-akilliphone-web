@@ -54,13 +54,20 @@ class ListingController extends Controller{
         if($text){
             $filters['text']=$text;
         }
-        $products = \WebService::products($filters);
+        $cached = 'cached';
+        $cachekey = md5('autoComplate-'.json_encode($filters));
+        $products = \Cache::get($cachekey);
+        if(empty($products)){
+            $products = \WebService::products($filters);
+            \Cache::put($cachekey, $products, 60*60);
+            $cached = 'no-cache';
+        }
         $response = [
             'query'=> "Unit",
             'html'=>''
         ];
         if(isset($products['data']) && isset($products['data']['items'])){
-            $response['html'] .= '<ul class="ajax-search">';
+            $response['html'] .= '<ul class="ajax-search" '.$cached.'>';
             foreach($products['data']['items'] as $item){
                 $response['html'] .= $this->autoComplateLine($item, $text);
             }
