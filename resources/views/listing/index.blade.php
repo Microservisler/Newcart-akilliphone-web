@@ -242,7 +242,7 @@
                                         <template v-if="item.variants[0].variantOptions[0].stock > 0">
 
                                         <div class="product-item" >
-                                            <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">
+                                            <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId" target="_blank">
                                                 <div class="product-image">
                                                     <img class="lazyload" width="160" height="160" :src="item.thumb" alt="product image">
                                                 </div>
@@ -259,7 +259,7 @@
                                     </template>
                                         <template v-else>
                                             <div class="product-item"  >
-                                                <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId">
+                                                <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId" target="_blank">
                                                     <div class="product-image"  style="position: relative">
                                                         <img class="lazyload" width="160" height="160" :src="item.thumb" alt="product image" style="opacity: 0.5">
                                                         <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 0;left:0;"> <img src="{{ url('assets/images/tukendi.png') }}" style="border: none"> </span>
