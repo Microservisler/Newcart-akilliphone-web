@@ -59,7 +59,7 @@ class ListingController extends Controller{
         $products = \Cache::get($cachekey);
         if(empty($products)){
             $products = \WebService::products($filters);
-            \Cache::put($cachekey, $products, 60*60);
+            \Cache::put($cachekey, $products, 60*60*24);
             $cached = 'no-cache';
         }
         $response = [
