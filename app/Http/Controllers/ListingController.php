@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 
-class ListingController extends Controller
-{
+class ListingController extends Controller{
     /**
      * Display a listing of the resource.
      *
@@ -49,5 +48,42 @@ class ListingController extends Controller
         $filter = new \WebServiceFilter($request);
         return($filter->getWebserviceJson());
     }
+    public function autoComplate(Request $request){
+        $filters= [];
+        $text = $request->input('text', '');
+        if($text){
+            $filters['text']=$text;
+        }
+        $cached = 'cached';
+        $cachekey = md5('autoComplate-'.json_encode($filters));
+        $products = \Cache::get($cachekey);
+        if(empty($products)){
+            $products = \WebService::products($filters);
+            \Cache::put($cachekey, $products, 60*60);
+            $cached = 'no-cache';
+        }
+        $response = [
+            'query'=> "Unit",
+            'html'=>''
+        ];
+        if(isset($products['data']) && isset($products['data']['items'])){
+            $response['html'] .= '<ul class="ajax-search" '.$cached.'>';
+            foreach($products['data']['items'] as $item){
+                $response['html'] .= $this->autoComplateLine($item, $text);
+            }
+            $response['html'] .= '<li style="text-align: center"><hr><a href="'.route('listing.page').'?text='.$text.'">Daha Fazla Sonuç İçin Tıklayınız</a></li>';
+            $response['html'] .= '</ul>';
+        }
+        return($response);
+    }
+    public function autoComplateLine($item, $text){
+        $item['name'] = str_replace([$text, ucfirst($text), strtoupper($text), strtolower($text)], ['<strong>'.$text.'</strong>','<strong>'.ucfirst($text).'</strong>','<strong>'.strtoupper($text).'</strong>','<strong>'. strtolower($text).'</strong>'], $item['name']);
+        if($item['featuredImage']){
+            $image = '<img src="'.getProductImageUrl($item['featuredImage'], 30, 30).'">' ;
+        } else {
+            $image = '';
+        }
 
+        return '<li style="clear: both"><a href="'.getProductUrl($item).'">'.$image.$item['name'].'</a></li>';
+    }
 }
