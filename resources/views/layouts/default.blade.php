@@ -128,9 +128,11 @@
         event.preventDefault();
         var inputText = document.getElementById("searchText").value;
 
-        var link = "https://ethem.akilliphone.com/reyonlar?text=" + encodeURIComponent(inputText);
+        var currentURL = window.location.href; // Mevcut sayfanın URL'sini alır
+        var domain = window.location.protocol + "//" + window.location.hostname; // Sadece domaini alır
 
-        window.location.href = link;
+        window.location.href = domain + "/reyonlar?text=" + encodeURIComponent(inputText);
+
     });
 
 </script>
