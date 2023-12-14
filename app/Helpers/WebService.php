@@ -508,6 +508,12 @@ class WebService {
 
         return $slider;
     }
+    public static function home_brands(){
+        $slider['status'] = 1;
+        $slider['data']['items'] = self::wecart_slider(67,[200,220], [200,220]);
+
+        return $slider;
+    }
 
     public static function wecart_three_banner(){
         $slider['status'] = 1;

@@ -16,8 +16,8 @@
                 @foreach ($items['items'] as $item)
 
                         <div class="swiper-slide">
-                    <a href="{{ url("reyonlar?brand=".$item['brandId']) }}" class="brand-logo">
-                        <img class="lazyload fluid-img" data-src="<?php echo getProductImageUrl($item['image']); ?>" alt="{{ $item['name'] }}" style="height: 50px">
+                    <a href="{{ url("reyonlar?brand=".$item['orderNumber']) }}" class="brand-logo">
+                        <img class="lazyload fluid-img" data-src="<?php echo getProductImageUrl($item['desktopImage']); ?>" alt="{{ $item['title'] }}" style="height: 50px">
                     </a>
                         </div>
 

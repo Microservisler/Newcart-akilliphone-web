@@ -52,7 +52,7 @@
     <x-asyn.carousel :sectionId="'section5'" :title="'Dönüştürücüler'" :slug="'/reyonlar/kablolar-ve-donusturuculer-209?category=89'" />
     <x-asyn.carousel :sectionId="'section6'" :title="'Ses Sistemleri'" :slug="'/reyonlar/ses-sistemleri-157?category=112'" />
     <x-asyn.carousel :sectionId="'section7'" :title="'Kişisel Ürünler'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />
-    <x-section.brands :products="$product_slider['data']['items']" :items="$brands['data']"/>
+{{--    <x-section.brands :products="$home_brands['data']['items']" :items="$home_brands['data']"/>--}}
     <div class="scroll-to-top" onclick="scrollToTop()">&#8593;</div>
 @endsection
 @section('js')
