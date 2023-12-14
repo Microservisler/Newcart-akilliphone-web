@@ -192,9 +192,6 @@
                     </div>
                 @endif
             @endforeach
-
-
-
     </div>
 </div>
 <div class="page-header">
