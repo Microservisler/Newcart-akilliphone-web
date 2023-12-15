@@ -17,7 +17,7 @@
 
                         <div class="swiper-slide">
                     <a href="{{ url("reyonlar?brand=".$item['orderNumber']) }}" class="brand-logo">
-                        <img class="lazyload fluid-img" data-src="<?php echo getProductImageUrl($item['desktopImage']); ?>" alt="{{ $item['title'] }}" style="height: 50px">
+                        <img class="lazyload fluid-img" data-src="<?php echo getProductImageUrl($item['desktopImage']); ?>" alt="{{ $item['title'] }}">
                     </a>
                         </div>
 

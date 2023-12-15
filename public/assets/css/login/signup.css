@@ -60,6 +60,7 @@ body {
   margin-right: -24px;
   padding: 90px 24px 80px 24px;
 }
+
 .left-inner .login-methods {
   display: flex;
   justify-content: space-between;
@@ -370,6 +371,13 @@ body {
     max-width: 1110px;
   }
 }
+@media (max-width: 1000px) {
+    .signup-btn {
+        display: block !important;
+    }
+}
+
+
 @media (min-width: 992px) {
   .sign-in .container {
     display: flex;
@@ -387,3 +395,4 @@ body {
     margin-top: 0;
   }
 }/*# sourceMappingURL=signup.css.map */
+
