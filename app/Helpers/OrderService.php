@@ -57,7 +57,7 @@ class Order{
             $this->marketplaceId = null;
             $this->orderNo = null;
             $this->orderTotal = $basket->total;
-            $this->shippingCompany = $basket->shippingBrand;
+            $this->shippingCompany = 'Aras';//$basket->shippingBrand;
             $this->shippingTrackingNumber = "";
             $this->shippingTrackingUrl = "";
             $this->marketplaceOrderId = "";
