@@ -111,6 +111,7 @@ class WebService {
         $body['user']['id']=session('userInfo')['data']['id'];
         $response = Http::withToken($token)->put('https://api.duzzona.site/user', $body['user']);
         $responseData = json_decode($response->body(), true);
+
         if ($response->successful()) {
             return $response->json();
         } else {
@@ -510,7 +511,7 @@ class WebService {
     }
     public static function home_brands(){
         $slider['status'] = 1;
-        $slider['data']['items'] = self::wecart_slider(67,[200,220], [200,220]);
+        $slider['data']['items'] = self::wecart_slider(67,[350,91], [350,91]);
 
         return $slider;
     }

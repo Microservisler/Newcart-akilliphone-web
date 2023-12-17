@@ -572,11 +572,9 @@ body::-webkit-scrollbar-thumb {
 .section-9 .favorite-brands .brand-slider .swiper-slide a {
   display: block;
   width: 100%;
-  height: 100%;
-  padding: 20px;
 }
 .section-9 .favorite-brands .brand-slider .swiper-slide a img {
-  width: 70%;
+
   margin: 0 auto;
 }
 .section-9 .favorite-brands .section-title {

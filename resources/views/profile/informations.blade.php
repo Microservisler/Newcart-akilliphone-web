@@ -5,6 +5,7 @@
 @endsection
 @section('content')
     <?php $user=session('userInfo'); ?>
+
     <section class="profile section-padding mx-24">
         <div class="container">
             <div class="section-title">Hesabım</div>
@@ -47,6 +48,10 @@
                                 <div class="signup-input">
                                     <span class="label">Tc Kimlik No<span>&nbsp;*</span></span>
                                     <input id="mobilePhone" type="text" name="user[tcKimlik]" value="<?php echo $user['data']['tcKimlik']; ?>">
+                                </div>
+                                <div class="signup-input">
+                                    <span class="label">Password<span>&nbsp;*</span></span>
+                                    <input id="mobilePhone" type="text" name="user[password]" value="">
                                 </div>
                                 <div class="signup-agreement">
                                     <label for="membership">

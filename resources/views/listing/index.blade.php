@@ -237,9 +237,8 @@
                                 <div class="product-wrapper ">
 
                                     <template v-for="item in datas.items" >
-                                      <template v-if="item && item.variants && item.variants.length > 0 && item.variants[0].hasOwnProperty('variantOptions') && item.variants[0].variantOptions[0] ">
 
-                                        <template v-if="item.variants[0].variantOptions[0].stock > 0">
+                                        <template v-if="item.hasStock ==true">
 
                                         <div class="product-item" >
                                             <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId" target="_blank">
@@ -277,7 +276,7 @@
 
                                         </template>
 
-                                      </template>
+
 
                                    </template>
                                 </div>

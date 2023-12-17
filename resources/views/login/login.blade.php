@@ -51,6 +51,8 @@
                         </div>
                         <div class="login-btns">
                             <button class="login-btn" type="submit">Giriş Yap</button>
+                            <a class="signup-btn" href="register" style="color: white;
+    margin-top: 15px !important;display: none">Hemen Üye Ol</a>
                             <a href="{{route('index')}}" class="without-login">Üye Olmadan Devam Et</a>
                             <a href="{{route('old.account')}}" id="popupLink">Eski Üye Misiniz ? </a>
                         </div>

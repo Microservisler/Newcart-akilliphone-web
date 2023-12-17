@@ -52,7 +52,7 @@
     <x-asyn.carousel :sectionId="'section5'" :title="'Dönüştürücüler'" :slug="'/reyonlar/kablolar-ve-donusturuculer-209?category=89'" />
     <x-asyn.carousel :sectionId="'section6'" :title="'Ses Sistemleri'" :slug="'/reyonlar/ses-sistemleri-157?category=112'" />
     <x-asyn.carousel :sectionId="'section7'" :title="'Kişisel Ürünler'" :slug="'/reyonlar/kisisel-bakim-337?category=75'" />
-{{--    <x-section.brands :products="$home_brands['data']['items']" :items="$home_brands['data']"/>--}}
+    <x-section.brands :products="$home_brands['data']['items']" :items="$home_brands['data']"/>
     <div class="scroll-to-top" onclick="scrollToTop()">&#8593;</div>
 @endsection
 @section('js')
@@ -98,19 +98,19 @@
         });
 
 
-        webService.getSectionProducts('products?offset=12&page=1&section=new_arrivals', 'new_product');
-        webService.getSectionProducts('products?offset=12&page=1&section=most_ordered', 'best_sold');
-        webService.getSectionProducts('products?offset=12&page=1&section=restocked', 'restocked');
-        webService.getSectionProducts('products?offset=12&page=1&section=on_sale', 'on_sale');
+        webService.getSectionProducts('products?offset=30&page=1&section=new_arrivals', 'new_product');
+        webService.getSectionProducts('products?offset=30&page=1&section=most_ordered', 'best_sold');
+        webService.getSectionProducts('products?offset=30&page=1&section=restocked', 'restocked');
+        webService.getSectionProducts('products?offset=30&page=1&section=on_sale', 'on_sale');
 
 
-        webService.getSectionProducts('products?cat=1,2,3,6,5,12,9,10,8,7,4,11,48,55,63,57,44,45,47,46,13,21,16,20,19,23,24,30,31,27,32,28,25,29,26,34,41,40,36,38,37,39,35,33,43&sort=newly&orderby=desc&offset=12', 'section1');
-        webService.getSectionProducts('products?cat=2,3,6,5,12,9,10,8,7,4,11&sort=newly&orderby=desc&offset=12', 'section2');
-        webService.getSectionProducts('products?cat=78,83,85,87,80,88,84,81,86,79&sort=newly&orderby=desc&offset=12', 'section3');
-        webService.getSectionProducts('products?cat=103,105,107,110,104,108,109,111,106&sort=newly&orderby=desc&offset=12', 'section4');
-        webService.getSectionProducts('products??cat=89,95,92,102,101,90,96,98,100,94,97,91,99,93&sort=newly&orderby=desc&offset=12', 'section5');
-        webService.getSectionProducts('products?cat=112,113,115,119,117,122,118,114,121,116,120&sort=newly&orderby=desc&offset=12', 'section6');
-        webService.getSectionProducts('products?cat=84&sort=newly&orderby=desc&offset=12', 'section7');
+        webService.getSectionProducts('products?cat=1,2,3,6,5,12,9,10,8,7,4,11,48,55,63,57,44,45,47,46,13,21,16,20,19,23,24,30,31,27,32,28,25,29,26,34,41,40,36,38,37,39,35,33,43&sort=newly&orderby=desc&offset=30', 'section1');
+        webService.getSectionProducts('products?cat=2,3,6,5,12,9,10,8,7,4,11&sort=newly&orderby=desc&offset=30', 'section2');
+        webService.getSectionProducts('products?cat=78,83,85,87,80,88,84,81,86,79&sort=newly&orderby=desc&offset=30', 'section3');
+        webService.getSectionProducts('products?cat=103,105,107,110,104,108,109,111,106&sort=newly&orderby=desc&offset=30', 'section4');
+        webService.getSectionProducts('products??cat=89,95,92,102,101,90,96,98,100,94,97,91,99,93&sort=newly&orderby=desc&offset=30', 'section5');
+        webService.getSectionProducts('products?cat=112,113,115,119,117,122,118,114,121,116,120&sort=newly&orderby=desc&offset=30', 'section6');
+        webService.getSectionProducts('products?cat=84&sort=newly&orderby=desc&offset=30', 'section7');
         lazyload();
 
 

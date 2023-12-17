@@ -305,6 +305,7 @@ body {
          column-gap: 40px;
     max-width: 865px;
   }
+
   .form-wrapper .signup-input {
     width: calc(50% - 20px);
     height: 60px;
@@ -318,3 +319,8 @@ body {
     margin-bottom: 0;
   }
 }/*# sourceMappingURL=signup.css.map */
+@media (max-width: 1000px) {
+    .sign-up {
+        display: block !important;
+    }
+}
