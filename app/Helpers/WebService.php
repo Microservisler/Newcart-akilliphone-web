@@ -111,6 +111,7 @@ class WebService {
         $body['user']['id']=session('userInfo')['data']['id'];
         $response = Http::withToken($token)->put('https://api.duzzona.site/user', $body['user']);
         $responseData = json_decode($response->body(), true);
+
         if ($response->successful()) {
             return $response->json();
         } else {
