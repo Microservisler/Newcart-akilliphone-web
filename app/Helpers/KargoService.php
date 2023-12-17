@@ -15,7 +15,7 @@ class KargoService
         ];
         if(empty($firma)) $firma = $order['shippingCompany'];
         if($firma ){
-            if($firma=='aras'){
+            if($firma=='aras' || $firma=='Aras'){
                 $result = self::kayitAcAras();
             } else {
                 $result['message'] = $firma.' için method bulunamadı';
