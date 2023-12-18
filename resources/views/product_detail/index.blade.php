@@ -7,11 +7,6 @@
 @endsection
 @section('content')
 
-    <?php
-
-        $product['description']=htmlentities($product['description']);
-        ?>
-
     <div id="app-basic">
         <section class="product-details" style="padding-top: 147px">
             <div class="container">
