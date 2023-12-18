@@ -108,8 +108,8 @@ class PaymentService{
     static function iyzicoPayment($basket){
         $request = new \Iyzipay\Request\CreateCheckoutFormInitializeRequest();
         $request->setLocale(\Iyzipay\Model\Locale::TR);
-        $request->setBasketId("B".$basket->getBaskeyId());
-        $request->setConversationId($basket->getBaskeyId());
+        $request->setBasketId("B".$basket->getBasketId());
+        $request->setConversationId($basket->getBasketId());
         //$basket->total = 0.5;
         $request->setPrice($basket->total);
         $request->setPaidPrice($basket->total);

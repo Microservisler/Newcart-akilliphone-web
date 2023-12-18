@@ -3,8 +3,8 @@ namespace Akilliphone;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 class BasketService{
-    protected $basketId;
     protected $sessionId;
+    public $basketId;
     public $userId;
     public $shippingAddress;
     public $billingAddress;
@@ -47,7 +47,7 @@ class BasketService{
         $basket = new  BasketService();
         session()->put('basket', $basket);
     }
-    static function getBaskeyId(){
+    static function getBasketId(){
         $basket = self::getBasket();
         return $basket->basketId;
     }

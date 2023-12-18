@@ -214,11 +214,13 @@ function _verifyHashToken($key, $hash_token){
 }
 function addPaymentLog($payment_type, $response, $order, $basket, $order_id=0 ){
     try {
+        $basket_id = !empty($basket)?$basket->getBasketId():0;
         $response = json_encode($response, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
         $order = json_encode($order, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
         $basket = json_encode($basket, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
         DB::table('payment_logs')->insert([
             'session_id'=> session()->getId(),
+            'basket_id'=>$basket_id,
             'order_id'=>$order_id,
             'payment_type'=>$payment_type,
             'response'=>$response,
