@@ -226,7 +226,7 @@ class PaymentController extends Controller {
 
         if($response && $response['data'] && $response['data']['orderId']){
             $order = OrderService::currentOrder();
-            addPaymentLog('complate', $response, $order, $basket );
+            addPaymentLog('complate', $response, $order, $basket,  $response['data']['orderId']);
 
             BasketService::clear();
             $orderHistory = [
