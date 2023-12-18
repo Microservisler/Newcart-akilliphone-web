@@ -30,7 +30,7 @@ class ProductDetailController extends Controller
                 }
                 $response = \WebService::product($productId, ['returnCategoryId'=>$productCategoryId]);
                 $data['product'] =  $response['data'];
-
+                $data['product']['description'] = validateHtmlContet($data['product']['description']);
                 /*if($currentCategory && $currentCategory['data']['breadcrumb']){
                     $data['breadcrumb']= $currentCategory['data']['breadcrumb'];
                 } else {
