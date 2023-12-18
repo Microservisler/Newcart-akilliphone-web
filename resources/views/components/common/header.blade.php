@@ -58,9 +58,9 @@
                                 </g>
                             </svg>
                         </button>
-                        <input class="search-input" type="search" placeholder="Ürün, kategori veya ürün kodu bilgisi girin" id="searchInput" onkeydown="handleKeyPress(event)" value="{{ $getText ?? '' }}" style="border: none; width: 100%" />
-                        <a class="search-icon" id="searchTextButton"><img width="49" height="49" src="{{ url('assets/images/search-icon.svg') }}" alt="" style="margin-top: 7px"></a>
-                        </a>
+
+                        <input class="search-input" type="search" placeholder="Ürün, kategori veya ürün kodu bilgisi girin" id="searchInput" onkeydown="handleKeyPressMobil(event)" value="{{ $getText ?? '' }}" style="border: none; width: 100%" />
+                        <a class="search-icon" id="searchTextButtonMobil"><img width="49" height="49" src="{{ url('assets/images/search-icon.svg') }}" alt="" style="margin-top: 7px" onclick="performSearch()"></a>
                     </div>
 
                     <div class="search-results">

@@ -134,6 +134,27 @@
         window.location.href = domain + "/reyonlar?text=" + encodeURIComponent(inputText);
 
     });
+    document.getElementById("searchTextButtonMobil").addEventListener("click", function(event) {
+        event.preventDefault();
+        var inputText = document.getElementById("searchInput").value;
+
+        var currentURL = window.location.href; // Mevcut sayfanın URL'sini alır
+        var domain = window.location.protocol + "//" + window.location.hostname; // Sadece domaini alır
+
+        window.location.href = domain + "/reyonlar?text=" + encodeURIComponent(inputText);
+
+    });
+    function handleKeyPressMobil(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            var inputText = document.getElementById("searchInput").value;
+
+            var currentURL = window.location.href; // Mevcut sayfanın URL'sini alır
+            var domain = window.location.protocol + "//" + window.location.hostname; // Sadece domaini alır
+
+            window.location.href = domain + "/reyonlar?text=" + encodeURIComponent(inputText);
+        }
+    }
 
 </script>
 

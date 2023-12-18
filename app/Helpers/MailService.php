@@ -4,6 +4,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Http;
 class MailService{
     static function yazGonder($to, $subject, $content){
         if($to){
@@ -14,15 +15,25 @@ class MailService{
             self::sendEmail($to, $subject, $body);
         }
     }
-    static function resetPassword($email,$password){
+    public static function resetPassword($email,$password){
+
         $data['email']=$email;
         $data['password']=$password;
-        if(isset($email)){
-            $to = $email;
-            $body = view('emails.reset-password', $data);
-            $subject = 'Akıllı Phone Yeni Şifre';
-            self::sendEmail($to, $subject, $body);
-        }
+        $to = $email;
+        $body = view('emails.reset-password', $data);
+        $subject = 'Akıllı Phone Yeni Şifre';
+        $response = Http::withToken('token')->patch('https://api.duzzona.site/reset-password', [
+            'email' =>$email,
+            'confirmPassword' =>  $password,
+        ]);
+
+        $responseData = json_decode($response->body(), true);
+
+        self::sendEmail($to, $subject, $body);
+
+
+
+
     }
     static function newOrder($data){
         if(isset($data['order']) && isset($data['order']['orderCustomer'])){

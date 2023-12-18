@@ -261,7 +261,7 @@
                                                 <a :href="'{{ url('incele') }}/' + item.slug + '?id='+item.productId" target="_blank">
                                                     <div class="product-image"  style="position: relative">
                                                         <img class="lazyload" width="160" height="160" :src="item.thumb" alt="product image" style="opacity: 0.5">
-                                                        <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 0;left:0;"> <img src="{{ url('assets/images/tukendi.png') }}" style="border: none"> </span>
+                                                        <span class="discount" style="color: red; font-weight: bold;position: absolute;top: 26px;left:22px;"> <img src="{{ url('assets/images/tukendi.png') }}" style="border: none;width: 120px"> </span>
 
                                                     </div>
                                                     <div class="product-info" style="opacity: 0.5">

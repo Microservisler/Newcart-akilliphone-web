@@ -62,7 +62,7 @@ class PageController extends Controller
         $data['main_menu'] =  \WebService::home_main_menu();
 
 
-            $email= $request->input('username');
+        $email= $request->input('username');
 
         $karakterler = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}[]|;:,.<>?';
         $password = '';
@@ -74,7 +74,6 @@ class PageController extends Controller
         }
 
            $mail= MailService::resetPassword($email,$password);
-
 
            return redirect()->route('old.account');
 
