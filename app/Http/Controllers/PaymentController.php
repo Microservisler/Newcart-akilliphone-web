@@ -221,6 +221,15 @@ class PaymentController extends Controller {
 
         if($response && $response['data'] && $response['data']['orderId']){
             BasketService::clear();
+            $orderHistory = [
+                "orderId"=> $response['data']['orderId'],
+                "orderStatusId"=> $response['data']['orderStatusId'],
+                "paymentStatusId"=> $response['data']['paymentStatusId'],
+                "description"=> "Sipariş Websitesinden Oluşturuldu. Order Token: ".$orderToken,
+                "notify"=> true,
+                "notifyResult"=> ""
+            ];
+            \WebService::create_order_history($orderHistory);
             return redirect()->route('thankyou', ['orderId'=> $response['data']['orderId'], 'orderNo'=>$response['data']['orderNo'] ]);
         } else {
             //siapariş oluşturulamadı

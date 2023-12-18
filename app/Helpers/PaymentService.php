@@ -42,7 +42,7 @@ class PaymentService{
         $Pan = isset($cc['cardnumber'])?$cc['cardnumber']:'';
         $Expires = isset($cc['expirationdate'])?$cc['expirationdate']:'';
         $Cvv2 = isset($cc['securitycode'])?$cc['securitycode']:'';
-        $basket->total = 0.50;
+        //$basket->total = 0.50;
         $data['MbrId'] 		        = 5;
         $data['MerchantID'] 		= $finansAccount['MerchantID'];
         $data['UserCode'] 		    = $finansAccount['UserCode'];

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class LocalController extends Controller
 {
+    public function index(Request $request, string $function){
+    }
     public function brands(Request $request, string $function){
         if($function=='set'){
             $response = \WebService::brands('live');
@@ -17,7 +19,13 @@ class LocalController extends Controller
         }
     }
     public function home(Request $request, string $function){
-        if($function=='main-slider'){
+        if($function=='index') {
+            return '
+        <a href="'.route('local.home.set', 'main-slider').'">Ana Menu</a><br>
+        <a href="'.route('local.home.set', 'main-slider').'">Ana Slider</a><br>
+        <a href="'.route('local.brands.set', 'set').'">MArkalar</a><br>
+        ';
+        }elseif($function=='main-slider'){
             $response = \WebService::home_main_slider('live');
             if($response && isset($response['status']) && $response['status']=='1'){
                 file_put_contents(public_path('jsons/home/main-slider.json'), json_encode($response, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));

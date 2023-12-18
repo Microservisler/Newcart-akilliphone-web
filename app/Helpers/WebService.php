@@ -259,6 +259,10 @@ class WebService {
     public static function create_order($order){
         return self::request('orders', $order, 'POST', true);
     }
+    public static function create_order_history($orderHistory){
+        $response = self::request('orders/history', $orderHistory, 'POST', true);
+        return $response ;
+    }
     public static function admin_order($orderId){
         return self::request('orders/'.$orderId, [], 'GET', true);
     }
