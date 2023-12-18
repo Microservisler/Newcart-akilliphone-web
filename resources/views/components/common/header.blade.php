@@ -14,7 +14,11 @@
                             <a href="/"><img src="{{ url('assets/images/logo.svg') }}" alt="Akıllıphone logo"></a>
                         </a>
                     </div>
-
+                    <?php
+                    if(isset($_GET['text'])){
+                        $getText=$_GET['text'];
+                    }
+                    ?>
                     <?php
                     $user=session('userInfo');
                     if(!$user){
@@ -54,49 +58,13 @@
                                 </g>
                             </svg>
                         </button>
-                        <input id="searchInput" class="mobile-input" type="text" placeholder="Ürün, kategori veya marka ara" />
-                        <a href="#" style="margin-right:5px" class="search-icon" id="searchButton">
+                        <input class="search-input" type="search" placeholder="Ürün, kategori veya ürün kodu bilgisi girin" id="searchInput" onkeydown="handleKeyPress(event)" value="{{ $getText ?? '' }}" style="border: none; width: 100%" />
+                        <a class="search-icon" id="searchTextButton"><img width="49" height="49" src="{{ url('assets/images/search-icon.svg') }}" alt="" style="margin-top: 7px"></a>
                         </a>
                     </div>
-                    <div class="last-viewed">
-                        <div class="last-viewed-title">Son gezdiğin ürünler</div>
-                        <div class="product-list">
-                            <a href="#">
-                                <div class="product-reviewed">
-                                    <img src="{{ url('assets/images/reviewed-item-1.png') }}" alt="">
-                                    <div class="reviewed-info">
-                                        <div class="reviewed-name">ALLY Magnetic Air Vent Mıknatıslı Araç TutucuKablo Klipsli-SİYAH</div>
-                                        <div class="reviewed-price">999,90<span>&nbsp;TL</span></div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="product-reviewed">
-                                    <img src="{{ url('assets/images/reviewed-item-2.png') }}" alt="">
-                                    <div class="reviewed-info">
-                                        <div class="reviewed-name">Xiaomi Mi Band 5 Metal Kayış Kordon Kopçalı Milano Loop-SİYAH</div>
-                                        <div class="reviewed-price">299,90<span>&nbsp;TL</span></div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="product-reviewed">
-                                    <img src="{{ url('assets/images/reviewed-item-3.png') }}" alt="">
-                                    <div class="reviewed-info">
-                                        <div class="reviewed-name">ALLY 230 Bluetooth 5.0 Kulaklık Kulak Üstü Bluetooth</div>
-                                        <div class="reviewed-price">99,90<span>&nbsp;TL</span></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+
                     <div class="search-results">
-                        <ul>
-                            <li><a href="#">Test Link: Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate,
-                                    voluptatibus?</a></li>
-                            <li><a href="#">Test Link</a></li>
-                            <li><a href="#">Test Link</a></li>
-                        </ul>
+
                     </div>
                 </div>
             </nav>
@@ -133,11 +101,7 @@
             </a>
             <div class="search-bar" style="position: relative">
                 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<?php
-if(isset($_GET['text'])){
-    $getText=$_GET['text'];
-}
-    ?>
+
 <style>
     .ajax-search strong {
         color: #0a6aa1;
@@ -220,12 +184,12 @@ if(isset($_GET['text'])){
                 $('.search-results').hide();
             }, 300);
         });
-        $('#searchText').on('focus', function(){
-            if($('#searchText').val()){
+        $('.search-input').on('focus', function(){
+            if($('.search-input').val()){
                 $('.search-results').show();
             }
         });
-        $( "#searchText" ).autocomplete({
+        $( ".search-input" ).autocomplete({
             source: function( request, response ) {
                 $.ajax( {
                     url: "{{ route('product.auto-complate') }}",

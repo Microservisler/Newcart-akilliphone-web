@@ -17,7 +17,7 @@
                                                     <div class="product-category">Araç Aksesuarları</div>
                                                     <div class="product-details">
                                                         <div class="product-image">
-                                                            <img class="lazyload" width="82" height="82" src="assets/images/product1.png" alt="">
+{{--                                                            <img class="lazyload" width="82" height="82" src="assets/images/product1.png" alt="">--}}
                                                         </div>
                                                         <div class="product-info">
                                                             <div class="product-name">Bs22 Ritim Sport Bluetooth Speaker
@@ -38,7 +38,7 @@
                                                     <div class="product-category">Bluetooth Hoparlör</div>
                                                     <div class="product-details">
                                                         <div class="product-image">
-                                                            <img class="lazyload" width="82" height="82" src="assets/images/product2.png" alt="">
+{{--                                                            <img class="lazyload" width="82" height="82" src="assets/images/product2.png" alt="">--}}
                                                         </div>
                                                         <div class="product-info">
                                                             <div class="product-name">Bs22 Ritim Sport Bluetooth Speaker
@@ -59,7 +59,7 @@
                                                     <div class="product-category">Ekran Koruyucular</div>
                                                     <div class="product-details">
                                                         <div class="product-image">
-                                                            <img class="lazyload" width="82" height="82" src="assets/images/product3.png" alt="">
+{{--                                                            <img class="lazyload" width="82" height="82" src="assets/images/product3.png" alt="">--}}
                                                         </div>
                                                         <div class="product-info">
                                                             <div class="product-name">Bs22 Ritim Sport Bluetooth Speaker
@@ -80,7 +80,7 @@
                                                     <div class="product-category">Oyun Aksesuarları</div>
                                                     <div class="product-details">
                                                         <div class="product-image">
-                                                            <img class="lazyload" width="82" height="82" src="assets/images/product4.png" alt="">
+{{--                                                            <img class="lazyload" width="82" height="82" src="assets/images/product4.png" alt="">--}}
                                                         </div>
                                                         <div class="product-info">
                                                             <div class="product-name">Bs22 Ritim Sport Bluetooth Speaker
@@ -101,7 +101,7 @@
                                                     <div class="product-category">Telefon Kılıfları</div>
                                                     <div class="product-details">
                                                         <div class="product-image">
-                                                            <img class="lazyload" width="82" height="82" src="assets/images/product5.png" alt="">
+{{--                                                            <img class="lazyload" width="82" height="82" src="assets/images/product5.png" alt="">--}}
                                                         </div>
                                                         <div class="product-info">
                                                             <div class="product-name">Bs22 Ritim Sport Bluetooth Speaker
@@ -122,7 +122,7 @@
                                                     <div class="product-category">Selfie ve Standlar</div>
                                                     <div class="product-details">
                                                         <div class="product-image">
-                                                            <img class="lazyload" width="82" height="82" src="assets/images/product6.png" alt="">
+{{--                                                            <img class="lazyload" width="82" height="82" src="assets/images/product6.png" alt="">--}}
                                                         </div>
                                                         <div class="product-info">
                                                             <div class="product-name">Bs22 Ritim Sport Bluetooth Speaker
