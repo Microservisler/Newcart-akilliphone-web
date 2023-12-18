@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\DB;
+
 function getProductImageUrlById($variyantId, $w=50, $h=50){
     $variyant = WebService::product_variant($variyantId);
     if(isset($variyant['data'])){
@@ -208,5 +211,22 @@ function _getHashToken($key){
 }
 function _verifyHashToken($key, $hash_token){
     return $hash_token == md5($key.'akilliphone');
+}
+function addPaymentLog($payment_type, $response, $order, $basket ){
+    try {
+        $response = json_encode($response, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+        $order = json_encode($order, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+        $basket = json_encode($basket, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+        $order_id = isset($order['orderId'])?$order['orderId']:0;
+        DB::table('payment_logs')->insert([
+            'order_id'=>$order_id,
+            'payment_type'=>$payment_type,
+            'response'=>$response,
+            'order_data'=>$order,
+            'basket'=>$basket
+        ]);
+    } catch (\Exception $exception){
+
+    }
 }
 ?>

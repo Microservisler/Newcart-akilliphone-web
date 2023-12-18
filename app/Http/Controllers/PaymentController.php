@@ -21,6 +21,10 @@ class PaymentController extends Controller {
         $data = $request->all();
         $token =$request->input('token');
         $payment = \PaymentService::checkIyzicoPayment($token);
+        $basket =  BasketService::calculateBasket(BasketService::getBasket());
+        $order = OrderService::currentOrder();
+        addPaymentLog('iyzico', ['callback'=>$data, 'check'=>$payment], $order, $basket );
+
         if($payment->getPaymentStatus()=='FAILURE'){
             $request->session()->flash('flash-error', [$payment->getErrorMessage(),'']);
             return redirect(route('payment.step.get', '3'));
@@ -40,9 +44,9 @@ class PaymentController extends Controller {
     }
     public function validateSuccess(Request $request){
         $data = $request->all();
-        //file_put_contents('ccsuccess.json', json_encode($data));
-        //$data = json_decode( file_get_contents('ccsuccess.json'), 1);
-        //$ErrMsg = isset($data['ErrMsg'])?$data['ErrMsg']:'Bilinmeyen Hata';
+        $basket =  BasketService::calculateBasket(BasketService::getBasket());
+        $order = OrderService::currentOrder();
+        addPaymentLog('creditcard', $data, $order, $basket );
 
         $error = null;
         if($data){
@@ -50,9 +54,8 @@ class PaymentController extends Controller {
             if(isset($data['Hash']) ){
                  if($hash ==$data['Hash']){
                      if($data['3DStatus']==1 ){
-                         $basket =  BasketService::calculateBasket(BasketService::getBasket());
                          if($basket){
-                             $order = OrderService::currentOrder();
+                             //$order = OrderService::currentOrder();
                              $order->marketplaceId = 4; //akilliphone
                              $order->paymentTypeId = 3; // havale
                              $order->orderStatusId = 26; // havale
@@ -64,7 +67,8 @@ class PaymentController extends Controller {
                              }
                              $response = \WebService::create_order($order);
                              if($response && $response['data'] && $response['data']['orderId']){
-                                 BasketService::clear();
+                                 $this->complateOrderWithPaymentTypeId(3 );
+                                 //BasketService::clear();
                                  if($error) $request->session()->flash('flash-error',['Hata Oluştu:', $error]);
                                  return redirect()->route('thankyou', ['orderId'=> $response['data']['orderId'], 'orderNo'=>$response['data']['orderNo'] ]);
                              } else{
@@ -90,11 +94,11 @@ class PaymentController extends Controller {
     }
     public function validateFail(Request $request){
         $data = $request->all();
-        //file_put_contents('sdfail.json', json_encode($data));
-        //$data = json_decode( file_get_contents('sdfail.json'), 1);
-        //$ErrMsg = isset($data['ErrMsg'])?$data['ErrMsg']:'Bilinmeyen Hata';
+        $order = OrderService::currentOrder();
         $basket =  BasketService::calculateBasket(BasketService::getBasket());
         $validate = \PaymentService::finansBankValidate($data, $basket);
+        addPaymentLog('creditcard', $data, $order, $basket );
+
         if($validate['errors']){
             $request->session()->flash('flash-error', $validate['errors']);
         }
@@ -156,7 +160,6 @@ class PaymentController extends Controller {
                 $billingAddress = $shippingAddress;
             }
 
-
             BasketService::setShipping($request->input('shippingBrand', false));
             BasketService::setCustomer($customer);
             BasketService::setShipingAddres($shippingAddress);
@@ -190,6 +193,8 @@ class PaymentController extends Controller {
             if(BasketService::getItemCount()){
                 $basket = BasketService::calculateBasket(BasketService::getBasket());
                 if($paymetType=='banktransfer'){
+                    $order = OrderService::currentOrder();
+                    addPaymentLog('banktransfer', [], $order, $basket );
                     return $this->complateOrderWithPaymentTypeId(5);
                 } elseif($paymetType=='finansbank'){
                     //$order->paymentTypeId = 3; // kredikartı
