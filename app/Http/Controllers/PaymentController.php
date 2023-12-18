@@ -60,7 +60,7 @@ class PaymentController extends Controller {
                              $order->paymentTypeId = 3; // havale
                              $order->orderStatusId = 26; // havale
                              $order->paymentStatusId = 3; // havale
-                             if($basket->total == $data['PurchAmount']){
+                             if( round($data['PurchAmount'] >= round($basket->total) )){
                                  $order->orderStatusId = 28; // havale
                              } else {
                                  $error = 'sipariş ile ödeme tutarı uyumsuz';
