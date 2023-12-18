@@ -231,4 +231,18 @@ function addPaymentLog($payment_type, $response, $order, $basket, $order_id=0 ){
 
     }
 }
+function validateHtmlContet($html){
+    try{
+        if(is_string($html) && !empty($html)){
+            $dom = New DOMDocument();
+            $dom->loadHTML($html);
+        } else{
+            $html = '';
+        }
+    } catch (Exception $exception){
+        $html = '';
+    }
+    return $html;
+}
+
 ?>

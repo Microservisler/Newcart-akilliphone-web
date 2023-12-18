@@ -69,11 +69,8 @@
                                                     style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:20px;color:#ffffff;font-size:13px">
                                                     <a target="_blank"
                                                        style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#FFFFFF;font-size:13px"
-                                                       href="https://viewstripo.email/">Gizlilik |
-                                                        Abonelikten çık</a>
-                                                    <a target="_blank"
-                                                       style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#FFFFFF;font-size:13px"
-                                                       class="unsubscribe" href=""></a></p></td>
+                                                       href="#"></a>
+                                                    </p></td>
                                         </tr>
                                     </table>
                                 </td>
