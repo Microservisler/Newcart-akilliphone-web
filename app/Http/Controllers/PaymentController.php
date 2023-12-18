@@ -214,7 +214,7 @@ class PaymentController extends Controller {
         return view('payment.step-4', $data);
     }
     private function complateOrderWithPaymentTypeId($paymentTypeId, $orderToken='', $paymentStatusId=false){
-
+        $basket = BasketService::calculateBasket(BasketService::getBasket());
         $order = OrderService::currentOrder();
         $order->marketplaceId='4'; //akilliphone
         $order->marketplaceOrderCode= $orderToken; //iyzico ödeme tokenı
@@ -225,6 +225,9 @@ class PaymentController extends Controller {
         $response = \WebService::create_order($order);
 
         if($response && $response['data'] && $response['data']['orderId']){
+            $order = OrderService::currentOrder();
+            addPaymentLog('complate', $response, $order, $basket );
+
             BasketService::clear();
             $orderHistory = [
                 "orderId"=> $response['data']['orderId'],
@@ -237,6 +240,7 @@ class PaymentController extends Controller {
             \WebService::create_order_history($orderHistory);
             return redirect()->route('thankyou', ['orderId'=> $response['data']['orderId'], 'orderNo'=>$response['data']['orderNo'] ]);
         } else {
+            addPaymentLog('error', [], $order, $basket );
             //siapariş oluşturulamadı
         }
 

@@ -214,10 +214,10 @@ function _verifyHashToken($key, $hash_token){
 }
 function addPaymentLog($payment_type, $response, $order, $basket ){
     try {
+        $order_id = isset($response['data']) && isset($response['data']['orderId'])?$order['data']['orderId']:0;
         $response = json_encode($response, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
         $order = json_encode($order, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
         $basket = json_encode($basket, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
-        $order_id = isset($order['orderId'])?$order['orderId']:0;
         DB::table('payment_logs')->insert([
             'order_id'=>$order_id,
             'payment_type'=>$payment_type,

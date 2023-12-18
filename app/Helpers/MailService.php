@@ -30,7 +30,7 @@ class MailService{
             $body = view('emails.new-order', $data);
             $subject = 'Siparişiniz Hakkında';
             self::sendEmail($to, $subject, $body);
-            self::sendEmail('balcioglualisahin@gmail.com', $subject, $body);
+            //self::sendEmail('balcioglualisahin@gmail.com', $subject, $body);
         }
     }
     private static function sendEmail($to, $subject, $body, $from=null) : bool
