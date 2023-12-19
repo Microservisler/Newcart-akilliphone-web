@@ -204,10 +204,12 @@ class WebService {
     }
 
     public static function filterables($category_id){
+
         $data = ['offset'=>5];
         if(!empty($category_id)){
             $data['cat'] = $category_id;
         }
+
         $response = self::request('products', $data);
         if($response && isset($response['data']) && isset($response['data']['filterables'])){
             return $response['data']['filterables'];
@@ -338,14 +340,21 @@ class WebService {
                 'Authorization' => 'Bearer ' . $Authorization,
                 'Accept' => 'application/json',
             ];
+
             if($data &&  $method=='GET'){
+
                 $http_query = http_build_query($data);
+
                 $url = ltrim($url, '/').'?'.$http_query;
+
             } elseif($data &&  $method=='POST'){
+
                 $options[GuzzleHttp\RequestOptions::JSON]=$data;
             }
             $response = $client->request($method, $url, $options);
+
             $result = json_decode($response->getBody(), true);
+
             //print_r(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));die();
         } catch (\Exception $ex){
             echo json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);

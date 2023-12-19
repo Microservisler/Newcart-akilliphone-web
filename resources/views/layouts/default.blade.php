@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 
 
@@ -136,7 +136,7 @@
     });
     document.getElementById("searchTextButtonMobil").addEventListener("click", function(event) {
         event.preventDefault();
-        var inputText = document.getElementById("searchInput").value;
+        var inputText = document.getElementById("searchInputMobile").value;
 
         var currentURL = window.location.href; // Mevcut sayfanın URL'sini alır
         var domain = window.location.protocol + "//" + window.location.hostname; // Sadece domaini alır
@@ -147,7 +147,7 @@
     function handleKeyPressMobil(event) {
         if (event.key === 'Enter') {
             event.preventDefault();
-            var inputText = document.getElementById("searchInput").value;
+            var inputText = document.getElementById("searchInputMobile").value;
 
             var currentURL = window.location.href; // Mevcut sayfanın URL'sini alır
             var domain = window.location.protocol + "//" + window.location.hostname; // Sadece domaini alır

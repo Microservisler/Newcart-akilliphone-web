@@ -91,6 +91,8 @@
                     @endif
                     <?php
                     $getText=isset($_GET['text'])?$_GET['text']:0;
+                    $getBrand=isset($_GET['brand'])?$_GET['brand']:0;
+
                     ?>
                     @if(isset($_GET['text']) )
                         <input checked type="checkbox" class="option-input forfilter searchText " id="filter-search" value="{{ $getText }}"  style="display: none" >
@@ -98,6 +100,9 @@
                     @if(isset($_GET['category']) )
 
                         <input checked type="checkbox" class="option-input forfilter category " id="filter-cat" value="{{$cat_ids }}"  style="display: none" >
+                    @endif
+                    @if(isset($_GET['brand']) )
+                        <input checked type="checkbox" class="option-input forfilter brands " id="filter-brand" value="{{$getBrand }}"  style="display: none" >
                     @endif
                     <div class="filtermenu-box">
                         <div class="title">markalar</div>
@@ -107,6 +112,7 @@
 
                                 <ul id="markalar">
                                     @foreach ($filterable['brands'] as $item)
+
 
                                         <li>
                                             <label for="{{$item['name']}}">
