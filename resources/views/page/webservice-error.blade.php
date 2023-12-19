@@ -15,6 +15,7 @@
         <div class="aboutus-content">
             <h2 style="font-weight: bold;font-size: 20px;padding: 20px">Lütfen daha sonra tekrar deneyiniz</h2>
             <p>Teknik bir problemden kaynaklanan bu hata için özür dileriz.</p>
+            <p>Hata Id: {{ request()->input('failedId', 0) }}</p>
         </div>
     </div>
 

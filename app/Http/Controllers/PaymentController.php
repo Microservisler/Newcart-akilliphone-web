@@ -120,7 +120,7 @@ class PaymentController extends Controller {
         $data['countries'] = \WebService::countries();
         $data['cities'] = \WebService::cities();
         $data['userInfo']   =   session()->get('userInfo');
-
+//dd(json_encode($data['basket']));
         if(empty($data['basket']->basketItemCount)){
             $step="1";
         }
