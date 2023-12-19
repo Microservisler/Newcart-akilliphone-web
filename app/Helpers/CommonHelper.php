@@ -231,6 +231,20 @@ function addPaymentLog($payment_type, $response, $order, $basket, $order_id=0 ){
 
     }
 }
+function addFailedLog($module, $message='', $data=[] ){
+    $id = 0;
+    try {
+        $data = json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+        $id = DB::table('failed_logs')->insertGetId([
+            'module'=> $module,
+            'message'=>$message,
+            'data'=>$data,
+        ]);
+    } catch (\Exception $exception){
+
+    }
+    return $id;
+}
 function validateHtmlContet($html){
     try{
         if(is_string($html) && !empty($html)){

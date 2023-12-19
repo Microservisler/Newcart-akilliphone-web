@@ -357,9 +357,10 @@ class WebService {
 
             //print_r(json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));die();
         } catch (\Exception $ex){
-            echo json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
-            dd($ex->getMessage());
-            //echo "$method : $url<br>".$ex->getMessage()."<br>";die();
+            $failedId = addFailedLog('webservice', $ex->getMessage(),  ['endpoint'=>$endpoint, 'data'=>$data, 'method'=>$method, 'is_admin'=>$is_admin]  );
+            request()->session()->flash('flash-error', [$ex->getMessage(), 'Tekrar deneyiniz.']);
+            echo "<script>window.location.href='".route('page', ['page'=>'webservice-error', 'failedId'=>$failedId])."'</script>";
+
         }
         return $result;
     }
