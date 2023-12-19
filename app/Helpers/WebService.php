@@ -351,7 +351,7 @@ class WebService {
             $failedId = addFailedLog('webservice', ['endpoint'=>$endpoint, 'data'=>$data, 'method'=>$method, 'is_admin'=>$is_admin, 'ex'=>$ex->getMessage()]  );
             request()->session()->flash('flash-error', [$ex->getMessage(), 'Tekrar deneyiniz.']);
             echo "<script>window.location.href='".route('page', ['page'=>'webservice-error', 'failedId'=>$failedId])."'</script>";
-          
+
         }
         return $result;
     }
