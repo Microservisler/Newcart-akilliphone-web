@@ -61,7 +61,7 @@
                         </label>
                     </div>
                     <div class="signup-buttons">
-                        <button type="submit" class="submit-btn" >Hemen Üye Ol</button>
+                        <button type="submit" class="submit-btn" >Hemen Bayi Ol</button>
                         <a href="{{route('login')}}">Üye misin? Hemen Giriş Yap</a>
                     </div>
                     <a class="kvkk" href="#">KVKK kapsamında akilliphone.com Kişisel Verilerin Korunması ve İşlenmesi Şartları na buradan ulaşabilirsiniz.</a>

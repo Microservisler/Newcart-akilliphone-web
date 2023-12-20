@@ -106,6 +106,13 @@ class WebService {
         $responseData = json_decode($response->body(), true);
         return $responseData;
     }
+    public static function register_bayi($body){
+        $token = self::admin_token();
+        $response = Http::withToken($token)->post('https://api.duzzona.site/register-uye', $body);
+
+        $responseData = json_decode($response->body(), true);
+        return $responseData;
+    }
     public static function update_user($body){
         $token = session('userToken');
         $body['user']['id']=session('userInfo')['data']['id'];

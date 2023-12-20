@@ -33,6 +33,7 @@ Route::get('/old-account', [PageController::class, 'old_account'])->name('old.ac
 Route::post('/old-account', [PageController::class, 'old_account_post'])->name('old.account.post');
 Route::get('/bayi-giris', [PageController::class, 'bayi_login'])->name('bayi.login');
 Route::get('/bayi-uye-ol', [PageController::class, 'bayi_register'])->name('bayi.register');
+Route::post('/bayi-register', [PageController::class, 'register_bayi'])->name('bayi.uye-ol');
 Route::get('/register', [PageController::class, 'signUp'])->name('signUp');
 Route::post('/register', [PageController::class, 'register'])->name('register');
 Route::post('/login', [PageController::class, 'auth'])->name('auth');
