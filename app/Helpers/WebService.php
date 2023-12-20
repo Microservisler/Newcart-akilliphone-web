@@ -203,14 +203,20 @@ class WebService {
         return self::request('products?cat=84&sort=newly&orderby=desc&offset=12' ,[]);
     }
 
-    public static function filterables($category_id){
+    public static function filterables($request){
 
-        $data = ['offset'=>5];
-        if(!empty($category_id)){
-            $data['cat'] = $category_id;
+        $filter = ['offset'=>50];
+        if($category_id = $request->input('category')){
+            $filter['cat'] = $category_id;
+        }
+        if($section = $request->input('section')){
+            $filter['section'] = $section;
+        }
+        if($brand = $request->input('brand')){
+            $filter['brand'] = $brand;
         }
 
-        $response = self::request('products', $data);
+        $response = self::request('products', $filter);
         if($response && isset($response['data']) && isset($response['data']['filterables'])){
             return $response['data']['filterables'];
         } else{
