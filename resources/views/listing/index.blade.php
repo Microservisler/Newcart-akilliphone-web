@@ -116,7 +116,7 @@
 
                                         <li>
                                             <label for="{{$item['name']}}">
-                                                <input @if($item['id']==$selected_brand) checked @endif type="checkbox" class="option-input forfilter brands " id="{{$item['name']}}" value="{{$item['id']}}" >
+                                                <input @if($item['id']==$selected_brand) checked @endif type="checkbox" class="option-input forfilter brands " id="brand-{{$item['id']}}" value="{{$item['id']}}" >
                                                 {{$item['name']}}
                                             </label>
                                         </li>

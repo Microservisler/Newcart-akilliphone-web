@@ -19,7 +19,7 @@ class ListingController extends Controller{
         $parts = explode('-', $slug);
         $data['category_code'] = (int)end($parts);
         $data['main_menu']          =  \WebService::home_main_menu();
-        $data['filterable']          =  \WebService::filterables($data['selected_category']);
+        $data['filterable']          =  \WebService::filterables($request);
         //$data['brands']          =  \WebService::brands();
         $data['colors']          =  \WebService::colors();
         $data['categories']          =  \WebService::categories();
