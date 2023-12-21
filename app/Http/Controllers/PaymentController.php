@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Akilliphone\BasketService;
 use Akilliphone\MailService;
 use Akilliphone\OrderService;
+use App\Models\CommonLogs;
 use App\Models\Home;
 use Illuminate\Http\Request;
 
@@ -52,15 +53,15 @@ class PaymentController extends Controller {
         if($data){
             $hash = \PaymentService::finansBankHash($data);
             if(isset($data['Hash']) ){
-                 if($hash ==$data['Hash']){
+                 if($hash == $data['Hash']){
                      if($data['3DStatus']==1 ){
                          if($basket){
                              //$order = OrderService::currentOrder();
                              $order->marketplaceId = 4; //akilliphone
                              $order->paymentTypeId = 3; // havale
-                             $order->orderStatusId = 26; // ödeme bekliyor
-                             $order->paymentStatusId = 3; // Ödeme Bekliyor
-                             if( round($data['PurchAmount'] >= round($basket->total) )){
+                             $order->orderStatusId = 26; // Sipariş ödeme bekliyor
+                             $order->paymentStatusId = 3; // Ödeme durumu Bekliyor
+                             if( round($data['PurchAmount']) >= round($basket->total) ){
                                  $order->orderStatusId = 28; // onaylandı
                                  $order->paymentStatusId = 11; // Ödendi
                              } else {
@@ -68,7 +69,18 @@ class PaymentController extends Controller {
                              }
                              $response = \WebService::create_order($order);
                              if($response && $response['data'] && $response['data']['orderId']){
-                                 //$this->complateOrderWithPaymentTypeId(3 );
+                                 $log = [
+                                     'title'=>'Fianansbank Tutar. #'.$response['data']['orderId'],
+                                     'data' => json_encode(
+                                         [
+                                             'kontrol'=>round($data['PurchAmount'])." >= ".round($basket->total),
+                                             'data'=>$data,
+                                             'basket'=>$basket,
+                                         ], JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE
+                                     )
+                                 ];
+                                 CommonLogs::insert($log);
+
                                  BasketService::clear();
                                  if($error) $request->session()->flash('flash-error',['Hata Oluştu:', $error]);
                                  return redirect()->route('thankyou', ['orderId'=> $response['data']['orderId'], 'orderNo'=>$response['data']['orderNo'] ]);
