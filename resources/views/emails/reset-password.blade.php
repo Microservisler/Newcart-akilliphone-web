@@ -281,7 +281,7 @@
                                                 style="padding:0;Margin:0;padding-top:15px"><span
                                                     class="es-button-border-1696530948125 es-button-border"
                                                     style="border-style:solid;border-color:#659C35;background:#16c0ec;border-width:0px;display:inline-block;border-radius:0px;width:auto"><a
-                                                        href="https://viewstripo.email/"
+                                                        href="https://wa.me/905492785372"
                                                         class="es-button es-button-1696530948114"
                                                         target="_blank"
                                                         style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:18px;display:inline-block;background:#16c0ec;border-radius:0px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:22px;width:auto;text-align:center;padding:10px 20px 10px 20px;mso-padding-alt:0;mso-border-alt:10px solid #16c0ec">WHATSAPP</a></span>

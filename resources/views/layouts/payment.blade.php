@@ -37,6 +37,8 @@
         }
         .basket-message.text-danger {
             color: #e91e63;
+            font-size: 10px;
+            margin-top: 10px;
         }
         .basket-message.text-success {
             color: #32a200;
