@@ -29,7 +29,7 @@ class PaymentService{
                     'hashstr'=>$hashstr,
                     'hash'=>base64_encode(pack('H*',sha1($hashstr))),
                     'data'=>$data,
-                ]
+                ], JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE
             )
         ];
         Models\CommonLogs::insert($log);
