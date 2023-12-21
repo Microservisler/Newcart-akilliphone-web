@@ -38,9 +38,28 @@
                     </div>
                     <div class="signup-input">
                         <span class="label">Şifre<span>&nbsp;*</span></span>
-                        <input type="password" name="password">
-                    </div>
+                        <input type="password" name="password" id="password">
 
+
+                        <div id="tooltip" style="background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    padding: 10px;
+    color: red;
+    line-height: 17px;
+    font-size: 12px;
+    position: absolute;
+    right: -213px;
+    top: -13px;
+    z-index: 114;
+    display: none;">
+                            <ul>
+                                <li class="rule" id="upper">Büyük harf en az bir tane</li>
+                                <li class="rule" id="lower">Küçük harf en az bir tane</li>
+                                <li class="rule" id="number">Sayı en az bir tane</li>
+                                <li class="rule" id="special">Özel karakter en az bir tane</li>
+                            </ul>
+                        </div>
+                    </div>
 
 {{--                    <div class="signup-input">--}}
 {{--                        <span class="label">Kullanıcı Adı<span>&nbsp;*</span></span>--}}
@@ -78,6 +97,44 @@
     <script src="./assets/js/mask.min.js" ></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/tr.js"></script>
     <script>
+        const passwordInput = document.getElementById('password');
+        const tooltip = document.getElementById('tooltip');
+        const rules = {
+            upper: /[A-Z]/,
+            lower: /[a-z]/,
+            number: /[0-9]/,
+            special: /[^A-Za-z0-9]/
+        };
+
+        passwordInput.addEventListener('focus', function() {
+            tooltip.style.display = 'block';
+        });
+
+        passwordInput.addEventListener('blur', function() {
+            tooltip.style.display = 'none';
+        });
+
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            const matchedRules = Object.keys(rules).filter(rule => rules[rule].test(password));
+
+            document.querySelectorAll('.rule').forEach(rule => {
+                if (matchedRules.includes(rule.id)) {
+                    rule.style.textDecoration = 'line-through';
+                    rule.style.color='green';
+                } else {
+                    rule.style.textDecoration = 'none';
+                    rule.style.color='red';
+                }
+            });
+
+            if (matchedRules.length === Object.keys(rules).length) {
+                // tooltip.style.display = 'none';
+
+            } else {
+                tooltip.style.display = 'block';
+            }
+        });
         flatpickr.localize(flatpickr.l10ns.tr);
         flatpickr("#date-picker", {
             dateFormat: "d/m/Y",
