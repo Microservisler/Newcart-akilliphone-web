@@ -122,7 +122,7 @@ class PageController extends Controller
       "username" => $request->input('email'),
       "phoneNumber" => $request->input('phoneNumber'),
       "birthDate" => $nowDateString,
-      "tcKimlik" => $request->input('tcKimlik'),
+      "tcKimlik" =>"0",
       "telefon"=>$request->input('phoneNumber'),
       "hasDropshippingPermission"=>"1",
       "code"=>"1"
@@ -149,6 +149,49 @@ class PageController extends Controller
             return redirect()->route('login');
         }else{
             $request->session()->flash('flash-error', ['Üye olma işlemi başarısız', 'Tekrar deneyiniz.']);
+
+            return back()->withInput();
+        }
+
+    }
+    public function register_bayi(Request $request)
+    {
+        $data['main_menu'] =  \WebService::home_main_menu();
+        $nowDateString = \Carbon\Carbon::now()->format('Y-m-d');
+        $body=[
+            "firstName" => $request->input('firstName'),
+            "lastName" => $request->input('lastName'),
+            "password" => $request->input('password'),
+            "password2" => $request->input('password2'),
+            "email" => $request->input('email'),
+            "username" => $request->input('email'),
+            "phoneNumber" => $request->input('phoneNumber'),
+            "birthDate" => $nowDateString,
+            "tcKimlik" => $request->input('tcKimlik'),
+            "telefon"=>$request->input('phoneNumber'),
+            "hasDropshippingPermission"=>"1",
+            "code"=>"1"
+        ];
+        if($body['password']){
+            if ($body['password']!=$body['password2']){
+
+                $request->session()->flash('flash-error', ['Şifreleri Aynı girdiğinizden Emin olun', 'Tekrar deneyiniz.']);
+
+                return back()->withInput();
+            }
+
+
+        }
+
+
+        $register=\WebService::register_bayi($body);
+
+
+        if($register){
+            $request->session()->flash('flash-success', ['Bayi olma işlemi başarılı', 'Yönlendiriliyorsunuz.']);
+            return redirect()->route('bayi.login');
+        }else{
+            $request->session()->flash('flash-error', ['Bayi olma işlemi başarısız', 'Tekrar deneyiniz.']);
 
             return back()->withInput();
         }
