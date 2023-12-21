@@ -206,21 +206,32 @@
                             Filtrele
                         </div>
                     </div>
-                    <div id="tab-btns" class="tab-section">
-                        <div class="tab block">
-                            <label href="javascript:void(0)" class="tabSpec">
-                                <input name="order" type="radio" class="option-input forfilter orderBy" value="order|desc">
-                                Çok satanlar</label>
-                            <label href="javascript:void(0)" class="tabSpec active">
-                                <input name="order" type="radio" class="option-input forfilter orderBy" value="newly|desc">
-                                En yeniler</label>
-                            <label href="javascript:void(0)" class="tabSpec">
-                                <input name="order" type="radio" class="option-input forfilter orderBy" value="price|asc">
-                                En düşük fiyat</label>
-                            <label href="javascript:void(0)" class="tabSpec" >
-                                <input name="order" type="radio" class="option-input forfilter orderBy" value="price|desc">
-                                En yüksek fiyat</label>
-                        </div>
+                        <?php
+                        $section = '';
+                        if (isset($_GET['section'])) {
+                            $section = $_GET['section'];
+                        }
+                        ?>
+                        <div id="tab-btns" class="tab-section">
+                            <div class="tab block">
+                                <label href="javascript:void(0)" class="tabSpec <?php echo ($section === 'most_ordered') ? 'active' : ''; ?>">
+                                    <input name="order" type="radio" class="option-input forfilter orderBy" value="order|desc">
+                                    Çok satanlar
+                                </label>
+                                <label href="javascript:void(0)" class="tabSpec <?php echo ($section === 'new_arrivals') ? 'active' : ''; ?>">
+                                    <input name="order" type="radio" class="option-input forfilter orderBy" value="newly|desc">
+                                    En yeniler
+                                </label>
+                                <label href="javascript:void(0)" class="tabSpec">
+                                    <input name="order" type="radio" class="option-input forfilter orderBy" value="price|asc">
+                                    En düşük fiyat
+                                </label>
+                                <label href="javascript:void(0)" class="tabSpec">
+                                    <input name="order" type="radio" class="option-input forfilter orderBy" value="price|desc">
+                                    En yüksek fiyat
+                                </label>
+                            </div>
+
 
 
 
