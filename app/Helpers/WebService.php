@@ -75,7 +75,7 @@ class WebService {
 
         $response = Http::withToken($token)->put('https://api.duzzona.site/address', $body);
         $responseData = json_decode($response->body(), true);
-        dd($response);
+
         if ($response->successful()) {
             return $response->json();
         } else {

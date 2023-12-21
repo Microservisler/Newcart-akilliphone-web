@@ -73,19 +73,11 @@ class PageController extends Controller
             $password .= $karakterler[$rastgeleIndex];
         }
 
-           $mail= MailService::resetPassword($email,$password);
-
-           return redirect()->route('old.account');
+        $mail= MailService::resetPassword($email,$password);
 
 
-//        if($body){
-//         session()->flash('flash-success', ['Yeni Şifre Mailinize Gönderildi', 'Yönlendiriliyorsunuz.']);
-//
-//        }else{
-//         session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Tekrar deneyiniz.']);
-//
-//            return back()->withInput();
-//        }
+        return redirect()->route('old.account');
+
 
 
     }
@@ -114,26 +106,26 @@ class PageController extends Controller
         $data['main_menu'] =  \WebService::home_main_menu();
         $nowDateString = \Carbon\Carbon::now()->format('Y-m-d');
         $body=[
-      "firstName" => $request->input('firstName'),
-      "lastName" => $request->input('lastName'),
-      "password" => $request->input('password'),
-      "password2" => $request->input('password2'),
-      "email" => $request->input('email'),
-      "username" => $request->input('email'),
-      "phoneNumber" => $request->input('phoneNumber'),
-      "birthDate" => $nowDateString,
-      "tcKimlik" =>"0",
-      "telefon"=>$request->input('phoneNumber'),
-      "hasDropshippingPermission"=>"1",
-      "code"=>"1"
-];
+            "firstName" => $request->input('firstName'),
+            "lastName" => $request->input('lastName'),
+            "password" => $request->input('password'),
+            "password2" => $request->input('password2'),
+            "email" => $request->input('email'),
+            "username" => $request->input('email'),
+            "phoneNumber" => $request->input('phoneNumber'),
+            "birthDate" => $nowDateString,
+            "tcKimlik" =>"0",
+            "telefon"=>$request->input('phoneNumber'),
+            "hasDropshippingPermission"=>"1",
+            "code"=>"1"
+        ];
         if($body['password']){
-          if ($body['password']!=$body['password2']){
+            if ($body['password']!=$body['password2']){
 
-              $request->session()->flash('flash-error', ['Şifreleri Aynı girdiğinizden Emin olun', 'Tekrar deneyiniz.']);
+                $request->session()->flash('flash-error', ['Şifreleri Aynı girdiğinizden Emin olun', 'Tekrar deneyiniz.']);
 
-              return back()->withInput();
-          }
+                return back()->withInput();
+            }
 
 
         }
@@ -143,12 +135,17 @@ class PageController extends Controller
 
         $register=\WebService::register($body);
 
-
-        if($register){
+        if($register['message']=="User created successfully!"){
             $request->session()->flash('flash-success', ['Üye olma işlemi başarılı', 'Yönlendiriliyorsunuz.']);
             return redirect()->route('login');
-        }else{
-            $request->session()->flash('flash-error', ['Üye olma işlemi başarısız', 'Tekrar deneyiniz.']);
+        }
+        elseif ($register['message']=="User already exists!"){
+
+            $request->session()->flash('flash-error', ['Bu Mail Adresi Kullanılıyor!', 'Tekrar deneyiniz.']);
+            return back()->withInput();
+        }
+        else{
+            $request->session()->flash('flash-error', ['Kayıt Oluşturulamadı!', 'Tekrar deneyiniz.']);
 
             return back()->withInput();
         }
@@ -248,40 +245,40 @@ class PageController extends Controller
         return redirect()->route('login');
 
     }
-/*
- public function profile(string $page)
- {
-     if(!$page){
-         $page="order";
-     }
-     $data['page'] =$page;
+    /*
+     public function profile(string $page)
+     {
+         if(!$page){
+             $page="order";
+         }
+         $data['page'] =$page;
 
-     $data['main_menu'] =  \WebService::home_main_menu();
-     return view('profile.index',$data);
- }
- public function profileOrderDetail()
- {
-     return view('profile.order.order-detail');
- }
- public function profileCoupons()
- {
-     return view('profile.coupons.coupons');
- }
- public function profileFavorites()
- {
-     return view('profile.favorites.favorites');
- }
- public function profileComments()
- {
-     return view('profile.comments.comments');
- }
- public function profileInformation()
- {
-     return view('profile.information.information');
- }
- public function profilePayment()
- {
-     return view('profile.payment.payment');
- }
-*/
+         $data['main_menu'] =  \WebService::home_main_menu();
+         return view('profile.index',$data);
+     }
+     public function profileOrderDetail()
+     {
+         return view('profile.order.order-detail');
+     }
+     public function profileCoupons()
+     {
+         return view('profile.coupons.coupons');
+     }
+     public function profileFavorites()
+     {
+         return view('profile.favorites.favorites');
+     }
+     public function profileComments()
+     {
+         return view('profile.comments.comments');
+     }
+     public function profileInformation()
+     {
+         return view('profile.information.information');
+     }
+     public function profilePayment()
+     {
+         return view('profile.payment.payment');
+     }
+    */
 }

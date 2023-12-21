@@ -37,9 +37,9 @@ class ProfileController extends Controller{
     public function addressEditUpdate(Request $request){
         $bodyContent = request()->input();
         $bodyContent=$bodyContent['address'];
-        $data['page'] ='Profil Sayfası';
 
-        $data['main_menu'] =  \WebService::addresEdit($bodyContent);
+
+        $update =  \WebService::addresEdit($bodyContent);
         $data['addresses']=session('userInfo')['data']['addresses'];
         $data['user_data'] = session('userInfo')['data'];
         return view('profile.address', $data);
@@ -104,7 +104,14 @@ class ProfileController extends Controller{
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['update'] =  \WebService::update_user($bodyContent);
+
         $data['user_data'] = session('userInfo')['data'];
+        if($data['update']!=null){
+
+            $request->session()->flash('flash-success', ['Bilgileriniz Güncellendi', ' ']);
+        }else{
+            $request->session()->flash('flash-error', ['Bilgileriniz Güncellenemedi', ' ']);
+        }
         return view('profile.informations', $data);
     }
     public function addressformUpdate(Request $request){

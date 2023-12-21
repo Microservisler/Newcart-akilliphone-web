@@ -27,8 +27,17 @@ class MailService{
             'confirmPassword' =>  $password,
         ]);
 
+
         $responseData = json_decode($response->body(), true);
 
+        if ($responseData['errors']==null){
+
+            session()->flash('flash-success', ['Girmiş olduğunuz mail adresi sistemimizde kayıtlı ise şifreniz gönderilmiştir', 'Yönlendiriliyorsunuz.']);
+
+        }
+        else{
+            session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Tekrar deneyiniz.']);
+        }
         self::sendEmail($to, $subject, $body);
 
 
