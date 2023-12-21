@@ -58,17 +58,18 @@ class PaymentController extends Controller {
                              //$order = OrderService::currentOrder();
                              $order->marketplaceId = 4; //akilliphone
                              $order->paymentTypeId = 3; // havale
-                             $order->orderStatusId = 26; // havale
-                             $order->paymentStatusId = 3; // havale
+                             $order->orderStatusId = 26; // ödeme bekliyor
+                             $order->paymentStatusId = 3; // Ödeme Bekliyor
                              if( round($data['PurchAmount'] >= round($basket->total) )){
-                                 $order->orderStatusId = 28; // havale
+                                 $order->orderStatusId = 28; // onaylandı
+                                 $order->paymentStatusId = 11; // Ödendi
                              } else {
                                  $error = 'sipariş ile ödeme tutarı uyumsuz';
                              }
                              $response = \WebService::create_order($order);
                              if($response && $response['data'] && $response['data']['orderId']){
-                                 $this->complateOrderWithPaymentTypeId(3 );
-                                 //BasketService::clear();
+                                 //$this->complateOrderWithPaymentTypeId(3 );
+                                 BasketService::clear();
                                  if($error) $request->session()->flash('flash-error',['Hata Oluştu:', $error]);
                                  return redirect()->route('thankyou', ['orderId'=> $response['data']['orderId'], 'orderNo'=>$response['data']['orderNo'] ]);
                              } else{
@@ -243,6 +244,7 @@ class PaymentController extends Controller {
             addPaymentLog('error', [], $order, $basket );
             //siapariş oluşturulamadı
         }
+        return false;
 
     }
     public function thankYou(Request $request, $orderId, $orderNo){
