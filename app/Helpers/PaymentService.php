@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
+use App\Models;
 class PaymentService{
 
     static function finansAccount(){
@@ -21,6 +22,17 @@ class PaymentService{
     static function finansBankHash($data){
         $finansAccount = self::finansAccount();
         $hashstr = $data['MbrId']  . $data['OrderId']  . $data['PurchAmount']  . $data['OkUrl'] . $data['FailUrl'] . $data['TxnType'] . $data['InstallmentCount']  . $data['Rnd']  . $finansAccount['MerchantPass'];
+        $log = [
+            'title'=>'Fianansbank Hash',
+            'data' => json_encode(
+                [
+                    'hashstr'=>$hashstr,
+                    'hash'=>base64_encode(pack('H*',sha1($hashstr))),
+                    'data'=>$data,
+                ]
+            )
+        ];
+        Models\CommonLogs::insert($log);
         return base64_encode(pack('H*',sha1($hashstr)));
     }
     static function finansBankValidate($request, $basket){
