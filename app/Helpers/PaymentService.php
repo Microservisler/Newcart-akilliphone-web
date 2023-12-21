@@ -61,7 +61,7 @@ class PaymentService{
         $data['UserPass'] 		    = $finansAccount['UserPass'];
         $data['SecureType'] 		= '3DPay';
         $data['TxnType'] 		    = 'Auth';
-        $data['InstallmentCount']   = '0';
+        $data['InstallmentCount']   = '1';
         $data['Currency'] 		    = '949';
         $data['OkUrl'] 		        =  route('payment.success');
         $data['FailUrl'] 		    = route('payment.fail');
