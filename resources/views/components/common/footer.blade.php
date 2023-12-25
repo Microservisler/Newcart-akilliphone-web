@@ -24,6 +24,7 @@
                     <img src="{{ url('assets/images/comment.svg') }}" alt="">
                 </a>
             </div>
+
             <div class="footer-review-right">
                 <div>
                     <div class="category-title">ETBİS</div>
@@ -74,22 +75,30 @@
                     </ul>
                 </div>
             </div>
+            <?php
+            $length = count($brands['items']);
+
+
+                ?>
+
+
             <div class="col">
                 <div class="footer-category">
                     <div class="category-title">Markalar</div>
                     <ul>
-                        <li> <a href="{{url('/reyonlar?brand=2217')}}">Puluz</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2218')}}">Kuula</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2219')}}">Ezere</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2233')}}">North Bayaou</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2226')}}">Usams</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2224')}}">Gor</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2228')}}">Memo</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2225')}}">Dux Ducis</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2220')}}">Plextone</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2222')}}">Floveme</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2223')}}">Mijobs</a></li>
-                        <li> <a href="{{url('/reyonlar?brand=2234')}}">Haweel</a></li>
+                        @for($i = 0; $i < $length; $i++)
+
+                            <li> <a href="{{url('/reyonlar?brand='.$brands['items'][$i]['code'])}}">{{$brands['items'][$i]['name']}}</a></li>
+                            @if($i==10)
+                                @break;
+
+                            @endif
+
+
+                        @endfor
+
+
+
                     </ul>
                 </div>
             </div>

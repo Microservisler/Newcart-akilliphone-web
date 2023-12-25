@@ -7,7 +7,7 @@
 {{--    {{dd($questions)}}--}}{{-- --}}
 {{--Product boş dönüyor bakılacak--}}
 
-    <section class="profile section-padding mx-24">
+    <section class="profile section-padding mx-24" style="margin-top: 150px">
         <div class="container">
             <div class="section-title">Hesabım</div>
             <div class="profile-layout">

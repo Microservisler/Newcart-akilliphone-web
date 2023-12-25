@@ -13,7 +13,7 @@
     </style>
 @endsection
 @section('content')
-    <section class="shopping_section">
+    <section class="shopping_section" >
         <div class="container">
             <x-payment.steps :step="4"/>
                 @if($error)

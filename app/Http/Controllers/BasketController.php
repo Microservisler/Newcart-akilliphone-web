@@ -18,6 +18,9 @@ class BasketController extends Controller
         $data['main_menu'] = \WebService::home_main_menu();
         $data['config_general'] = \WebService::config_general();
         $data['basket'] = BasketService::getBasket();
+
+        $data['brands']             =  \WebService::brands("live");
+
         return view('basket.index', $data);
     }
     public function mini(Request $request)

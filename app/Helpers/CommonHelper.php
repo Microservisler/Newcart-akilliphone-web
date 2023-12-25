@@ -49,6 +49,7 @@ function getProductUrl($item, $echo=false){
     return route('product_detail.index', ['slug'=>$item['slug']]).'?id='.$item['productId'];
 }
 function getCategoryUrl($category){
+
     $url = url('reyonlar').'/'.$category['slug'].'?category='.$category['categoryId'];
     return $url;
 }

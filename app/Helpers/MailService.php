@@ -23,8 +23,8 @@ class MailService{
         $body = view('emails.reset-password', $data);
         $subject = 'Akıllı Phone Yeni Şifre';
         $response = Http::withToken('token')->patch('https://api.duzzona.site/reset-password', [
-            'email' =>$email,
-            'confirmPassword' =>  $password,
+            'UserName' =>$email,
+            'NewPassword' =>  $password,
         ]);
 
 
@@ -33,12 +33,12 @@ class MailService{
         if ($responseData['errors']==null){
 
             session()->flash('flash-success', ['Girmiş olduğunuz mail adresi sistemimizde kayıtlı ise şifreniz gönderilmiştir', 'Yönlendiriliyorsunuz.']);
-
+            self::sendEmail($to, $subject, $body);
         }
         else{
-            session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Tekrar deneyiniz.']);
+            session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Canlı destek ile irtibat kurabilirsiniz']);
         }
-        self::sendEmail($to, $subject, $body);
+
 
 
 

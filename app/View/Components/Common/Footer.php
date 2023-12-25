@@ -7,15 +7,17 @@ use Illuminate\View\Component;
 class Footer extends Component
 {
     public $page = '';
+    public $brands='';
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($page='')
+    public function __construct($page='',$brands)
     {
         $this->page = $page;
+        $this->brands =$brands;
 
         //
     }

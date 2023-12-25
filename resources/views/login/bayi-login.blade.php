@@ -47,7 +47,7 @@
                                 <input id="remember" class="option-input checkbox" type="checkbox">
                                 Beni Unutma
                             </label>
-{{--                            <a class="forgot-password" href="{{route('forgot')}}">Şifremi Unuttum</a>--}}
+                            <a class="forgot-password" href="{{route('old.account')}}">Şifremi Unuttum</a>
                         </div>
                         <div class="login-btns">
                             <button class="login-btn" type="submit">Giriş Yap</button>                            <a href="{{route('old.account')}}" id="popupLink">Eski Bayi Misiniz ? </a>

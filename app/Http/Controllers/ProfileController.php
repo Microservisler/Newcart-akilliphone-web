@@ -16,6 +16,8 @@ class ProfileController extends Controller{
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['addresses']=session('userInfo')['data']['addresses'];
         $data['user_data'] = session('userInfo')['data'];
+        $data['brands']             =  \WebService::brands("live");
+
         return view('profile.address', $data);
     }
     public function addressEdit($addresId){
@@ -61,6 +63,7 @@ class ProfileController extends Controller{
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['questions']=session('userInfo')['data']['questions'];
+        $data['brands']             =  \WebService::brands("live");
         $data['user_data'] = session('userInfo')['data'];
         return view('profile.comments', $data);
     }
@@ -81,7 +84,7 @@ class ProfileController extends Controller{
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['user_data'] = session('userInfo')['data'];
-
+        $data['brands']             =  \WebService::brands("live");
 
 
         return view('profile.favorites', $data);
@@ -91,6 +94,7 @@ class ProfileController extends Controller{
     }
     public function informations(){
         $data['page'] ='Profil Sayfası';
+        $data['brands']             =  \WebService::brands("live");
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['user_data'] = session('userInfo')['data'];
         if (isset(session('userInfo')['data']['informations'])){
@@ -102,6 +106,7 @@ class ProfileController extends Controller{
         $bodyContent = request()->input();
         unset($bodyContent['_token']);
         $data['page'] ='Profil Sayfası';
+        $data['brands']             =  \WebService::brands("live");
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['update'] =  \WebService::update_user($bodyContent);
 
@@ -115,6 +120,8 @@ class ProfileController extends Controller{
         return view('profile.informations', $data);
     }
     public function addressformUpdate(Request $request){
+        $data['brands']             =  \WebService::brands("live");
+
     $bodyContent = request()->input();
     $bodyContent=$bodyContent['address'];
     $bodyContent['districtId']=1;
@@ -131,6 +138,7 @@ class ProfileController extends Controller{
 }
 
     public function profileOrders(Request $request){
+        $data['brands']             =  \WebService::brands("live");
         $deneme= \WebService::deneme();
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
@@ -153,6 +161,7 @@ class ProfileController extends Controller{
 
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['brands']             =  \WebService::brands("live");
         $data['user_data'] = session('userInfo')['data'];
         $token = session("userToken");
         $foundOrderId=[];

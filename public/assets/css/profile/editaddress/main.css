@@ -574,7 +574,6 @@ body::-webkit-scrollbar-thumb {
   margin: 0 6px 0 0;
   outline: none;
   position: relative;
-  z-index: 1000;
   padding-right: 12px;
 }
 .signup-agreement .option-input:checked {

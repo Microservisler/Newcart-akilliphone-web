@@ -16,6 +16,8 @@ class ProductDetailController extends Controller
     public function index(Request $request, $slug)
     {
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['brands']             =  \WebService::brands("live");
+
 
         $productId = $request->get("id",false);
         if($productId){

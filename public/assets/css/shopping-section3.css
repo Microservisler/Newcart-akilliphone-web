@@ -249,14 +249,13 @@ body {
     border-radius: 50%;
     transition: all 0.15s ease-out 0s;
     background: #fff;
-    border: 1px solid #1A9AFC;
+    border: 1px solid #1A9AFC;W
     color: #fff;
     cursor: pointer;
     display: inline-block;
     margin: 0 6px 0 0;
     outline: none;
     position: relative;
-    z-index: 1000;
     padding-right: 12px;
 }
 .signup-agreement .option-input:checked {

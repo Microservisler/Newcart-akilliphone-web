@@ -16,6 +16,8 @@ class PageController extends Controller
      */
     public function index(Request $request, string $page){
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['brands']             =  \WebService::brands("live");
+
         if(\View::exists('page.'.$page)){
 
             $data['config_general']   =  \WebService::config_general();
@@ -50,11 +52,15 @@ class PageController extends Controller
     public function login()
     {
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['brands']             =  \WebService::brands("live");
+
         return view('login.login',$data);
     }
     public function old_account()
     {
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['brands']             =  \WebService::brands("live");
+
         return view('login.old-account',$data);
     }
     public function old_account_post(Request $request)
@@ -84,21 +90,29 @@ class PageController extends Controller
     public function bayi_login()
     {
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['brands']             =  \WebService::brands("live");
+
         return view('login.bayi-login',$data);
     }
     public function forgot()
     {
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['brands']             =  \WebService::brands("live");
+
         return view('login.forgot',$data);
     }
     public function signUp()
     {
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['brands']             =  \WebService::brands("live");
+
         return view('login.sign-up',$data);
     }
     public function bayi_register()
     {
         $data['main_menu'] =  \WebService::home_main_menu();
+        $data['brands']             =  \WebService::brands("live");
+
         return view('login.bayi-sign-up',$data);
     }
     public function register(Request $request)

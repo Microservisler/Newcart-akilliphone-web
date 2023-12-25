@@ -41,17 +41,7 @@
                         <input type="password" name="password" id="password">
 
 
-                        <div id="tooltip" style="background-color: rgb(245, 245, 245);
-    border-radius: 10px;
-    padding: 10px;
-    color: red;
-    line-height: 17px;
-    font-size: 12px;
-    position: absolute;
-    right: -213px;
-    top: -13px;
-    z-index: 114;
-    display: none;">
+                        <div id="tooltip" class="password-tooltip">
                             <ul>
                                 <li class="rule" id="upper">Büyük harf en az bir tane</li>
                                 <li class="rule" id="lower">Küçük harf en az bir tane</li>
@@ -81,7 +71,7 @@
                         </label>
                     </div>
                     <div class="signup-buttons">
-                        <button type="submit" class="submit-btn" >Hemen Üye Ol</button>
+                        <button type="submit" class="submit-btn">Hemen Üye Ol</button>
                         <a href="{{route('login')}}">Üye misin? Hemen Giriş Yap</a>
                     </div>
                     <a class="kvkk" href="#">KVKK kapsamında akilliphone.com Kişisel Verilerin Korunması ve İşlenmesi Şartları na buradan ulaşabilirsiniz.</a>
@@ -113,7 +103,8 @@
         passwordInput.addEventListener('blur', function() {
             tooltip.style.display = 'none';
         });
-
+        const submitButton = document.querySelector('.submit-btn');
+        let control=0;
         passwordInput.addEventListener('input', function() {
             const password = passwordInput.value;
             const matchedRules = Object.keys(rules).filter(rule => rules[rule].test(password));
@@ -121,20 +112,42 @@
             document.querySelectorAll('.rule').forEach(rule => {
                 if (matchedRules.includes(rule.id)) {
                     rule.style.textDecoration = 'line-through';
-                    rule.style.color='green';
+                    rule.style.color = 'green';
                 } else {
                     rule.style.textDecoration = 'none';
-                    rule.style.color='red';
+                    rule.style.color = 'red';
                 }
             });
 
             if (matchedRules.length === Object.keys(rules).length) {
                 // tooltip.style.display = 'none';
-
+                submitButton.disabled = false; // Tüm kurallar sağlandıysa butonu aktif et
+            control=0;
             } else {
                 tooltip.style.display = 'block';
+               control=1;
             }
         });
+
+        // Tıklama olayını sürekli dinle
+        submitButton.addEventListener('click', function(event) {
+            if (control==1) {
+                event.preventDefault(); // Buton devre dışı ise formun gönderilmesini engelle
+                Swal.fire({
+                    title: 'Lütfen Şifre Kurallarına Dikkat Edin.',
+                    toast: true,
+                    position: 'top-end',
+                    timer: 3000,
+                    icon: 'error',
+                    showConfirmButton: false,
+                })
+                return false; // İşlem yapma
+            }
+            // Buraya formun gönderilmesiyle ilgili işlemleri ekleyebilirsin
+        });
+
+
+
         flatpickr.localize(flatpickr.l10ns.tr);
         flatpickr("#date-picker", {
             dateFormat: "d/m/Y",

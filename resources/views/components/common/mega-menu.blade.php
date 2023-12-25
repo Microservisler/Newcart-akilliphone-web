@@ -3,7 +3,8 @@
         @foreach ($items as $item)
             @if($item['code']==207)
                 <div class="drop-down">
-                    <div class="dropbtn">{{ $item['name'] }}</div>
+                    <div class="dropbtn"><a href="{{ getCategoryUrl($item) }}" style="text-decoration: none; ">{{ $item['name'] }}</a></div>
+
                     <div class="dropdown-content-wrapper">
                         <div class="dropdown-content container">
                             <div class="dropdown-sub" style="display: none">
@@ -145,6 +146,7 @@
                             @foreach ($item['childs'] as $child)
                                 <div class="dropdown-sub">
                                     <a class="dropbtn2" href="{{ getCategoryUrl($child) }}">{{ $child['name'] }}</a>
+
                                     @if($child['childs'])
                                         <div class="dropdown-content-sub">
                                             <h5 style="font-size: 22px;margin:25px 15px;">{{ $child['name'] }}</h5>
@@ -154,6 +156,7 @@
 
                                                         <div class="item">
                                                             <a href="{{ getCategoryUrl($schild) }}">
+
                                                                 <img width="75" height="75" src="{{"https://cdn.akilliphone.com/".$schild['image']}}" alt="">
                                                                 <span>{{ $schild['name'] }}</span>
                                                             </a>
@@ -175,7 +178,7 @@
 
                 @if($item['code']!==207)
                     <div class="drop-down">
-                        <div class="dropbtn">{{$item['name']}}</div>
+                        <div class="dropbtn"><a href="{{ getCategoryUrl($item) }}" style="text-decoration: none; ">{{ $item['name'] }}</a></div>
                         <div class="dropdown-content-wrapper">
                             <div class="container not-sub-category">
                                 @foreach ($item['childs'] as $child)

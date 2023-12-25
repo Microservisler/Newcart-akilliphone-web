@@ -15,6 +15,7 @@ class ListingController extends Controller{
     {
         $data['selected_category']        =  $request->input('category', false);
         $data['selected_brand']        =  $request->input('brand', false);
+        $data['brands']             =  \WebService::brands("live");
 
         $parts = explode('-', $slug);
         $data['category_code'] = (int)end($parts);
