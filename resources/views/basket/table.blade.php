@@ -1,3 +1,17 @@
+<style>
+    .product-dropshipping{
+        display: flex;
+        width: 100%;
+    }
+    .product-dropshipping table td{
+        padding: 5px;
+        font-size: 12px;
+    }
+    .product-dropshipping .form-control{
+        border: 1px solid #cdcdcd;
+        padding: 5px 10px;
+    }
+</style>
 <div class="cart-wrapper">
     <div class="details-wrapper">
         <h1 class="basket_title">Sepetim</h1>
