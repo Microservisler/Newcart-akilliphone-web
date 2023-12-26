@@ -259,5 +259,12 @@ function validateHtmlContet($html){
     }
     return $html;
 }
-
+function userHasDropshipping(){
+    if( $userInfo=session()->get('userInfo') ){
+        if(isset($userInfo['data']['hasDropshippingPermission'])){
+            return $userInfo['data']['hasDropshippingPermission'];
+        }
+    }
+    return false;
+}
 ?>
