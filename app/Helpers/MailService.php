@@ -30,7 +30,7 @@ class MailService{
 
         $responseData = json_decode($response->body(), true);
 
-        if ($responseData['errors']==null){
+        if ($responseData && $responseData['errors']==null){
 
             session()->flash('flash-success', ['Girmiş olduğunuz mail adresi sistemimizde kayıtlı ise şifreniz gönderilmiştir', 'Yönlendiriliyorsunuz.']);
             self::sendEmail($to, $subject, $body);
