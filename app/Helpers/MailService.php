@@ -36,6 +36,7 @@ class MailService{
             self::sendEmail($to, $subject, $body);
         }
         else{
+            addFailedLog('mailservice', 'Yeni Şifre Mailinize Gönderilemedi', [$response] );
             session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Canlı destek ile irtibat kurabilirsiniz']);
         }
 
