@@ -31,12 +31,11 @@ class MailService{
         $responseData = json_decode($response->body(), true);
 
         if ($responseData && $responseData['errors']==null){
-
             session()->flash('flash-success', ['Girmiş olduğunuz mail adresi sistemimizde kayıtlı ise şifreniz gönderilmiştir', 'Yönlendiriliyorsunuz.']);
             self::sendEmail($to, $subject, $body);
         }
         else{
-            addFailedLog('mailservice', 'Yeni Şifre Mailinize Gönderilemedi', $response );
+            addFailedLog('mailservice', 'Yeni Şifre Mailinize Gönderilemedi', ['data'=>$data, 'response'=>$response] );
             session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Canlı destek ile irtibat kurabilirsiniz']);
         }
 
