@@ -77,8 +77,9 @@
 <div id="app-basic">
     @yield('content', '')
 </div>
-
-<x-common.footer :page="'home'" :brands="$brands['data']"/>
+@if(isset($brands) && isset($brands['data']))
+    <x-common.footer :page="'home'" :brands="$brands['data']"/>
+@endif
 @yield('js', '')
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script>
