@@ -129,10 +129,6 @@
                                 </div>
 
 
-
-
-
-
                                 <div class="product-color-btn" v-for="variant">
                                     <span class="title">Renk:</span>
                                     @foreach ($product['variants'] as $item)
@@ -233,7 +229,7 @@
 
                                     </div>
                                     <div id="freeShipping" class="tabcontent">
-                                        200₺ ve üzeri alışverişlerde KARGO BEDAVA
+                                        300₺ ve üzeri alışverişlerde KARGO BEDAVA
 
                                     </div>
                                     <div id="rebate" class="tabcontent">
