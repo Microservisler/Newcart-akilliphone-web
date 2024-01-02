@@ -229,7 +229,7 @@
 
                                     </div>
                                     <div id="freeShipping" class="tabcontent">
-                                        300₺ ve üzeri alışverişlerde KARGO BEDAVA
+                                        {{ Akilliphone\BasketService::getFreeShippingLimit() }}₺ ve üzeri alışverişlerde KARGO BEDAVA
 
                                     </div>
                                     <div id="rebate" class="tabcontent">
