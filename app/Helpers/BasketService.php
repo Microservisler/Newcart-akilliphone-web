@@ -43,6 +43,10 @@ class BasketService{
             ]
         ];
     }
+    static function getFreeShippingLimit(){
+        $basket = self::getBasket();
+        return $basket->freeShippingLimit;
+    }
     static function clear(){
         $basket = new  BasketService();
         session()->put('basket', $basket);
