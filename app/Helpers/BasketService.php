@@ -32,13 +32,13 @@ class BasketService{
             'shipping'=>[]
         ];
         $this->created_dt = date('Y-m-d H:i:s');
-        $this->freeShippingLimit = 200;
+        $this->freeShippingLimit = 300;
         $this->shippingBrands = [
             'aras'=>[
                 'code'=>'aras',
                 'title'=>'Aras Kargo',
                 'icon'=> url('assets/images/aras.svg'),
-                'price'=>50,
+                'price'=>60,
                 'checked'=>'checked',
             ]
         ];
