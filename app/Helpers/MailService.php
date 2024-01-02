@@ -35,13 +35,9 @@ class MailService{
             self::sendEmail($to, $subject, $body);
         }
         else{
-            addFailedLog('mailservice', 'Yeni Şifre Mailinize Gönderilemedi', ['data'=>$data, 'response'=>$response] );
-            session()->flash('flash-error', ['Yeni Şifre Mailinize Gönderilemedi', 'Canlı destek ile irtibat kurabilirsiniz']);
+            addFailedLog('mailservice', 'Yeni Şifre Oluşturulamadı', ['data'=>$data, 'response'=>$response] );
+            session()->flash('flash-error', ['Yeni Şifre Oluşturulamadı', 'Canlı destek ile irtibat kurabilirsiniz']);
         }
-
-
-
-
 
     }
     static function newOrder($data){
