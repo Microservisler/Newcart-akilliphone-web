@@ -234,6 +234,9 @@ function addPaymentLog($payment_type, $response, $order, $basket, $order_id=0 ){
 }
 function addFailedLog($module, $message='', $data=[] ){
     $id = 0;
+    if(mb_strlen($message)>1024){
+        $message = mb_substr($message,0, 1024);
+    }
     try {
         $data = json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
         $id = DB::table('failed_logs')->insertGetId([
