@@ -95,6 +95,7 @@
                                 <span class="label">Adres Başlık</span>
                                 <input type="text" name="address[title]" value="{{$addresses['title']}}">
                             </div>
+
                             <div class="signup-input">
                                 <span class="label">İl</span>
                                 <input type="text" name="address[countryId]" value="{{$addresses['countryId']}}">

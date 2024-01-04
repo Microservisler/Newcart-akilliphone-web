@@ -21,7 +21,7 @@ class ProfileController extends Controller{
         return view('profile.address', $data);
     }
     public function addressEdit($addresId){
-
+        $data['brands']             =  \WebService::brands("live");
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['addresses']=session('userInfo')['data']['addresses'];
@@ -39,7 +39,7 @@ class ProfileController extends Controller{
     public function addressEditUpdate(Request $request){
         $bodyContent = request()->input();
         $bodyContent=$bodyContent['address'];
-
+        $data['brands']             =  \WebService::brands("live");
 
         $update =  \WebService::addresEdit($bodyContent);
         $data['addresses']=session('userInfo')['data']['addresses'];
@@ -47,13 +47,15 @@ class ProfileController extends Controller{
         return view('profile.address', $data);
     }
     public function addressform(){
+        $data['brands']             =  \WebService::brands("live");
+        $data['cities'] = \WebService::cities();
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['user_data'] = session('userInfo')['data'];
         return view('profile.addressForm', $data);
     }
     public function orders(){
-
+        $data['brands']             =  \WebService::brands("live");
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['user_data'] = session('userInfo')['data'];
@@ -68,19 +70,21 @@ class ProfileController extends Controller{
         return view('profile.comments', $data);
     }
     public function payments(){
+        $data['brands']             =  \WebService::brands("live");
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['user_data'] = session('userInfo')['data'];
         return view('profile.payments', $data);
     }
     public function coupons(){
+        $data['brands']             =  \WebService::brands("live");
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['user_data'] = session('userInfo')['data'];
         return view('profile.coupons', $data);
     }
     public function favorites(){
-
+        $data['brands']             =  \WebService::brands("live");
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['user_data'] = session('userInfo')['data'];
@@ -93,6 +97,7 @@ class ProfileController extends Controller{
 
     }
     public function informations(){
+        $data['brands']             =  \WebService::brands("live");
         $data['page'] ='Profil Sayfası';
         $data['brands']             =  \WebService::brands("live");
         $data['main_menu'] =  \WebService::home_main_menu();
@@ -139,7 +144,6 @@ class ProfileController extends Controller{
 
     public function profileOrders(Request $request){
         $data['brands']             =  \WebService::brands("live");
-        $deneme= \WebService::deneme();
         $data['page'] ='Profil Sayfası';
         $data['main_menu'] =  \WebService::home_main_menu();
         $data['user_data'] = session('userInfo')['data'];

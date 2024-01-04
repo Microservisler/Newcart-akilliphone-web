@@ -7,7 +7,10 @@
 @endsection
 @section('content')
 
+    <?php
+    $currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
+    ?>
     <div id="app-basic">
         <section class="product-details" style="padding-top: 147px">
             <div class="container">
@@ -101,6 +104,7 @@
                                     </li>
                                     <li>
                                         Ürün Kodu:<br>
+
                                         <div v-text="variant.code"></div>
                                     </li>
                                 </ul>
@@ -192,25 +196,25 @@
                     </span>
                                             <ul class="share-links">
                                                 <li>
-                                                    <a href="#" class="share-link">
+                                                    <a href="https://wa.me/?text=Ürünü İncele {{$currentURL}}" class="share-link">
                                                         <div class="icon"></div>
                                                         <div class="name">Whatsapp'dan paylaş</div>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="share-link">
+                                                    <a href="https://www.facebook.com/sharer.php?u={{$currentURL}}" class="share-link">
                                                         <div class="icon"></div>
                                                         <div class="name">Facebook'ta paylaş</div>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="share-link">
+                                                    <a href="https://twitter.com/share?url={{$currentURL}}" class="share-link">
                                                         <div class="icon"></div>
                                                         <div class="name">Twitter'da paylaş</div>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="share-link">
+                                                    <a href="https://www.instagram.com/share?url={{$currentURL}}" class="share-link">
                                                         <div class="icon"></div>
                                                         <div class="name">Instagram'da paylaş</div>
                                                     </a>

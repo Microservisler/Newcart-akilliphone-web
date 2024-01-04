@@ -46,7 +46,7 @@ class WebService {
         return $token;
     }
     public static function profileOrders($token){
-
+        $token = session('userToken');
         $response = Http::withToken($token)->get('http://api.duzzona.site/orders');
         $responseData = json_decode($response->body(), true);
         if($responseData && isset($responseData['data'])){
@@ -150,7 +150,7 @@ class WebService {
         $body['userId']=session('userInfo')['data']['id'];
         $response = Http::withToken($token)->post('https://api.duzzona.site/address', $body);
         $responseData = json_decode($response->body(), true);
-
+dd($response);
         if ($response->successful()) {
             return $response->json();
         } else {

@@ -5,6 +5,7 @@
 @endsection
 @section('content')
     <?php
+
     if(session('userInfo')['data']['addresses']){
         $addresses=session('userInfo')['data']['addresses'];
     }
