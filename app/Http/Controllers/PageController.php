@@ -82,7 +82,7 @@ class PageController extends Controller
         $mail= MailService::resetPassword($email,$password);
 
 
-        return redirect()->route('old.account');
+        return redirect()->route('login');
 
 
 
