@@ -566,16 +566,24 @@
                 },
                 body: JSON.stringify(body)
             };
-            console.log(requestOptions)
             fetch(apiUrl, requestOptions)
                 .then(response => response.json())
                 .then(data => {
 
                     console.log(data);
                 })
+            Swal.fire({
+                title: 'Favorilere Eklendi.',
+                toast: true,
+                position: 'top-end',
+                timer: 3000,
+                icon: 'success',
+                showConfirmButton: false,
+            })
                 .catch(error => {
                     console.error('Hata oluştu: ' + error);
                 });
+
 
         });
 

@@ -20,7 +20,7 @@
                                 @if(isset($user_data['customerFavorites']))
                                     @foreach($user_data['customerFavorites'] as $favorites)
 
-<?php $url = "incele/".$favorites['productId']; ?>
+                                   <?php $url = "incele/1?id=".$favorites['productId']; ?>
 
                                         <a href="{{ url($url) }}" class="favorite-item">
                                             <div>
