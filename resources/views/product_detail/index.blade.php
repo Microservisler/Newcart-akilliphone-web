@@ -230,7 +230,6 @@
                                     </div>
                                     <div id="freeShipping" class="tabcontent">
                                         {{ Akilliphone\BasketService::getFreeShippingLimit() }}₺ ve üzeri alışverişlerde KARGO BEDAVA
-
                                     </div>
                                     <div id="rebate" class="tabcontent">
                                         Ürünü satın aldığınız tarihten itibaren 14 gün içinde nedenini belirterek iade hakkınız bulunmaktadır. İade etmek istediğiniz ürünün, kullanılmamış, hasarsız ve orijinal ambalajında olması gerekmektedir.
