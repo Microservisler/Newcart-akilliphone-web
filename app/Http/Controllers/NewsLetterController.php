@@ -16,7 +16,7 @@ class NewsLetterController extends Controller
         if ($email) {
             $newsletter = NewsLetter::Where(['email' => $email])->first();
             if ($newsletter) {
-                $message = $email.' için kaydı üyelik daha önce gerçekleştirilmiş. İlginiz için teşekkür ederiz.';
+                $message = $email.' için üyelik kaydı daha önce gerçekleştirilmiş. İlginiz için teşekkür ederiz.';
             } else {
                 $newsletter = new NewsLetter();
                 $newsletter->email = $email;
