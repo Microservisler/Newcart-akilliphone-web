@@ -15,14 +15,16 @@ class NewsLetterController extends Controller
         $html = '';
         if ($email) {
             $newsletter = NewsLetter::Where(['email' => $email])->first();
-            if (!$newsletter) {
+            if ($newsletter) {
+                $message = $email.' için üyelik kaydı daha önce gerçekleştirilmiş. İlginiz için teşekkür ederiz.';
+            } else {
                 $newsletter = new NewsLetter();
                 $newsletter->email = $email;
                 $newsletter->save();
+                $confirm_link =  '<br><a href="'.route('newsletter.confirm', ['email'=>$email, 'hash_token'=>_getHashToken($email)]) .'">Üyeliğinizi tamamlamak için tıklayınız</a>';
+                $message = 'Bülten Üyelik kaydınız gerçekleşti. Üyeliğinizin aktif olması için gereken onay linkini email olarak gönderdik.'.$confirm_link;
+                MailService::yazGonder($email, 'Bülten Üyeliği', $message);
             }
-            $confirm_link =  '<br><a href="'.route('newsletter.confirm', ['email'=>$email, 'hash_token'=>_getHashToken($email)]) .'">Üyeliğinizi tamamlamak için tıklayınız</a>';
-            $message = 'Bülten Üyelik kaydınız gerçekleşti. Üyeliğinizin aktif olması için gereken onay linkini email olarak gönderdik.'.$confirm_link;
-            MailService::yazGonder($email, 'Bülten Üyeliği', $message);
             return _ReturnSucces($message, $html);
         } else {
             $message = 'Email bilgisi alınamadı. Lütfen tekrar deneyiniz.';
