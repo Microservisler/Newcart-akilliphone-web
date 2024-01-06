@@ -1,4 +1,4 @@
-<section class="four-product-slider section-padding mx-24">
+r<section class="four-product-slider section-padding mx-24">
     <div class="container">
         <div class="four-slider owl-carousel owl-theme">
             @foreach ($items as $row)
@@ -18,17 +18,17 @@
                         <div class="product-info">
                             @if($row['product'] && isset($row['product']['variants'][0]))
                             <div class="product-name">{{ $row['product']['name'] }}</div>
-                            <div class="product-prices">
-                                <div class="current">
-                                    <span class="price">{{ number_format($row['product']['variants'][0]['price'], 2, '.', '') }} ₺</span>
-                                    @if($row['product']['discountRate'])
-                                        <span class="discount">%{{ $row['product']['discountRate'] }}</span>
-                                    @endif
-                                </div>
-                                @if($row['product']['discountRate'])
-                                <div class="old">{{ number_format($row['product']['variants'][0]['oldPrice'], 2, '.', '') }} ₺</div>
-                                @endif
-                            </div>
+{{--                            <div class="product-prices">--}}
+{{--                                <div class="current">--}}
+{{--                                    <span class="price">{{ number_format($row['product']['variants'][0]['price'], 2, '.', '') }} ₺</span>--}}
+{{--                                    @if($row['product']['discountRate'])--}}
+{{--                                        <span class="discount">%{{ $row['product']['discountRate'] }}</span>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                                @if($row['product']['discountRate'])--}}
+{{--                                <div class="old">{{ number_format($row['product']['variants'][0]['oldPrice'], 2, '.', '') }} ₺</div>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
                             @endif
                         </div>
                     </div>

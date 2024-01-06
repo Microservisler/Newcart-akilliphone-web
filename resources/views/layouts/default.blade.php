@@ -116,6 +116,10 @@
 </script>
 
 <script>
+    function removeSpaces() {
+        var input = document.getElementById("pass");
+        input.value = input.value.replace(/\s/g, '');
+    }
     function handleKeyPress(event) {
         if (event.keyCode === 13) {
             event.preventDefault();

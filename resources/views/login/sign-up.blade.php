@@ -38,7 +38,7 @@
                     </div>
                     <div class="signup-input">
                         <span class="label">Şifre<span>&nbsp;*</span></span>
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="pass" oninput="removeSpaces()">
 
 
                         <div id="tooltip" class="password-tooltip">
@@ -87,7 +87,7 @@
     <script src="./assets/js/mask.min.js" ></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/tr.js"></script>
     <script>
-        const passwordInput = document.getElementById('password');
+        const passwordInput = document.getElementById('pass');
         const tooltip = document.getElementById('tooltip');
         const rules = {
             upper: /[A-Z]/,

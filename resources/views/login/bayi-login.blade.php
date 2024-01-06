@@ -35,7 +35,7 @@
                             </span>
                         </div>
                         <div class="signup-input">
-                            <input id="pass" type="password" name="password" required>
+                            <input id="pass" type="password" name="password" oninput="removeSpaces()" required>
                             <label for="">Şifre</label>
                             <span id="hidePass" class="input-icon">
                                 Göster

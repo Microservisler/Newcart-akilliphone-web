@@ -73,7 +73,13 @@
     width: 100%;
     z-index: 999;
     top: 0;
-    ">
+    "><div class="header-top" style="background-color: #1A9AFC">
+        <div class="container">
+            <div class="header-top-info">
+                <span style="margin-left: 40%;padding-top: 5px;padding-bottom: 5px;color: white"><a href="">Eski Siteden Devam Et</a></span>
+            </div>
+        </div>
+    </div>
     <div class="header-top">
         <div class="container">
             <div class="header-top-info">

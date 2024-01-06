@@ -364,23 +364,11 @@ if (session('userInfo')){
                                 echo ' <button  class="review-btn">Sipariş vermediğiniz ürüne yorum yapamazsınız.</button>';
                             }
                             else{
-                                foreach (session('userInfo')['data']['orders'] as $orders){
-                                    if($orders['productId']==$product['productId']){
-                                        echo  '<button id="open-review" class="review-btn">Yorum Yap</button>';
-                                        $control=1;
-                                        break;
-
-                                    }
-                                }
-                                if ($control!=1){
-                                    echo '   <button   class="review-btn">Sipariş vermediğiniz ürüne yorum yapamazsınız.</button>';
-                                }
+                                echo '<button  class="review-btn">Yorum Yapmak İçin Giriş Yapmalısınız</button>';
                             }
 
                         }
-                        else{
-                            echo '<button  class="review-btn">Yorum Yapmak İçin Giriş Yapmalısınız</button>';
-                        }
+
                         ?>
 
 
@@ -578,9 +566,9 @@ if (session('userInfo')){
         favoriteBtn.addEventListener('click', function() {
             const backgroundColor = favoriteBtn.style.backgroundColor;
 
-            // Arka plan rengini değiştir
+
             if (backgroundColor === 'red') {
-                console.log("qwe")
+
                 favoriteBtn.style.backgroundColor = 'white';
 
                 var token = "<?php echo session("userToken")?>";
@@ -592,12 +580,11 @@ if (session('userInfo')){
                         'Content-Type': 'application/json'
                     }
                 };
-                console.log(requestOptions);
                 fetch(apiUrl, requestOptions)
                     .then(response => response.json())
                     .then(data => {
 
-                        console.log(data);
+
                     })
                 Swal.fire({
                     title: 'Favorilerden Silindi.',
@@ -612,9 +599,6 @@ if (session('userInfo')){
                     });
 
             }
-
-
-
 
              else {
                 favoriteBtn.style.backgroundColor = 'red';
@@ -653,9 +637,6 @@ if (session('userInfo')){
                     });
 
             }
-
-
-
 
         });
 
