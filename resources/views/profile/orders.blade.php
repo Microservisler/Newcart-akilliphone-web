@@ -77,10 +77,13 @@
                                     </div>
                                     <div class="order-body">
                                         @foreach($order['orderProducts'] as $product)
-
+                                           <?php
+                                                $product['slug']="ürün";
+                                               ?>
+                                            <a href="{{getProductUrl($product)}}">
                                             <div class="product-details">
                                                 <div class="product-img">
-                                                    <img src="<?php echo 'https://cdn-x.akilliphone.com/'.$product['image']?>" alt="product name">
+                                                    <img src="<?php echo 'https://cdn-x.akilliphone.com/'.$product['image']?>" alt="">
                                                 </div>
                                                 <div class="product-info">
                                                     <div class="name">
@@ -92,6 +95,7 @@
                                                 </div>
 
                                             </div>
+                                            </a>
 
                                         @endforeach
 

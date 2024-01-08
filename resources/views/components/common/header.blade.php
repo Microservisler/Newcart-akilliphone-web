@@ -76,7 +76,7 @@
     "><div class="header-top" style="background-color: #1A9AFC">
         <div class="container">
             <div class="header-top-info">
-                <span style="margin-left: 40%;padding-top: 5px;padding-bottom: 5px;color: white"><a href="">Eski Siteden Devam Et</a></span>
+                <span style="margin-left: 40%;padding-top: 5px;padding-bottom: 5px;color: white;font-weight: bold"><a href="">Eski Siteden Devam Et</a></span>
             </div>
         </div>
     </div>

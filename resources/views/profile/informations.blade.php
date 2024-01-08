@@ -51,7 +51,20 @@
                                 </div>
                                 <div class="signup-input">
                                     <span class="label">Password<span>&nbsp;*</span></span>
-                                    <input id="mobilePhone" type="text" name="user[password]" value="">
+                                    <input type="password" name="user[password]" id="pass" oninput="removeSpaces()" required>
+
+
+                                    <div id="tooltip" class="password-tooltip">
+                                        <ul>
+                                            <li class="rule" id="upper">Büyük harf en az bir tane</li>
+                                            <li class="rule" id="lower">Küçük harf en az bir tane</li>
+                                            <li class="rule" id="number">Sayı en az bir tane</li>
+                                            <li class="rule" id="special">Özel karakter en az bir tane</li>
+                                        </ul>
+                                    </div>
+
+
+
                                 </div>
                                 <div class="signup-agreement">
                                     <label for="membership">
@@ -75,4 +88,64 @@
 @endsection
 @section('js')
     <script src="../assets/js/profile/order/profile-order.js"></script>
+    <script>
+        const passwordInput = document.getElementById('pass');
+        const tooltip = document.getElementById('tooltip');
+        const rules = {
+            upper: /[A-Z]/,
+            lower: /[a-z]/,
+            number: /[0-9]/,
+            special: /[^A-Za-z0-9]/
+        };
+
+        passwordInput.addEventListener('focus', function() {
+            tooltip.style.display = 'block';
+        });
+
+        passwordInput.addEventListener('blur', function() {
+            tooltip.style.display = 'none';
+        });
+        const submitButton = document.querySelector('.submit-btn');
+        let control=0;
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            const matchedRules = Object.keys(rules).filter(rule => rules[rule].test(password));
+
+            document.querySelectorAll('.rule').forEach(rule => {
+                if (matchedRules.includes(rule.id)) {
+                    rule.style.textDecoration = 'line-through';
+                    rule.style.color = 'green';
+                } else {
+                    rule.style.textDecoration = 'none';
+                    rule.style.color = 'red';
+                }
+            });
+
+            if (matchedRules.length === Object.keys(rules).length) {
+                // tooltip.style.display = 'none';
+                submitButton.disabled = false; // Tüm kurallar sağlandıysa butonu aktif et
+                control=0;
+            } else {
+                tooltip.style.display = 'block';
+                control=1;
+            }
+        });
+
+        // Tıklama olayını sürekli dinle
+        submitButton.addEventListener('click', function(event) {
+            if (control==1) {
+                event.preventDefault(); // Buton devre dışı ise formun gönderilmesini engelle
+                Swal.fire({
+                    title: 'Lütfen Şifre Kurallarına Dikkat Edin.',
+                    toast: true,
+                    position: 'top-end',
+                    timer: 3000,
+                    icon: 'error',
+                    showConfirmButton: false,
+                })
+                return false; // İşlem yapma
+            }
+            // Buraya formun gönderilmesiyle ilgili işlemleri ekleyebilirsin
+        });
+    </script>
 @endsection

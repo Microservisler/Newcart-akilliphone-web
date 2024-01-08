@@ -26,7 +26,7 @@ if (session('userInfo')){
 }
     ?>
     <div id="app-basic">
-        <section class="product-details" style="padding-top: 147px">
+        <section class="product-details" style="padding-top:176px">
             <div class="container">
                 {!! $product['breadcrumb'] !!}
                 <div class="mobile-product-header">
